@@ -1,4 +1,4 @@
-/*****************************************************
+ /*****************************************************
 	GENERAL
 *****************************************************/
 * {
@@ -94,7 +94,7 @@ h3 {
 	padding-top:20px;
 	padding-bottom: 20px;
 	color: white;
-	background: #00A2E8;
+	background: #2d2d2d;
 	margin-left: 0.2em;
 	margin-right: 0.2em;
     border: 0 none;
@@ -103,7 +103,8 @@ h3 {
     cursor: pointer;
 }
 .my-button:hover {
-	color: white;
+	color: black;
+	background: #FFFFFF;
 	background: #66c7f1;
 }
 
@@ -290,7 +291,7 @@ h3 {
 /*****************************************************
         CONTENT GENERAL
 *****************************************************/
-#page-title {
+.page-title {
     border-bottom: 1px solid #E5C100;
 }
 
