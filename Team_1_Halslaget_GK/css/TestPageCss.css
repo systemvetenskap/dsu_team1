@@ -1,0 +1,19 @@
+﻿.redLine{
+    border: 1px solid red;
+    height: 5em;
+}
+
+.redLineInline{
+    border: 1px solid red;
+    height: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    display:inline-block;
+    float: none;
+}
+
+.centerStuff {
+    border: 1px solid red;
+    text-align: center;
+    height: 5em;
+}
