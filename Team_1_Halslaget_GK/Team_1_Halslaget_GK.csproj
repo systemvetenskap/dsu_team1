@@ -74,6 +74,8 @@
     <Content Include="Glyphicons.css" />
     <Content Include="img\golf2.jpg" />
     <Content Include="img\golf.jpg" />
+    <Content Include="ja\opencloseoverlay.js" />
+    <Content Include="ja\Scrollto.js" />
     <Content Include="MasterPage.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -118,9 +120,7 @@
       <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ja\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
