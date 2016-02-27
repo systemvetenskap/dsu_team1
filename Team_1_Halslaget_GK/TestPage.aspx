@@ -33,6 +33,8 @@
             <br />
             So how do you make a webform with a master page?
              <br />       
+                <br />
+
             Easy!         <br />
             1. Right click on the project name, in this case: Team_1_Halslaget_GK        <br />
             2. Then hover over add for submenu        <br />
