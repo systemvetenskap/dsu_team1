@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,8 +58,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\deafultstyle.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
+    <Content Include="deafult.aspx" />
     <Content Include="font.css" />
     <Content Include="fonts\generator_config.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -69,6 +72,7 @@
     <Content Include="fonts\specimen_files\specimen_stylesheet.css" />
     <Content Include="fonts\stylesheet.css" />
     <Content Include="Glyphicons.css" />
+    <Content Include="img\golf2.jpg" />
     <Content Include="img\golf.jpg" />
     <Content Include="MasterPage.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -91,6 +95,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="deafult.aspx.cs">
+      <DependentUpon>deafult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deafult.aspx.designer.cs">
+      <DependentUpon>deafult.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
