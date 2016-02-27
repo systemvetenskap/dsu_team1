@@ -19,7 +19,6 @@
             <br />
             and a closing tag that looks like this : /asp: ContentPlaceHolder >
             <br />
-            <br />
             If you look at line 2,8, 10 and ~100 here on the testpage you'll find the following tags: < asp:content >< /asp:content >.
             <br />
             This is where you make your custom things for a certain page. Between line 2 and 8 is where you put custom things that is neede to be in the head for a certain page, perhaps a 
