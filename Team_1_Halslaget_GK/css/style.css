@@ -332,13 +332,12 @@ h3 {
   display: block;
   width: 98%;
   border-radius: 5px;
-  border-style: solid; /*org inset, want more of a minimalistic style. but can be changed back */
+  border-style: solid; 
   border-width: 1px;
   border-color: #989898;
 	font-size: 1.4em;
     height: 2em;
     margin-right: 1em;
-	/*padding: 6px 12px;*/
 	font-family: 'latolight', helvetica, arial, sans-serif;	
 }
 
