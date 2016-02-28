@@ -18,36 +18,43 @@ namespace Team_1_Halslaget_GK
         {
             if(!IsPostBack)
             {
-            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
-                string sql = "SELECT id, fornamn, efternamn, hcp FROM medlem";
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-
-
-                con.Open();
-
-                NpgsqlDataReader dr = cmd.ExecuteReader();
-
-                while(dr.Read())
-                {
-                    medlem nymedlem = new medlem();
-                    nymedlem.ID = Convert.ToInt32(dr["id"]);
-                    nymedlem.fornamn = Convert.ToString(dr["fornamn"]);
-                    nymedlem.efternamn = Convert.ToString(dr["efternamn"]);
-                    nymedlem.handikapp = Convert.ToDouble(dr["hcp"]);
-
-                    medlemmar.Add(nymedlem);
-                }
-
-                con.Close();
-                con.Dispose();
-
-                ListBoxMedlemsregister.DataSource = medlemmar;
-                ListBoxMedlemsregister.DataBind();
+                HamtaMedlemmar();
             }
+        }
+
+        private void HamtaMedlemmar()
+        {
+            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
+            string sql = "SELECT id, fornamn, efternamn, hcp FROM medlem";
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+
+            con.Open();
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                medlem nymedlem = new medlem();
+                nymedlem.ID = Convert.ToInt32(dr["id"]);
+                nymedlem.fornamn = Convert.ToString(dr["fornamn"]);
+                nymedlem.efternamn = Convert.ToString(dr["efternamn"]);
+                nymedlem.handikapp = Convert.ToDouble(dr["hcp"]);
+
+                medlemmar.Add(nymedlem);
+            }
+
+            con.Close();
+            con.Dispose();
+
+            ListBoxMedlemsregister.DataSource = medlemmar;
+            ListBoxMedlemsregister.DataBind();
         }
 
         protected void RadioButtonListSortera_OnSelectedIndexChanged(object sender, EventArgs e) //Byter ordning på de listade medlemmarna när man klickar på en radiobutton
         {
+            HamtaMedlemmar();
+
             if (RadioButtonListSortera.Text == "ID")
             {
                 medlemmar.Sort((x1, x2) => x1.ID.CompareTo(x2.ID));
@@ -95,11 +102,28 @@ namespace Team_1_Halslaget_GK
         }
 
         protected void ButtonVisaMedlemInfo_Click (object sender, EventArgs e) //Hittar den markerade medlemmen när visa medlem klickas
-        {
+        {   int s;
+            string idstring = null;
             string text = ListBoxMedlemsregister.SelectedItem.Text;
-            int id = Convert.ToInt32(text[0].ToString());
+
+            foreach (char c in text)
+            {
+                bool siffra = Int32.TryParse(c.ToString(), out s);
+                if (siffra)
+                {
+                    idstring += s.ToString();
+                }
+
+                else
+                {
+                    break;
+                }
+            }
+
+            int id = Convert.ToInt32(idstring);
 
             VisaMedlem(id);
+
         }
 
         protected void VisaMedlem(int id) //Visar medlemsinfo
