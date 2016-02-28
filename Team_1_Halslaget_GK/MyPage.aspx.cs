@@ -29,6 +29,7 @@ namespace Team_1_Halslaget_GK
         {
             BindGridView();
             SetMemberInfoLabels();
+            SetMemberTextBoxes();
         }
 
         /// <summary>
@@ -44,7 +45,8 @@ namespace Team_1_Halslaget_GK
         }
 
         /// <summary>
-        /// Method uses getmockfutureTeetimedate
+        /// Method uses Getmemberinfo to retreive a
+        /// mock datatable to set labels on gui
         /// </summary>
         private void SetMemberInfoLabels()
         {
@@ -57,6 +59,23 @@ namespace Team_1_Halslaget_GK
             lblPostalCode.Text = dt.Rows[0]["postalcode"].ToString();
             lblCity.Text = dt.Rows[0]["city"].ToString();
             lblCurrentHandicap.Text = dt.Rows[0]["handicap"].ToString();
+        }
+
+        /// <summary>
+        /// Method uses getmemberinfo to retreive a 
+        /// mock datatable to set txtboxes on gui.
+        /// </summary>
+        private void SetMemberTextBoxes()
+        {
+            DataTable dt = GetMemberInfo();
+
+            txtFirstName.Text = dt.Rows[0]["firstname"].ToString();
+            txtLastName.Text = dt.Rows[0]["lastname"].ToString();
+            txtPhoneNum.Text = dt.Rows[0]["phonenumber"].ToString();
+            txtEmail.Text = dt.Rows[0]["email"].ToString();
+            txtStreet.Text = dt.Rows[0]["street"].ToString();
+            txtPostalCode.Text = dt.Rows[0]["postalcode"].ToString();
+            txtCity.Text = dt.Rows[0]["city"].ToString();
         }
 
         /// <summary>

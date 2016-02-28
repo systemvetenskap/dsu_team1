@@ -22,21 +22,21 @@
           <h3 class="my-h3">REDIGERA DINA UPPGIFTER</h3>  
           <div class="halfBox">
               <p class="p-my-info-modal"><strong>Förnamn:</strong></p>
-              <asp:TextBox ID="TextBox1" runat="server" CssClass="my-txt-box"></asp:TextBox>
+              <asp:TextBox ID="txtFirstName" runat="server" CssClass="my-txt-box"></asp:TextBox>
              <p class="p-my-info-modal"><strong>Efternam:</strong></p>
-             <asp:TextBox ID="TextBox2" runat="server" CssClass="my-txt-box"></asp:TextBox>
+             <asp:TextBox ID="txtLastName" runat="server" CssClass="my-txt-box"></asp:TextBox>
               <p class="p-my-info-modal"><strong>Telefonnummer:</strong> </p>
-             <asp:TextBox ID="TextBox3" runat="server" CssClass="my-txt-box"></asp:TextBox>
+             <asp:TextBox ID="txtPhoneNum" runat="server" CssClass="my-txt-box"></asp:TextBox>
              <p class="p-my-info-modal"><strong>Email:</strong></p>
-             <asp:TextBox ID="TextBox4" runat="server" CssClass="my-txt-box"></asp:TextBox>
+             <asp:TextBox ID="txtEmail" runat="server" CssClass="my-txt-box"></asp:TextBox>
            </div>   
           <div class="halfBox">
                 <p class="p-my-info-modal"><strong>Gata:</strong> </p>
-              <asp:TextBox ID="TextBox5" runat="server"  CssClass="my-txt-box"></asp:TextBox>
+              <asp:TextBox ID="txtStreet" runat="server"  CssClass="my-txt-box"></asp:TextBox>
                 <p class="p-my-info-modal"><strong>Postkod:</strong></p>
-              <asp:TextBox ID="TextBox6" runat="server"  CssClass="my-txt-box"></asp:TextBox>
+              <asp:TextBox ID="txtPostalCode" runat="server"  CssClass="my-txt-box"></asp:TextBox>
                 <p class="p-my-info-modal"><strong>Stad:</strong> </p>
-              <asp:TextBox ID="TextBox7" runat="server"  CssClass="my-txt-box"></asp:TextBox>
+              <asp:TextBox ID="txtCity" runat="server"  CssClass="my-txt-box"></asp:TextBox>
           </div>
           <asp:Button ID="Button1" runat="server" Text="SPARA OCH STÄNG" CssClass="my-button top-n-bottom-space"/>                 
       </div>
