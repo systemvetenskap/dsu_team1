@@ -10,3 +10,9 @@ C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\bin\Team_1_Halslaget_
 C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.dll
 C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.pdb
+C:\Users\Drysen1\Source\Repos\dsu_team14\Team_1_Halslaget_GK\bin\Team_1_Halslaget_GK.dll.config
+C:\Users\Drysen1\Source\Repos\dsu_team14\Team_1_Halslaget_GK\bin\Team_1_Halslaget_GK.dll
+C:\Users\Drysen1\Source\Repos\dsu_team14\Team_1_Halslaget_GK\bin\Team_1_Halslaget_GK.pdb
+C:\Users\Drysen1\Source\Repos\dsu_team14\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.csprojResolveAssemblyReference.cache
+C:\Users\Drysen1\Source\Repos\dsu_team14\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.dll
+C:\Users\Drysen1\Source\Repos\dsu_team14\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.pdb

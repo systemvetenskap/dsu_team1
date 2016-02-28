@@ -60,6 +60,8 @@
   <ItemGroup>
     <Content Include="bin\Team_1_Halslaget_GK.dll" />
     <Content Include="bin\Team_1_Halslaget_GK.pdb" />
+    <Content Include="ChangePassword.aspx" />
+    <Content Include="css\changePasswordCss.css" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\MyPageCss.css" />
     <Content Include="bin\Team_1_Halslaget_GK.dll" />
@@ -81,6 +83,7 @@
     <Content Include="Glyphicons.css" />
     <Content Include="img\golf2.jpg" />
     <Content Include="img\golf.jpg" />
+    <Content Include="ja\ChangePasswordJs.js" />
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\Scrollto.js" />
@@ -110,6 +113,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="deafult.aspx.cs">
       <DependentUpon>deafult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
