@@ -27,10 +27,10 @@
        <h2>Välkommen</h2> 
        <br />
        <div class="textboxcontainer">
-       <asp:TextBox ID="TextBox1" runat="server" placeholder="Email" CssClass="textbox"></asp:TextBox>
+       <asp:TextBox ID="TextBox1" runat="server" placeholder="Email" CssClass="my-txt-box"></asp:TextBox>
        <br />
        <br />      
-       <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="textbox" ></asp:TextBox>
+       <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="my-txt-box" ></asp:TextBox>
        <br />
        <br />
        <asp:Button ID="signInBtn" runat="server" Text="Logga in" CssClass="my-button" />
@@ -114,15 +114,15 @@ Maecenas eu enim metus. Suspendisse eleifend enim at diam tempus auctor. Maecena
              <div class="contentRow">
                  <div class="registerbox">
                      <h2>Bli medlem</h2>
-                     <asp:TextBox ID="tbName" runat="server" CssClass="textbox" placeholder="Namn"></asp:TextBox>
-                     <asp:TextBox ID="tbAdress" runat="server" CssClass="textbox" placeholder="Adress"></asp:TextBox>
-                     <asp:TextBox ID="tbEmail" runat="server" CssClass="textbox" placeholder="Email"></asp:TextBox><br />
-                     <asp:TextBox ID="tbLastname" runat="server" CssClass="textbox" placeholder="Efternamn"></asp:TextBox>
-                     <asp:TextBox ID="tbCity" runat="server" CssClass="textbox" placeholder="Postort"></asp:TextBox>
-                     <asp:TextBox ID="tbPassword" runat="server" CssClass="textbox" placeholder="Lösenord"></asp:TextBox><br />   
-                     <asp:TextBox ID="tbPonenumber" runat="server" CssClass="textbox" placeholder="Telefonnummer"></asp:TextBox>                                           
-                     <asp:TextBox ID="tbZipcode" runat="server" CssClass="textbox" placeholder="Postnummer"></asp:TextBox>
-                     <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="textbox" placeholder="Bekräfta Lösenord"></asp:TextBox><br /><br />
+                     <asp:TextBox ID="tbName" runat="server" CssClass="my-txt-box" placeholder="Namn"></asp:TextBox>
+                     <asp:TextBox ID="tbAdress" runat="server" CssClass="my-txt-box" placeholder="Adress"></asp:TextBox>
+                     <asp:TextBox ID="tbEmail" runat="server" CssClass="my-txt-box" placeholder="Email"></asp:TextBox><br />
+                     <asp:TextBox ID="tbLastname" runat="server" CssClass="my-txt-box" placeholder="Efternamn"></asp:TextBox>
+                     <asp:TextBox ID="tbCity" runat="server" CssClass="my-txt-box" placeholder="Postort"></asp:TextBox>
+                     <asp:TextBox ID="tbPassword" runat="server" CssClass="my-txt-box" placeholder="Lösenord"></asp:TextBox><br />   
+                     <asp:TextBox ID="tbPonenumber" runat="server" CssClass="my-txt-box" placeholder="Telefonnummer"></asp:TextBox>                                           
+                     <asp:TextBox ID="tbZipcode" runat="server" CssClass="my-txt-box" placeholder="Postnummer"></asp:TextBox>
+                     <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox><br /><br />
                                                             
                      <asp:Button ID="Button2" runat="server" Text="Bli medlem" Cssclass="my-button"/>
                      
