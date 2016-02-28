@@ -112,15 +112,6 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox TextBoxHandikapp;
         
         /// <summary>
-        /// ButtonRedigera control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonRedigera;
-        
-        /// <summary>
         /// ButtonTillbaka control.
         /// </summary>
         /// <remarks>
@@ -130,13 +121,13 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button ButtonTillbaka;
         
         /// <summary>
-        /// ButtonSpara control.
+        /// ButtonRedigera control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSpara;
+        protected global::System.Web.UI.WebControls.Button ButtonRedigera;
         
         /// <summary>
         /// ButtonRadera control.
@@ -146,5 +137,14 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonRadera;
+        
+        /// <summary>
+        /// ButtonSpara control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonSpara;
     }
 }

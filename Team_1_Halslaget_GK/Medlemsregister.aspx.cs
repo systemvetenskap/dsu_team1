@@ -102,28 +102,36 @@ namespace Team_1_Halslaget_GK
         }
 
         protected void ButtonVisaMedlemInfo_Click (object sender, EventArgs e) //Hittar den markerade medlemmen när visa medlem klickas
-        {   int s;
-            string idstring = null;
-            string text = ListBoxMedlemsregister.SelectedItem.Text;
-
-            foreach (char c in text)
+        {   
+            if (ListBoxMedlemsregister.SelectedIndex == -1)
             {
-                bool siffra = Int32.TryParse(c.ToString(), out s);
-                if (siffra)
-                {
-                    idstring += s.ToString();
-                }
 
-                else
-                {
-                    break;
-                }
             }
 
-            int id = Convert.ToInt32(idstring);
+            else
+            {                      
+                int s;
+                string idstring = null;
+                string text = ListBoxMedlemsregister.SelectedItem.Text;
 
-            VisaMedlem(id);
+                foreach (char c in text)
+                {
+                    bool siffra = Int32.TryParse(c.ToString(), out s);
+                    if (siffra)
+                    {
+                        idstring += s.ToString();
+                    }
 
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                int id = Convert.ToInt32(idstring);
+
+                VisaMedlem(id);
+            }
         }
 
         protected void VisaMedlem(int id) //Visar medlemsinfo
