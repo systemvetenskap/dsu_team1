@@ -31,7 +31,8 @@
        <br />
        <br />      
        <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="textbox" ></asp:TextBox>
-        <br />
+       <br />
+       <br />
        <asp:Button ID="signInBtn" runat="server" Text="Logga in" CssClass="my-button" />
        </div>   
 
