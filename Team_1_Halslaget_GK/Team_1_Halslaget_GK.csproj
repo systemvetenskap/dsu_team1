@@ -93,6 +93,7 @@
     <Content Include="fonts\lato-lig-webfont.ttf" />
     <Content Include="fonts\lato-lig-webfont.woff" />
     <Content Include="fonts\monofont.ttf" />
+    <Content Include="bin\Team_1_Halslaget_GK.dll.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
