@@ -175,5 +175,21 @@
             </div>
         </div>
     </div>
+
+    <!-- ACCOUNT SETTINGS ================================================== -->
+    <div class="fullBox top-n-bottom-space">
+        <div class="fullBox page-title">
+            <h3>KONTOINSTÄLLNINGAR</h3>
+        </div>
+        <div class="fullBox ">
+                <div class="fullBox">
+                    <p class="p-my-info">Vill du ändra ditt lösenord? Klicka på knappen nedanför.</p>
+
+                </div>
+                <div class="halfBox top-n-bottom-space">
+                    <asp:Button CssClass="my-button" ID="btnGoToAccountSettings" runat="server" Text="ÄNDRA LÖSENORD" />
+                </div>
+        </div>
+    </div>
 </div>
 </asp:Content>
