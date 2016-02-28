@@ -58,8 +58,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Team_1_Halslaget_GK.dll" />
-    <Content Include="bin\Team_1_Halslaget_GK.pdb" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\MyPageCss.css" />
     <Content Include="css\style.css" />
@@ -89,9 +87,6 @@
     <Content Include="fonts\lato-lig-webfont.ttf" />
     <Content Include="fonts\lato-lig-webfont.woff" />
     <Content Include="fonts\monofont.ttf" />
-    <Content Include="bin\Team_1_Halslaget_GK.dll.config" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="obj\Debug\Team_1_Halslaget_GK.csprojResolveAssemblyReference.cache" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -101,9 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyPage.aspx" />
-    <Content Include="obj\Debug\Team_1_Halslaget_GK.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\Team_1_Halslaget_GK.dll" />
-    <Content Include="obj\Debug\Team_1_Halslaget_GK.pdb" />
     <Content Include="TestPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -142,7 +134,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="bin\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
