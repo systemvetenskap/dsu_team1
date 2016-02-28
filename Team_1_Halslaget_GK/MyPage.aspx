@@ -4,10 +4,15 @@
     <title>MyPage</title>
     <link type="text/css" rel="stylesheet" href="css/MyPageCss.css"/> 
     <script src="ja/testscript.js"></script>
+<script type="text/javascript">
+
+</script>  
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <div class="pagecontainer">
 
     <!-- OVerlay/Modal to edit user info ================================================== -->
@@ -42,11 +47,27 @@
       <div class="overlay-message-booking">
           <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="closeCancelBookingOverlay();"></span></p>
             <h3 class="my-h3">AVBOKA</h3>  
-            <p class="p-my-info-modal"><strong>Du håller nu på att göra en avbokning av:</strong></p>
-          <asp:Button ID="Button2" runat="server" Text="SPARA OCH STÄNG" CssClass="my-button top-n-bottom-space"/>                 
+            <p class="p-my-info-modal"><strong>Du håller på att avboka följande tid:</strong></p>
+            <p class="p-my-info-modal"><strong>Bokningsnummer: </strong><asp:Label ID="lblBookingID" runat="server" Text="Label"></asp:Label></p>
+            <p class="p-my-info-modal"><strong>Datum: </strong><asp:Label ID="lblDate" runat="server" Text="Label"></asp:Label></p>
+            <p class="p-my-info-modal"><strong>Starttid: </strong><asp:Label ID="lblStartTime" runat="server" Text="Label"></asp:Label></p>
+            <div class="fullBox">
+                <p class="p-my-info-modal center-text">Är du säker på att du vill avboka?</p>
+            </div>
+            <div class="fullBox">
+                <div class="halfBox">
+                    <asp:Button ID="Button2" runat="server" Text="JA" CssClass="my-button top-n-bottom-space"/>   
+                </div>  
+                <div class="halfBox">
+                    <a class="my-button top-n-bottom-space" onclick="closeCancelBookingOverlay();">NEJ</a> 
+                </div> 
+            </div>   
+          <p class="p-my-info-modal">.</p>
       </div>
     </div>
 
+
+    <!-- MAIN PAGE================================================== -->
     <div class="fullBox page-title">
         <h1>MIN SIDA</h1>
     </div>
@@ -59,29 +80,50 @@
     <div class="fullBox top-n-bottom-space">
         <div class="halfBox">
             <div class="fullBox my-page-title">
-                <h3>Mina bokade tider</h3>
+                <h3>MINA BOKADE TIDER</h3>
             </div>
             <div class="fullBox">            
-                <asp:ListView ID="ListViewFutureTeeTimes" runat="server">
+                <!--<asp:ListView ID="ListViewFutureTeeTimes" runat="server" OnSelectedIndexChanged="ListViewFutureTeeTimes_SelectedIndexChanged">
                     <ItemTemplate>
                         <br />
                         <p class="p-my-page">
                             <strong>Datum: </strong><asp:Label ID="lblFutureTeeDate" runat="server" Text='<%# Eval("date", "{0:dd-MM-yyyy}") %>'></asp:Label>
                             <strong>Starttid: </strong><asp:Label ID="lblFutureTeeStartTime" runat="server" Text='<%# Eval("starttime", "{0:HH:mm}") %>'></asp:Label>
                             <strong>Boknings Nr: </strong><asp:Label ID="lblFutureTeeID" runat="server" Text='<%# Eval("id") %>'></asp:Label>
-                            <!--<asp:Label ID="lblFutureEmptyMessage" runat="server" Text="Label"></asp:Label>-->
-                            <p class="p-my-page pull-right"><a onclick="openCancelBookingOverlay();">Avboka</a></p>
+                            <p class="p-my-page pull-right">
+                                <asp:Label ID="Label1" runat="server" OnClientClick="openCancelBookingOverlay();" Text="Avboka"></asp:Label>
                             <br />
-                            <asp:LinkButton ID="LinkButton1" runat="server">LinkButton</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" OnClientClick="openCancelBookingOverlay();" runat="server">LinkButton</asp:LinkButton>
                             <br />
                         </p>
                     </ItemTemplate>
-                </asp:ListView>
+                </asp:ListView>-->
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
+                    <Columns>
+                            <asp:BoundField DataField="id" HeaderText="Boknings Nr" SortExpression="id" />
+                            <asp:BoundField DataField="date" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" SortExpression="date" />
+                            <asp:BoundField DataField="starttime" HeaderText="Starttid" DataFormatString="{0:HH:mm}" SortExpression="starttime" />
+                            <asp:CommandField ShowSelectButton="true" />
+                    </Columns>
+                </asp:GridView>
+                        <asp:Label ID="lblTempBookingID" runat="server" Text="Label1" ></asp:Label>
+                        <asp:Label ID="lblTempDate" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblTempStartTime" runat="server" Text="Label"></asp:Label>           
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
             </div>
 
             <div class="fullBox center-text">
                 <br />
-                <asp:Button ID="btnGoToBooking" runat="server" Text="BOKA TIDER" CssClass="my-button"/>
+                <div class="halfBox">
+                    <asp:Button ID="btnGoToBooking" runat="server" Text="BOKA TIDER" CssClass="my-button"/>
+                </div>
+                <div class="halfBox">
+                    <a class="my-button" onclick="openCancelBookingOverlay();">AVBOKA TID</a>
+                </div>
             </div>
         </div>
         <div class="halfBox">
