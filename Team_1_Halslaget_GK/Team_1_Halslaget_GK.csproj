@@ -71,7 +71,7 @@
     <Content Include="fonts\stylesheet.css" />
     <Content Include="Glyphicons.css" />
     <Content Include="img\golf.jpg" />
-    <Content Include="ja\testscript.js" />
+    <Content Include="ja\MyPageScripts.js" />
     <Content Include="MasterPage.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

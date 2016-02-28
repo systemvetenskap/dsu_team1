@@ -11,6 +11,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Drawing;
+using System.Web.UI.HtmlControls; 
 
 namespace Team_1_Halslaget_GK
 {
@@ -18,7 +19,10 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            InitializeGUI();
+            if(!IsPostBack)
+            {
+                InitializeGUI();
+            }
         }
 
         /// <summary>
@@ -30,6 +34,9 @@ namespace Team_1_Halslaget_GK
             BindGridView();
             SetMemberInfoLabels();
             SetMemberTextBoxes();
+
+            //Sets cancelbooking button to disabled so user has to choose what time to cancel before one can press said button.
+
         }
 
         /// <summary>
@@ -169,7 +176,7 @@ namespace Team_1_Halslaget_GK
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 lblTempBookingID.Text = GridView1.Rows[rowIndex].Cells[0].Text;   
                 lblTempDate.Text = GridView1.Rows[rowIndex].Cells[1].Text;
-                lblTempStartTime.Text = GridView1.Rows[rowIndex].Cells[2].Text;  
+                lblTempStartTime.Text = GridView1.Rows[rowIndex].Cells[2].Text;
             }
         }
 

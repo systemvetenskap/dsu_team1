@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>MyPage</title>
     <link type="text/css" rel="stylesheet" href="css/MyPageCss.css"/> 
-    <script src="ja/testscript.js"></script>
+    <script src="ja/MyPageScripts.js"></script>
 <script type="text/javascript">
 
 </script>  
@@ -18,7 +18,7 @@
     <!-- OVerlay/Modal to edit user info ================================================== -->
     <div class="page-overlay-edit-info">
       <div class="overlay-message">
-          <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="closeOverlay();"></span></p>
+          <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="closeOverlayEditInfo();"></span></p>
           <h3 class="my-h3">REDIGERA DINA UPPGIFTER</h3>  
           <div class="halfBox">
               <p class="p-my-info-modal"><strong>Förnamn:</strong></p>
@@ -38,7 +38,7 @@
                 <p class="p-my-info-modal"><strong>Stad:</strong> </p>
               <asp:TextBox ID="txtCity" runat="server"  CssClass="my-txt-box"></asp:TextBox>
           </div>
-          <asp:Button ID="Button1" runat="server" Text="SPARA OCH STÄNG" CssClass="my-button top-n-bottom-space"/>                 
+          <asp:Button ID="btnUpdateUserinfo" runat="server" Text="SPARA OCH STÄNG" CssClass="my-button top-n-bottom-space"/>                 
       </div>
     </div>
 
@@ -56,10 +56,10 @@
             </div>
             <div class="fullBox">
                 <div class="halfBox">
-                    <asp:Button ID="Button2" runat="server" Text="JA" CssClass="my-button top-n-bottom-space"/>   
+                    <asp:Button ID="Button2" runat="server" Text="JA" CssClass="my-button btn-mobile-space"/>   
                 </div>  
                 <div class="halfBox">
-                    <a class="my-button top-n-bottom-space" onclick="closeCancelBookingOverlay();">NEJ</a> 
+                    <a class="my-button btn-mobile-space" onclick="closeCancelBookingOverlay();">NEJ</a> 
                 </div> 
             </div>   
           <p class="p-my-info-modal">.</p>
@@ -77,11 +77,18 @@
             samt ändra din personliga information. Har du några frågor eller funderingar är du varmt välkommen till att kontakta hos på Hålsaget GK!
         </p>
     </div>
+
+
+    <!-- USER BOOKED TIMES ================================================== -->
     <div class="fullBox top-n-bottom-space">
         <div class="halfBox">
             <div class="fullBox my-page-title">
                 <h3>MINA BOKADE TIDER</h3>
             </div>
+
+
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
             <div class="fullBox">            
                 <!--<asp:ListView ID="ListViewFutureTeeTimes" runat="server" OnSelectedIndexChanged="ListViewFutureTeeTimes_SelectedIndexChanged">
                     <ItemTemplate>
@@ -98,8 +105,7 @@
                         </p>
                     </ItemTemplate>
                 </asp:ListView>-->
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
+
                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
                     <Columns>
                             <asp:BoundField DataField="id" HeaderText="Boknings Nr" SortExpression="id" />
@@ -108,24 +114,29 @@
                             <asp:CommandField ShowSelectButton="true" />
                     </Columns>
                 </asp:GridView>
-                        <asp:Label ID="lblTempBookingID" runat="server" Text="Label1" ></asp:Label>
-                        <asp:Label ID="lblTempDate" runat="server" Text="Label"></asp:Label>
-                        <asp:Label ID="lblTempStartTime" runat="server" Text="Label"></asp:Label>           
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                        <asp:Label ID="lblTempBookingID" runat="server" Text="Empty" style="display:none;"></asp:Label>
+                        <asp:Label ID="lblTempDate" runat="server" Text="Empty" style="display:none;"></asp:Label>
+                        <asp:Label ID="lblTempStartTime" runat="server" Text="Empty" style="display:none;"></asp:Label>           
 
             </div>
 
             <div class="fullBox center-text">
                 <br />
+                <p class="p-my-info">För att avboka en tid, klicka på markera och sedan på knappen "Avboka tid"</p>
+                <br />
                 <div class="halfBox">
                     <asp:Button ID="btnGoToBooking" runat="server" Text="BOKA TIDER" CssClass="my-button"/>
                 </div>
                 <div class="halfBox">
-                    <a class="my-button" onclick="openCancelBookingOverlay();">AVBOKA TID</a>
+                    <a id="btnCancelBooking" class="my-button btn-mobile-space" title="Välj tid för att kunna avboka." onclick="openCancelBookingOverlay();">AVBOKA TID</a>
                 </div>
             </div>
+                            </ContentTemplate>
+                </asp:UpdatePanel>
         </div>
+
+
+        <!-- USER STATISTICS ================================================== -->
         <div class="halfBox">
             <div class="fullBox">
                 <div class="fullBox my-page-title">
@@ -138,6 +149,8 @@
             </div>
         </div>
     </div>
+
+    <!-- USER INFO ================================================== -->
     <div class="fullBox top-n-bottom-space">
         <div class="fullBox page-title">
             <h3>DINA UPPGIFTER</h3>
@@ -157,7 +170,7 @@
             </div>
             <div class="fullBox top-n-bottom-space">
                 <div class="halfBox">
-                    <a class="my-button" onclick="testClick();">REDIGERA UPPGIFTER</a>
+                    <a class="my-button" title="Klicka här för att redigera din uppgifter, en ny ruta öppnas." onclick="openOverlayEditInfo();">REDIGERA UPPGIFTER</a>
                 </div>
             </div>
         </div>
