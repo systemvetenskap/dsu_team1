@@ -4,3 +4,9 @@ C:\Users\Drysen1\Desktop\Skola\Malmö\Team_1_Halslaget_GK\Team_1_Halslaget_GK\bi
 C:\Users\Drysen1\Desktop\Skola\Malmö\Team_1_Halslaget_GK\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.csprojResolveAssemblyReference.cache
 C:\Users\Drysen1\Desktop\Skola\Malmö\Team_1_Halslaget_GK\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.dll
 C:\Users\Drysen1\Desktop\Skola\Malmö\Team_1_Halslaget_GK\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.pdb
+C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\bin\Team_1_Halslaget_GK.dll.config
+C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\bin\Team_1_Halslaget_GK.dll
+C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\bin\Team_1_Halslaget_GK.pdb
+C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.dll
+C:\Users\Martin\Source\Repos\dsu_team1\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.pdb
