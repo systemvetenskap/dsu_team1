@@ -14,7 +14,7 @@
     <script src="ja/Scrollto.js"></script>
     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>   
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     
 </head>
 <body>
@@ -32,12 +32,11 @@
        <br />      
        <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="textbox" ></asp:TextBox>
         <br />
-       <asp:Button ID="Button2" runat="server" Text="Button" />
+       <asp:Button ID="signInBtn" runat="server" Text="Logga in" CssClass="my-button" />
        </div>   
 
    </div>
   </div>
-     
   <!-- Navbar ================================================== -->
     <section class="container" id="navbar-section">
       <div class="content">
@@ -80,6 +79,7 @@
         <section class="container">
             <div class="content">
                 <div class="contentRow">
+                    <div class="halfBox">                  
                     <div class="News">
                         <h1>Påhittad Nyhet!</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus lectus, ultricies eget lacus et, ullamcorper viverra est. Nullam hendrerit ex eget risus commodo viverra. Aliquam malesuada felis mauris, vitae posuere mauris faucibus at. Donec congue, neque eu sodales efficitur, leo nisi dictum leo, id facilisis nisl metus nec lectus. Nulla pulvinar sed enim vel porta. Phasellus aliquet lacus ut nibh interdum eleifend. Mauris eros massa, cursus ac lectus in, vestibulum molestie elit. Etiam faucibus nulla vitae turpis consectetur rhoncus.
@@ -92,7 +92,8 @@ Nullam id blandit lorem. Nam congue ante lacinia, vestibulum diam sit amet, faci
 
 Maecenas eu enim metus. Suspendisse eleifend enim at diam tempus auctor. Maecenas eleifend lacus ac lobortis vulputate. Nulla bibendum feugiat eleifend. Sed in magna tortor. Aenean congue auctor leo, vitae volutpat velit eleifend nec. Cras ac arcu at orci ullamcorper sagittis. Suspendisse varius sem non sapien commodo bibendum. Etiam ac erat vitae mi dapibus egestas a non urna. Duis pretium ac metus a finibus. Donec id egestas orci, a pretium tellus. Vestibulum eleifend erat sapien. Integer lorem metus, luctus ut dolor sed, accumsan dignissim mauris.</p>
                     </div>
-
+                    </div>
+                    <div class="halfBox">  
                     <h1>En annan påhittad nyhet</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus lectus, ultricies eget lacus et, ullamcorper viverra est. Nullam hendrerit ex eget risus commodo viverra. Aliquam malesuada felis mauris, vitae posuere mauris faucibus at. Donec congue, neque eu sodales efficitur, leo nisi dictum leo, id facilisis nisl metus nec lectus. Nulla pulvinar sed enim vel porta. Phasellus aliquet lacus ut nibh interdum eleifend. Mauris eros massa, cursus ac lectus in, vestibulum molestie elit. Etiam faucibus nulla vitae turpis consectetur rhoncus.
 
@@ -104,17 +105,26 @@ Nullam id blandit lorem. Nam congue ante lacinia, vestibulum diam sit amet, faci
 
 Maecenas eu enim metus. Suspendisse eleifend enim at diam tempus auctor. Maecenas eleifend lacus ac lobortis vulputate. Nulla bibendum feugiat eleifend. Sed in magna tortor. Aenean congue auctor leo, vitae volutpat velit eleifend nec. Cras ac arcu at orci ullamcorper sagittis. Suspendisse varius sem non sapien commodo bibendum. Etiam ac erat vitae mi dapibus egestas a non urna. Duis pretium ac metus a finibus. Donec id egestas orci, a pretium tellus. Vestibulum eleifend erat sapien. Integer lorem metus, luctus ut dolor sed, accumsan dignissim mauris.</p>
                 </div>
-            </div>
+                   <div/>
+            </div/>
         </section>
      <section class="container">
          <div class="content">
              <div class="contentRow">
                  <div class="registerbox">
                      <h2>Bli medlem</h2>
-                     <asp:TextBox ID="tbName" runat="server" CssClass="textbox"></asp:TextBox>
-                     <asp:TextBox ID="TextBox4" runat="server" CssClass="textbox"></asp:TextBox>
-                     <asp:TextBox ID="TextBox5" runat="server" CssClass="textbox"></asp:TextBox>
-                     <asp:TextBox ID="TextBox6" runat="server" CssClass="textbox"></asp:TextBox>
+                     <asp:TextBox ID="tbName" runat="server" CssClass="textbox" placeholder="Namn"></asp:TextBox>
+                     <asp:TextBox ID="tbAdress" runat="server" CssClass="textbox" placeholder="Adress"></asp:TextBox>
+                     <asp:TextBox ID="tbEmail" runat="server" CssClass="textbox" placeholder="Email"></asp:TextBox><br />
+                     <asp:TextBox ID="tbLastname" runat="server" CssClass="textbox" placeholder="Efternamn"></asp:TextBox>
+                     <asp:TextBox ID="tbCity" runat="server" CssClass="textbox" placeholder="Postort"></asp:TextBox>
+                     <asp:TextBox ID="tbPassword" runat="server" CssClass="textbox" placeholder="Lösenord"></asp:TextBox><br />   
+                     <asp:TextBox ID="tbPonenumber" runat="server" CssClass="textbox" placeholder="Telefonnummer"></asp:TextBox>                                           
+                     <asp:TextBox ID="tbZipcode" runat="server" CssClass="textbox" placeholder="Postnummer"></asp:TextBox>
+                     <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="textbox" placeholder="Bekräfta Lösenord"></asp:TextBox><br /><br />
+                                                            
+                     <asp:Button ID="Button2" runat="server" Text="Bli medlem" Cssclass="my-button"/>
+                     
                  </div>
              </div>
          </div>
