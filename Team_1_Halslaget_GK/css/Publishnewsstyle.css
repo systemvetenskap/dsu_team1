@@ -1,0 +1,12 @@
+﻿body {
+
+}
+.test .my-txt-box {
+    width: 300px;
+        resize: both;
+    overflow: auto;
+    
+}
+.publish-news-fix {
+    margin: 10px 0;
+}

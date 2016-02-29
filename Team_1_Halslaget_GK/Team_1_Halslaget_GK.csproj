@@ -70,6 +70,7 @@
     <Content Include="css\MyPageCss.css" />
     <Content Include="bin\Team_1_Halslaget_GK.dll" />
     <Content Include="bin\Team_1_Halslaget_GK.pdb" />
+    <Content Include="css\Publishnewsstyle.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
     <Content Include="deafult.aspx" />
@@ -90,6 +91,8 @@
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\Scrollto.js" />
+    <Content Include="ja\Tinymce.js" />
+    <Content Include="langs\sv_SE.js" />
     <Content Include="MasterPage.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -113,6 +116,7 @@
     <Content Include="obj\Debug\Team_1_Halslaget_GK.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Team_1_Halslaget_GK.dll" />
     <Content Include="obj\Debug\Team_1_Halslaget_GK.pdb" />
+    <Content Include="PublishNewsAdmin.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -157,6 +161,13 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublishNewsAdmin.aspx.cs">
+      <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PublishNewsAdmin.aspx.designer.cs">
+      <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
