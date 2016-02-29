@@ -1,4 +1,4 @@
-﻿body {
+﻿/*body {
 }
 
 div.register{
@@ -11,6 +11,98 @@ table.centrera{
 
 .centrera td{
     padding: 5px;
+}*/
+
+
+.memberreg-page-title{
+    width: 98%;
+    border-bottom: 1px solid #E5C100;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
+.memberreg-1em-margin-horizontal{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
 
+.member-1em-margin-lat{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.member-txt-box{
+    width:95%;
+}
+.radiobuttons{
+    font-size: 1.2em;
+    width: 100%;
+    text-align: center;
+}
+
+.radiobuttons td{
+    padding: 0.5em;
+}
+
+.radiobuttons td input{
+    cursor: pointer;
+}
+
+.radiobuttons td label{
+    cursor: pointer;
+}
+
+.listbox-style{
+    font-size: 1em;
+    margin-bottom:1em;
+    width:100%; 
+    height: 400px;
+}
+
+.listbox-style option{
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
+.page-overlay-delete-member{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 500;
+    display: none;
+}
+
+.overlay-message-delete {
+	margin: 0em auto;
+	margin-top: 10%;
+	padding: 1em;
+	background: white;
+	width: 500px;
+	/*text-align: center;*/
+}
+
+.pull-right{
+    float: right;
+}
+
+.my-glyph-close{
+    cursor: pointer;
+}
+
+@media (max-width: 500px) {	
+	.overlay-message-delete {
+    width: 100%;
+    margin-top: 5em;
+    padding-left: 0em;
+  }
+}
+
+@media (max-width: 768px) {	
+	.btn-mobile-space {
+    margin-top: 0.5em;
+    margin-bottom: 0.7em;
+  }
+}

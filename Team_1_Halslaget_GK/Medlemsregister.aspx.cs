@@ -131,11 +131,14 @@ namespace Team_1_Halslaget_GK
 
         protected void VisaMedlem(int id) //Visar medlemsinfo
         {
-            ListBoxMedlemsregister.Visible = false;
-            RadioButtonListSortera.Visible = false;
-            ButtonVisaMedlemInfo.Visible = false;
-            ButtonRedigera.Visible = true;
-            ButtonTillbaka.Visible = true;            
+
+            //Kommenterade ut lite saker för att visa nya funktionene med listbox.selectedindexchanged. Går självkalrt att ändra tillbaka.
+
+            //ListBoxMedlemsregister.Visible = false;
+            //RadioButtonListSortera.Visible = false;
+            //ButtonVisaMedlemInfo.Visible = false;
+            //ButtonRedigera.Visible = true;
+            //ButtonTillbaka.Visible = true;            
 
             string sql = "SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori FROM medlem WHERE id = " + id;
             NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
@@ -148,14 +151,14 @@ namespace Team_1_Halslaget_GK
             con.Close();
             con.Dispose();
 
-            TextBoxID.Visible = true;
-            TextBoxFornamn.Visible = true;
-            TextBoxEfternamn.Visible = true;
-            TextBoxAdress.Visible = true;
-            TextBoxPostnummer.Visible = true;
-            TextBoxOrt.Visible = true;
-            TextBoxEmail.Visible = true;
-            TextBoxHandikapp.Visible = true;
+            //TextBoxID.Visible = true;
+            //TextBoxFornamn.Visible = true;
+            //TextBoxEfternamn.Visible = true;
+            //TextBoxAdress.Visible = true;
+            //TextBoxPostnummer.Visible = true;
+            //TextBoxOrt.Visible = true;
+            //TextBoxEmail.Visible = true;
+            //TextBoxHandikapp.Visible = true;
 
             TextBoxID.Text = id.ToString();
             TextBoxFornamn.Text = dt.Rows[0][0].ToString();
@@ -166,14 +169,14 @@ namespace Team_1_Halslaget_GK
             TextBoxEmail.Text = dt.Rows[0][5].ToString();
             TextBoxHandikapp.Text = dt.Rows[0][6].ToString();
 
-            TextBoxID.ReadOnly = true;
-            TextBoxFornamn.ReadOnly = true;
-            TextBoxEfternamn.ReadOnly = true;
-            TextBoxAdress.ReadOnly = true;
-            TextBoxPostnummer.ReadOnly = true;
-            TextBoxOrt.ReadOnly = true;
-            TextBoxEmail.ReadOnly = true;
-            TextBoxHandikapp.ReadOnly = true;
+            //TextBoxID.ReadOnly = true;
+            //TextBoxFornamn.ReadOnly = true;
+            //TextBoxEfternamn.ReadOnly = true;
+            //TextBoxAdress.ReadOnly = true;
+            //TextBoxPostnummer.ReadOnly = true;
+            //TextBoxOrt.ReadOnly = true;
+            //TextBoxEmail.ReadOnly = true;
+            //TextBoxHandikapp.ReadOnly = true;
         }
 
         protected void ButtonRedigera_Click (object sender, EventArgs e)
@@ -289,6 +292,45 @@ namespace Team_1_Halslaget_GK
                 con.Dispose();
 
                 RensaOchBindListbox();
+            }
+        }
+
+
+        /// <summary>
+        /// La till detta eventet. Tänkte att det kanske blir lättare för användaren
+        /// om hen bara behöver klicka på den personen som hen vill åt i listboxen istället för att först
+        /// välja och sedan trycka på knapp? 
+        /// </summary>
+        protected void ListBoxMedlemsregister_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ListBoxMedlemsregister.SelectedIndex == -1)
+            {
+
+            }
+
+            else
+            {
+                int s;
+                string idstring = null;
+                string text = ListBoxMedlemsregister.SelectedItem.Text;
+
+                foreach (char c in text)
+                {
+                    bool siffra = Int32.TryParse(c.ToString(), out s);
+                    if (siffra)
+                    {
+                        idstring += s.ToString();
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                int id = Convert.ToInt32(idstring);
+
+                VisaMedlem(id);
             }
         }
     }

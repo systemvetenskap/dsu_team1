@@ -41,7 +41,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Npgsql">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\PostgreSQL\Npgsql\ms.net45\Npgsql.dll</HintPath>
+      <HintPath>..\..\..\..\..\Programmering\npgsql\Net45\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -88,6 +88,7 @@
     <Content Include="img\golf2.jpg" />
     <Content Include="img\golf.jpg" />
     <Content Include="ja\ChangePasswordJs.js" />
+    <Content Include="ja\memberRegScript.js" />
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\Scrollto.js" />
