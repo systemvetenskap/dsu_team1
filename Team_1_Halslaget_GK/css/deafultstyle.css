@@ -54,10 +54,13 @@
      width: 60%;
      margin: 0 auto;
  }
-.news {
+.news .fullBox {
+    
+    
+    
+}
+.news .halfBox {
     margin: 0.5%;
-    
-    
 }
 .registerbox {
 
