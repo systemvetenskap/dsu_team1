@@ -4,7 +4,7 @@
     <!--Stuff here in the head can be certain javascripts that is only applicable on this page and not other pages -->
     <title>This is the head on the testpage, this is where you put custom things that you need in the head</title>
     <link type="text/css" rel="stylesheet" href="css/TestPageCss.css"/> <!-- This is for example a link to a custom css file only to be found and used on this page -->
-
+    <script src="ja/testscript.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -31,7 +31,7 @@
             <br />
             <br />
             So how do you make a webform with a master page?
-             <br />       
+             <br />    
                 <br />
 
             Easy!         <br />
@@ -47,5 +47,4 @@
             </p>
             <br />
         </div>
-
 </asp:Content>
