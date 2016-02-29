@@ -19,6 +19,13 @@
                 <td>
                     <asp:ListBox ID="ListBoxMedlemsregister" runat="server" CssClass="medlemsregister" AutoPostBack ="true" style="min-width:100%;"></asp:ListBox>
                 </td>
+                <td>
+                    <p>Sök</p><br />Förnamn<br />
+                    <asp:TextBox ID="TextBoxFornamnSok" runat="server" OnTextChanged="TextBoxFornamnSok_TextChanged"></asp:TextBox>
+                    <br /><br />
+                    Efternamn<br />
+                    <asp:TextBox ID="TextBoxEfternamnSok" runat="server"></asp:TextBox>
+                </td>
             </tr>
             <tr>
                 <td>

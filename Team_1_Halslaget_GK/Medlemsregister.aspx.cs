@@ -59,44 +59,31 @@ namespace Team_1_Halslaget_GK
             {
                 medlemmar.Sort((x1, x2) => x1.ID.CompareTo(x2.ID));
 
-                ListBoxMedlemsregister.Items.Clear();
-                ListBoxMedlemsregister.DataSource = null;
-                ListBoxMedlemsregister.DataBind();
-                ListBoxMedlemsregister.DataSource = medlemmar;
-                ListBoxMedlemsregister.DataBind();
+                RensaOchBindListbox();
             }
 
             if (RadioButtonListSortera.Text == "Förnamn")
             {
                 medlemmar.Sort((x, y) => string.Compare(x.fornamn, y.fornamn));
 
-                ListBoxMedlemsregister.Items.Clear();
-                ListBoxMedlemsregister.DataSource = null;
-                ListBoxMedlemsregister.DataBind();
-                ListBoxMedlemsregister.DataSource = medlemmar;
-                ListBoxMedlemsregister.DataBind();
+                RensaOchBindListbox();
+
             }
 
             if (RadioButtonListSortera.Text == "Efternamn")
             {
                 medlemmar.Sort((x, y) => string.Compare(x.efternamn, y.efternamn));
 
-                ListBoxMedlemsregister.Items.Clear();
-                ListBoxMedlemsregister.DataSource = null;
-                ListBoxMedlemsregister.DataBind();
-                ListBoxMedlemsregister.DataSource = medlemmar;
-                ListBoxMedlemsregister.DataBind();
+                RensaOchBindListbox();
+
             }
 
             if (RadioButtonListSortera.Text == "Handikapp")
             {
                 medlemmar.Sort((x1, x2) => x1.handikapp.CompareTo(x2.handikapp));
 
-                ListBoxMedlemsregister.Items.Clear();
-                ListBoxMedlemsregister.DataSource = null;
-                ListBoxMedlemsregister.DataBind();
-                ListBoxMedlemsregister.DataSource = medlemmar;
-                ListBoxMedlemsregister.DataBind();
+                RensaOchBindListbox();
+
             }
             
         }
@@ -229,6 +216,15 @@ namespace Team_1_Halslaget_GK
             cmd.ExecuteNonQuery();
             con.Close();
             con.Dispose();
+        }
+
+        private void RensaOchBindListbox()
+        {
+            ListBoxMedlemsregister.Items.Clear();
+            ListBoxMedlemsregister.DataSource = null;
+            ListBoxMedlemsregister.DataBind();
+            ListBoxMedlemsregister.DataSource = medlemmar;
+            ListBoxMedlemsregister.DataBind();
         }
     }
 }
