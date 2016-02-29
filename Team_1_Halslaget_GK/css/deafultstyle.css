@@ -55,20 +55,21 @@
      margin: 0 auto;
  }
 .news .fullBox {
-    
+    margin:2% 0;
     
     
 }
 .news .halfBox {
-    margin: 0.5%;
-}
-.registerbox {
-
+    margin:2% 0.5%;
 }
 .registerbox .my-txt-box {
-    width: 200px;
-    margin:5px 0;
-    display:inline
+    margin: 5px 0;
+    display: inline;
+    width: 32%;
+    height: 50px;
+}
+.registerbox  {
+   margin:2% 0;
 }
 
 
