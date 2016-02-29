@@ -53,7 +53,15 @@ namespace Team_1_Halslaget_GK
 
         protected void RadioButtonListSortera_OnSelectedIndexChanged(object sender, EventArgs e) //Byter ordning på de listade medlemmarna när man klickar på en radiobutton
         {
-            HamtaMedlemmar();
+            if (TextBoxEfternamnSok.Text != "" || TextBoxFornamnSok.Text != "")
+            {
+                Search();
+            }
+
+            else
+            {
+                HamtaMedlemmar();
+            }
 
             if (RadioButtonListSortera.Text == "ID")
             {
@@ -127,7 +135,7 @@ namespace Team_1_Halslaget_GK
             RadioButtonListSortera.Visible = false;
             ButtonVisaMedlemInfo.Visible = false;
             ButtonRedigera.Visible = true;
-            ButtonTillbaka.Visible = true;
+            ButtonTillbaka.Visible = true;            
 
             string sql = "SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori FROM medlem WHERE id = " + id;
             NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
@@ -225,6 +233,63 @@ namespace Team_1_Halslaget_GK
             ListBoxMedlemsregister.DataBind();
             ListBoxMedlemsregister.DataSource = medlemmar;
             ListBoxMedlemsregister.DataBind();
+        }
+
+        protected void ButtonSearch_Click (object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void Search()
+        {
+            string sql;
+            medlemmar.Clear();
+
+            if (TextBoxFornamnSok.Text == "" && TextBoxEfternamnSok.Text == "")
+            {
+
+            }
+
+            else
+            {
+                if (TextBoxEfternamnSok.Text == "")
+                {
+                    sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE fornamn LIKE '" + TextBoxFornamnSok.Text + "%' ORDER BY fornamn";
+                }
+
+                else if (TextBoxFornamnSok.Text == "")
+                {
+                    sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE efternamn LIKE '" + TextBoxEfternamnSok.Text + "%' ORDER BY efternamn";
+                }
+
+                else
+                {
+                    sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE fornamn LIKE '" + TextBoxFornamnSok.Text + "%' AND efternamn LIKE '" + TextBoxEfternamnSok.Text + "%' ORDER BY efternamn";
+                }
+
+                NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
+
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+                con.Open();
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    medlem nymedlem = new medlem();
+                    nymedlem.ID = Convert.ToInt32(dr["id"]);
+                    nymedlem.fornamn = Convert.ToString(dr["fornamn"]);
+                    nymedlem.efternamn = Convert.ToString(dr["efternamn"]);
+                    nymedlem.handikapp = Convert.ToDouble(dr["hcp"]);
+
+                    medlemmar.Add(nymedlem);
+                }
+
+                con.Close();
+                con.Dispose();
+
+                RensaOchBindListbox();
+            }
         }
     }
 }

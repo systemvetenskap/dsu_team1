@@ -31,6 +31,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.ListBox ListBoxMedlemsregister;
         
         /// <summary>
+        /// ButtonVisaMedlemInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonVisaMedlemInfo;
+        
+        /// <summary>
         /// TextBoxFornamnSok control.
         /// </summary>
         /// <remarks>
@@ -49,13 +58,13 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox TextBoxEfternamnSok;
         
         /// <summary>
-        /// ButtonVisaMedlemInfo control.
+        /// ButtonSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonVisaMedlemInfo;
+        protected global::System.Web.UI.WebControls.Button ButtonSearch;
         
         /// <summary>
         /// TextBoxID control.

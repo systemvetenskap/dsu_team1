@@ -18,18 +18,23 @@
             <tr>
                 <td>
                     <asp:ListBox ID="ListBoxMedlemsregister" runat="server" CssClass="medlemsregister" AutoPostBack ="true" style="min-width:100%;"></asp:ListBox>
-                </td>
-                <td>
-                    <p>Sök</p><br />Förnamn<br />
-                    <asp:TextBox ID="TextBoxFornamnSok" runat="server" OnTextChanged="TextBoxFornamnSok_TextChanged"></asp:TextBox>
-                    <br /><br />
-                    Efternamn<br />
-                    <asp:TextBox ID="TextBoxEfternamnSok" runat="server"></asp:TextBox>
-                </td>
+                </td>                
             </tr>
             <tr>
                 <td>
                     <asp:Button ID="ButtonVisaMedlemInfo" runat="server" Text="Visa Medlem" OnClick="ButtonVisaMedlemInfo_Click"/>
+                </td>
+            </tr>
+        </table>
+        <table class="sok">
+            <tr>
+                <td>
+                    <p>Sök</p><br />Förnamn<br />
+                    <asp:TextBox ID="TextBoxFornamnSok" runat="server" AutoPostBack="true"></asp:TextBox>
+                    <br /><br />
+                    Efternamn<br />
+                    <asp:TextBox ID="TextBoxEfternamnSok" runat="server"></asp:TextBox><br />
+                    <asp:Button ID="ButtonSearch" runat="server" Text="Sök" OnClick="ButtonSearch_Click"/>
                 </td>
             </tr>
         </table>
