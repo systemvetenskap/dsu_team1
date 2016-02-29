@@ -1,11 +1,11 @@
 ﻿function scrolltoTop() {
     $('html, body').animate({
-        scrollTop: $(".header-logo").offset().top
+        scrollTop: $("#head-seaction").offset().top
     }, 1000);
 };
 function scrolltoNews() {
     $('html, body').animate({
-        scrollTop: $(".News").offset().top - 70
+        scrollTop: $(".news").offset().top - 70
     }, 1000);
 };
 function scrolltoRegister() {
