@@ -141,7 +141,7 @@ namespace Team_1_Halslaget_GK
             //ButtonRedigera.Visible = true;
             //ButtonTillbaka.Visible = true;            
 
-            string sql = "SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori FROM medlem WHERE id = " + id;
+            string sql = "SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori, telefonnummer FROM medlem WHERE id = " + id;
             NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
             DataTable dt = new DataTable();
 
@@ -169,6 +169,7 @@ namespace Team_1_Halslaget_GK
             TextBoxOrt.Text = dt.Rows[0][4].ToString();
             TextBoxEmail.Text = dt.Rows[0][5].ToString();
             TextBoxHandikapp.Text = dt.Rows[0][6].ToString();
+            TextBoxTelefonNummer.Text = dt.Rows[0]["telefonnummer"].ToString();
 
             //TextBoxID.ReadOnly = true;
             //TextBoxFornamn.ReadOnly = true;
@@ -198,7 +199,7 @@ namespace Team_1_Halslaget_GK
 
         protected void ButtonSpara_Click (object sender, EventArgs e)
         {
-            string sql = "UPDATE medlem SET fornamn = @fornamn, efternamn = @efternamn, adress = @adress, postnummer = @postnummer, ort = @ort, epost = @epost, hcp = @handikapp WHERE id = " + Convert.ToInt32(TextBoxID.Text);
+            string sql = "UPDATE medlem SET fornamn = @fornamn, efternamn = @efternamn, adress = @adress, postnummer = @postnummer, ort = @ort, epost = @epost, hcp = @handikapp, telefonnummer = @telefonnummer WHERE id = " + Convert.ToInt32(TextBoxID.Text);
             NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
@@ -210,6 +211,7 @@ namespace Team_1_Halslaget_GK
             cmd.Parameters.AddWithValue("@ort", TextBoxOrt.Text);
             cmd.Parameters.AddWithValue("@epost", TextBoxEmail.Text);
             cmd.Parameters.AddWithValue("@handikapp", TextBoxHandikapp.Text);
+            cmd.Parameters.AddWithValue("@telefonnummer", TextBoxTelefonNummer.Text);            
 
             con.Open();
             cmd.ExecuteNonQuery();
