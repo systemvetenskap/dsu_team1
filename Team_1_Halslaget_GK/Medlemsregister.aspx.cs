@@ -9,6 +9,7 @@ using Npgsql;
 using System.Security.Cryptography;
 using System.Text;
 
+
 namespace Team_1_Halslaget_GK
 {
     public partial class WebForm1 : System.Web.UI.Page
@@ -142,7 +143,7 @@ namespace Team_1_Halslaget_GK
             //ButtonRedigera.Visible = true;
             //ButtonTillbaka.Visible = true;            
 
-            string sql = "SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori FROM medlem WHERE id = " + id;
+            string sql = "SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori, telefonnummer FROM medlem WHERE id = " + id;
             NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
             DataTable dt = new DataTable();
 
@@ -170,6 +171,7 @@ namespace Team_1_Halslaget_GK
             TextBoxOrt.Text = dt.Rows[0][4].ToString();
             TextBoxEmail.Text = dt.Rows[0][5].ToString();
             TextBoxHandikapp.Text = dt.Rows[0][6].ToString();
+            TextBoxTelefonNummer.Text = dt.Rows[0]["telefonnummer"].ToString();
 
             //TextBoxID.ReadOnly = true;
             //TextBoxFornamn.ReadOnly = true;
@@ -199,7 +201,7 @@ namespace Team_1_Halslaget_GK
 
         protected void ButtonSpara_Click (object sender, EventArgs e)
         {
-            string sql = "UPDATE medlem SET fornamn = @fornamn, efternamn = @efternamn, adress = @adress, postnummer = @postnummer, ort = @ort, epost = @epost, hcp = @handikapp WHERE id = " + Convert.ToInt32(TextBoxID.Text);
+            string sql = "UPDATE medlem SET fornamn = @fornamn, efternamn = @efternamn, adress = @adress, postnummer = @postnummer, ort = @ort, epost = @epost, hcp = @handikapp, telefonnummer = @telefonnummer WHERE id = " + Convert.ToInt32(TextBoxID.Text);
             NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
@@ -211,6 +213,7 @@ namespace Team_1_Halslaget_GK
             cmd.Parameters.AddWithValue("@ort", TextBoxOrt.Text);
             cmd.Parameters.AddWithValue("@epost", TextBoxEmail.Text);
             cmd.Parameters.AddWithValue("@handikapp", TextBoxHandikapp.Text);
+            cmd.Parameters.AddWithValue("@telefonnummer", TextBoxTelefonNummer.Text);            
 
             con.Open();
             cmd.ExecuteNonQuery();
@@ -249,48 +252,63 @@ namespace Team_1_Halslaget_GK
 
             else
             {
-                Search();            
+                Search();
             }
         }
 
+
+
         private string StorBokstavFnamn()
         {
-            string fnamn = TextBoxFornamnSok.Text;
-            string fnamnny = "";
+            //Gjorde om koden lite, tror detta fungerar bättre.
+            string fnamnSok = TextBoxFornamnSok.Text;
+            string fnamnLower = fnamnSok.ToLower();
+            char[] fnamnCharArray = fnamnLower.ToCharArray();
+            fnamnCharArray[0] = char.ToUpper(fnamnCharArray[0]);
+            return new string(fnamnCharArray);
 
-            if (fnamn.Length > 1)
-            {
-                foreach (char c in fnamn)
-                {
-                    char.ToLower(c);
-                    fnamnny += c;
-                }
+            //string fnamn = TextBoxFornamnSok.Text;
+            //string fnamnny = "";
 
-                return char.ToUpper(fnamnny[0]) + fnamnny.Substring(1);
-            }
+            //if (fnamnny.Length > 1)
+            //{
+            //    foreach (char c in fnamn)
+            //    {
+            //        char.ToLower(c);
+            //        fnamnny += c;
+            //    }
 
-            return fnamnny.ToUpper();  
+            //    return char.ToUpper(fnamnny[0]) + fnamnny.Substring(1);
+            //}
+
+            ////return fnamnny.ToUpper();  
         }
 
         private string StorBokstavEnamn()
         {
-            string enamn = TextBoxEfternamnSok.Text;
-            string enamnny = "";
+            //Gjorde om koden lite, tror detta fungerar bättre.
+            string enamnSok = TextBoxEfternamnSok.Text;
+            string enamnLower = enamnSok.ToLower();
+            char[] enamnCharArray = enamnLower.ToCharArray();
+            enamnCharArray[0] = char.ToUpper(enamnCharArray[0]);
+            return new string(enamnCharArray);
 
-            if (enamn.Length > 1)
-            {
-                foreach (char c in enamn)
-                {
-                    char.ToLower(c);
-                    enamnny += c;
-                }
+            //string enamn = TextBoxEfternamnSok.Text;
+            //string enamnny = "";
 
-                return char.ToUpper(enamnny[0]) + enamnny.Substring(1);
-            }
+            //if (enamnny.Length > 1)
+            //{
+            //    foreach (char c in enamn)
+            //    {
+            //        char.ToLower(c);
+            //        enamnny += c;
+            //    }
 
-            return enamnny.ToUpper();
+            //    return char.ToUpper(enamnny[0]) + enamnny.Substring(1);
+            //}
+
+            //return enamnny.ToUpper();
         }
-
         private void Search()
         {
             string sql;
@@ -318,7 +336,8 @@ namespace Team_1_Halslaget_GK
 
                 con.Open();
                 NpgsqlDataReader dr = cmd.ExecuteReader();
-
+                if(dr.HasRows)
+                {
                 while (dr.Read())
                 {
                     medlem nymedlem = new medlem();
@@ -328,12 +347,20 @@ namespace Team_1_Halslaget_GK
                     nymedlem.handikapp = Convert.ToDouble(dr["hcp"]);
 
                     medlemmar.Add(nymedlem);
+                        RensaOchBindListbox();
+                    }
                 }
+                else
+                {
+                    ListBoxMedlemsregister.Items.Clear();
+                    ListBoxMedlemsregister.Items.Add("Kunde inte hitta namnet du sökte på, pröva igen.");
+                }
+
 
                 con.Close();
                 con.Dispose();
 
-                RensaOchBindListbox();
+
             
         }
 

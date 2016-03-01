@@ -38,7 +38,7 @@
                 <p class="p-my-info-modal"><strong>Stad:</strong> </p>
               <asp:TextBox ID="txtCity" runat="server"  CssClass="my-txt-box"></asp:TextBox>
           </div>
-          <asp:Button ID="btnUpdateUserinfo" runat="server" Text="SPARA OCH STÄNG" CssClass="my-button top-n-bottom-space"/>                 
+         <asp:Button ID="btnUpdateUserinfo" runat="server" Text="SPARA OCH STÄNG" CssClass="my-button top-n-bottom-space" OnClick="btnUpdateUserinfo_Click"/>     
       </div>
     </div>
 
@@ -56,7 +56,7 @@
             </div>
             <div class="fullBox">
                 <div class="halfBox">
-                    <asp:Button ID="Button2" runat="server" Text="JA" CssClass="my-button btn-mobile-space"/>   
+                    <asp:Button ID="btnConfirmCancelBooking" runat="server" Text="JA" CssClass="my-button btn-mobile-space" OnClick="btnCancelBooking_Click"/>   
                 </div>  
                 <div class="halfBox">
                     <a class="my-button btn-mobile-space" onclick="closeCancelBookingOverlay();">NEJ</a> 
@@ -167,6 +167,7 @@
                 <p class="p-my-info"><strong>Gata:</strong> <asp:Label ID="lblStreet" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Postkod:</strong> <asp:Label ID="lblPostalCode" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Stad:</strong> <asp:Label ID="lblCity" runat="server" Text="Label"></asp:Label></p>
+                <p class="p-my-info" style="display:none;"><strong>ID:</strong> <asp:Label ID="lblMemberID" runat="server" Text="Label"></asp:Label></p>
             </div>
             <div class="fullBox top-n-bottom-space">
                 <div class="halfBox">

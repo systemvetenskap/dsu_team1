@@ -148,13 +148,13 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox TextBoxEmail;
         
         /// <summary>
-        /// TextBoxTelefunNummer control.
+        /// TextBoxTelefonNummer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxTelefunNummer;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxTelefonNummer;
         
         /// <summary>
         /// TextBoxAdress control.

@@ -92,7 +92,7 @@
                 <p class="memberreg-1em-margin-horizontal">Email: </p>
                 <asp:TextBox ID="TextBoxEmail" CssClass="my-txt-box member-txt-box"  runat="server" Visible="true"></asp:TextBox>
                 <p class="memberreg-1em-margin-horizontal">Telefonnummer: </p>
-                <asp:TextBox ID="TextBoxTelefunNummer" CssClass="my-txt-box member-txt-box"  runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBoxTelefonNummer" CssClass="my-txt-box member-txt-box"  runat="server"></asp:TextBox>
                 <p class="memberreg-1em-margin-horizontal">Gata: </p>
                 <asp:TextBox ID="TextBoxAdress" CssClass="my-txt-box member-txt-box"  runat="server" Visible="true"></asp:TextBox> 
                 <p class="memberreg-1em-margin-horizontal">Postnummer: </p>
@@ -116,16 +116,8 @@
     </ContentTemplate>
 </asp:UpdatePanel>
 
-
-
-
-
-
-
-
-
 </div>
-<div class="fullBox memberreg-1em-margin-horizontal">
+<div class="fullBox memberreg-1em-margin-horizontal" style="display:none;">
     <p>GJort om GUI här. Gjorde om lite backend också som förslag. 
         Förslaget är att det ska räcka med att en användare bara trycker i listboxen för att få upp 
         medlemsinfo i boxarna till höger. Tog även bort så att de syns hela tiden och inte är gömda.
