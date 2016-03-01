@@ -116,16 +116,8 @@
     </ContentTemplate>
 </asp:UpdatePanel>
 
-
-
-
-
-
-
-
-
 </div>
-<div class="fullBox memberreg-1em-margin-horizontal">
+<div class="fullBox memberreg-1em-margin-horizontal" style="display:none;">
     <p>GJort om GUI här. Gjorde om lite backend också som förslag. 
         Förslaget är att det ska räcka med att en användare bara trycker i listboxen för att få upp 
         medlemsinfo i boxarna till höger. Tog även bort så att de syns hela tiden och inte är gömda.

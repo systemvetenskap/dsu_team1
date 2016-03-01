@@ -24,7 +24,7 @@ namespace Team_1_Halslaget_GK
 
         private void HamtaMedlemmar()
         {
-            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
+            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
             string sql = "SELECT id, fornamn, efternamn, hcp FROM medlem";
             NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
@@ -141,7 +141,7 @@ namespace Team_1_Halslaget_GK
             //ButtonTillbaka.Visible = true;            
 
             string sql = "SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori FROM medlem WHERE id = " + id;
-            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
+            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
             DataTable dt = new DataTable();
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, con);
@@ -198,7 +198,7 @@ namespace Team_1_Halslaget_GK
         protected void ButtonSpara_Click (object sender, EventArgs e)
         {
             string sql = "UPDATE medlem SET fornamn = @fornamn, efternamn = @efternamn, adress = @adress, postnummer = @postnummer, ort = @ort, epost = @epost, hcp = @handikapp WHERE id = " + Convert.ToInt32(TextBoxID.Text);
-            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
+            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
@@ -219,7 +219,7 @@ namespace Team_1_Halslaget_GK
         protected void ButtonRadera_Click (object sender, EventArgs e)
         {
             string sql = "DELETE FROM medlem WHERE id = " + Convert.ToInt32(TextBoxID.Text);
-            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
+            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
@@ -310,7 +310,7 @@ namespace Team_1_Halslaget_GK
                     sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE fornamn LIKE '" + StorBokstavFnamn() + "%' AND efternamn LIKE '" + StorBokstavEnamn() + "%' ORDER BY efternamn";
                 }
 
-                NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
+                NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
