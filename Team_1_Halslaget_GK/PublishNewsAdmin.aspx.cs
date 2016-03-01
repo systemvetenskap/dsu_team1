@@ -11,6 +11,8 @@ namespace Team_1_Halslaget_GK
 {
     public partial class PublishNewsAdmin : System.Web.UI.Page
     {
+        NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -19,7 +21,8 @@ namespace Team_1_Halslaget_GK
         protected void Button1_Click(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
-            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
+            
             try
             {
                 conn.Open();
