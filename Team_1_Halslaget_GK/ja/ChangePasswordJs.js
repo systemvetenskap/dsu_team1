@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    alert("Empty!");
 
     $('#ContentPlaceHolder1_txtNewPasswordTwo').on('input', function () {
         var valueTxtBox1 = document.getElementById('ContentPlaceHolder1_txtNewPasswordOne').value;
