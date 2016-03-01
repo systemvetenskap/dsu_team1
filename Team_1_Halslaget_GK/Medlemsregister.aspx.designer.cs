@@ -58,6 +58,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button ButtonRadera;
         
         /// <summary>
+        /// lblConfirmed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblConfirmed;
+        
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -200,6 +209,15 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonSpara;
+        
+        /// <summary>
+        /// lblSavedConfirmed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSavedConfirmed;
         
         /// <summary>
         /// ButtonVisaMedlemInfo control.

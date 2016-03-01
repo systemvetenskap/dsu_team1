@@ -8,6 +8,8 @@
         $('#btnOpenDeleteMemberModal').css("background", "#818181");
         $('#btnOpenDeleteMemberModal').css("cursor", "not-allowed");
     }
+
+
 });
 
 function openOverlayDeleteMember() {
@@ -25,4 +27,8 @@ function openOverlayDeleteMember() {
 
 function closeOverlayDeleteMember() {
     $('.page-overlay-delete-member').fadeOut('slow');
+}
+
+function closeOverlaySaved() {
+    $('.page-overlay-saved').fadeOut('slow');
 }

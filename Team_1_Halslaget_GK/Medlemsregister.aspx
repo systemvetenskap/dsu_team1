@@ -3,7 +3,23 @@
     
     <link type="text/css" rel="stylesheet" href="css/Medlemsregister.css"/>
     <script src="ja/memberRegScript.js"></script>
+    <script>
+        function openConfirmMessage() {
+            var confirmed = document.getElementById('ContentPlaceHolder1_lblSavedConfirmed').innerText;
 
+            if (confirmed == "T") {
+                document.getElementById('ContentPlaceHolder1_lblConfirmed').innerText = "Uppgifterna sparades.";
+                $('.page-overlay-saved').fadeIn('slow').delay(2000);;
+                $('.page-overlay-saved').fadeOut('slow');
+            }
+            else
+            {
+                document.getElementById('ContentPlaceHolder1_lblConfirmed').innerText = "Uppgifterna sparades inte. Något gick fel.";
+                $('.page-overlay-saved').fadeIn('slow').delay(2000);;
+                $('.page-overlay-saved').fadeOut('slow');
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -30,6 +46,21 @@
           <p class="p-my-info-modal">.</p>
       </div>
     </div>
+        <div class="page-overlay-saved">
+      <div class="overlay-message-saved">
+          <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="closeOverlaySaved();"></span></p>
+            <h3 class="my-h3 center-text">MEDDELANDE FRÅN WEBBSIDAN</h3>  
+            <div class="fullBox">
+                <p class="center-text memberreg-1em-margin-horizontal"><asp:Label ID="lblConfirmed" runat="server" Text="Label"></asp:Label></p>
+            </div>  
+            <div class="fullBox">
+                <a class="my-button btn-mobile-space" onclick="closeOverlaySaved();">OK</a> 
+            </div> 
+          <p class="p-my-info-modal">.</p>
+      </div>
+    </div>
+
+
 
  <!-- MAIN PAGE ================================================== -->
 <div class="fullBox">
@@ -41,6 +72,8 @@
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
+            <!-- Overlay/modal to to confirm member updated ================================================== -->
+
 
  <!--  MEDLEMSREGISTER ================================================== -->
     <div class="fullBox">
@@ -109,6 +142,7 @@
                 <div class="halfBox btn-mobile-space">
                     <a class="my-button " id="btnOpenDeleteMemberModal" onclick="openOverlayDeleteMember();">RADERA</a>
                 </div>
+                <asp:Label ID="lblSavedConfirmed" runat="server" style="display:none;" Text=""></asp:Label>
             </div>
         </div>
     </div>
