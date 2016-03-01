@@ -240,14 +240,6 @@ namespace Team_1_Halslaget_GK
 
         protected void ButtonSearch_Click (object sender, EventArgs e)
         {
-            Search();
-        }
-
-        private void Search()
-        {
-            string sql;
-            medlemmar.Clear();
-
             if (TextBoxFornamnSok.Text == "" && TextBoxEfternamnSok.Text == "")
             {
 
@@ -255,19 +247,67 @@ namespace Team_1_Halslaget_GK
 
             else
             {
+                Search();
+            }
+        }
+
+        private string StorBokstavFnamn()
+        {
+            string fnamn = TextBoxFornamnSok.Text;
+            string fnamnny = "";
+
+            if (fnamnny.Length > 1)
+            {
+                foreach (char c in fnamn)
+                {
+                    char.ToLower(c);
+                    fnamnny += c;
+                }
+
+                return char.ToUpper(fnamnny[0]) + fnamnny.Substring(1);
+            }
+
+            return fnamnny.ToUpper();  
+        }
+
+        private string StorBokstavEnamn()
+        {
+            string enamn = TextBoxEfternamnSok.Text;
+            string enamnny = "";
+
+            if (enamnny.Length > 1)
+            {
+                foreach (char c in enamn)
+                {
+                    char.ToLower(c);
+                    enamnny += c;
+                }
+
+                return char.ToUpper(enamnny[0]) + enamnny.Substring(1);
+            }
+
+            return enamnny.ToUpper();
+        }
+
+        private void Search()
+        {
+            string sql;
+            medlemmar.Clear();
+
+
                 if (TextBoxEfternamnSok.Text == "")
                 {
-                    sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE fornamn LIKE '" + TextBoxFornamnSok.Text + "%' ORDER BY fornamn";
+                    sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE fornamn LIKE '" + StorBokstavFnamn() + "%' ORDER BY fornamn";
                 }
 
                 else if (TextBoxFornamnSok.Text == "")
                 {
-                    sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE efternamn LIKE '" + TextBoxEfternamnSok.Text + "%' ORDER BY efternamn";
+                    sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE efternamn LIKE '" + StorBokstavEnamn() + "%' ORDER BY efternamn";
                 }
 
                 else
                 {
-                    sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE fornamn LIKE '" + TextBoxFornamnSok.Text + "%' AND efternamn LIKE '" + TextBoxEfternamnSok.Text + "%' ORDER BY efternamn";
+                    sql = "SELECT id, fornamn, efternamn, hcp FROM medlem WHERE fornamn LIKE '" + StorBokstavFnamn() + "%' AND efternamn LIKE '" + StorBokstavEnamn() + "%' ORDER BY efternamn";
                 }
 
                 NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=pgmvaru_g8; User Id=pgmvaru_g8; Password=rockring; SslMode=Require");
@@ -292,7 +332,7 @@ namespace Team_1_Halslaget_GK
                 con.Dispose();
 
                 RensaOchBindListbox();
-            }
+            
         }
 
 
