@@ -121,13 +121,13 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label lblStartTime;
         
         /// <summary>
-        /// Button2 control.
+        /// btnConfirmCancelBooking control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnConfirmCancelBooking;
         
         /// <summary>
         /// lblUserName control.
@@ -281,6 +281,15 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCity;
+        
+        /// <summary>
+        /// lblMemberID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMemberID;
         
         /// <summary>
         /// btnGoToAccountSettings control.
