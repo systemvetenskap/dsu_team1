@@ -61,7 +61,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminPanel.aspx" />
     <Content Include="ChangePassword.aspx" />
+    <Content Include="css\AdminPanelCss.css" />
     <Content Include="css\changePasswordCss.css" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\Medlemsregister.css" />
@@ -80,6 +82,10 @@
     <Content Include="fonts\specimen_files\specimen_stylesheet.css" />
     <Content Include="fonts\stylesheet.css" />
     <Content Include="Glyphicons.css" />
+    <Content Include="img\admin01.jpg" />
+    <Content Include="img\admin02.jpg" />
+    <Content Include="img\admin03.jpg" />
+    <Content Include="img\admin04.jpg" />
     <Content Include="img\golf2.jpg" />
     <Content Include="img\golf.jpg" />
     <Content Include="ja\ChangePasswordJs.js" />
@@ -113,6 +119,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPanel.aspx.cs">
+      <DependentUpon>AdminPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPanel.aspx.designer.cs">
+      <DependentUpon>AdminPanel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

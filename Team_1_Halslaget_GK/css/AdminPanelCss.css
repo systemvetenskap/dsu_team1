@@ -1,0 +1,44 @@
+﻿.admin-img {
+	display: block;
+	width: 90%;
+	height: 90%;
+	overflow: hidden;
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+    border-radius: 100%;
+    margin-bottom: 1em;
+}
+
+.admin-top-n-bottom-margin{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+@media (max-width: 992px) {	
+	.admin-btn-txt {
+    font-size: 1.1em;
+  }
+} 
+
+
+@media (max-width: 768px) {	
+	.admin-qBox {
+    width: 50%;  
+  }
+} 
+
+@media (max-width: 480px) {	
+	.admin-qBox
+	 {
+	width: 100%;
+	}
+}
+
+@media (max-width: 480px) {	
+	.admin-img
+	 {
+	width: 50%;
+    height: 50%;
+	}
+}
