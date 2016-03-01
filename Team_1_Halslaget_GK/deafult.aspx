@@ -27,13 +27,13 @@
        <h2>Välkommen</h2> 
        <br />
        <div class="textboxcontainer">
-       <asp:TextBox ID="TextBox1" runat="server" placeholder="Email" CssClass="my-txt-box"></asp:TextBox>
+       <asp:TextBox ID="TextBoxEmailLogin" runat="server" placeholder="Email" CssClass="my-txt-box"></asp:TextBox>
        <br />
        <br />      
-       <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="my-txt-box" ></asp:TextBox>
+       <asp:TextBox ID="TextBoxPwLogin" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="my-txt-box" ></asp:TextBox>
        <br />
        <br />
-       <asp:Button ID="signInBtn" runat="server" Text="Logga in" CssClass="my-button" />
+       <asp:Button ID="signInBtn" runat="server" Text="Logga in" CssClass="my-button" OnClick="signInBtn_Click" />
        </div>   
 
    </div>

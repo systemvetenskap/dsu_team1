@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Npgsql;
 using System.Data;
+using Npgsql;
+using System.Security.Cryptography;
+using System.Text;
 
 
 namespace Team_1_Halslaget_GK
@@ -365,15 +367,15 @@ namespace Team_1_Halslaget_GK
                 NpgsqlDataReader dr = cmd.ExecuteReader();
                 if(dr.HasRows)
                 {
-                    while (dr.Read())
-                    {
-                        medlem nymedlem = new medlem();
-                        nymedlem.ID = Convert.ToInt32(dr["id"]);
-                        nymedlem.fornamn = Convert.ToString(dr["fornamn"]);
-                        nymedlem.efternamn = Convert.ToString(dr["efternamn"]);
-                        nymedlem.handikapp = Convert.ToDouble(dr["hcp"]);
+                while (dr.Read())
+                {
+                    medlem nymedlem = new medlem();
+                    nymedlem.ID = Convert.ToInt32(dr["id"]);
+                    nymedlem.fornamn = Convert.ToString(dr["fornamn"]);
+                    nymedlem.efternamn = Convert.ToString(dr["efternamn"]);
+                    nymedlem.handikapp = Convert.ToDouble(dr["hcp"]);
 
-                        medlemmar.Add(nymedlem);
+                    medlemmar.Add(nymedlem);
                         RensaOchBindListbox();
                     }
                 }
