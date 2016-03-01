@@ -252,44 +252,59 @@ namespace Team_1_Halslaget_GK
             }
         }
 
+
+
         private string StorBokstavFnamn()
         {
-            string fnamn = TextBoxFornamnSok.Text;
-            string fnamnny = "";
+            //Gjorde om koden lite, tror detta fungerar bättre.
+            string fnamnSok = TextBoxFornamnSok.Text;
+            string fnamnLower = fnamnSok.ToLower();
+            char[] fnamnCharArray = fnamnLower.ToCharArray();
+            fnamnCharArray[0] = char.ToUpper(fnamnCharArray[0]);
+            return new string(fnamnCharArray);
 
-            if (fnamnny.Length > 1)
-            {
-                foreach (char c in fnamn)
-                {
-                    char.ToLower(c);
-                    fnamnny += c;
-                }
+            //string fnamn = TextBoxFornamnSok.Text;
+            //string fnamnny = "";
 
-                return char.ToUpper(fnamnny[0]) + fnamnny.Substring(1);
-            }
+            //if (fnamnny.Length > 1)
+            //{
+            //    foreach (char c in fnamn)
+            //    {
+            //        char.ToLower(c);
+            //        fnamnny += c;
+            //    }
 
-            return fnamnny.ToUpper();  
+            //    return char.ToUpper(fnamnny[0]) + fnamnny.Substring(1);
+            //}
+
+            ////return fnamnny.ToUpper();  
         }
 
         private string StorBokstavEnamn()
         {
-            string enamn = TextBoxEfternamnSok.Text;
-            string enamnny = "";
+            //Gjorde om koden lite, tror detta fungerar bättre.
+            string enamnSok = TextBoxEfternamnSok.Text;
+            string enamnLower = enamnSok.ToLower();
+            char[] enamnCharArray = enamnLower.ToCharArray();
+            enamnCharArray[0] = char.ToUpper(enamnCharArray[0]);
+            return new string(enamnCharArray);
 
-            if (enamnny.Length > 1)
-            {
-                foreach (char c in enamn)
-                {
-                    char.ToLower(c);
-                    enamnny += c;
-                }
+            //string enamn = TextBoxEfternamnSok.Text;
+            //string enamnny = "";
 
-                return char.ToUpper(enamnny[0]) + enamnny.Substring(1);
-            }
+            //if (enamnny.Length > 1)
+            //{
+            //    foreach (char c in enamn)
+            //    {
+            //        char.ToLower(c);
+            //        enamnny += c;
+            //    }
 
-            return enamnny.ToUpper();
+            //    return char.ToUpper(enamnny[0]) + enamnny.Substring(1);
+            //}
+
+            //return enamnny.ToUpper();
         }
-
         private void Search()
         {
             string sql;
@@ -317,22 +332,31 @@ namespace Team_1_Halslaget_GK
 
                 con.Open();
                 NpgsqlDataReader dr = cmd.ExecuteReader();
-
-                while (dr.Read())
+                if(dr.HasRows)
                 {
-                    medlem nymedlem = new medlem();
-                    nymedlem.ID = Convert.ToInt32(dr["id"]);
-                    nymedlem.fornamn = Convert.ToString(dr["fornamn"]);
-                    nymedlem.efternamn = Convert.ToString(dr["efternamn"]);
-                    nymedlem.handikapp = Convert.ToDouble(dr["hcp"]);
+                    while (dr.Read())
+                    {
+                        medlem nymedlem = new medlem();
+                        nymedlem.ID = Convert.ToInt32(dr["id"]);
+                        nymedlem.fornamn = Convert.ToString(dr["fornamn"]);
+                        nymedlem.efternamn = Convert.ToString(dr["efternamn"]);
+                        nymedlem.handikapp = Convert.ToDouble(dr["hcp"]);
 
-                    medlemmar.Add(nymedlem);
+                        medlemmar.Add(nymedlem);
+                        RensaOchBindListbox();
+                    }
                 }
+                else
+                {
+                    ListBoxMedlemsregister.Items.Clear();
+                    ListBoxMedlemsregister.Items.Add("Kunde inte hitta namnet du sökte på, pröva igen.");
+                }
+
 
                 con.Close();
                 con.Dispose();
 
-                RensaOchBindListbox();
+
             
         }
 
