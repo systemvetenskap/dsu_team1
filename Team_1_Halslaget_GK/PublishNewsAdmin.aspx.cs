@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -12,6 +14,29 @@ namespace Team_1_Halslaget_GK
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO nyhet (publ_date, txt) VALUES (@publ_date, @txt)", conn);
+                cmd.Parameters.AddWithValue("@txt", txtHTMLContent.Text);
+                cmd.Parameters.AddWithValue("@publ_date", now);
+                cmd.ExecuteNonQuery();
+            }
+            catch (NpgsqlException ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
         }
     }
 }
