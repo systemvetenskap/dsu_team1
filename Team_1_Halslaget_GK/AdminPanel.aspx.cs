@@ -32,7 +32,7 @@ namespace Team_1_Halslaget_GK
 
         protected void btnGoToMemberRegistry_Click(object sender, EventArgs e)
         {
-            //Send username using session here I think?
+            //Send username using session here I think? Right now only for show, not actual implementaion
             Response.Redirect("~/Medlemsregister.aspx");
         }
 
