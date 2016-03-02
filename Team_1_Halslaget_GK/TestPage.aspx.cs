@@ -14,6 +14,11 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        private void TestDates()
+        {
 
         }
 
@@ -42,6 +47,24 @@ namespace Team_1_Halslaget_GK
                 conn.Close();
                 conn.Dispose();
             }
+        }
+
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            string startDate = "2016-05-01";
+            string endDate = "2016-08-30";
+            DateTime start = DateTime.Parse(startDate);
+            DateTime end = DateTime.Parse(endDate);
+
+            if((e.Day.Date < start) || (e.Day.Date > end))
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Black;
+                e.Cell.BackColor = System.Drawing.Color.Gray;
+                e.Cell.Style.Add("cursor", "not-allowed");
+                e.Cell.ToolTip = "Du kan inte boka dessa tider. Det är utan för golfsäsongen.";
+            }
+
         }
     }
 }
