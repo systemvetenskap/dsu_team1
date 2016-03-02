@@ -63,8 +63,10 @@
   <ItemGroup>
     <Content Include="AdminPanel.aspx" />
     <Content Include="ChangePassword.aspx" />
+    <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminPanelCss.css" />
     <Content Include="css\changePasswordCss.css" />
+    <Content Include="css\CreateNewMemberCss.css" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\Medlemsregister.css" />
     <Content Include="css\MyPageCss.css" />
@@ -115,6 +117,7 @@
     <Content Include="Medlemsregister.aspx" />
     <Content Include="MyPage.aspx" />
     <Content Include="PublishNewsAdmin.aspx" />
+    <Content Include="SeasonSettings.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -132,6 +135,13 @@
     </Compile>
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewMember.aspx.cs">
+      <DependentUpon>CreateNewMember.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateNewMember.aspx.designer.cs">
+      <DependentUpon>CreateNewMember.aspx</DependentUpon>
     </Compile>
     <Compile Include="deafult.aspx.cs">
       <DependentUpon>deafult.aspx</DependentUpon>
@@ -155,6 +165,7 @@
     <Compile Include="Medlemsregister.aspx.designer.cs">
       <DependentUpon>Medlemsregister.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MemberTypes.cs" />
     <Compile Include="MyPage.aspx.cs">
       <DependentUpon>MyPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -162,6 +173,7 @@
     <Compile Include="MyPage.aspx.designer.cs">
       <DependentUpon>MyPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="news.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishNewsAdmin.aspx.cs">
       <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>
@@ -169,6 +181,13 @@
     </Compile>
     <Compile Include="PublishNewsAdmin.aspx.designer.cs">
       <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeasonSettings.aspx.cs">
+      <DependentUpon>SeasonSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeasonSettings.aspx.designer.cs">
+      <DependentUpon>SeasonSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>

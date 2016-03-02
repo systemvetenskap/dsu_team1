@@ -199,6 +199,9 @@ namespace Team_1_Halslaget_GK
             ButtonRedigera.Visible = false;
         }
 
+        /// <summary>
+        /// Event for when user clicks button to save member info.
+        /// </summary>
         protected void ButtonSpara_Click (object sender, EventArgs e)
         {
             if (SaveMemberInfo())

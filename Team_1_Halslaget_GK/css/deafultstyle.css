@@ -56,19 +56,42 @@
  }
 
 .news .fullBox {
-    margin:2% 0;    
+    margin:1% 0;    
 }
 .news .halfBox {
-    margin:2% 0.5%;
+    margin:1% 0.5%;
 }
 .registerbox .my-txt-box {
     margin: 5px 0;
     display: inline;
-    width: 32%;
+    width: 32.3%;
     height: 50px;
 }
 .registerbox  {
    margin:2% 0;
 }
+
+.newsBox {
+    border:solid 0.5px;
+    padding: 2% 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;   
+}
+.weatherBox {
+    width:16%;
+    position: absolute;
+    top:100px;
+    left: 20px;
+}
+
+.DropDown{
+    width:99.9%;
+    margin: 5px 0 5px;
+    height:50px;   
+}
+
+
+
 
 
