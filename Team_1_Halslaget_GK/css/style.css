@@ -142,6 +142,40 @@ h3 {
 	overflow: hidden;
 }
 
+.firstnews{
+    max-height: 320px;
+    margin-right: 10px;
+    max-width: 73%;
+}
+
+ .widget {
+     color: #595959;
+     text-align: center;
+     padding: 10px;
+     margin-left: 10px;
+     margin-top: 15px;
+ }
+
+ p.fet{
+     font-weight: bold;
+ }
+
+ .banstatus{
+     border: 1px solid black;
+     width: 280px;
+     padding: 10px;
+     margin-left: 10px;
+     margin-top: 15px;
+ }
+
+
+ tr.border_bottom td {
+  border-bottom:1pt solid #cfcfcf;
+}
+
+ p.alignright{
+     text-align: right;
+ }
 /*****************************************************
 	SECTION IDS
 *****************************************************/
