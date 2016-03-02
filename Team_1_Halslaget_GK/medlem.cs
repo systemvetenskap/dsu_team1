@@ -23,6 +23,7 @@ namespace Team_1_Halslaget_GK
         public string adress { get; set; }
         public string postnummer {get; set;}
         public string ort {get; set;}
+        
 
         /// <summary>
         /// Gets a specific members info based on member ID. 

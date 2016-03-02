@@ -12,7 +12,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Drawing;
-using System.Web.UI.HtmlControls; 
+using System.Web.UI.HtmlControls;
+using Npgsql;
 
 namespace Team_1_Halslaget_GK
 {
@@ -40,7 +41,7 @@ namespace Team_1_Halslaget_GK
 
             //Row 43 and 44, Set medlemID, currently ASSUMING that when user/member is logged in member/username vill be displayed in lblUserName 
             //and either a method is being used to retrieve member ID from database or it comes with a session. Some of it anyway.
-            medlemObj.ID = 3;
+            medlemObj.ID = 2;//Convert.ToInt32(Session["Username"]); //ID kommer in med session här, bara att aktivera när det är dags/jacob
             lblMemberID.Text = medlemObj.ID.ToString();
 
             BindGridView();
@@ -76,6 +77,8 @@ namespace Team_1_Halslaget_GK
             lblPostalCode.Text = dt.Rows[0]["postnummer"].ToString();
             lblCity.Text = dt.Rows[0]["ort"].ToString();
             lblCurrentHandicap.Text = dt.Rows[0]["hcp"].ToString();
+            lblAmountOfRounds.Text = GetRoundStatistics();
+
         }
 
         /// <summary>
@@ -228,6 +231,22 @@ namespace Team_1_Halslaget_GK
         protected void ListViewFutureTeeTimes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public string GetRoundStatistics()
+        {
+            string sql = "SELECT count(medlem_id) FROM medlem_bokning WHERE medlem_id = @id";
+            NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
+
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+            conn.Open();
+
+            cmd.Parameters.AddWithValue("@id", lblMemberID.Text);
+
+            string rundor = Convert.ToString(cmd.ExecuteScalar());
+
+            return rundor;
         }
     }
 }
