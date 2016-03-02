@@ -201,24 +201,53 @@ namespace Team_1_Halslaget_GK
 
         protected void ButtonSpara_Click (object sender, EventArgs e)
         {
-            string sql = "UPDATE medlem SET fornamn = @fornamn, efternamn = @efternamn, adress = @adress, postnummer = @postnummer, ort = @ort, epost = @epost, hcp = @handikapp, telefonnummer = @telefonnummer WHERE id = " + Convert.ToInt32(TextBoxID.Text);
+            if (SaveMemberInfo())
+            {
+                lblSavedConfirmed.Text = "T";
+                lblConfirmed.Text = "Uppgifterna sparades.";
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "openConfirmMessage", "openConfirmMessage();", true);
+            }
+            else
+            {
+                lblSavedConfirmed.Text = "F";
+                lblConfirmed.Text = "Uppgifterna sparades inte. Något gick fel.";
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "openConfirmMessage", "openConfirmMessage();", true);
+            }
+        }
+
+        private bool SaveMemberInfo()
+        {
             NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
+            try
+            {
+                string sql = "UPDATE medlem SET fornamn = @fornamn, efternamn = @efternamn, adress = @adress, postnummer = @postnummer, ort = @ort, epost = @epost, hcp = @handikapp, telefonnummer = @telefonnummer WHERE id = " + Convert.ToInt32(TextBoxID.Text);
 
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
-            cmd.Parameters.AddWithValue("@fornamn", TextBoxFornamn.Text);
-            cmd.Parameters.AddWithValue("@efternamn", TextBoxEfternamn.Text);
-            cmd.Parameters.AddWithValue("@adress", TextBoxAdress.Text);
-            cmd.Parameters.AddWithValue("@postnummer", TextBoxPostnummer.Text);
-            cmd.Parameters.AddWithValue("@ort", TextBoxOrt.Text);
-            cmd.Parameters.AddWithValue("@epost", TextBoxEmail.Text);
-            cmd.Parameters.AddWithValue("@handikapp", TextBoxHandikapp.Text);
-            cmd.Parameters.AddWithValue("@telefonnummer", TextBoxTelefonNummer.Text);            
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
-            con.Dispose();
+                cmd.Parameters.AddWithValue("@fornamn", TextBoxFornamn.Text);
+                cmd.Parameters.AddWithValue("@efternamn", TextBoxEfternamn.Text);
+                cmd.Parameters.AddWithValue("@adress", TextBoxAdress.Text);
+                cmd.Parameters.AddWithValue("@postnummer", TextBoxPostnummer.Text);
+                cmd.Parameters.AddWithValue("@ort", TextBoxOrt.Text);
+                cmd.Parameters.AddWithValue("@epost", TextBoxEmail.Text);
+                cmd.Parameters.AddWithValue("@handikapp", Convert.ToDouble(TextBoxHandikapp.Text));
+                cmd.Parameters.AddWithValue("@telefonnummer", TextBoxTelefonNummer.Text);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+
         }
 
         protected void ButtonRadera_Click (object sender, EventArgs e)

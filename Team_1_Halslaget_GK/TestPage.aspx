@@ -45,6 +45,10 @@
             8. ???        <br />
             9. Profit?!         <br />
             </p>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
             <br />
+            <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
         </div>
 </asp:Content>
