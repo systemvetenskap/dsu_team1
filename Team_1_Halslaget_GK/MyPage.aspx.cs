@@ -79,8 +79,8 @@ namespace Team_1_Halslaget_GK
             lblCity.Text = dt.Rows[0]["ort"].ToString();
             lblCurrentHandicap.Text = dt.Rows[0]["hcp"].ToString();
             lblAmountOfRounds.Text = GetRoundStatistics();
-            
 
+            PaymentReminder(Convert.ToDateTime(dt.Rows[0]["medlemsavgift_betald"]));
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace Team_1_Halslaget_GK
 
         }
 
-        public string GetRoundStatistics()
+        protected string GetRoundStatistics()
         {
             string sql = "SELECT count(medlem_id) FROM medlem_bokning WHERE medlem_id = @id";
             NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
@@ -249,6 +249,23 @@ namespace Team_1_Halslaget_GK
             string rundor = Convert.ToString(cmd.ExecuteScalar());
 
             return rundor;
+        }
+
+        protected void PaymentReminder(DateTime latest)
+        {
+            DateTime reminddate = latest.AddMonths(11);
+
+            if (latest.AddYears(1) < DateTime.Today)
+            {
+                lblPaymentReminder.Text = "Ditt medlemsskap har gått ut. Du måste betala medlemsavgiften för att fortsätta vara medlem";
+                lblPaymentReminder.Visible = true;
+            }
+
+            else if (reminddate < DateTime.Today)
+            {
+                lblPaymentReminder.Text = "Kom ihåg att betala din medlemsavgift innan den " + latest.Day + "/" + latest.Month + ".";
+                lblPaymentReminder.Visible = true;
+            }
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Team_1_Halslaget_GK
         public string adress { get; set; }
         public string postnummer {get; set;}
         public string ort {get; set;}
+        public DateTime senastebetalning { get; set; }
         
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace Team_1_Halslaget_GK
             try
             {
                 conn.Open();
-                NpgsqlCommand cmdGetMemberInfo = new NpgsqlCommand("SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori, telefonnummer FROM medlem WHERE id = @id", conn);
+                NpgsqlCommand cmdGetMemberInfo = new NpgsqlCommand("SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori, telefonnummer, medlemsavgift_betald FROM medlem WHERE id = @id", conn);
                 cmdGetMemberInfo.Parameters.AddWithValue("@id", ID);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmdGetMemberInfo;

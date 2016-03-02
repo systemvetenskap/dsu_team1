@@ -63,7 +63,8 @@ namespace Team_1_Halslaget_GK
 
             else
             {
-                //Ruta.visa(Fel lösenord eller email);
+                LabelWrongPW.Text = "Felaktig email eller lösenord.";
+                LabelWrongPW.Visible = true;
             }
 
             con.Close();
@@ -81,7 +82,8 @@ namespace Team_1_Halslaget_GK
 
             else 
             {
-                //Ruta.Visa(Fel lösenord eller email);
+                LabelWrongPW.Text = "Felaktig email eller lösenord.";
+                LabelWrongPW.Visible = true;
             }
 
 
