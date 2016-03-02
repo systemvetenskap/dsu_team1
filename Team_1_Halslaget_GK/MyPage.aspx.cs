@@ -62,8 +62,7 @@ namespace Team_1_Halslaget_GK
         }
 
         /// <summary>
-        /// Method uses Getmemberinfo to retreive a
-        /// mock datatable to set labels on gui
+        /// Method uses medelobj to retrieve a specific member and sets labels on GUI.
         /// </summary>
         private void SetMemberInfoLabels()
         {
@@ -84,8 +83,7 @@ namespace Team_1_Halslaget_GK
         }
 
         /// <summary>
-        /// Method uses getmemberinfo to retreive a 
-        /// mock datatable to set txtboxes on gui.
+        /// Method uses medelobj to retrieve a specific member and sets labels on GUI.
         /// </summary>
         private void SetMemberTextBoxes()
         {
@@ -102,7 +100,7 @@ namespace Team_1_Halslaget_GK
 
         /// <summary>
         /// A method which returns a mock datatable with some fake values
-        /// To be removed.
+        /// To be removed and replaced with a proper method.
         /// </summary>
         /// <returns></returns>
         private DataTable GetMockFutureTeeTimeData()

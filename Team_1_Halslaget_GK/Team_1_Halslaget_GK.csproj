@@ -63,8 +63,10 @@
   <ItemGroup>
     <Content Include="AdminPanel.aspx" />
     <Content Include="ChangePassword.aspx" />
+    <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminPanelCss.css" />
     <Content Include="css\changePasswordCss.css" />
+    <Content Include="css\CreateNewMemberCss.css" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\Medlemsregister.css" />
     <Content Include="css\MyPageCss.css" />
@@ -133,6 +135,13 @@
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreateNewMember.aspx.cs">
+      <DependentUpon>CreateNewMember.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateNewMember.aspx.designer.cs">
+      <DependentUpon>CreateNewMember.aspx</DependentUpon>
+    </Compile>
     <Compile Include="deafult.aspx.cs">
       <DependentUpon>deafult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +164,7 @@
     <Compile Include="Medlemsregister.aspx.designer.cs">
       <DependentUpon>Medlemsregister.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MemberTypes.cs" />
     <Compile Include="MyPage.aspx.cs">
       <DependentUpon>MyPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
