@@ -41,7 +41,7 @@ namespace Team_1_Halslaget_GK
 
             //Row 43 and 44, Set medlemID, currently ASSUMING that when user/member is logged in member/username vill be displayed in lblUserName 
             //and either a method is being used to retrieve member ID from database or it comes with a session. Some of it anyway.
-            medlemObj.ID = 2;//Convert.ToInt32(Session["Username"]); //ID kommer in med session här, bara att aktivera när det är dags/jacob
+            medlemObj.ID = 2; //Convert.ToInt32(Session["Username"]); //ID kommer in med session här, bara att aktivera när det är dags/jacob
             lblMemberID.Text = medlemObj.ID.ToString();
 
             BindGridView();
@@ -70,6 +70,7 @@ namespace Team_1_Halslaget_GK
             DataTable dt = medlemObj.GetSpecificMember();
 
             lblFirstName.Text = dt.Rows[0]["fornamn"].ToString();
+            lblUserName.Text = dt.Rows[0]["fornamn"].ToString();
             lblLastName.Text = dt.Rows[0]["efternamn"].ToString();
             lblPhoneNum.Text = dt.Rows[0]["telefonnummer"].ToString();
             lblEmail.Text = dt.Rows[0]["epost"].ToString();
@@ -78,6 +79,7 @@ namespace Team_1_Halslaget_GK
             lblCity.Text = dt.Rows[0]["ort"].ToString();
             lblCurrentHandicap.Text = dt.Rows[0]["hcp"].ToString();
             lblAmountOfRounds.Text = GetRoundStatistics();
+            
 
         }
 
