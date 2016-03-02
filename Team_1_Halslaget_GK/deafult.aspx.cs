@@ -6,14 +6,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Npgsql;
+using System.Web.Configuration;
 
 namespace Team_1_Halslaget_GK
 {
     public partial class deafult : System.Web.UI.Page
     {
+        NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            LoadNews();
         }
 
         //Används för att kryptera lösenord
@@ -31,6 +34,40 @@ namespace Team_1_Halslaget_GK
             return sb.ToString();
         }
 
+        private void LoadNews()
+        {
+            List<news> newsList = new List<news>();
+            string sql = "SELECT txt, publ_date FROM nyhet";
+
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+            conn.Open();
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                news news = new news();
+                //news.publDate = Convert.ToDateTime("publ_date");
+                news.txt = Convert.ToString(dr["txt"]);
+                newsList.Add(news);
+                              
+            }
+
+            conn.Close();
+
+            foreach (news news in newsList.OfType<news>())
+            {
+                System.Web.UI.HtmlControls.HtmlGenericControl newsdiv2 = new System.Web.UI.HtmlControls.HtmlGenericControl();
+                newsdiv2.InnerHtml = news.txt;
+                newsdiv2.Attributes["class"] = "fullBox";               
+                newsdiv.Controls.Add(newsdiv2);
+            }
+            
+            
+            
+        }
+
         protected void signInBtn_Click(object sender, EventArgs e)
         {   
             string password = "";
@@ -40,10 +77,10 @@ namespace Team_1_Halslaget_GK
 
             string sql = "SELECT id, pw, guid, admin FROM medlem WHERE epost = '" + TextBoxEmailLogin.Text + "'";
 
-            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+            
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
-            con.Open();
+            conn.Open();
 
             NpgsqlDataReader dr = cmd.ExecuteReader();
             
@@ -66,8 +103,8 @@ namespace Team_1_Halslaget_GK
                 //Ruta.visa(Fel lösenord eller email);
             }
 
-            con.Close();
-            con.Dispose();
+            conn.Close();
+            conn.Dispose();
 
             if (password == HashSHA1(TextBoxPwLogin.Text + guid) && admin == false)
             {

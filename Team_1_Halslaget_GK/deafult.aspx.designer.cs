@@ -49,6 +49,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button signInBtn;
         
         /// <summary>
+        /// newsdiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl newsdiv;
+        
+        /// <summary>
         /// tbName control.
         /// </summary>
         /// <remarks>
