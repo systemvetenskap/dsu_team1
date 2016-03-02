@@ -117,6 +117,7 @@
     <Content Include="Medlemsregister.aspx" />
     <Content Include="MyPage.aspx" />
     <Content Include="PublishNewsAdmin.aspx" />
+    <Content Include="SeasonSettings.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -179,6 +180,13 @@
     </Compile>
     <Compile Include="PublishNewsAdmin.aspx.designer.cs">
       <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeasonSettings.aspx.cs">
+      <DependentUpon>SeasonSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeasonSettings.aspx.designer.cs">
+      <DependentUpon>SeasonSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>

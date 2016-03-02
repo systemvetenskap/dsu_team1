@@ -8,6 +8,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="fullBox" id="page-title">
             <h1>Test Page</h1>
         </div>
@@ -50,5 +51,18 @@
             <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
             <br />
             <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+            <div class="fullBox">
+                <br />
+                <br />
+                <br />
+                <br />
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+
+
+                <asp:Calendar ID="Calendar1" Enabled="true" runat="server" OnDayRender="Calendar1_DayRender"></asp:Calendar>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
         </div>
 </asp:Content>
