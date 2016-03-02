@@ -172,6 +172,7 @@
     <Compile Include="MyPage.aspx.designer.cs">
       <DependentUpon>MyPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="news.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishNewsAdmin.aspx.cs">
       <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>

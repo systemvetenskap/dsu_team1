@@ -134,7 +134,7 @@ h3 {
 	float: left;
 }
 .quarterBox {
-	width: 24.5%;
+	width: 23%;
 	float: left;
 	overflow: hidden;
 }
@@ -143,12 +143,6 @@ h3 {
 	width: 33.1%;
 	float: left;
 	overflow: hidden;
-}
-
-.firstnews{
-    max-height: 320px;
-    margin-right: 10px;
-    max-width: 73%;
 }
 
  .widget {

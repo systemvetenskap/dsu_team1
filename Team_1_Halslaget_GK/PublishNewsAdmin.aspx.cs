@@ -21,8 +21,7 @@ namespace Team_1_Halslaget_GK
         protected void Button1_Click(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
-
-            
+                    
             try
             {
                 conn.Open();
