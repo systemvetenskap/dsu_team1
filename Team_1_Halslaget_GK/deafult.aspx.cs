@@ -48,7 +48,7 @@ namespace Team_1_Halslaget_GK
             while (dr.Read())
             {
                 news news = new news();
-                //news.publDate = Convert.ToDateTime("publ_date");
+                news.publDate = Convert.ToDateTime(dr["publ_date"]);
                 news.txt = Convert.ToString(dr["txt"]);
                 newsList.Add(news);
                               
@@ -56,16 +56,35 @@ namespace Team_1_Halslaget_GK
 
             conn.Close();
 
-            foreach (news news in newsList.OfType<news>())
+            int count = 1;
+
+            string firstNews = "fullBox newsBox";
+            string NotfirstNews = "fullBox newsBox NotfirstNews article";
+
+            foreach (news news in newsList.OfType<news>().Reverse())
             {
                 System.Web.UI.HtmlControls.HtmlGenericControl newsdiv2 = new System.Web.UI.HtmlControls.HtmlGenericControl();
-                newsdiv2.InnerHtml = news.txt;
-                newsdiv2.Attributes["class"] = "fullBox";               
+                newsdiv2.InnerHtml = news.publDate + news.txt ;
+
+                if (count == 1)
+                {
+                    newsdiv2.Attributes["class"] = firstNews;  
+                }
+                else
+                {
+                    newsdiv2.Attributes["class"] = NotfirstNews;
+                }
+                count++;    
                 newsdiv.Controls.Add(newsdiv2);
             }
             
             
             
+        }
+
+        private void LoadMedlemstyper()
+        {
+
         }
 
         protected void signInBtn_Click(object sender, EventArgs e)

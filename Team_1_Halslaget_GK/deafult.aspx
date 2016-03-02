@@ -14,8 +14,7 @@
     <script src="ja/Scrollto.js"></script>
     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>   
 </head>
 <body>
 
@@ -75,34 +74,19 @@
         </div> 
       </div>
     </section>
-
         <section class="container">
-            <div class="content">
-                <div class="contentRow">
-                    <div class="fullBox news">
-                        <div class="page-title"><h1>Nyheter</h1></div>
-                        <div class="firstnews" runat="server" id="newsdiv">
-                        </div>
-                   </div>                     
-                </div>  
-             </div>         
-        </section>
-     <section class="container">
-         <div class="content">
-             <div class="contentRow">
-                 <div class="fullBox">
-                    <div class="quarterBox">
-                        <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
-                            <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/e67186ae70807f54f0e967f0f38dac9f"></script>
-                                <table class="banstatus">
-                                    <tr class="border_bottom">
-                                        <td>
-                                            <p class="fet">Slinga</p>
-                                        </td>
-                                        <td>
-                                            <p class="fet alignright">Status</p>
-                                        </td>
-                                    </tr>
+            <div class="weatherBox">
+                <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
+                    <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/e67186ae70807f54f0e967f0f38dac9f"></script>
+                        <table class="banstatus">
+                            <tr class="border_bottom">
+                                <td>
+                                    <p class="fet">Slinga</p>
+                                </td>
+                                <td>
+                                    <p class="fet alignright">Status</p>
+                                </td>
+                                </tr>
                                     <tr class="border_bottom">
                                         <td>
                                             <p>1-9</p>
@@ -129,6 +113,21 @@
                                     </tr>
                            </table>
                        </div>
+            <div class="content">
+                <div class="contentRow">
+                    <div class="fullBox news">
+                        <div class="page-title"><h1>Nyheter</h1></div>
+                        <div class="fullBox" runat="server" id="newsdiv">
+                        </div>
+                   </div>                     
+                </div>  
+             </div>         
+        </section>
+     <section class="container">
+         <div class="content">
+             <div class="contentRow">
+                 <div class="fullBox">
+
                  </div>
                  <div class="fullBox page-title">
                      <h1>Bli Medlem</h1>
@@ -142,8 +141,9 @@
                      <asp:TextBox ID="tbPassword" runat="server" CssClass="my-txt-box" placeholder="Lösenord"></asp:TextBox><br />   
                      <asp:TextBox ID="tbPonenumber" runat="server" CssClass="my-txt-box" placeholder="Telefonnummer"></asp:TextBox>                                           
                      <asp:TextBox ID="tbZipcode" runat="server" CssClass="my-txt-box" placeholder="Postnummer"></asp:TextBox>
-                     <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox><br /><br />                                                       
-                     <asp:Button ID="Button2" runat="server" Text="Bli medlem" Cssclass="my-button"/>                                            
+                     <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox><br />
+                     <asp:DropDownList ID="DropDownList1" runat="server" CssClass="DropDown"></asp:DropDownList>                                                                          
+                     <asp:Button ID="Button2" runat="server" Text="Bli medlem" Cssclass="my-button" placeholder="Hej"/><br /><br />                                     
              </div>
            </div>
          </div>
