@@ -81,15 +81,52 @@
                 <div class="contentRow">
                     <div class="fullBox news">
                         <div class="page-title"><h1>Nyheter</h1></div>
-                        <div class="fullBox">
+                        <div class="sevenFiveBox firstnews">
                             <h2>Påhittad Nyhet!</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus lectus, ultricies eget lacus et, ullamcorper viverra est. Nullam hendrerit ex eget risus commodo viverra. Aliquam malesuada felis mauris, vitae posuere mauris faucibus at. Donec congue, neque eu sodales efficitur, leo nisi dictum leo, id facilisis nisl metus nec lectus. Nulla pulvinar sed enim vel porta. Phasellus aliquet lacus ut nibh interdum eleifend. Mauris eros massa, cursus ac lectus in, vestibulum molestie elit. Etiam faucibus nulla vitae turpis consectetur rhoncus.
                             Sed ac dapibus ex, id commodo nibh. Phasellus vitae volutpat elit, et semper augue. Phasellus elit sem, posuere et ligula nec, mattis suscipit tortor. Curabitur at lacus lacus. Quisque feugiat finibus condimentum. Nam eu eleifend ante, at fermentum velit. Proin non porttitor odio. Curabitur pulvinar pellentesque nibh id bibendum. Nulla consectetur laoreet est fringilla bibendum. Proin sed vehicula risus. Phasellus eleifend risus ut ex gravida, a porta magna rutrum. Maecenas non enim ultricies, facilisis eros sed, consectetur purus. Cras laoreet quis lorem ut hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur eu feugiat felis, in consequat ipsum.
-                            Nunc sollicitudin lacinia accumsan. Curabitur semper diam eu nibh molestie facilisis. Sed porttitor pellentesque turpis fermentum commodo. Donec aliquam arcu quis mi lacinia, euismod congue orci cursus. Cras quis sollicitudin lectus. Integer sed facilisis velit. Cras non sapien lectus. Quisque pretium lacus ac pellentesque varius.
-                            Nullam id blandit lorem. Nam congue ante lacinia, vestibulum diam sit amet, facilisis est. Etiam nec rutrum mi. Duis interdum eros ut congue tempus. Ut vitae risus a enim pellentesque dignissim faucibus sagittis nibh. Praesent sem ipsum, placerat id magna vel, faucibus pharetra lorem. Donec consectetur risus vel sodales condimentum. Donec augue nisl, convallis id nunc ut, semper ullamcorper ligula. Nulla suscipit dolor sed tellus convallis condimentum. Nam sit amet tortor vel leo egestas semper. Donec quis sem eleifend, venenatis sem eu, porta ligula. Vivamus et pretium tellus. Nullam congue felis fermentum quam volutpat, ut cursus est pellentesque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                            Maecenas eu enim metus. Suspendisse eleifend enim at diam tempus auctor. Maecenas eleifend lacus ac lobortis vulputate. Nulla bibendum feugiat eleifend. Sed in magna tortor. Aenean congue auctor leo, vitae volutpat velit eleifend nec. Cras ac arcu at orci ullamcorper sagittis. Suspendisse varius sem non sapien commodo bibendum. Etiam ac erat vitae mi dapibus egestas a non urna. Duis pretium ac metus a finibus. Donec id egestas orci, a pretium tellus. Vestibulum eleifend erat sapien. Integer lorem metus, luctus ut dolor sed, accumsan dignissim mauris.</p>
                         </div>
-                        <div class="halfBox">                  
+                        <div class="quarterBox">
+                            <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
+                            <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/e67186ae70807f54f0e967f0f38dac9f"></script>
+                        </div>
+                        <div class="quarterBox">
+                                <table class="banstatus">
+                                    <tr class="border_bottom">
+                                        <td>
+                                            <p class="fet">Slinga</p>
+                                        </td>
+                                        <td>
+                                            <p class="fet alignright">Status</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="border_bottom">
+                                        <td>
+                                            <p>1-9</p>
+                                        </td>
+                                        <td>
+                                            <p class="alignright">Stängd</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="border_bottom">
+                                        <td>
+                                            <p>10-18</p>
+                                        </td>
+                                        <td>
+                                            <p class="alignright">Stängd</>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Range</p>
+                                        </td>
+                                        <td>
+                                            <p class="alignright">Öppen</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                         <div class="halfBox">                  
                             <h3>Påhittad Nyhet!</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus lectus, ultricies eget lacus et, ullamcorper viverra est. Nullam hendrerit ex eget risus commodo viverra. Aliquam malesuada felis mauris, vitae posuere mauris faucibus at. Donec congue, neque eu sodales efficitur, leo nisi dictum leo, id facilisis nisl metus nec lectus. Nulla pulvinar sed enim vel porta. Phasellus aliquet lacus ut nibh interdum eleifend. Mauris eros massa, cursus ac lectus in, vestibulum molestie elit. Etiam faucibus nulla vitae turpis consectetur rhoncus.
                             Sed ac dapibus ex, id commodo nibh. Phasellus vitae volutpat elit, et semper augue. Phasellus elit sem, posuere et ligula nec, mattis suscipit tortor. Curabitur at lacus lacus. Quisque feugiat finibus condimentum. Nam eu eleifend ante, at fermentum velit. Proin non porttitor odio. Curabitur pulvinar pellentesque nibh id bibendum. Nulla consectetur laoreet est fringilla bibendum. Proin sed vehicula risus. Phasellus eleifend risus ut ex gravida, a porta magna rutrum. Maecenas non enim ultricies, facilisis eros sed, consectetur purus. Cras laoreet quis lorem ut hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur eu feugiat felis, in consequat ipsum.
