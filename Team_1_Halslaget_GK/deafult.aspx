@@ -79,40 +79,32 @@
             <div class="weatherBox">
                 <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
                     <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/e67186ae70807f54f0e967f0f38dac9f"></script>
-                        <table class="banstatus">
-                            <tr class="border_bottom">
-                                <td>
-                                    <p class="fet">Slinga</p>
-                                </td>
-                                <td>
-                                    <p class="fet alignright">Status</p>
-                                </td>
-                                </tr>
-                                    <tr class="border_bottom">
-                                        <td>
-                                            <p>1-9</p>
-                                        </td>
-                                        <td>
-                                            <p class="alignright">Stängd</p>
-                                        </td>
-                                    </tr>
-                                    <tr class="border_bottom">
-                                        <td>
-                                            <p>10-18</p>
-                                        </td>
-                                        <td>
-                                            <p class="alignright">Stängd</>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Range</p>
-                                        </td>
-                                        <td>
-                                            <p class="alignright">Öppen</p>
-                                        </td>
-                                    </tr>
-                           </table>
+                        <asp:Table ID="Table2" runat="server" CssClass="banstatus">
+                            <asp:TableRow CssClass="border_bottom">
+                                <asp:TableCell>
+                                </asp:TableCell>
+                                <asp:TableCell CssClass="alignright">
+                                </asp:TableCell>
+                             </asp:TableRow>
+                             <asp:TableRow CssClass="border_bottom">
+                                        <asp:TableCell>
+                                        </asp:TableCell>
+                                        <asp:TableCell CssClass="alignright">
+                                        </asp:TableCell>
+                              </asp:TableRow>
+                              <asp:TableRow CssClass="border_bottom">
+                                   <asp:TableCell>
+                                   </asp:TableCell>
+                                   <asp:TableCell CssClass="alignright">
+                                   </asp:TableCell>
+                               </asp:TableRow>
+                               <asp:TableRow>
+                                   <asp:TableCell>
+                                   </asp:TableCell>
+                                   <asp:TableCell CssClass="alignright">
+                                   </asp:TableCell>
+                               </asp:TableRow>
+                           </asp:Table>
                        </div>
             <div class="content">
                 <div class="contentRow">

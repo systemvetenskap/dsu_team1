@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Npgsql;
 using System.Web.Configuration;
+using System.Data;
 
 namespace Team_1_Halslaget_GK
 {
@@ -17,6 +18,67 @@ namespace Team_1_Halslaget_GK
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadNews();
+            SetTableBanstatus(GetBanstatus());           
+        }
+
+        protected DataTable GetBanstatus()
+        {
+            DataTable dt = new DataTable();
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM closed WHERE CURRENT_DATE < slutdatum", conn);
+
+            try
+            {
+                conn.Open();
+                da.Fill(dt);
+            }
+
+            catch
+            {
+                NpgsqlException ex;
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+
+            Table2.Rows[0].Cells[0].Text = "Bana";
+            Table2.Rows[0].Cells[1].Text = "Status";
+            Table2.Rows[1].Cells[0].Text = "1-9";
+            Table2.Rows[1].Cells[1].Text = "Öppen";
+            Table2.Rows[2].Cells[0].Text = "10-18";
+            Table2.Rows[2].Cells[1].Text = "Öppen";
+            Table2.Rows[3].Cells[0].Text = "Range";
+            Table2.Rows[3].Cells[1].Text = "Öppen";
+
+            return dt;            
+        }
+
+        private void SetTableBanstatus(DataTable dt)
+        {
+
+        for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (Convert.ToDateTime(dt.Rows[i]["from"]) < DateTime.Today)
+                {
+                    if (Convert.ToString(dt.Rows[i]["bana"]) == "1-9")
+                    {
+                        Table2.Rows[1].Cells[1].Text = "Stängd";
+                    }
+
+                    else if (Convert.ToString(dt.Rows[i]["bana"]) == "10-18")
+                    {
+                        Table2.Rows[2].Cells[1].Text = "Stängd";
+                    }
+
+                    else
+                    {
+                        Table2.Rows[3].Cells[1].Text = "Stängd";
+                    }
+                }
+            }
+
         }
 
         //Används för att kryptera lösenord
