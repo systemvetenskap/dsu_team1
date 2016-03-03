@@ -190,7 +190,7 @@
 
                 </div>
                 <div class="halfBox top-n-bottom-space">
-                    <asp:Button CssClass="my-button" ID="btnGoToAccountSettings" runat="server" Text="ÄNDRA LÖSENORD" />
+                    <asp:Button CssClass="my-button" ID="btnGoToAccountSettings" runat="server" Text="ÄNDRA LÖSENORD" OnClick="btnGoToAccountSettings_Click"/>
                 </div>
         </div>
     </div>
