@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="deafult.aspx.cs" Inherits="Team_1_Halslaget_GK.deafult" %>
+﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="deafult.aspx.cs" Inherits="Team_1_Halslaget_GK.deafult" %>
 
 <!DOCTYPE html>
 

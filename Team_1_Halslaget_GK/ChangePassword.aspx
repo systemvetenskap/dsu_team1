@@ -19,7 +19,7 @@
             <p class="pass-margins">Bekräfta nytt lösenord: <span class="pass-error-msg">Lösenord stämmer inte överens</span>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" controltovalidate="txtNewPasswordTwo" runat="server" ForeColor="Red" Font-Size="Smaller" ErrorMessage="Bekräfta lösenord"></asp:RequiredFieldValidator> </p>
             <asp:TextBox CssClass="my-txt-box pass-margin" ID="txtNewPasswordTwo" TextMode="Password" runat="server"></asp:TextBox>
-            <asp:Button ID="Button1" runat="server" CssClass="my-button pass-margin" Text="BYT LÖSENORD" />
+            <asp:Button ID="Button1" runat="server" CssClass="my-button pass-margin" Text="BYT LÖSENORD" OnCLick="Button1_Click"/>
         </div>
     </div>
 </asp:Content>
