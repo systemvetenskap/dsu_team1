@@ -8,6 +8,7 @@ using System.Data;
 using Npgsql;
 using System.Security.Cryptography;
 using System.Text;
+using System.Globalization;
 
 
 namespace Team_1_Halslaget_GK
@@ -228,8 +229,8 @@ namespace Team_1_Halslaget_GK
 
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
-                cmd.Parameters.AddWithValue("@fornamn", TextBoxFornamn.Text);
-                cmd.Parameters.AddWithValue("@efternamn", TextBoxEfternamn.Text);
+                cmd.Parameters.AddWithValue("@fornamn", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(TextBoxFornamn.Text.ToLower()));
+                cmd.Parameters.AddWithValue("@efternamn", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(TextBoxEfternamn.Text.ToLower()));
                 cmd.Parameters.AddWithValue("@adress", TextBoxAdress.Text);
                 cmd.Parameters.AddWithValue("@postnummer", TextBoxPostnummer.Text);
                 cmd.Parameters.AddWithValue("@ort", TextBoxOrt.Text);
