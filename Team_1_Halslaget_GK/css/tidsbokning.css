@@ -1,0 +1,48 @@
+﻿.text-center {
+    text-align: center;
+}
+.text-bold {
+    font-weight: bold;
+}
+.wrapper {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}
+.centerCalender {
+    width: 200px;
+    margin: 0 auto;
+}
+.calenderButton {
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 17px;
+}
+.hrMargin {
+    margin: 10px 0 10px 0;
+}
+#hours {
+    width: 100px;
+    display: none;
+}
+#hours div {
+    display: inline-block;
+}
+#confirmButton {
+    display: none;
+    width: 200px;
+}
+#confirmButtonDiv {
+    width: 100%;
+}
+#confirmButtonDiv input {
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 17px;
+}
+.listItemMargin {
+    margin: 2px 0 0 0;
+    font-weight: bold;
+}

@@ -1,0 +1,21 @@
+﻿.textbox {
+    width: 200px;
+    margin: 0 auto;
+    height: 30px;
+    font-size: 150%;
+}
+.text-center {
+    text-align: center;
+}
+#textBoxDiv {
+    margin: 20px 0 20px 0;
+}
+#radioButtons {
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    width: 200px;
+}
+#RadioButtonName:before {
+    content: "\7C\a0\a0";
+}
