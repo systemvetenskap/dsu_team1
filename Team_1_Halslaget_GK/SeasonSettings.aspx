@@ -20,6 +20,11 @@
             </asp:DropDownList>
             <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
             <asp:Calendar ID="Calendar2" runat="server"></asp:Calendar>
+            <asp:CheckBox ID="CheckBox1to9" runat="server" />
+            <asp:CheckBox ID="CheckBox10to18" runat="server" />
+            <asp:CheckBox ID="CheckBoxRange" runat="server" />
+            <asp:Button ID="ButtonSetSeason" runat="server" Text="Spara" OnClick="ButtonSetSeason_Click"/> <%--la till den här rackaren bara för att kunna prova min "reverese backend" kod typ som behövs för den typen av db jag skapade--%>
+
         </div>
 
     </div>

@@ -24,7 +24,7 @@ namespace Team_1_Halslaget_GK
         protected DataTable GetBanstatus()
         {
             DataTable dt = new DataTable();
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM closed WHERE CURRENT_DATE < slutdatum", conn);
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM season WHERE CURRENT_DATE < slutdatum", conn);
 
             try
             {
@@ -60,7 +60,7 @@ namespace Team_1_Halslaget_GK
 
         for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (Convert.ToDateTime(dt.Rows[i]["from"]) < DateTime.Today)
+                if (Convert.ToDateTime(dt.Rows[i]["startdatum"]) > DateTime.Today)
                 {
                     if (Convert.ToString(dt.Rows[i]["bana"]) == "1-9")
                     {
@@ -74,8 +74,8 @@ namespace Team_1_Halslaget_GK
 
                     else
                     {
-                        Table2.Rows[3].Cells[1].Text = "Stängd";
-                    }
+                        Table2.Rows[2].Cells[1].Text = "Stängd";
+                    }                    
                 }
             }
 
