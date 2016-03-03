@@ -71,6 +71,7 @@
     <Content Include="css\Medlemsregister.css" />
     <Content Include="css\MyPageCss.css" />
     <Content Include="css\Publishnewsstyle.css" />
+    <Content Include="css\SeasonSettingStyle.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
     <Content Include="deafult.aspx" />
@@ -182,6 +183,7 @@
     <Compile Include="PublishNewsAdmin.aspx.designer.cs">
       <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Season.cs" />
     <Compile Include="SeasonSettings.aspx.cs">
       <DependentUpon>SeasonSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
