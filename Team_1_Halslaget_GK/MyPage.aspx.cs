@@ -14,6 +14,7 @@ using System.Data;
 using System.Drawing;
 using System.Web.UI.HtmlControls;
 using Npgsql;
+using System.Globalization;
 
 namespace Team_1_Halslaget_GK
 {
@@ -180,8 +181,8 @@ namespace Team_1_Halslaget_GK
             medlemObj = new medlem();
 
             medlemObj.ID = Convert.ToInt32(lblMemberID.Text);
-            medlemObj.fornamn = txtFirstName.Text;
-            medlemObj.efternamn = txtLastName.Text;
+            medlemObj.fornamn = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtFirstName.Text.ToLower());
+            medlemObj.efternamn = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtLastName.Text.ToLower());
             medlemObj.adress = txtStreet.Text;
             medlemObj.postnummer = txtPostalCode.Text;
             medlemObj.ort = txtCity.Text;
