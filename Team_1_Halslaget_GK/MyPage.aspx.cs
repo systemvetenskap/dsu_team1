@@ -2,7 +2,7 @@
 //Is going to use instances of other and future classes. At the moment, there is SOME
 //datatables with mockdata and some use of the proper database.
 //Erik Drysén 2016-02-27.
-//Revised 2016-03-01 Erik Drysén
+//Revised 2016-03-04 Erik Drysén
 
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,7 @@ namespace Team_1_Halslaget_GK
 
             //Row 43 and 44, Set medlemID, currently ASSUMING that when user/member is logged in member/username vill be displayed in lblUserName 
             //and either a method is being used to retrieve member ID from database or it comes with a session. Some of it anyway.
-            medlemObj.ID = Convert.ToInt32(Session["Username"]); //ID kommer in med session här, bara att aktivera när det är dags/jacob
+            medlemObj.ID = 2;//Convert.ToInt32(Session["Username"]); //ID kommer in med session här, bara att aktivera när det är dags/jacob
             lblMemberID.Text = medlemObj.ID.ToString();
 
             BindGridView();
@@ -143,54 +143,6 @@ namespace Team_1_Halslaget_GK
             return TeeTime;
         }
 
-        //private DataTable GetMockTeeTimeData()
-        //{
-        //    string date1 = "2016-03-15";
-        //    string date2 = "2016-03-30";
-        //    string starttime1 = "07:10";
-        //    string starttime2 = "15:40";
-
-        //    DataTable MockTeeTime = new DataTable();
-
-        //    MockTeeTime.Columns.Add("id", typeof(int));
-        //    MockTeeTime.Columns.Add("date", typeof(DateTime));
-        //    MockTeeTime.Columns.Add("starttime", typeof(DateTime));
-        //    //MockTeeTime.Columns.Add("emptymessage", typeof(string));
-            
-        //    MockTeeTime.Rows.Add(1, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
-        //    MockTeeTime.Rows.Add(2, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
-        //    MockTeeTime.Rows.Add(3, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
-        //    MockTeeTime.Rows.Add(4, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
-        //    MockTeeTime.Rows.Add(5, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
-        //    MockTeeTime.Rows.Add(6, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
-
-        //    return MockTeeTime;            
-        //}
-        /// <summary>
-        /// METHOD IS PROBABLY NOT NEEDED ANYMORE, JUST SAVED IN CASE DATABASE STOPS 
-        /// WORKING AND MOCK DATA IS NEEDED.
-        /// Method creates a datatable with mock data to fill
-        /// the gui with things for test purpoese.
-        /// </summary>
-        /// <returns></returns>
-        //private DataTable GetMemberInfo()
-        //{
-
-        //    DataTable MockTeeTime = new DataTable();
-
-        //    MockTeeTime.Columns.Add("firstname", typeof(string));
-        //    MockTeeTime.Columns.Add("lastname", typeof(string));
-        //    MockTeeTime.Columns.Add("phonenumber", typeof(string));
-        //    MockTeeTime.Columns.Add("email", typeof(string));
-        //    MockTeeTime.Columns.Add("street", typeof(string));
-        //    MockTeeTime.Columns.Add("postalcode", typeof(string));
-        //    MockTeeTime.Columns.Add("city", typeof(string));
-        //    MockTeeTime.Columns.Add("handicap", typeof(string));
-
-        //    MockTeeTime.Rows.Add("John", "Doe", "555-32 43 45", "john.doe@email.com", "The Street", "78123", "The City", "23");
-
-        //    return MockTeeTime;
-        //}
         /// <summary>
         /// When user selects a row this event highlights and changes the colour.
         /// </summary>

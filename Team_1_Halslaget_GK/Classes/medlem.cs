@@ -1,5 +1,6 @@
 ﻿//Jacob Hyllengren (some dated)
 //Revised Erik Drysén 2016-03-01.
+//Revised Erik Drysén 2016-03-04.
 
 using System;
 using System.Collections.Generic;
