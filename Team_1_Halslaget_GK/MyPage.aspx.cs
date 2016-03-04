@@ -42,7 +42,7 @@ namespace Team_1_Halslaget_GK
 
             //Row 43 and 44, Set medlemID, currently ASSUMING that when user/member is logged in member/username vill be displayed in lblUserName 
             //and either a method is being used to retrieve member ID from database or it comes with a session. Some of it anyway.
-            medlemObj.ID = 2; //Convert.ToInt32(Session["Username"]); //ID kommer in med session här, bara att aktivera när det är dags/jacob
+            medlemObj.ID = Convert.ToInt32(Session["Username"]); //ID kommer in med session här, bara att aktivera när det är dags/jacob
             lblMemberID.Text = medlemObj.ID.ToString();
 
             BindGridView();
@@ -86,6 +86,7 @@ namespace Team_1_Halslaget_GK
         /// <summary>
         /// Method uses medelobj to retrieve a specific member and sets labels on GUI.
         /// </summary>
+        /// 
         private void SetMemberTextBoxes()
         {
             DataTable dt = medlemObj.GetSpecificMember();
@@ -114,7 +115,7 @@ namespace Team_1_Halslaget_GK
             NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
-            da.SelectCommand.Parameters.AddWithValue("@id", 2); //Session["Username"].ToString()
+            da.SelectCommand.Parameters.AddWithValue("@id", Session["Username"].ToString());
 
             try
             {
@@ -160,7 +161,6 @@ namespace Team_1_Halslaget_GK
 
         //    return MockTeeTime;            
         //}
-
         /// <summary>
         /// METHOD IS PROBABLY NOT NEEDED ANYMORE, JUST SAVED IN CASE DATABASE STOPS 
         /// WORKING AND MOCK DATA IS NEEDED.
@@ -186,7 +186,6 @@ namespace Team_1_Halslaget_GK
 
         //    return MockTeeTime;
         //}
-
         /// <summary>
         /// When user selects a row this event highlights and changes the colour.
         /// </summary>
@@ -209,6 +208,7 @@ namespace Team_1_Halslaget_GK
         /// Sets propertis in medlem class and triggers UpdateMemberInfo in same class
         /// to update member info in database. 
         /// </summary>
+        /// 
         protected void btnUpdateUserinfo_Click(object sender, EventArgs e)
         {
             medlemObj = new medlem();
@@ -324,7 +324,8 @@ namespace Team_1_Halslaget_GK
 
             else if (reminddate < DateTime.Today)
             {
-                lblPaymentReminder.Text = "Kom ihåg att betala din medlemsavgift innan den " + latest.Day + "/" + latest.Month + ".";
+                latest.AddYears(1);
+                lblPaymentReminder.Text = "Kom ihåg att betala din medlemsavgift innan den " + latest.Day + "/" + latest.Month + " - " + latest.Year + ".";
                 lblPaymentReminder.Visible = true;
             }
         }

@@ -17,9 +17,9 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadMedlemstyper();
-            LoadNews();
-            SetTableBanstatus(GetBanstatus());           
+                LoadMedlemstyper();
+                LoadNews();
+                SetTableBanstatus(GetBanstatus());
         }
 
         protected DataTable GetBanstatus()
@@ -180,6 +180,7 @@ namespace Team_1_Halslaget_GK
             {
                 LabelWrongPW.Text = "Felaktig email eller lösenord.";
                 LabelWrongPW.Visible = true;
+                LabelWrongPW.ForeColor = System.Drawing.Color.Red;
             }
 
             conn.Close();
@@ -201,6 +202,7 @@ namespace Team_1_Halslaget_GK
             {
                 LabelWrongPW.Text = "Felaktig email eller lösenord.";
                 LabelWrongPW.Visible = true;
+                LabelWrongPW.ForeColor = System.Drawing.Color.Red;
             }
 
 

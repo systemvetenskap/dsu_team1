@@ -111,6 +111,9 @@ table.centrera{
 .my-glyph-close{
     cursor: pointer;
 }
+.medlemsregister {
+    height:488px;
+}
 
 @media (max-width: 500px) {	
 	.overlay-message-delete {

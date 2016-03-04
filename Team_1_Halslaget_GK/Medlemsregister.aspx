@@ -90,7 +90,7 @@
                     <asp:ListItem Text="Handikapp"></asp:ListItem>
                 </asp:RadioButtonList>
             </div>
-            <div class="fullBox">
+            <div class="fullBox medlemsregister">
                 <asp:ListBox ID="ListBoxMedlemsregister" runat="server" CssClass="listbox-style" AutoPostBack ="true" OnSelectedIndexChanged="ListBoxMedlemsregister_SelectedIndexChanged"></asp:ListBox>
             </div>
             <div class="fullBox">
