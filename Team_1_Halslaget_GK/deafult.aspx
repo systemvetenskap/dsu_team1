@@ -159,7 +159,6 @@
               <a class="mail-links"href="#" target="_top">              
               <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><br> HÅLSALGETGK@EMAIL.COM</a>
             </div>
-
           </div>
       </div>
       </div>
