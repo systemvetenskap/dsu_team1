@@ -63,7 +63,7 @@
 }
 .registerbox .my-txt-box {
     width: 97%;
-    margin 2% 0 0 0;
+    margin: 2% 0 0 0;
     
     height: 50px;
 }
@@ -94,6 +94,14 @@
     margin: 5px 0 5px;
     height:50px;   
 }
+
+.thirdBox {
+    padding: 0.25%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;   
+}
+
 
 
 

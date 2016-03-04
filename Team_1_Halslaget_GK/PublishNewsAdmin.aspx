@@ -14,7 +14,6 @@
     <div class="fullBox">
         <asp:TextBox ID="txtHTMLContent" runat="server" TextMode="MultiLine"></asp:TextBox>           
         <br />
-        <asp:Button ID="Button1" runat="server" Text="Publicera" CssClass="my-button" OnClick="Button1_Click" />
-        <asp:Button ID="Button2" runat="server" Text="Button" />     
+        <asp:Button ID="Button1" runat="server" Text="Publicera" CssClass="my-button" OnClick="Button1_Click" /> 
     </div>          
     </asp:Content>
