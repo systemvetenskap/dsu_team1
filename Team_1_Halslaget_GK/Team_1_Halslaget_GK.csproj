@@ -75,7 +75,7 @@
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
     <Content Include="deafult.aspx" />
-    <Content Include="font.css" />
+    <Content Include="css\font.css" />
     <Content Include="fonts\generator_config.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\lato-lig-demo.html" />
@@ -84,7 +84,7 @@
     <Content Include="fonts\specimen_files\grid_12-825-55-15.css" />
     <Content Include="fonts\specimen_files\specimen_stylesheet.css" />
     <Content Include="fonts\stylesheet.css" />
-    <Content Include="Glyphicons.css" />
+    <Content Include="css\Glyphicons.css" />
     <Content Include="img\admin01.jpg" />
     <Content Include="img\admin02.jpg" />
     <Content Include="img\admin03.jpg" />

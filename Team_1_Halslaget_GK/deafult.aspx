@@ -8,8 +8,8 @@
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/deafultstyle.css" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
-    <link type="text/css" rel="stylesheet" href="font.css"/> 
-    <link type="text/css" rel="stylesheet" href="Glyphicons.css"/> 
+    <link href="css/Glyphicons.css" rel="stylesheet" />
+    <link href="css/font.css" rel="stylesheet" />
     <script src="ja/opencloseoverlay.js"></script>
     <script src="ja/Scrollto.js"></script>
     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
@@ -159,7 +159,6 @@
               <a class="mail-links"href="#" target="_top">              
               <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><br> HÅLSALGETGK@EMAIL.COM</a>
             </div>
-
           </div>
       </div>
       </div>

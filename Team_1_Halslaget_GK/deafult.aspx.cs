@@ -25,7 +25,7 @@ namespace Team_1_Halslaget_GK
         protected DataTable GetBanstatus()
         {
             DataTable dt = new DataTable();
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM season WHERE CURRENT_DATE < slutdatum", conn);
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM season WHERE CURRENT_DATE BETWEEN startdatum and slutdatum", conn);
 
             try
             {
@@ -47,11 +47,11 @@ namespace Team_1_Halslaget_GK
             Table2.Rows[0].Cells[0].Text = "Bana";
             Table2.Rows[0].Cells[1].Text = "Status";
             Table2.Rows[1].Cells[0].Text = "1-9";
-            Table2.Rows[1].Cells[1].Text = "Öppen";
+            Table2.Rows[1].Cells[1].Text = "Stängd";
             Table2.Rows[2].Cells[0].Text = "10-18";
-            Table2.Rows[2].Cells[1].Text = "Öppen";
+            Table2.Rows[2].Cells[1].Text = "Stängd";
             Table2.Rows[3].Cells[0].Text = "Range";
-            Table2.Rows[3].Cells[1].Text = "Öppen";
+            Table2.Rows[3].Cells[1].Text = "Stängd";
 
             return dt;            
         }
@@ -61,25 +61,21 @@ namespace Team_1_Halslaget_GK
 
         for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (Convert.ToDateTime(dt.Rows[i]["startdatum"]) > DateTime.Today)
-                {
                     if (Convert.ToString(dt.Rows[i]["bana"]) == "1-9")
                     {
-                        Table2.Rows[1].Cells[1].Text = "Stängd";
+                        Table2.Rows[1].Cells[1].Text = "Öppen";
                     }
 
-                    else if (Convert.ToString(dt.Rows[i]["bana"]) == "10-18")
+                    if (Convert.ToString(dt.Rows[i]["bana"]) == "10-18")
                     {
-                        Table2.Rows[2].Cells[1].Text = "Stängd";
+                        Table2.Rows[2].Cells[1].Text = "Öppen";
                     }
 
-                    else
+                    if (Convert.ToString(dt.Rows[i]["bana"]) == "range")
                     {
-                        Table2.Rows[2].Cells[1].Text = "Stängd";
+                        Table2.Rows[3].Cells[1].Text = "Öppen";
                     }                    
-                }
             }
-
         }
 
         //Används för att kryptera lösenord
