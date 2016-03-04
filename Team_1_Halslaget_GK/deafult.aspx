@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>HÅLSLAGET GK</title>
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/deafultstyle.css" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
@@ -147,7 +147,7 @@
         <div class="contentRow">      
 
           <div class="fullBox" id="footer">        
-            <p class="foot-text">HÅLSAGET GK</p>
+            <p class="foot-text">HÅLSLAGET GK</p>
 
             <div class="halfBox">
               <a class="phone-links" href="callto:#">
