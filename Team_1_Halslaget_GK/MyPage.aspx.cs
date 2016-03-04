@@ -58,7 +58,7 @@ namespace Team_1_Halslaget_GK
             //ListViewFutureTeeTimes.DataSource = GetMockFutureTeeTimeData();
             //ListViewFutureTeeTimes.DataBind();
 
-            GridView1.DataSource = GetMockFutureTeeTimeData();
+            GridView1.DataSource = GetFutureTeeTimeData();
             GridView1.DataBind();
         }
 
@@ -104,29 +104,62 @@ namespace Team_1_Halslaget_GK
         /// To be removed and replaced with a proper method.
         /// </summary>
         /// <returns></returns>
-        private DataTable GetMockFutureTeeTimeData()
+        /// 
+
+        private DataTable GetFutureTeeTimeData()
         {
-            string date1 = "2016-03-15";
-            string date2 = "2016-03-30";
-            string starttime1 = "07:10";
-            string starttime2 = "15:40";
+            DataTable TeeTime = new DataTable();
 
-            DataTable MockTeeTime = new DataTable();
+            string sql = "SELECT bokningsnr, datum, starttid FROM medlem_bokning INNER JOIN bokning ON bokning_id = slot_id WHERE medlem_id = @id AND datum > CURRENT_DATE";
+            NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
-            MockTeeTime.Columns.Add("id", typeof(int));
-            MockTeeTime.Columns.Add("date", typeof(DateTime));
-            MockTeeTime.Columns.Add("starttime", typeof(DateTime));
-            //MockTeeTime.Columns.Add("emptymessage", typeof(string));
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+            da.SelectCommand.Parameters.AddWithValue("@id", 2); //Session["Username"].ToString()
+
+            try
+            {
+                conn.Open();
+                da.Fill(TeeTime);
+            }
+
+            catch
+            {
+                NpgsqlException ex;
+            }
             
-            MockTeeTime.Rows.Add(1, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
-            MockTeeTime.Rows.Add(2, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
-            MockTeeTime.Rows.Add(3, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
-            MockTeeTime.Rows.Add(4, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
-            MockTeeTime.Rows.Add(5, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
-            MockTeeTime.Rows.Add(6, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
 
-            return MockTeeTime;            
+            CancelBookingInfo.InnerText = "Du har inga bokade tider";
+            return TeeTime;
         }
+
+        //private DataTable GetMockTeeTimeData()
+        //{
+        //    string date1 = "2016-03-15";
+        //    string date2 = "2016-03-30";
+        //    string starttime1 = "07:10";
+        //    string starttime2 = "15:40";
+
+        //    DataTable MockTeeTime = new DataTable();
+
+        //    MockTeeTime.Columns.Add("id", typeof(int));
+        //    MockTeeTime.Columns.Add("date", typeof(DateTime));
+        //    MockTeeTime.Columns.Add("starttime", typeof(DateTime));
+        //    //MockTeeTime.Columns.Add("emptymessage", typeof(string));
+            
+        //    MockTeeTime.Rows.Add(1, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
+        //    MockTeeTime.Rows.Add(2, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
+        //    MockTeeTime.Rows.Add(3, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
+        //    MockTeeTime.Rows.Add(4, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
+        //    MockTeeTime.Rows.Add(5, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
+        //    MockTeeTime.Rows.Add(6, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
+
+        //    return MockTeeTime;            
+        //}
 
         /// <summary>
         /// METHOD IS PROBABLY NOT NEEDED ANYMORE, JUST SAVED IN CASE DATABASE STOPS 

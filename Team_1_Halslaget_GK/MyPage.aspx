@@ -108,9 +108,9 @@
 
                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
                     <Columns>
-                            <asp:BoundField DataField="id" HeaderText="Boknings Nr" SortExpression="id" />
-                            <asp:BoundField DataField="date" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" SortExpression="date" />
-                            <asp:BoundField DataField="starttime" HeaderText="Starttid" DataFormatString="{0:HH:mm}" SortExpression="starttime" />
+                            <asp:BoundField DataField="bokningsnr" HeaderText="Boknings Nr" SortExpression="id" />
+                            <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" SortExpression="date" />
+                            <asp:BoundField DataField="starttid" HeaderText="Starttid" DataFormatString="{0:HH:mm}" SortExpression="starttime" />
                             <asp:CommandField ShowSelectButton="true" />
                     </Columns>
                 </asp:GridView>
@@ -122,7 +122,7 @@
 
             <div class="fullBox center-text">
                 <br />
-                <p class="p-my-info">För att avboka en tid, klicka på markera och sedan på knappen "Avboka tid"</p>
+                <p class="p-my-info" id="CancelBookingInfo" runat="server">För att avboka en tid, klicka på markera och sedan på knappen "Avboka tid"</p>
                 <br />
                 <div class="halfBox">
                     <asp:Button ID="btnGoToBooking" runat="server" Text="BOKA TIDER" CssClass="my-button"/>
