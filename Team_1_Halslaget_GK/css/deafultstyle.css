@@ -69,9 +69,9 @@
 }
 .registerbox  {
    margin:2% 0;
-       -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-        box-sizing: border-box;  
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;  
         text-align:center;
 }
 
@@ -80,7 +80,7 @@
     padding: 2% 2%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-        box-sizing: border-box;   
+    box-sizing: border-box;   
 }
 .weatherBox {
     width:16%;
