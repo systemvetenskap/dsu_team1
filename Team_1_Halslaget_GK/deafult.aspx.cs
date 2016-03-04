@@ -101,7 +101,7 @@ namespace Team_1_Halslaget_GK
         private void LoadNews()
         {
             List<news> newsList = new List<news>();
-            string sql = "SELECT txt, publ_date FROM nyhet";
+            string sql = "SELECT * FROM nyhet ORDER BY id DESC LIMIT 3;";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
@@ -114,31 +114,19 @@ namespace Team_1_Halslaget_GK
                 news news = new news();
                 news.publDate = Convert.ToDateTime(dr["publ_date"]);
                 news.txt = Convert.ToString(dr["txt"]);
-                newsList.Add(news);
-                              
+                newsList.Add(news);                         
             }
 
             conn.Close();
 
-            int count = 1;
+            string News = "fullBox newsBox";
 
-            string firstNews = "fullBox newsBox";
-            string NotfirstNews = "fullBox newsBox NotfirstNews article";
-
-            foreach (news news in newsList.OfType<news>().Reverse())
+            foreach (news news in newsList.OfType<news>())
             {
                 System.Web.UI.HtmlControls.HtmlGenericControl newsdiv2 = new System.Web.UI.HtmlControls.HtmlGenericControl();
-                newsdiv2.InnerHtml = news.publDate + news.txt ;
 
-                if (count == 1)
-                {
-                    newsdiv2.Attributes["class"] = firstNews;  
-                }
-                else
-                {
-                    newsdiv2.Attributes["class"] = NotfirstNews;
-                }
-                count++;    
+                newsdiv2.InnerHtml = news.publDate + news.txt;
+                newsdiv2.Attributes["class"] = News;    
                 newsdiv.Controls.Add(newsdiv2);
             }                             
         }
