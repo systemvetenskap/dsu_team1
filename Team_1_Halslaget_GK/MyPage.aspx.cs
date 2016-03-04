@@ -51,15 +51,20 @@ namespace Team_1_Halslaget_GK
         }
 
         /// <summary>
-        /// Binds the mock datatable with the gridview.
+        /// Binds gridview with datatable using method from BOoking class to retrieve
+        /// data.
         /// </summary>
         private void BindGridView()
         {
-            //ListViewFutureTeeTimes.DataSource = GetMockFutureTeeTimeData();
-            //ListViewFutureTeeTimes.DataBind();
-
-            GridView1.DataSource = GetFutureTeeTimeData();
+            Booking getBookings = new Booking();
+            DataTable dt = getBookings.GetFutureTeeTimeData(medlemObj.ID.ToString());
+            GridView1.DataSource = dt;
             GridView1.DataBind();
+
+            if(GridView1.Rows.Count == 0)
+            {
+                CancelBookingInfo.InnerText = "Du har inga kommande bokade tider!";
+            }
         }
 
         /// <summary>
@@ -98,94 +103,6 @@ namespace Team_1_Halslaget_GK
             txtPostalCode.Text = dt.Rows[0]["postnummer"].ToString();
             txtCity.Text = dt.Rows[0]["ort"].ToString();
         }
-
-        /// <summary>
-        /// A method which returns a mock datatable with some fake values
-        /// To be removed and replaced with a proper method.
-        /// </summary>
-        /// <returns></returns>
-        /// 
-
-        private DataTable GetFutureTeeTimeData()
-        {
-            DataTable TeeTime = new DataTable();
-
-            string sql = "SELECT bokningsnr, datum, starttid FROM medlem_bokning INNER JOIN bokning ON bokning_id = slot_id WHERE medlem_id = @id AND datum > CURRENT_DATE";
-            NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
-
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
-            da.SelectCommand.Parameters.AddWithValue("@id", 2); //Session["Username"].ToString()
-
-            try
-            {
-                conn.Open();
-                da.Fill(TeeTime);
-            }
-
-            catch
-            {
-                NpgsqlException ex;
-            }
-            
-            finally
-            {
-                conn.Close();
-                conn.Dispose();
-            }
-
-            CancelBookingInfo.InnerText = "Du har inga bokade tider";
-            return TeeTime;
-        }
-
-        //private DataTable GetMockTeeTimeData()
-        //{
-        //    string date1 = "2016-03-15";
-        //    string date2 = "2016-03-30";
-        //    string starttime1 = "07:10";
-        //    string starttime2 = "15:40";
-
-        //    DataTable MockTeeTime = new DataTable();
-
-        //    MockTeeTime.Columns.Add("id", typeof(int));
-        //    MockTeeTime.Columns.Add("date", typeof(DateTime));
-        //    MockTeeTime.Columns.Add("starttime", typeof(DateTime));
-        //    //MockTeeTime.Columns.Add("emptymessage", typeof(string));
-            
-        //    MockTeeTime.Rows.Add(1, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
-        //    MockTeeTime.Rows.Add(2, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
-        //    MockTeeTime.Rows.Add(3, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
-        //    MockTeeTime.Rows.Add(4, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
-        //    MockTeeTime.Rows.Add(5, Convert.ToDateTime(date1), Convert.ToDateTime(starttime1));
-        //    MockTeeTime.Rows.Add(6, Convert.ToDateTime(date2), Convert.ToDateTime(starttime2));
-
-        //    return MockTeeTime;            
-        //}
-
-        /// <summary>
-        /// METHOD IS PROBABLY NOT NEEDED ANYMORE, JUST SAVED IN CASE DATABASE STOPS 
-        /// WORKING AND MOCK DATA IS NEEDED.
-        /// Method creates a datatable with mock data to fill
-        /// the gui with things for test purpoese.
-        /// </summary>
-        /// <returns></returns>
-        //private DataTable GetMemberInfo()
-        //{
-
-        //    DataTable MockTeeTime = new DataTable();
-
-        //    MockTeeTime.Columns.Add("firstname", typeof(string));
-        //    MockTeeTime.Columns.Add("lastname", typeof(string));
-        //    MockTeeTime.Columns.Add("phonenumber", typeof(string));
-        //    MockTeeTime.Columns.Add("email", typeof(string));
-        //    MockTeeTime.Columns.Add("street", typeof(string));
-        //    MockTeeTime.Columns.Add("postalcode", typeof(string));
-        //    MockTeeTime.Columns.Add("city", typeof(string));
-        //    MockTeeTime.Columns.Add("handicap", typeof(string));
-
-        //    MockTeeTime.Rows.Add("John", "Doe", "555-32 43 45", "john.doe@email.com", "The Street", "78123", "The City", "23");
-
-        //    return MockTeeTime;
-        //}
 
         /// <summary>
         /// When user selects a row this event highlights and changes the colour.
@@ -233,36 +150,12 @@ namespace Team_1_Halslaget_GK
         /// </summary>
         protected void btnCancelBooking_Click(object sender, EventArgs e)
         {
+            Booking cancel = new Booking();
             GridViewRow row = GridView1.SelectedRow;
-            CancelBooking(row.Cells[0].Text);
-        }
+            string bookingID = row.Cells[0].Text;
+            cancel.CancelBooking(bookingID);
 
-        protected void CancelBooking(string bokningsnr)
-        {
-            string sql = "DELETE FROM medlem_bokning WHERE bokningsnr = @bokningsnr";
-            NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
-
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-
-            cmd.Parameters.AddWithValue("@bokningsnr", bokningsnr);
-
-            try 
-            {
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-
-            catch
-            {
-                NpgsqlException ex;
-            }
-
-            finally
-            {
-                conn.Close();
-                conn.Dispose();
-                BindGridView();
-            }
+            InitializeGUI();
         }
 
         /// <summary>
