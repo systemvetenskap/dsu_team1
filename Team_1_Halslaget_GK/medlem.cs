@@ -27,6 +27,7 @@ namespace Team_1_Halslaget_GK
         public string medlemsKategori { get; set; }
         public bool payStatus { get; set; }
         public DateTime senastebetalning { get; set; }
+        public string fodelseDatum { get; set; }
         
         /// <summary>
         /// Gets a specific members info based on member ID. 
@@ -134,10 +135,11 @@ namespace Team_1_Halslaget_GK
             {
                 ID = SetNewID(); //TEMPORARY SOLUTION SHOULD REALLY BE REMOVED AND REPLACED WITH SERIAL IN DATABASE INSTEAD.
                 DateTime payDate = SetMedlemsAvgiftDate();
+                string golfID = CreateGolfID();
 
                 conn.Open();
-                NpgsqlCommand cmdUpdateMemberInfo = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, medlemskategori, telefonnummer, medlemsavgift_betald) " +
-                                                                        " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @medlemsKategori, @telefonnummer, @paydate); ", conn);
+                NpgsqlCommand cmdUpdateMemberInfo = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald) " +
+                                                                        " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @golfid, @medlemsKategori, @telefonnummer, @paydate); ", conn);
                 
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@id", ID);
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@fornamn", fornamn);
@@ -148,6 +150,7 @@ namespace Team_1_Halslaget_GK
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@epost", epost);
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@kon", kon);
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@hcp", handikapp);
+                cmdUpdateMemberInfo.Parameters.AddWithValue("@golfid", golfID);
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@medlemsKategori", medlemsKategori);
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@telefonnummer", telefonNummer);
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@paydate", payDate);
@@ -190,6 +193,16 @@ namespace Team_1_Halslaget_GK
             }
         }
 
+        /// <summary>
+        /// Creates a golfid with the members date of birth and ID from database.
+        /// </summary>
+        /// <returns></returns>
+        private string CreateGolfID()
+        {
+            int newID = SetNewID();
+            string golfID = fodelseDatum + "_" + newID.ToString();
+            return golfID;
+        }
 
         /// <summary>
         /// THIS IS A TEMPORARY WORKAROUND SINCE THE PROBLEM IN THE DATABASE IS THAT ITS

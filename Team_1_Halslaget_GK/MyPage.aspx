@@ -87,52 +87,36 @@
             </div>
 
 
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-            <div class="fullBox">            
-                <!--<asp:ListView ID="ListViewFutureTeeTimes" runat="server" OnSelectedIndexChanged="ListViewFutureTeeTimes_SelectedIndexChanged">
-                    <ItemTemplate>
-                        <br />
-                        <p class="p-my-page">
-                            <strong>Datum: </strong><asp:Label ID="lblFutureTeeDate" runat="server" Text='<%# Eval("date", "{0:dd-MM-yyyy}") %>'></asp:Label>
-                            <strong>Starttid: </strong><asp:Label ID="lblFutureTeeStartTime" runat="server" Text='<%# Eval("starttime", "{0:HH:mm}") %>'></asp:Label>
-                            <strong>Boknings Nr: </strong><asp:Label ID="lblFutureTeeID" runat="server" Text='<%# Eval("id") %>'></asp:Label>
-                            <p class="p-my-page pull-right">
-                                <asp:Label ID="Label1" runat="server" OnClientClick="openCancelBookingOverlay();" Text="Avboka"></asp:Label>
-                            <br />
-                            <asp:LinkButton ID="LinkButton1" OnClientClick="openCancelBookingOverlay();" runat="server">LinkButton</asp:LinkButton>
-                            <br />
-                        </p>
-                    </ItemTemplate>
-                </asp:ListView>-->
-
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
-                    <Columns>
-                            <asp:BoundField DataField="bokningsnr" HeaderText="Boknings Nr" SortExpression="id" />
-                            <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" SortExpression="date" />
-                            <asp:BoundField DataField="starttid" HeaderText="Starttid" DataFormatString="{0:HH:mm}" SortExpression="starttime" />
-                            <asp:CommandField ShowSelectButton="true" />
-                    </Columns>
-                </asp:GridView>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <div class="fullBox">            
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
+                            <Columns>
+                                    <asp:BoundField DataField="bokningsnr" HeaderText="Boknings Nr" SortExpression="id" />
+                                    <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" SortExpression="date" />
+                                    <asp:BoundField DataField="starttid" HeaderText="Starttid" DataFormatString="{0:HH:mm}" SortExpression="starttime" />
+                                    <asp:CommandField ShowSelectButton="true" />
+                            </Columns>
+                        </asp:GridView>
                         <asp:Label ID="lblTempBookingID" runat="server" Text="Empty" style="display:none;"></asp:Label>
                         <asp:Label ID="lblTempDate" runat="server" Text="Empty" style="display:none;"></asp:Label>
                         <asp:Label ID="lblTempStartTime" runat="server" Text="Empty" style="display:none;"></asp:Label>           
 
-            </div>
+                    </div>
 
-            <div class="fullBox center-text">
-                <br />
-                <p class="p-my-info" id="CancelBookingInfo" runat="server">För att avboka en tid, klicka på markera och sedan på knappen "Avboka tid"</p>
-                <br />
-                <div class="halfBox">
-                    <asp:Button ID="btnGoToBooking" runat="server" Text="BOKA TIDER" CssClass="my-button"/>
-                </div>
-                <div class="halfBox">
-                    <a id="btnCancelBooking" class="my-button btn-mobile-space" title="Välj tid för att kunna avboka." onclick="openCancelBookingOverlay();">AVBOKA TID</a>
-                </div>
-            </div>
-                            </ContentTemplate>
-                </asp:UpdatePanel>
+                    <div class="fullBox center-text">
+                        <br />
+                        <p class="p-my-info" id="CancelBookingInfo" runat="server">För att avboka en tid, klicka på markera och sedan på knappen "Avboka tid"</p>
+                        <br />
+                        <div class="halfBox">
+                            <asp:Button ID="btnGoToBooking" runat="server" Text="BOKA TIDER" CssClass="my-button"/>
+                        </div>
+                        <div class="halfBox">
+                            <a id="btnCancelBooking" class="my-button btn-mobile-space" title="Välj tid för att kunna avboka." onclick="openCancelBookingOverlay();">AVBOKA TID</a>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
 
 
@@ -147,7 +131,6 @@
                 <p class="p-my-game"><strong>Ditt nuvarande handikapp är:</strong> <asp:Label ID="lblCurrentHandicap" runat="server" Text="Label"></asp:Label>.</p>
                 <p class="p-my-game"><strong>Du har spelat</strong> <asp:Label ID="lblAmountOfRounds" runat="server" Text="Label"></asp:Label> <strong>rundor.</strong></p>
                 <p class="p-my-game"><asp:Label ID="lblPaymentReminder" runat="server" Text="Label" Visible="false"></asp:Label></p>
-
             </div>
         </div>
     </div>
@@ -187,7 +170,6 @@
         <div class="fullBox ">
                 <div class="fullBox">
                     <p class="p-my-info">Vill du ändra ditt lösenord? Klicka på knappen nedanför.</p>
-
                 </div>
                 <div class="halfBox top-n-bottom-space">
                     <asp:Button CssClass="my-button" ID="btnGoToAccountSettings" runat="server" Text="ÄNDRA LÖSENORD" OnClick="btnGoToAccountSettings_Click"/>

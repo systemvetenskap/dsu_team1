@@ -16,76 +16,38 @@ namespace Team_1_Halslaget_GK
         {
             if(!IsPostBack)
             {
+                Season test = new Season();
                 InitializeGUI();
             }
         }
 
+        /// <summary>
+        /// Event for button click.
+        /// </summary>
         protected void ButtonSetSeason_Click(object sender, EventArgs e)
         {
-            string sql ="";
-
-            if (CheckBox1to9.Checked && CheckBox10to18.Checked && CheckBoxRange.Checked)
+            Season CreateSeason = new Season();
+            CreateSeason.StartDate = calenderStartDate.SelectedDate;
+            CreateSeason.EndDate = calenderEndDate.SelectedDate;
+            if(!CheckBox1to9.Checked)
             {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '1-9'),(@startdatum, @slutdatum, '10-18'),(@startdatum, @slutdatum, 'range')";
+                CreateSeason.track1to9 = false;
+            }
+            if(!CheckBox10to18.Checked)
+            {
+                CreateSeason.track10to18 = false;
+            }
+            if(!CheckBoxRange.Checked)
+            {
+                CreateSeason.trackRange = false;
             }
 
-            else if (CheckBox1to9.Checked && CheckBox10to18.Checked)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '1-9'),(@startdatum, @slutdatum, '10-18')";
-            }
-
-            else if (CheckBox1to9.Checked && CheckBoxRange.Checked)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '1-9'),(@startdatum, @slutdatum, 'range')";               
-            }
-
-            else if (CheckBox10to18.Checked && CheckBoxRange.Checked)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '10-18'),(@startdatum, @slutdatum, 'range')";
-            }
-
-            else if (CheckBox1to9.Checked)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '1-9')";
-            }
-
-            else if (CheckBox10to18.Checked)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '10-18')";
-            }
-
-            else if (CheckBoxRange.Checked)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, 'range')";
-            }
-
-            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-
-            cmd.Parameters.AddWithValue("@startdatum", calenderStartDate.SelectedDate);
-            cmd.Parameters.AddWithValue("@slutdatum", calenderEndDate.SelectedDate);
-
-            try
-            {
-                con.Open();
-
-                cmd.ExecuteNonQuery();
-            }
-
-            catch
-            {
-                NpgsqlException ex;
-            }
-
-            finally
-            {
-                con.Close();
-                con.Dispose();
-
-                //Confirmation på att man gjort något
-            }
+            CreateSeason.CreateSeason();
         }
 
+        /// <summary>
+        /// Initialize gui with standard values. 
+        /// </summary>
         private void InitializeGUI()
         {
             SetYearInDropDown();
@@ -193,7 +155,7 @@ namespace Team_1_Halslaget_GK
                 DateTime start = SetStartDate(year);
                 DateTime end = SetEndDate(year);
 
-                if(start <= DateTime.Today)
+                if(start <= DateTime.Today) //Sets so that any date after today is not selactable.
                 {
                     start = DateTime.Today;
                     if ((e.Day.Date < start) || (e.Day.Date > end))

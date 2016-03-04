@@ -34,7 +34,7 @@ namespace Team_1_Halslaget_GK
         /// Binds the dropdownlist with values from database.
         /// </summary>
         private void BindDropDown()
-        {
+        {            
             DataTable memberTypes = MedlemObj.GetMemberTypes();
 
             dropDownMemberType.DataSource = memberTypes;
@@ -61,11 +61,13 @@ namespace Team_1_Halslaget_GK
             MedlemObj.kon = dropDownListKon.Text;
             MedlemObj.medlemsKategori = dropDownMemberType.Text;
             MedlemObj.payStatus = SetPayStatus();
+            MedlemObj.fodelseDatum = txtBirthDate.Text;
 
             if(MedlemObj.InsertNewMember())
             {
                 lblSavedConfirm.Text = "T";
                 lblConfirmed.Text = "Medlem skapad.";
+                SetGUIBoxesStdValue();
                 ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "openConfirmMessage", "openConfirmMessage();", true);
             }
             else
@@ -75,6 +77,23 @@ namespace Team_1_Halslaget_GK
                 lblConfirmed.Text = "Medlem skapades inte. Något gick fel.";
                 ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "openConfirmMessage", "openConfirmMessage();", true);
             }
+        }
+
+        private void SetGUIBoxesStdValue()
+        {
+            txtFistName.Text = "";
+            txtLastName.Text = "";
+            txtHcp.Text = "";
+            txtPhone.Text = "";
+            txtEmail.Text = "";
+            txtAddress.Text = "";
+            txtPostalCode.Text = "";
+            txtCity.Text = "";
+            txtBirthDate.Text = "";
+
+            dropDownListKon.SelectedIndex = 0;
+            dropDownPayStatus.SelectedIndex = 0;
+            BindDropDown();
         }
 
         private bool SetPayStatus()
