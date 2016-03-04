@@ -177,6 +177,8 @@ namespace Team_1_Halslaget_GK
                 LabelWrongPW.Text = "Felaktig email eller lösenord.";
                 LabelWrongPW.Visible = true;
                 LabelWrongPW.ForeColor = System.Drawing.Color.Red;
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "Openoverlay();", true);
+
             }
 
             conn.Close();
@@ -199,6 +201,8 @@ namespace Team_1_Halslaget_GK
                 LabelWrongPW.Text = "Felaktig email eller lösenord.";
                 LabelWrongPW.Visible = true;
                 LabelWrongPW.ForeColor = System.Drawing.Color.Red;
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "Openoverlay();", true);
+
             }
 
 
