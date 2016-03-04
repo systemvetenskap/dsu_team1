@@ -22,4 +22,14 @@
             <asp:Button ID="Button1" runat="server" CssClass="my-button pass-margin" Text="BYT LÖSENORD" OnCLick="Button1_Click"/>
         </div>
     </div>
+
+        <!-- RUTA FÖR ÄNDRAT LÖSENORD   ================================================== -->
+    <div class="page-overlay-password-change">
+      <div class="overlay-message">
+          <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="closeOverlayPasswordChange();"></span></p>
+          <h3 class="my-h3" id="PwResultText" runat="server">Ditt lösenord har ändrats</h3>  
+         <asp:Button ID="OK" runat="server" Text="OK" CssClass="my-button top-n-bottom-space" OnClientClick="closeOverlayPasswordChange();"/>     
+      </div>
+    </div>
+
 </asp:Content>

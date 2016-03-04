@@ -15,3 +15,12 @@
     });
 });
 
+function openOverlayPasswordChange() {
+    $('.page-overlay-password-change').fadeIn('slow');
+
+}
+
+function closeOverlayPasswordChange() {
+    $('.page-overlay-password-change').fadeOut('slow');
+}
+

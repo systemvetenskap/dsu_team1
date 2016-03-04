@@ -22,14 +22,24 @@ namespace Team_1_Halslaget_GK
             var tuple = GetPassword();
             string testa = tuple.Item1 + tuple.Item2;
             
-            if (HashSHA1(txtOldPassword.Text + tuple.Item2) == tuple.Item1)
+            if (txtNewPasswordOne.Text != txtNewPasswordTwo.Text)
+            {
+                PwResultText.InnerText = "Det två lösenorden matchar inte";
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayPasswordChange();", true);
+            }
+
+            else if (HashSHA1(txtOldPassword.Text + tuple.Item2) == tuple.Item1)
             {
                 SetNewPassword(tuple.Item2);
+                PwResultText.InnerText = "Ditt lösenord har ändrats";
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayPasswordChange();", true);
             }
 
             else
             {
-                //Fel lösenord
+                PwResultText.InnerText = "Du har angivit fel lösenord";
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayPasswordChange();", true);
+
             }
         }
 
@@ -68,12 +78,7 @@ namespace Team_1_Halslaget_GK
                 con.Close();
                 con.Dispose();
              }
-
-             
-
-            return Tuple.Create(password, guid);
-            
-
+            return Tuple.Create(password, guid);           
         }
 
         protected void SetNewPassword(string guid)
