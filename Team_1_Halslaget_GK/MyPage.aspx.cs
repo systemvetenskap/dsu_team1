@@ -233,7 +233,36 @@ namespace Team_1_Halslaget_GK
         /// </summary>
         protected void btnCancelBooking_Click(object sender, EventArgs e)
         {
+            GridViewRow row = GridView1.SelectedRow;
+            CancelBooking(row.Cells[0].Text);
+        }
 
+        protected void CancelBooking(string bokningsnr)
+        {
+            string sql = "DELETE FROM medlem_bokning WHERE bokningsnr = @bokningsnr";
+            NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
+
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("@bokningsnr", bokningsnr);
+
+            try 
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            catch
+            {
+                NpgsqlException ex;
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+                BindGridView();
+            }
         }
 
         /// <summary>
