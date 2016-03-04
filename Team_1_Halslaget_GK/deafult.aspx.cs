@@ -17,6 +17,7 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            LoadMedlemstyper();
             LoadNews();
             SetTableBanstatus(GetBanstatus());           
         }
@@ -96,6 +97,7 @@ namespace Team_1_Halslaget_GK
             return sb.ToString();
         }
 
+        //Laddar in de tre senaste publicera nyheterna och lägger till dem på startsidan
         private void LoadNews()
         {
             List<news> newsList = new List<news>();
@@ -138,17 +140,23 @@ namespace Team_1_Halslaget_GK
                 }
                 count++;    
                 newsdiv.Controls.Add(newsdiv2);
-            }
-            
-            
-            
+            }                             
         }
 
+        //Laddar in de medlemstyper som finns i databasen så att man kan välja medlemstyp när man ansöker om medlemskap från startsidan
         private void LoadMedlemstyper()
         {
+            medlem nymedlem = new medlem();
 
+            DataTable medlemstyper = nymedlem.GetMemberTypes();
+
+            dropDownMembertype.DataSource = medlemstyper;
+            dropDownMembertype.DataTextField = "namntyp";
+            dropDownMembertype.DataBind();
+            dropDownMembertype.Items.Insert(0, "Välj medlemstyp");
         }
 
+        //Loggar in
         protected void signInBtn_Click(object sender, EventArgs e)
         {   
             string password = "";

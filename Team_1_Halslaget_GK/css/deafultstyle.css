@@ -72,11 +72,11 @@
 }
 
 .newsBox {
-    border:solid 0.5px;
+    border-bottom: 0.5px solid;
     padding: 2% 2%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-     box-sizing: border-box;   
+        box-sizing: border-box;   
 }
 .weatherBox {
     width:16%;

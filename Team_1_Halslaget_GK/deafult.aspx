@@ -135,8 +135,8 @@
                      <asp:TextBox ID="tbPonenumber" runat="server" CssClass="my-txt-box" placeholder="Telefonnummer"></asp:TextBox>                                           
                      <asp:TextBox ID="tbZipcode" runat="server" CssClass="my-txt-box" placeholder="Postnummer"></asp:TextBox>
                      <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox><br />
-                     <asp:DropDownList ID="DropDownList1" runat="server" CssClass="DropDown"></asp:DropDownList>                                                                          
-                     <asp:Button ID="Button2" runat="server" Text="Bli medlem" Cssclass="my-button" placeholder="Hej"/><br /><br />                                     
+                     <asp:DropDownList ID="dropDownMembertype" runat="server" CssClass="DropDown"></asp:DropDownList>                                                                          
+                     <asp:Button ID="Button2" runat="server" Text="Ansök om medlemskap" Cssclass="my-button" placeholder="Hej"/><br /><br />                                     
              </div>
            </div>
          </div>
