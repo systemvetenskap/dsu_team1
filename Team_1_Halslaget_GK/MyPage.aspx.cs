@@ -234,7 +234,7 @@ namespace Team_1_Halslaget_GK
         }
 
         /// <summary>
-        /// TO BE IMPLEMENTED.
+        /// Event for canceling a booked time.
         /// </summary>
         protected void btnCancelBooking_Click(object sender, EventArgs e)
         {
@@ -259,22 +259,6 @@ namespace Team_1_Halslaget_GK
                 lblTempDate.Text = GridView1.Rows[rowIndex].Cells[1].Text;
                 lblTempStartTime.Text = GridView1.Rows[rowIndex].Cells[2].Text;
             }
-        }
-
-        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-
-        }
-
-
-        protected void btnEditPersonInfo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ListViewFutureTeeTimes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         protected string GetRoundStatistics()
@@ -313,8 +297,25 @@ namespace Team_1_Halslaget_GK
 
         protected void btnGoToAccountSettings_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/ChangePassword.aspx");                
+            Response.Redirect("~/ChangePassword.aspx");
 
         }
+        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+
+        }
+
+
+        protected void btnEditPersonInfo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ListViewFutureTeeTimes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

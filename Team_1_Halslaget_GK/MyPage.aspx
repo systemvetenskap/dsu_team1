@@ -81,7 +81,7 @@
 
     <!-- USER BOOKED TIMES ================================================== -->
     <div class="fullBox top-n-bottom-space">
-        <div class="halfBox">
+        <div class="halfBox my-page-half-box">
             <div class="fullBox my-page-title">
                 <h3>MINA BOKADE TIDER</h3>
             </div>
@@ -121,7 +121,7 @@
 
 
         <!-- USER STATISTICS ================================================== -->
-        <div class="halfBox">
+        <div class="halfBox my-page-half-box">
             <div class="fullBox">
                 <div class="fullBox my-page-title">
                     <h3>SPELSTATISTIK</h3>
