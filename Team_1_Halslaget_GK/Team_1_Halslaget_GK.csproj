@@ -99,6 +99,7 @@
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\Scrollto.js" />
+    <Content Include="ja\tidsbokning.js" />
     <Content Include="ja\Tinymce.js" />
     <Content Include="langs\sv_SE.js" />
     <Content Include="MasterPage.Master" />
