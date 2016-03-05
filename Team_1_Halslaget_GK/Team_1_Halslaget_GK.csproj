@@ -76,6 +76,7 @@
     <Content Include="css\SeasonSettingStyle.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
+    <Content Include="css\tidsbokning.css" />
     <Content Include="deafult.aspx" />
     <Content Include="css\font.css" />
     <Content Include="fonts\generator_config.txt" />
@@ -98,6 +99,7 @@
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\Scrollto.js" />
+    <Content Include="ja\tidsbokning.js" />
     <Content Include="ja\Tinymce.js" />
     <Content Include="langs\sv_SE.js" />
     <Content Include="MasterPage.Master" />
