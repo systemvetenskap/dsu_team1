@@ -76,6 +76,7 @@
     <Content Include="css\SeasonSettingStyle.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
+    <Content Include="css\tidsbokning.css" />
     <Content Include="deafult.aspx" />
     <Content Include="css\font.css" />
     <Content Include="fonts\generator_config.txt" />
@@ -98,6 +99,7 @@
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\Scrollto.js" />
+    <Content Include="ja\tidsbokning.js" />
     <Content Include="ja\Tinymce.js" />
     <Content Include="langs\sv_SE.js" />
     <Content Include="MasterPage.Master" />
@@ -123,7 +125,7 @@
     <Content Include="PublishNewsAdmin.aspx" />
     <Content Include="SeasonSettings.aspx" />
     <Content Include="TestPage.aspx" />
-    <Content Include="tidsbokning.aspx" />
+    <Content Include="Tidsbokning.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -206,12 +208,12 @@
     <Compile Include="TestPage.aspx.designer.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="tidsbokning.aspx.cs">
-      <DependentUpon>tidsbokning.aspx</DependentUpon>
+    <Compile Include="Tidsbokning.aspx.cs">
+      <DependentUpon>Tidsbokning.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="tidsbokning.aspx.designer.cs">
-      <DependentUpon>tidsbokning.aspx</DependentUpon>
+    <Compile Include="Tidsbokning.aspx.designer.cs">
+      <DependentUpon>Tidsbokning.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
