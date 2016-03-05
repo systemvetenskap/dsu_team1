@@ -123,6 +123,7 @@
     <Content Include="PublishNewsAdmin.aspx" />
     <Content Include="SeasonSettings.aspx" />
     <Content Include="TestPage.aspx" />
+    <Content Include="Tidsbokning.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="TestPage.aspx.designer.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tidsbokning.aspx.cs">
+      <DependentUpon>Tidsbokning.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tidsbokning.aspx.designer.cs">
+      <DependentUpon>Tidsbokning.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
