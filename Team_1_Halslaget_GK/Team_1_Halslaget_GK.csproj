@@ -143,6 +143,7 @@
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Player.cs" />
     <Compile Include="CreateNewMember.aspx.cs">
       <DependentUpon>CreateNewMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

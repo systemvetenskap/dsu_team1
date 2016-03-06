@@ -46,3 +46,26 @@
     margin: 2px 0 0 0;
     font-weight: bold;
 }
+
+.timeTable td{
+    background-color: #7cff82;
+    padding: 5px;
+}
+
+.timeTable td:hover {
+    background-color: green;
+    cursor: pointer;
+}
+
+.booked td{
+    background-color: #f5fb64;
+}
+
+.fullybooked td{
+    background-color: #fe6969;
+}
+
+a {
+    color: black;
+}
+
