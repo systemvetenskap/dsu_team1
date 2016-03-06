@@ -13,15 +13,17 @@ namespace Team_1_Halslaget_GK
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-            UpdateTable(GetBookedTimes());
-		}
+                                     
+        }
 
         protected List<Player> GetBookedTimes()
         {
+            string selectedDate = "'"+Session["selectedDate"].ToString()+"'";
+            string date = "'2016-06-11'";
             List<Booking> BookedTimes = new List<Booking>();
             List<Player> Players = new List<Player>();
             NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
-            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = '2016-06-10' INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
+            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = "+ date + " INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
@@ -84,9 +86,8 @@ namespace Team_1_Halslaget_GK
                             {
                                 tr.Cells[i].BackColor = Color.Yellow;
                             }
+
                         }
-
-
                     }
                 }
             }
@@ -162,5 +163,12 @@ namespace Team_1_Halslaget_GK
         {
 
         }
-	}
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            Label1.Text = Calendar1.SelectedDate.ToShortDateString();
+            Session["selectedDate"] = Calendar1.SelectedDate.ToShortDateString();
+            UpdateTable(GetBookedTimes());
+        }
+    }
 }
