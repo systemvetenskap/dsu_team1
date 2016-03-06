@@ -13,7 +13,11 @@ namespace Team_1_Halslaget_GK
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-                                     
+            if (!IsPostBack)
+            {
+                Calendar1.SelectedDate = DateTime.Today;
+            }
+                              
         }
 
         protected List<Player> GetBookedTimes()
