@@ -173,7 +173,7 @@ namespace Team_1_Halslaget_GK
 
         protected void confirmBtn_Click(object sender, EventArgs e)
         {
-
+            string sql = "SELECT id FROM bokning WHERE starttid = "07:00:00"""
         }
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
