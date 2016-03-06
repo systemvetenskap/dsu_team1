@@ -95,7 +95,6 @@ namespace Team_1_Halslaget_GK
             finally
             {
                 conn.Close();
-                conn.Dispose();
             }
 
         }

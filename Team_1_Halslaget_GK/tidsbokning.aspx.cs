@@ -27,7 +27,7 @@ namespace Team_1_Halslaget_GK
 
         protected List<Player> GetBookedTimes()
         {
-            DateTime selecteddate = Calendar1.SelectedDate;
+            DateTime selecteddate = Convert.ToDateTime(Session["selectedDate"]);
             string selecteddatestring = selecteddate.ToString("yyyy-MM-dd");         
 
             List<Booking> BookedTimes = new List<Booking>();
@@ -83,15 +83,13 @@ namespace Team_1_Halslaget_GK
                 {
                     tr.Cells[i].BackColor = Color.Green;
                     cellcount++;
+                    playercount = 0;
 
                     foreach (Player time in Players)
                     {
-
-                        playercount++;
                         if (cellcount == time.slot_id)
                         {
                             playercount++;
-
                             if (playercount == 4)
                             {
                                 tr.Cells[i].BackColor = Color.Red; //byta ut till css class sen
@@ -160,9 +158,11 @@ namespace Team_1_Halslaget_GK
 
         protected void confirmBtn_Click(object sender, EventArgs e)
         {
-            if (CheckSeason() && CheckBookingRestrictions())
+            DataTable dt = CheckNoOfPlayers();
+
+            if (CheckSeason() && CheckBookingRestrictions(dt))
             {
-                int medlems_id = 5;
+                int medlems_id = 5; //Session["Username"]
                 int boknings_id = Convert.ToInt32(Session["BokningsID"]);
 
                 DateTime date = Convert.ToDateTime(Session["selectedDate"]);
@@ -170,11 +170,26 @@ namespace Team_1_Halslaget_GK
                 Booking newbooking = new Booking();
 
                 newbooking.Newbooking(medlems_id, boknings_id, date, conn);
+
+                if (dt.Rows.Count > 0)
+                {
+                    newbooking.Newbooking(Convert.ToInt32(dt.Rows[0][0]), boknings_id, date, conn);
+                }
+
+                if (dt.Rows.Count > 1)
+                {
+                    newbooking.Newbooking(Convert.ToInt32(dt.Rows[1][0]), boknings_id, date, conn);
+                }
+
+                if (dt.Rows.Count > 2)
+                {
+                    newbooking.Newbooking(Convert.ToInt32(dt.Rows[2][0]), boknings_id, date, conn);
+                }
             }
 
             else
             {
-                //Varninsruta
+                //Varningsruta
             }
 
         }
@@ -243,15 +258,29 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        protected bool CheckBookingRestrictions()
+        protected bool CheckBookingRestrictions(DataTable dt)
         {
+            int hcp = 0;
+            int playercount = 1;
+
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    hcp += Convert.ToInt32(dt.Rows[i][1]);
+                }
+            }
+                      
             int boknings_id = Convert.ToInt32(Session["BokningsID"]);
             List<Player> Players = GetBookedTimes();
-            int hcp = 0;
 
             foreach (Player pl in Players)
             {
-                hcp += pl.hcp;
+                if (pl.slot_id == boknings_id)
+                {
+                    hcp += pl.hcp;
+                    playercount++;
+                }
             }
 
             if (hcp + 15 > 100) //Session["hcp"]
@@ -260,7 +289,7 @@ namespace Team_1_Halslaget_GK
                 return false;
             }
 
-            else if (Players.Count == 4)
+            else if (playercount + dt.Rows.Count > 4)
             {
                 //Varningsruta, för många spelare
                 return false;               
@@ -269,6 +298,73 @@ namespace Team_1_Halslaget_GK
             else
             {
                 return true;
+            }
+        }
+
+        protected DataTable CheckNoOfPlayers()
+        {
+
+            if (TextBoxPlayer2.Text == "" && TextBoxPlayer3.Text == "" && TextBoxPlayer4.Text == "")
+            {
+                return null;
+            }
+
+            else if (TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "" && TextBoxPlayer4.Text != "")
+            {
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2 , @golfid3)";
+                int no = 3;
+                return GetExtraPlayerInfo(sql, no);
+            }
+
+            else if (TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "")
+            {
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2)";
+                int no = 2;
+                return GetExtraPlayerInfo(sql, no);
+            }
+
+            else
+            {
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2)";
+                int no = 1;
+                return GetExtraPlayerInfo(sql, no);
+            }    
+        }
+
+        protected DataTable GetExtraPlayerInfo(string sql, int no)
+        {
+            DataTable dt = new DataTable();
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+            da.SelectCommand.Parameters.AddWithValue("@golfid1", TextBoxPlayer2.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid2", TextBoxPlayer3.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid3", TextBoxPlayer4.Text);
+
+
+            try
+            {
+                conn.Open();
+                da.Fill(dt);
+            }
+
+            catch(NpgsqlException ex)
+            {
+
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+
+            if (dt.Rows.Count < no)
+            {
+                //varningsruta fel golfid
+                return null;
+            }
+
+            else
+            {
+                return dt;
             }
         }
     }

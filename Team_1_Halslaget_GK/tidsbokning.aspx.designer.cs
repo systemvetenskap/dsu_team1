@@ -670,6 +670,33 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label lblPlayer4;
         
         /// <summary>
+        /// TextBoxPlayer2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPlayer2;
+        
+        /// <summary>
+        /// TextBoxPlayer3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPlayer3;
+        
+        /// <summary>
+        /// TextBoxPlayer4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPlayer4;
+        
+        /// <summary>
         /// confirmBtn control.
         /// </summary>
         /// <remarks>

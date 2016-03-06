@@ -102,13 +102,19 @@
                 <asp:TableCell><asp:LinkButton ID="LinkButton66" runat="server" OnClick="LinkButton_Click">17:50</asp:LinkButton></asp:TableCell>
             </asp:TableRow>    
         </asp:Table>
-    <div>
+    <div class="otherplayers">
         <asp:Label ID="lblPlayer1" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer2" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer3" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer4" runat="server" Text=""></asp:Label>
     </div>
+          <div>
+              <asp:TextBox ID="TextBoxPlayer2" runat="server"></asp:TextBox>
+              <asp:TextBox ID="TextBoxPlayer3" runat="server"></asp:TextBox>
+              <asp:TextBox ID="TextBoxPlayer4" runat="server"></asp:TextBox>
+          </div>
     </div>
+        
         <div id="confirmButtonDiv">
             <asp:Button ID="confirmBtn" runat="server" CssClass="my-button" Text="Boka" OnClick="confirmBtn_Click"/>
         </div>
