@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>HÅLSLAGET GK</title>
+    <title>HÅLSLAGET GK1</title>
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/deafultstyle.css" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
