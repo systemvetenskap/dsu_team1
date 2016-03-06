@@ -107,7 +107,6 @@
         <asp:Label ID="lblPlayer2" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer3" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer4" runat="server" Text=""></asp:Label>
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </div>
     </div>
         <div id="confirmButtonDiv">
