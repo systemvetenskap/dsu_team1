@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Npgsql;
 using System.Drawing;
+using System.Data;
 
 namespace Team_1_Halslaget_GK
 {
@@ -25,7 +26,7 @@ namespace Team_1_Halslaget_GK
         }
 
         protected List<Player> GetBookedTimes()
-        {
+        {            
             string selectedDate = "'"+Session["selectedDate"].ToString()+"'";          
 
             List<Booking> BookedTimes = new List<Booking>();
@@ -103,29 +104,6 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        public class ClickableTableCell : TableCell, IPostBackEventHandler
-        {
-            public event EventHandler Click;
-
-            public override void RenderBeginTag(HtmlTextWriter writer)
-            {
-                Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(this, null));
-                base.RenderBeginTag(writer);
-            }
-
-            public void RaisePostBackEvent(string eventArgument)
-            {
-                OnClick(new EventArgs());
-            }
-
-            protected void OnClick(EventArgs e)
-            {
-                if (Click != null)
-                    Click(this, e);
-            }
-
-        }
-
         protected void LinkButton_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
@@ -178,21 +156,89 @@ namespace Team_1_Halslaget_GK
 
         protected void confirmBtn_Click(object sender, EventArgs e)
         {
-            int medlems_id = 5;
-            int boknings_id = Convert.ToInt32(Session["BokningsID"]);
+            if (CheckSeason())
+            {
+                int medlems_id = 5;
+                int boknings_id = Convert.ToInt32(Session["BokningsID"]);
 
-            DateTime date = Convert.ToDateTime(Session["selectedDate"]);
+                DateTime date = Convert.ToDateTime(Session["selectedDate"]);
 
-            Booking newbooking = new Booking();
+                Booking newbooking = new Booking();
 
-            newbooking.Newbooking(medlems_id, boknings_id, date, conn);
+                newbooking.Newbooking(medlems_id, boknings_id, date, conn);
+            }
+
+            else
+            {
+                //Varninsruta
+            }
+
         }
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
             Session["selectedDate"] = Calendar1.SelectedDate.ToShortDateString();
-            UpdateTable(GetBookedTimes());
+
+            if (!CheckSeason())
+            {
+                foreach (TableRow tr in Table1.Rows)
+                {
+                    foreach (TableCell tc in tr.Cells)
+                    {
+                        tc.BackColor = Color.Red;
+                    }
+                }
+            }
+
+            else
+            {
+                UpdateTable(GetBookedTimes());
+            }
+            
             Table1.Visible = true;
+        }
+
+
+        protected bool CheckSeason()
+        {
+            string sql = "SELECT startdatum, slutdatum, bana FROM season WHERE slutdatum > @selecteddate AND startdatum < @selecteddate";
+            DateTime selecteddate = Calendar1.SelectedDate;
+            string selecteddatestring = selecteddate.ToString("yyyy-MM-dd");
+
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+            da.SelectCommand.Parameters.AddWithValue("@selecteddate", selecteddatestring);
+            DataTable dt = new DataTable();
+
+            try
+            {
+                da.Fill(dt);
+            }
+
+            catch
+            {
+                NpgsqlException ex;
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+
+            if (dt.Rows.Count == 0)
+            {
+                return false;
+            }
+
+            else if (dt.Rows.Count == 1 && dt.Rows[0]["bana"] == "range")
+            {
+                return false;
+            }
+
+            else
+            {
+                return true;
+            }
         }
     }
 }
