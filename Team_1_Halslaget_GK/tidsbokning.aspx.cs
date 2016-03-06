@@ -26,16 +26,18 @@ namespace Team_1_Halslaget_GK
         }
 
         protected List<Player> GetBookedTimes()
-        {            
-            string selectedDate = "'"+Session["selectedDate"].ToString()+"'";          
+        {
+            DateTime selecteddate = Calendar1.SelectedDate;
+            string selecteddatestring = selecteddate.ToString("yyyy-MM-dd");         
 
             List<Booking> BookedTimes = new List<Booking>();
             List<Player> Players = new List<Player>();
             
-            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = "+ selectedDate + " INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
+            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = @selecteddate INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-
+            cmd.Parameters.AddWithValue("@selecteddate", selecteddatestring);
+                ;
             try
             {
                 conn.Open();
@@ -63,7 +65,6 @@ namespace Team_1_Halslaget_GK
             finally
             {
                 conn.Close();
-                conn.Dispose();
             }
 
             return Players;
@@ -82,8 +83,11 @@ namespace Team_1_Halslaget_GK
                 {
                     tr.Cells[i].BackColor = Color.Green;
                     cellcount++;
+
                     foreach (Player time in Players)
                     {
+
+                        playercount++;
                         if (cellcount == time.slot_id)
                         {
                             playercount++;
@@ -156,7 +160,7 @@ namespace Team_1_Halslaget_GK
 
         protected void confirmBtn_Click(object sender, EventArgs e)
         {
-            if (CheckSeason())
+            if (CheckSeason() && CheckBookingRestrictions())
             {
                 int medlems_id = 5;
                 int boknings_id = Convert.ToInt32(Session["BokningsID"]);
@@ -198,7 +202,6 @@ namespace Team_1_Halslaget_GK
             Table1.Visible = true;
         }
 
-
         protected bool CheckSeason()
         {
             string sql = "SELECT startdatum, slutdatum, bana FROM season WHERE slutdatum > @selecteddate AND startdatum < @selecteddate";
@@ -222,7 +225,6 @@ namespace Team_1_Halslaget_GK
             finally
             {
                 conn.Close();
-                conn.Dispose();
             }
 
             if (dt.Rows.Count == 0)
@@ -233,6 +235,35 @@ namespace Team_1_Halslaget_GK
             else if (dt.Rows.Count == 1 && dt.Rows[0]["bana"] == "range")
             {
                 return false;
+            }
+
+            else
+            {
+                return true;
+            }
+        }
+
+        protected bool CheckBookingRestrictions()
+        {
+            int boknings_id = Convert.ToInt32(Session["BokningsID"]);
+            List<Player> Players = GetBookedTimes();
+            int hcp = 0;
+
+            foreach (Player pl in Players)
+            {
+                hcp += pl.hcp;
+            }
+
+            if (hcp + 15 > 100) //Session["hcp"]
+            {
+                //Varningsruta, för dåliga spelare
+                return false;
+            }
+
+            else if (Players.Count == 4)
+            {
+                //Varningsruta, för många spelare
+                return false;               
             }
 
             else

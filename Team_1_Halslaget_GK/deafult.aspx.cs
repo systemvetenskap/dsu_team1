@@ -147,8 +147,9 @@ namespace Team_1_Halslaget_GK
             int id = -1;
             string guid = "";
             bool admin = false;
+            string hcp = "";
 
-            string sql = "SELECT id, pw, guid, admin FROM medlem WHERE epost = @epost";
+            string sql = "SELECT id, pw, guid, admin, hcp FROM medlem WHERE epost = @epost";
 
 
             NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
@@ -169,6 +170,7 @@ namespace Team_1_Halslaget_GK
                     password = dr[1].ToString();
                     guid = dr[2].ToString();
                     admin = Convert.ToBoolean(dr[3]);
+                    hcp = dr[4].ToString();
                 }              
             }
 
@@ -186,12 +188,14 @@ namespace Team_1_Halslaget_GK
 
             if (password == HashSHA1(TextBoxPwLogin.Text + guid) && admin == false)
             {
+                Session["hcp"] = hcp;
                 Session["Username"] = id.ToString();
                 Response.Redirect("~/MyPage.aspx");                
             }
 
             else if (password == HashSHA1(TextBoxPwLogin.Text + guid) && admin == true)
             {
+                Session["hcp"] = hcp;
                 Session["Username"] = id.ToString();
                 Response.Redirect("~/AdminPanel.aspx");
             }
