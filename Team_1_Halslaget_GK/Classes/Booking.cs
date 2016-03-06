@@ -72,5 +72,31 @@ namespace Team_1_Halslaget_GK
                 conn.Dispose();
             }
         }
+
+        public void Newbooking(int medlems_id, int boknings_id, DateTime date, NpgsqlConnection conn)
+        {
+            try
+            {
+                string sql = "INSERT INTO medlem_bokning (medlem_id, bokning_id, datum) VALUES (@medlem_id, @bokning_id, @datum)";
+                conn.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@medlem_id", medlems_id);
+                cmd.Parameters.AddWithValue("@bokning_id", boknings_id);
+                cmd.Parameters.AddWithValue("@datum", date);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (NpgsqlException ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+
+        }
     }
 }

@@ -128,14 +128,19 @@ namespace Team_1_Halslaget_GK
 
         protected void LinkButton_Click(object sender, EventArgs e)
         {
+            string LinkButtonID;
             lblPlayer1.Text = "";
             lblPlayer2.Text = "";
             lblPlayer3.Text = "";
             lblPlayer4.Text = ""; 
             LinkButton btn = (LinkButton)sender;
             ShowPlayerInfo(btn.Text);
-            Session["selectedTime"] = btn.Text;
+            LinkButtonID = btn.ID;
+            string bokningsID = LinkButtonID.Remove(0,10);
+            Session["BokningsID"] = bokningsID;
             
+
+
         }
 
         protected void ShowPlayerInfo(string time)
@@ -173,7 +178,12 @@ namespace Team_1_Halslaget_GK
 
         protected void confirmBtn_Click(object sender, EventArgs e)
         {
-            string sql = "SELECT id FROM bokning WHERE starttid = "07:00:00"""
+            int medlems_id = 5;
+            int boknings_id = Convert.ToInt32(Session["BokningsID"]);
+            DateTime date = Convert.ToDateTime(Session["selectedDate"]);
+            Booking newbooking = new Booking();
+
+            newbooking.Newbooking(medlems_id, boknings_id, date, conn);
         }
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
