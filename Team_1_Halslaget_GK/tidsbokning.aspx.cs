@@ -11,7 +11,9 @@ namespace Team_1_Halslaget_GK
 {
 	public partial class Tidsbokning : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e)
+        NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
+
+        protected void Page_Load(object sender, EventArgs e)
 		{
             if (!IsPostBack)
             {
@@ -24,9 +26,10 @@ namespace Team_1_Halslaget_GK
         {
             string selectedDate = "'"+Session["selectedDate"].ToString()+"'";
             string date = "'2016-06-11'";
+
             List<Booking> BookedTimes = new List<Booking>();
             List<Player> Players = new List<Player>();
-            NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
+            
             string sql = "SELECT bokning_id, kon, hcp, golfID, starttid FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = "+ date + " INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
