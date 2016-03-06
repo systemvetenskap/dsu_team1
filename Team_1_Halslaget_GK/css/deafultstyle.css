@@ -82,13 +82,6 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;   
 }
-.weatherBox {
-    width:16%;
-    position: absolute;
-    top:100px;
-    left: 20px;
-}
-
 .DropDown{
     width:100%;
     margin: 5px 0 5px;

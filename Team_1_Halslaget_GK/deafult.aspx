@@ -74,54 +74,54 @@
           <img class="header-logo" src="img/golf.jpg" alt="Headimage" title="Fint landskap"/>
         </div> 
       </div>
-    </section>
-        <section class="container">
-            <div class="weatherBox">
-                <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
-                    <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/e67186ae70807f54f0e967f0f38dac9f"></script>
-                        <asp:Table ID="Table2" runat="server" CssClass="banstatus">
-                            <asp:TableRow CssClass="border_bottom">
-                                <asp:TableCell>
-                                </asp:TableCell>
-                                <asp:TableCell CssClass="alignright">
-                                </asp:TableCell>
-                             </asp:TableRow>
-                             <asp:TableRow CssClass="border_bottom">
-                                        <asp:TableCell>
-                                        </asp:TableCell>
-                                        <asp:TableCell CssClass="alignright">
-                                        </asp:TableCell>
-                              </asp:TableRow>
-                              <asp:TableRow CssClass="border_bottom">
-                                   <asp:TableCell>
-                                   </asp:TableCell>
-                                   <asp:TableCell CssClass="alignright">
-                                   </asp:TableCell>
-                               </asp:TableRow>
-                               <asp:TableRow>
-                                   <asp:TableCell>
-                                   </asp:TableCell>
-                                   <asp:TableCell CssClass="alignright">
-                                   </asp:TableCell>
-                               </asp:TableRow>
-                           </asp:Table>
-                       </div>
+    </section>   
+     <section class="container">
             <div class="content">
                 <div class="contentRow">
                     <div class="fullBox news">
                         <div class="page-title"><h1>Nyheter</h1></div>
                         <div class="fullBox" runat="server" id="newsdiv">
                         </div>
-                   </div>                     
-                </div>  
-             </div>         
+                    </div> 
+                        <div class="fullBox">
+                            <div class="page-title"><h1>Bokningar och Väder</h1></div>
+                                <div class="weatherBox">
+                                    <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
+                                    <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/e67186ae70807f54f0e967f0f38dac9f"></script>
+                                    <asp:Table ID="Table2" runat="server" CssClass="banstatus">
+                                        <asp:TableRow CssClass="border_bottom">
+                                            <asp:TableCell>
+                                            </asp:TableCell>
+                                            <asp:TableCell CssClass="alignright">
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow CssClass="border_bottom">
+                                            <asp:TableCell>
+                                            </asp:TableCell>
+                                            <asp:TableCell CssClass="alignright">
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow CssClass="border_bottom">
+                                            <asp:TableCell>
+                                            </asp:TableCell>
+                                            <asp:TableCell CssClass="alignright">
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow>
+                                            <asp:TableCell>
+                                            </asp:TableCell>
+                                            <asp:TableCell CssClass="alignright">
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                </asp:Table>
+                            </div>
+                        </div>                                     
+                    </div>  
+                </div>         
         </section>
      <section class="container">
          <div class="content">
              <div class="contentRow">
-                 <div class="fullBox">
-
-                 </div>
                  <div class="fullBox page-title">
                      <h1>Bli Medlem</h1>
                  </div>
