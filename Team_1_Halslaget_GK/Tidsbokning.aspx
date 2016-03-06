@@ -9,7 +9,6 @@
     </div>
     <div class="fullBox">
             <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </div>
     <div>
       <div class="fullBox">
@@ -108,6 +107,7 @@
         <asp:Label ID="lblPlayer2" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer3" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer4" runat="server" Text=""></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </div>
     </div>
         <div id="confirmButtonDiv">

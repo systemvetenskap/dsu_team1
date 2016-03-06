@@ -15,8 +15,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
 		{
+            
             if (!IsPostBack)
             {
+                Table1.Visible = false;
                 Calendar1.SelectedDate = DateTime.Today;
             }
                               
@@ -24,13 +26,12 @@ namespace Team_1_Halslaget_GK
 
         protected List<Player> GetBookedTimes()
         {
-            string selectedDate = "'"+Session["selectedDate"].ToString()+"'";
-            string date = "'2016-06-11'";
+            string selectedDate = "'"+Session["selectedDate"].ToString()+"'";          
 
             List<Booking> BookedTimes = new List<Booking>();
             List<Player> Players = new List<Player>();
             
-            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = "+ date + " INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
+            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = "+ selectedDate + " INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
@@ -75,8 +76,10 @@ namespace Team_1_Halslaget_GK
 
             foreach (TableRow tr in Table1.Rows)
             {
+                
                 for (int i = 0; i < 6; i++)
                 {
+                    tr.Cells[i].BackColor = Color.Green;
                     cellcount++;
                     foreach (Player time in Players)
                     {
@@ -131,6 +134,8 @@ namespace Team_1_Halslaget_GK
             lblPlayer4.Text = ""; 
             LinkButton btn = (LinkButton)sender;
             ShowPlayerInfo(btn.Text);
+            Session["selectedTime"] = btn.Text;
+            
         }
 
         protected void ShowPlayerInfo(string time)
@@ -173,9 +178,9 @@ namespace Team_1_Halslaget_GK
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
-            Label1.Text = Calendar1.SelectedDate.ToShortDateString();
             Session["selectedDate"] = Calendar1.SelectedDate.ToShortDateString();
             UpdateTable(GetBookedTimes());
+            Table1.Visible = true;
         }
     }
 }
