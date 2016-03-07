@@ -207,5 +207,14 @@ namespace Team_1_Halslaget_GK
 
 
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            medlem newmedlem = new medlem();
+
+            newmedlem.fornamn = tbName.Text;
+
+            newmedlem.InsertNewMember();
+        }
     }
 }

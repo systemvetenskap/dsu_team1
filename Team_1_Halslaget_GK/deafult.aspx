@@ -127,25 +127,137 @@
                  </div>
                  <div class="fullBox registerbox">  
                      <div class="thirdBox">
+                         <asp:RequiredFieldValidator
+                            ID="ValidatorFirstName"
+                            ControlToValidate="tbName"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt namn!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbName" runat="server" CssClass="my-txt-box" placeholder="Namn"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator1"
+                            ControlToValidate="tbLastname"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt efternamn!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbLastname" runat="server" CssClass="my-txt-box" placeholder="Efternamn"></asp:TextBox>
-                         <asp:TextBox ID="tbPonenumber" runat="server" CssClass="my-txt-box" placeholder="Telefonnummer"></asp:TextBox>  
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator2"
+                            ControlToValidate="tbPonenumber"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt telefonnummer!"
+                            display="Dynamic">
+                         </asp:RequiredFieldValidator>                                           
+                         <asp:RangeValidator
+                            ID="rangeValidPonenumber" 
+                            ControlToValidate="tbPonenumber" 
+                            Type="Double"
+                            Font-Size="Medium"  
+                            ForeColor="Red"
+                            MinimumValue="0"
+                            MaximumValue="9999999999999999" 
+                            runat="server" 
+                            ErrorMessage="Ett telefonnummer får bara innehålla siffror!"
+                            display="Dynamic"></asp:RangeValidator>               
+                         <asp:TextBox ID="tbPonenumber" runat="server" CssClass="my-txt-box" placeholder="Telefonnummer"></asp:TextBox>                        
                      </div> 
                      <div class="thirdBox">
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator3"
+                            ControlToValidate="tbAdress"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i din adress!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbAdress" runat="server" CssClass="my-txt-box" placeholder="Adress"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator4"
+                            ControlToValidate="tbZipcode"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt postnummer!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbZipcode" runat="server" CssClass="my-txt-box" placeholder="Postnummer"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator5"
+                            ControlToValidate="tbCity"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i din stad!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbCity" runat="server" CssClass="my-txt-box" placeholder="Postort"></asp:TextBox>
                      </div>
                      <div class="thirdBox">
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator6"
+                            ControlToValidate="tbEmail"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i din email!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbEmail" runat="server" CssClass="my-txt-box" placeholder="Email"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator7"
+                            ControlToValidate="tbPassword"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ett lösenord!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbPassword" runat="server" CssClass="my-txt-box" placeholder="Lösenord"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator8"
+                            ControlToValidate="tbConfirmPassword"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Får inte lämnas tomt!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:CompareValidator 
+                            id="comparePasswords" 
+                            runat="server"
+                            foreColor="Red"
+                            font-Sie="Medium"
+                            ControlToCompare="tbPassword"
+                            ControlToValidate="tbConfirmPassword"
+                            ErrorMessage="Lösenorden stämmer inte överens!"
+                            display="Dynamic">
+                         </asp:CompareValidator>
                          <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox>
-                     </div>                                                                                                                                                                                                                                     
+                     </div>
+                         <asp:RequiredFieldValidator 
+                            ID="validatorKon" 
+                            ControlToValidate="dropDownMembertype" 
+                            InitialValue="Välj medlemstyp" 
+                            ForeColor="Red" 
+                            Font-Size="Medium"  
+                            runat="server" 
+                            ErrorMessage="Du måste välja medlemstyp!"
+                            display="Dynamic">
+                        </asp:RequiredFieldValidator>                                                                                                                                                                                                                                     
                      <asp:DropDownList ID="dropDownMembertype" runat="server" CssClass="DropDown"></asp:DropDownList>                                                                          
-                     <asp:Button ID="Button2" runat="server" Text="Ansök om medlemskap" Cssclass="my-button" placeholder="Hej"/><br /><br />                                     
-             </div>
-           </div>
-         </div>
+                     <asp:Button ID="Button2" runat="server" Text="Ansök om medlemskap" Cssclass="my-button" placeholder="Hej" OnClick="Button2_Click"/><br /><br />                                     
+                   </div>
+                </div>
+            </div>
      </section>
        <!-- Footer ================================================== -->
     <section class="container" id="section-footer">
