@@ -64,6 +64,8 @@
     <Content Include="AdminPanel.aspx" />
     <Content Include="bin\Team_1_Halslaget_GK.dll" />
     <Content Include="bin\Team_1_Halslaget_GK.pdb" />
+    <Content Include="BookingAdmin.aspx" />
+    <Content Include="css\BookingAdmin.css" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminPanelCss.css" />
@@ -145,6 +147,13 @@
     </Compile>
     <Compile Include="AdminPanel.aspx.designer.cs">
       <DependentUpon>AdminPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BookingAdmin.aspx.cs">
+      <DependentUpon>BookingAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BookingAdmin.aspx.designer.cs">
+      <DependentUpon>BookingAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\Booking.cs" />
     <Compile Include="ChangePassword.aspx.cs">

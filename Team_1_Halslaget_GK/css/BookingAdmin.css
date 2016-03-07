@@ -1,0 +1,49 @@
+﻿body {
+}
+
+.Grid {
+    /*background-color: #fff; 
+    margin: 5px 0 10px 0; 
+    border: solid 1px #525252; 
+    border-collapse:collapse; */
+    font-family:'latolight'; 
+    color: black;}
+
+.Grid td {
+      padding: 1em;
+      text-align: center;
+      font-size: 1.2em;
+/*      border: solid 1px #c1c1c1; */
+      width: 200px;
+}
+.Grid th {
+        padding: 1em;
+        color: black;
+        /*background: #AF3C3C;
+      border-left: solid 1px #525252;*/
+        font-size: 1.3em;
+}
+
+.my-h3{
+    text-align: center;
+}
+
+.my-txt-box{
+      text-align: left;
+  display: block;
+  width: 98%;
+  border-radius: 5px;
+  border-style: solid; /*org inset, want more of a minimalistic style. but can be changed back */
+  border-width: 1px;
+  border-color: #989898;
+	font-size: 1.4em;
+    height: 2em;
+    margin-right: 1em;
+    margin-bottom: 5px;
+	/*padding: 6px 12px;*/
+	font-family: 'latolight', helvetica, arial, sans-serif;	
+}
+
+.halfBox-right{
+    margin-left: 2%;
+}
