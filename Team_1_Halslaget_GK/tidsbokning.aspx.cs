@@ -50,7 +50,7 @@ namespace Team_1_Halslaget_GK
             List<Booking> BookedTimes = new List<Booking>();
             List<Player> Players = new List<Player>();
             
-            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = @selecteddate INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
+            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid, id FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = @selecteddate INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@selecteddate", selecteddatestring);
@@ -70,6 +70,7 @@ namespace Team_1_Halslaget_GK
                     golfplayer.hcp = Convert.ToInt32(dr["hcp"]);
                     DateTime starttid = Convert.ToDateTime(dr["starttid"]);
                     golfplayer.startid = starttid.ToString("HH:mm");
+                    golfplayer.id = Convert.ToInt32(dr["id"]);
                     Players.Add(golfplayer);                    
                 }
             }
@@ -352,6 +353,23 @@ namespace Team_1_Halslaget_GK
                 {
                     hcp += pl.hcp;
                     playercount++;
+
+                    if (!admin && Convert.ToInt32(Session["username"]) == pl.id)
+                    {
+                        BookingInfoText.InnerText = "Du är redan inbokad på denna tid";
+                        ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                        return false;
+                    }
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        if (Convert.ToInt32(dt.Rows[i][0]) == pl.id)
+                        {
+                            BookingInfoText.InnerText = "Spelare med Golf ID " + dt.Rows[i][2].ToString() + " är redan inbokad denna tid";
+                            ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                            return false;
+                        }
+                    }
                 }
             }
 
@@ -393,42 +411,42 @@ namespace Team_1_Halslaget_GK
 
             else if (tbPlayer2.Text != "" && tbPlayer3.Text != "" && tbPlayer4.Text != "")
             {
-                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid2, @golfid3 , @golfid4)";
+                string sql = "SELECT id, hcp, golfid FROM medlem WHERE golfid IN (@golfid2, @golfid3 , @golfid4)";
                 int no = 3;
                 return GetExtraPlayerInfo(sql, no);
             }
 
             else if (tbPlayer1.Text != "" && tbPlayer2.Text != "" && tbPlayer3.Text != "")
             {
-                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2 , @golfid3)";
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid, golfid IN (@golfid1, @golfid2 , @golfid3)";
                 int no = 3;
                 return GetExtraPlayerInfo(sql, no);
             }
 
             else if (tbPlayer2.Text != "" && tbPlayer3.Text != "")
             {
-                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid2, @golfid3)";
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid, golfid IN (@golfid2, @golfid3)";
                 int no = 2;
                 return GetExtraPlayerInfo(sql, no);
             }
 
             else if (tbPlayer1.Text != "" && tbPlayer2.Text != "")
             {
-                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2)";
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid, golfid IN (@golfid1, @golfid2)";
                 int no = 2;
                 return GetExtraPlayerInfo(sql, no);
             }
 
             else if (tbPlayer2.Text != "")
             {
-                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid2)";
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid, golfid IN (@golfid2)";
                 int no = 1;
                 return GetExtraPlayerInfo(sql, no);
             }
 
             else
             {
-                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1)";
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid, golfid IN (@golfid1)";
                 int no = 1;
                 return GetExtraPlayerInfo(sql, no);
             }    

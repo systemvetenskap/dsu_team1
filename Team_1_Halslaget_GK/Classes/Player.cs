@@ -12,5 +12,6 @@ namespace Team_1_Halslaget_GK
         public int hcp { get; set; }
         public int slot_id { get; set; }
         public string startid { get; set; }
+        public int id { get; set; }
     }
 }
