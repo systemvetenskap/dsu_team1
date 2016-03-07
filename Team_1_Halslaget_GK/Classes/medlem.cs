@@ -139,8 +139,8 @@ namespace Team_1_Halslaget_GK
                 string golfID = CreateGolfID();
 
                 conn.Open();
-                NpgsqlCommand cmdUpdateMemberInfo = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald) " +
-                                                                        " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @golfid, @medlemsKategori, @telefonnummer, @paydate); ", conn);
+                NpgsqlCommand cmdUpdateMemberInfo = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald, admin) " +
+                                                                        " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @golfid, @medlemsKategori, @telefonnummer, @paydate, @adminStatus); ", conn);
                 
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@id", ID);
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@fornamn", fornamn);
@@ -155,6 +155,7 @@ namespace Team_1_Halslaget_GK
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@medlemsKategori", medlemsKategori);
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@telefonnummer", telefonNummer);
                 cmdUpdateMemberInfo.Parameters.AddWithValue("@paydate", payDate);
+                cmdUpdateMemberInfo.Parameters.AddWithValue("@adminStatus", false); //Temporary work around should be changed later so one can insert an admin later.
 
                 cmdUpdateMemberInfo.ExecuteNonQuery();
 
@@ -170,7 +171,7 @@ namespace Team_1_Halslaget_GK
                 conn.Close();
                 conn.Dispose();
             }
-        }
+        }        
 
         /// <summary>
         /// Sets a date for when membership was paid or not paid. 
