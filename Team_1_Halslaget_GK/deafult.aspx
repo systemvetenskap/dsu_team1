@@ -243,6 +243,31 @@
                          </asp:CompareValidator>
                          <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox>
                      </div>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator10"
+                            ControlToValidate="tbhcp"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt handikapp!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:TextBox ID="tbhcp" runat="server" CssClass="my-txt-box" placeholder="Handikapp"></asp:TextBox>                 
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator9"
+                            ControlToValidate="DdlKon"
+                            ForeColor ="Red"
+                            initialValue="Välj kön"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Välj kön!"
+                            display="Dynamic">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:DropDownList ID="DdlKon" CssClass="DropDown" runat="server">
+                             <asp:ListItem>V&#228;lj k&#246;n</asp:ListItem>
+                             <asp:ListItem>Man</asp:ListItem>
+                             <asp:ListItem>Kvinna</asp:ListItem>
+                         </asp:DropDownList>                        
                          <asp:RequiredFieldValidator 
                             ID="validatorKon" 
                             ControlToValidate="dropDownMembertype" 
@@ -252,7 +277,7 @@
                             runat="server" 
                             ErrorMessage="Du måste välja medlemstyp!"
                             display="Dynamic">
-                        </asp:RequiredFieldValidator>                                                                                                                                                                                                                                     
+                        </asp:RequiredFieldValidator>                                                                                                                                                                                                                                  
                      <asp:DropDownList ID="dropDownMembertype" runat="server" CssClass="DropDown"></asp:DropDownList>                                                                          
                      <asp:Button ID="Button2" runat="server" Text="Ansök om medlemskap" Cssclass="my-button" placeholder="Hej" OnClick="Button2_Click"/><br /><br />                                     
                    </div>

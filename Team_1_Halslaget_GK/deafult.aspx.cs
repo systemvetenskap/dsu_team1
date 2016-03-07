@@ -139,7 +139,6 @@ namespace Team_1_Halslaget_GK
             dropDownMembertype.DataBind();
             dropDownMembertype.Items.Insert(0, "Välj medlemstyp");
         }
-
         //Loggar in
         protected void signInBtn_Click(object sender, EventArgs e)
         {   
@@ -202,19 +201,26 @@ namespace Team_1_Halslaget_GK
                 LabelWrongPW.Visible = true;
                 LabelWrongPW.ForeColor = System.Drawing.Color.Red;
                 ClientScript.RegisterStartupScript(GetType(), "hwa", "Openoverlay();", true);
-
             }
-
-
         }
-
         protected void Button2_Click(object sender, EventArgs e)
         {
-            medlem newmedlem = new medlem();
+            medlem MedlemObj = new medlem();
 
-            newmedlem.fornamn = tbName.Text;
+            MedlemObj.fornamn = tbName.Text;
+            MedlemObj.efternamn = tbLastname.Text;
+            MedlemObj.handikapp = Convert.ToDouble(tbhcp.Text);
+            MedlemObj.telefonNummer = tbPonenumber.Text;
+            MedlemObj.epost = tbEmail.Text;
+            MedlemObj.adress = tbAdress.Text;
+            MedlemObj.postnummer = tbZipcode.Text;
+            MedlemObj.ort = tbCity.Text;
+            MedlemObj.kon = DdlKon.Text;
+            MedlemObj.medlemsKategori = dropDownMembertype.Text;
+            MedlemObj.payStatus = false;
 
-            newmedlem.InsertNewMember();
+
+            MedlemObj.InsertNewMember();
         }
     }
 }
