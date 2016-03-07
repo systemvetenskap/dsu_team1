@@ -49,33 +49,6 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.DropDownList dropDownYearSelect;
         
         /// <summary>
-        /// CheckBox1to9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1to9;
-        
-        /// <summary>
-        /// CheckBox10to18 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox10to18;
-        
-        /// <summary>
-        /// CheckBoxRange control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxRange;
-        
-        /// <summary>
         /// compareDate control.
         /// </summary>
         /// <remarks>

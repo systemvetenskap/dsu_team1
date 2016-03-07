@@ -29,18 +29,6 @@ namespace Team_1_Halslaget_GK
             Season CreateSeason = new Season();
             CreateSeason.StartDate = calenderStartDate.SelectedDate;
             CreateSeason.EndDate = calenderEndDate.SelectedDate;
-            if(!CheckBox1to9.Checked)
-            {
-                CreateSeason.track1to9 = false;
-            }
-            if(!CheckBox10to18.Checked)
-            {
-                CreateSeason.track10to18 = false;
-            }
-            if(!CheckBoxRange.Checked)
-            {
-                CreateSeason.trackRange = false;
-            }
 
             CreateSeason.CreateSeason();
         }
@@ -54,10 +42,6 @@ namespace Team_1_Halslaget_GK
 
             calenderEndDate.Enabled = false;
             calenderStartDate.Enabled = false;
-
-            CheckBox1to9.Checked = true;
-            CheckBox10to18.Checked = true;
-            CheckBoxRange.Checked = true;
         }
 
         /// <summary>

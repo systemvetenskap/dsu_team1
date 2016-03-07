@@ -40,18 +40,6 @@
                     </div>
 
                     <div class="fullBox">
-                        <div class="fullBox">
-                            <div class="fullBox page-title em-margin-horizontal">
-                                <p><strong>Välj vilka banor säsongen gäller för </strong>(förvalt alla):</p>
-                            </div>
-                            <div class="fullBox">
-                                <p>
-                                    <div class="thirdBox center-text"><asp:CheckBox ID="CheckBox1to9" runat="server" Text="1-9" /></div>
-                                    <div class="thirdBox center-text"><asp:CheckBox ID="CheckBox10to18" runat="server" Text="10-18" /></div>
-                                    <div class="thirdBox center-text"><asp:CheckBox ID="CheckBoxRange" runat="server" Text="Range" /></div>                                                                        
-                                </p>
-                            </div>
-                        </div>
 
                         <div class="fullBox">
                             <p class="center-text">
