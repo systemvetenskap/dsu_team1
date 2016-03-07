@@ -33,4 +33,24 @@
         </div>
     </div>
 
+    <div class="fullBox center-text">
+        <div class="quarterBox admin-qBox">
+            <img class="admin-img" src="img/admin01.jpg"/>
+            <asp:Button ID="btnGoToSeasonSettings" runat="server" CssClass="my-button admin-btn-txt"  Text="HANTERA GOLFSÄSONG" OnClick="btnGoToSeasonSettings_Click" />
+        </div>
+        <div class="quarterBox admin-qBox">
+            <img class="admin-img" src="img/admin02.jpg"/>
+            <asp:Button ID="btnGoToCreateSeason" runat="server" CssClass="my-button admin-btn-txt"  Text="SKAPA TÄVLING" />        
+        </div>
+        <div class="quarterBox admin-qBox">
+            <img class="admin-img" src="img/admin03.jpg"/>
+            <asp:Button ID="btnGoToRegisterResult" runat="server" CssClass="my-button admin-btn-txt"  Text="REGISTRERA RESULTAT" />        
+        </div>
+        <div class="quarterBox admin-qBox">
+            <img class="admin-img" src="img/admin04.jpg"/>
+            <asp:Button ID="Button4" runat="server" CssClass="my-button admin-btn-txt"  Text="NÅGOT" />          
+        </div>
+    </div>
+
+
 </asp:Content>

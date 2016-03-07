@@ -15,70 +15,11 @@ namespace Team_1_Halslaget_GK
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public bool track1to9 { get; set; }
-        public bool track10to18 { get; set; }
-        public bool trackRange { get; set; }
 
         //Constructor
         public Season()
         {
-            DefaultValues();
-        }
 
-        /// <summary>
-        /// Sets default values for object.
-        /// </summary>
-        public void DefaultValues()
-        {
-            track1to9 = true;
-            track10to18 = true;
-            trackRange = true;
-        }
-
-        /// <summary>
-        /// Creates a sql string depending on what the user chooses.
-        /// </summary>
-        /// <returns></returns>
-        private string SetCreateSeasonSQLString()
-        {
-            string sql = "";
-
-            if (track1to9 && track10to18 && trackRange)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '1-9'),(@startdatum, @slutdatum, '10-18'),(@startdatum, @slutdatum, 'range')";
-            }
-
-            else if (track1to9 && track10to18)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '1-9'),(@startdatum, @slutdatum, '10-18')";
-            }
-
-            else if (track1to9 && trackRange)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '1-9'),(@startdatum, @slutdatum, 'range')";
-            }
-
-            else if (track10to18 && trackRange)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '10-18'),(@startdatum, @slutdatum, 'range')";
-            }
-
-            else if (track1to9)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '1-9')";
-            }
-
-            else if (track10to18)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, '10-18')";
-            }
-
-            else if (trackRange)
-            {
-                sql = "INSERT INTO season (startdatum, slutdatum, bana) VALUES (@startdatum, @slutdatum, 'range')";
-            }
-
-            return sql;
         }
 
         /// <summary>
@@ -89,7 +30,7 @@ namespace Team_1_Halslaget_GK
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             try
             {
-                string sql = SetCreateSeasonSQLString();
+                string sql = "INSERT INTO season (startdatum, slutdatum) VALUES (@startdatum, @slutdatum);";
                 conn.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
