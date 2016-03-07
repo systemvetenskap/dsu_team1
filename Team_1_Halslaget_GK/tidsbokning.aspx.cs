@@ -90,18 +90,19 @@ namespace Team_1_Halslaget_GK
                 {
                     cellcount++;
                     playercount = 0;
-
+                    tr.Cells[i].BackColor = Color.Green;
                     foreach (Player time in Players)
                     {
                         if (cellcount == time.slot_id)
                         {
+                            
                             playercount++;
                             if (playercount == 4)
                             {
                                 tr.Cells[i].BackColor = Color.Red; //byta ut till css class sen
                             }
 
-                            else
+                            if(playercount >= 1)
                             {
                                 tr.Cells[i].BackColor = Color.Yellow;
                             }
