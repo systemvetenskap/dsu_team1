@@ -8,11 +8,21 @@
     <div class="fullBox page-title">
         <h1>Tidsbokning</h1>
     </div>
-    <div class="fullBox">
-            <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+    <div class="halfBox">
+            <asp:Calendar ID="Calendar1" runat="server" CssClass="aspCalender" OnSelectionChanged="Calendar1_SelectionChanged">               
+                <DayStyle CssClass="CalenderDay" />
+                <DayHeaderStyle CssClass="CalenderHeaderDay" />
+                <NextPrevStyle CssClass="CalenderNextPrev" />
+                <OtherMonthDayStyle CssClass="CalnderOtherMonthDay" />
+                <SelectedDayStyle CssClass="CalenderSelectedDay" />
+                <SelectorStyle CssClass="CalenderSelector" />
+                <TitleStyle CssClass="CalenderTitel" />
+                <TodayDayStyle CssClass="CalenderToday" />
+                <WeekendDayStyle CssClass="CalenderWeekendDay" />             
+            </asp:Calendar>
     </div>
     <div>
-      <div class="fullBox">
+      <div class="halfBox">
         <asp:Table ID="Table1" CssClass="timeTable" runat="server">
             <asp:TableRow ID="Row1" runat="server">
                 <asp:TableCell runat="server"><asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton_Click">07:00</asp:LinkButton></asp:TableCell>
