@@ -40,5 +40,10 @@ namespace Team_1_Halslaget_GK
         {
             Response.Redirect("~/CreateNewMember.aspx");                
         }
+
+        protected void btnGoToSeasonSettings_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/SeasonSettings.aspx");
+        }
     }
 }
