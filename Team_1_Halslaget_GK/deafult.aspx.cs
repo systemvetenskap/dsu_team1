@@ -20,42 +20,8 @@ namespace Team_1_Halslaget_GK
                 LoadMedlemstyper();
                 LoadNews();
                 SetTableBanstatus(GetBanstatus());
-        }
-
-        protected DataTable GetBanstatus()
-        {
-            DataTable dt = new DataTable();
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM season WHERE CURRENT_DATE BETWEEN startdatum and slutdatum", conn);
-
-            try
-            {
-                conn.Open();
-                da.Fill(dt);
-            }
-
-            catch
-            {
-                NpgsqlException ex;
-            }
-
-            finally
-            {
-                conn.Close();
-                conn.Dispose();
-            }
-
-            Table2.Rows[0].Cells[0].Text = "Bana";
-            Table2.Rows[0].Cells[1].Text = "Status";
-            Table2.Rows[1].Cells[0].Text = "1-9";
-            Table2.Rows[1].Cells[1].Text = "Stängd";
-            Table2.Rows[2].Cells[0].Text = "10-18";
-            Table2.Rows[2].Cells[1].Text = "Stängd";
-            Table2.Rows[3].Cells[0].Text = "Range";
-            Table2.Rows[3].Cells[1].Text = "Stängd";
-
-            return dt;            
-        }
-
+        }      
+        //Visar banans status
         private void SetTableBanstatus(DataTable dt)
         {
 
@@ -77,7 +43,6 @@ namespace Team_1_Halslaget_GK
                     }                    
             }
         }
-
         //Används för att kryptera lösenord
         private static string HashSHA1(string value)
         {
@@ -92,7 +57,6 @@ namespace Team_1_Halslaget_GK
             }
             return sb.ToString();
         }
-
         //Laddar in de tre senaste publicera nyheterna och lägger till dem på startsidan
         private void LoadNews()
         {
@@ -126,7 +90,6 @@ namespace Team_1_Halslaget_GK
                 newsdiv.Controls.Add(newsdiv2);
             }                             
         }
-
         //Laddar in de medlemstyper som finns i databasen så att man kan välja medlemstyp när man ansöker om medlemskap från startsidan
         private void LoadMedlemstyper()
         {
@@ -209,6 +172,7 @@ namespace Team_1_Halslaget_GK
                 ClientScript.RegisterStartupScript(GetType(), "hwa", "Openoverlay();", true);
             }
         }
+        //Skickar in en medlemsansökan
         protected void Button2_Click(object sender, EventArgs e)
         {
             medlem MedlemObj = new medlem();
@@ -228,5 +192,41 @@ namespace Team_1_Halslaget_GK
 
             MedlemObj.InsertNewMember();
         }
+
+        //Funktioner
+        protected DataTable GetBanstatus()
+        {
+            DataTable dt = new DataTable();
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM season WHERE CURRENT_DATE BETWEEN startdatum and slutdatum", conn);
+
+            try
+            {
+                conn.Open();
+                da.Fill(dt);
+            }
+
+            catch
+            {
+                NpgsqlException ex;
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+
+            Table2.Rows[0].Cells[0].Text = "Bana";
+            Table2.Rows[0].Cells[1].Text = "Status";
+            Table2.Rows[1].Cells[0].Text = "1-9";
+            Table2.Rows[1].Cells[1].Text = "Stängd";
+            Table2.Rows[2].Cells[0].Text = "10-18";
+            Table2.Rows[2].Cells[1].Text = "Stängd";
+            Table2.Rows[3].Cells[0].Text = "Range";
+            Table2.Rows[3].Cells[1].Text = "Stängd";
+
+            return dt;
+        }
+
     }
 }
