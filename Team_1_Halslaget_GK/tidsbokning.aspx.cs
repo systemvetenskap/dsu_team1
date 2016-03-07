@@ -113,7 +113,7 @@ namespace Team_1_Halslaget_GK
                                 tr.Cells[i].BackColor = Color.Red; //byta ut till css class sen
                             }
 
-                            if(playercount >= 1)
+                            if(playercount <= 3)
                             {
                                 tr.Cells[i].BackColor = Color.Yellow;
                             }
