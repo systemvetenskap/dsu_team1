@@ -269,6 +269,7 @@ namespace Team_1_Halslaget_GK
             cmd.ExecuteNonQuery();
             con.Close();
             con.Dispose();
+
         }
 
         private void RensaOchBindListbox()
