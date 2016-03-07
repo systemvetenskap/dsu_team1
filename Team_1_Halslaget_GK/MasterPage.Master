@@ -34,8 +34,8 @@
         <div class="contentRow">
             
             <ul class="main-navbar">
-              <li><a class="active" href='#'>MIN SIDA</a></li>
-              <li><a href="#">BOKA TIDER</a></li>                                                                  
+              <li><a href='#' id="btnGoToMyPage" runat="server" onserverclick="btnGoToMyPage_ServerClick">MIN SIDA</a></li>
+              <li><a href="#" id="btnGoToBookingMain" runat="server" onserverclick="btnGoToBookingMain_ServerClick">BOKA TIDER</a></li>                                                                  
             </ul>
             <ul class="main-navbar right">
               <li><a href="#" id="btnLogOut" runat="server" onserverclick="btnLogOut_ServerClick">LOGGA UT</a></li>                               
@@ -45,8 +45,8 @@
             <div class="responsive-navbar-holder" id="open-menu">
               <ul class="responsive-navbar">
                 <li><a  href="#">☰ STÄNG MENY</a></li>
-                <li><a class="active" href='#'>MIN SIDA</a></li>
-                <li><a href="#">BOKA TIDER</a></li>                                                                      
+                <li><a href='#' id="btnGoToMyPageResponsive" runat="server" onserverclick="btnGoToMyPageResponsive_ServerClick">MIN SIDA</a></li>
+                <li><a href="#" id="btnGoToBookingResponsive" runat="server" onserverclick="btnGoToBookingResponsive_ServerClick">BOKA TIDER</a></li>                                                                      
                 <li><a href="#" id="btnLogOutResponsive" runat="server" onserverclick="btnLogOutResponsive_ServerClick">LOGGA UT</a></li>                                 
               </ul>
             </div>
