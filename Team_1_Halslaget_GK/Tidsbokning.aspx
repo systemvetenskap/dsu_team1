@@ -3,9 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/tidsbokning.css" rel="stylesheet" />
     <script src="ja/tidsbokning.js"></script>
+    <script src="ja/opencloseoverlay.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="fullBox page-title">
+<asp:ScriptManager runat="server"></asp:ScriptManager>
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+        <div class="fullBox page-title">
         <h1>Tidsbokning</h1>
     </div>
     <div class="halfBox calenderBox">
@@ -25,7 +29,7 @@
       <div class="halfBox calenderBox">
         <asp:Table ID="Table1" CssClass="timeTable" runat="server">
             <asp:TableRow ID="Row1" runat="server">
-                <asp:TableCell runat="server"><asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton_Click">07:00</asp:LinkButton></asp:TableCell>
+                <asp:TableCell><asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton_Click">07:00</asp:LinkButton></asp:TableCell>
                 <asp:TableCell><asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton_Click">07:10</asp:LinkButton></asp:TableCell>
                 <asp:TableCell><asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton_Click">07:20</asp:LinkButton></asp:TableCell>
                 <asp:TableCell><asp:LinkButton ID="LinkButton4" runat="server" OnClick="LinkButton_Click">07:30</asp:LinkButton></asp:TableCell>
@@ -114,25 +118,24 @@
             </asp:TableRow>    
         </asp:Table>
     </div>
-<div class="fullBox calenderBox">
-     <div class="otherplayers">
-        <asp:Label ID="lblPlayer1" runat="server" Text=""></asp:Label><br />
-        <asp:Label ID="lblPlayer2" runat="server" Text=""></asp:Label><br />
+     <div class="otherplayersbackground">
+       <div class="otherplayers">
+        <input id="Button1" type="button" value="X" class="closebtn"  onclick="closeotherplayers();"/>
+        <h4>Här är det några som redan bokat in sig</h4>
+        <asp:Label ID="lblPlayer1" runat="server" Text=""></asp:Label><br />     
+        <asp:Label ID="lblPlayer2" runat="server" Text=""></asp:Label><br />  
         <asp:Label ID="lblPlayer3" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer4" runat="server" Text=""></asp:Label>
+       </div>
     </div>
+<div class="fullBox calenderBox">
     <div class="extraplayers calenderBox">
         <asp:Label ID="LabelNOPlayers" runat="server" Text="Antal spelare"></asp:Label><br />
         <asp:DropDownList ID="DropDownListNOPlayers" runat="server" CssClass="DropDown" OnSelectedIndexChanged="DropDownListNOPlayers_SelectedIndexChanged" AutoPostBack="true"><asp:ListItem>1</asp:ListItem><asp:ListItem>2</asp:ListItem><asp:ListItem>3</asp:ListItem><asp:ListItem>4</asp:ListItem></asp:DropDownList><br />
-
         <asp:TextBox ID="tbPlayer1" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />
-
-        <asp:TextBox ID="tbPlayer2" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />
-         
-        <asp:TextBox ID="tbPlayer3" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />
-          
+        <asp:TextBox ID="tbPlayer2" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />      
+        <asp:TextBox ID="tbPlayer3" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />      
         <asp:TextBox ID="tbPlayer4" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox>
-
     </div>
 </div>
 
@@ -141,6 +144,8 @@
             <asp:Button ID="confirmBtn" runat="server" CssClass="my-button" Text="Boka" OnClick="confirmBtn_Click"/>
         </div>
     </div>    
+    </ContentTemplate>
+</asp:UpdatePanel>  
 <%--    Ruta för konfirmation och felmeddelanden--%>
     <div class="page-overlay-info-box">
       <div class="overlay-message">

@@ -95,7 +95,7 @@ namespace Team_1_Halslaget_GK
                 {
                     cellcount++;
                     playercount = 0;
-                    tr.Cells[i].BackColor = Color.Green;
+                    tr.Cells[i].BackColor = ColorTranslator.FromHtml("#7cff82");
                     foreach (Player time in Players)
                     {
                         if (cellcount == time.slot_id)
@@ -132,7 +132,7 @@ namespace Team_1_Halslaget_GK
             string LinkButtonID = btn.ID;
             string bokningsID = LinkButtonID.Remove(0,10);
 
-            Session["BokningsID"] = bokningsID;            
+            Session["BokningsID"] = bokningsID;                     
         }
 
         protected void ShowPlayerInfo(string time)
@@ -141,7 +141,8 @@ namespace Team_1_Halslaget_GK
             int playercount = 1;
 
             foreach (Player golfplayer in Players)
-            {               
+            {                
+                     
                 if (golfplayer.startid == time && playercount == 1)
                 {
                     lblPlayer1.Text = golfplayer.hcp + " " + golfplayer.kon;                  
@@ -165,6 +166,10 @@ namespace Team_1_Halslaget_GK
                     lblPlayer4.Text = golfplayer.hcp + " " + golfplayer.kon;
                     playercount++;
                 }
+            }
+            if (lblPlayer1.Text != "")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showotherplayers", "showotherplayers();", true);
             }
         }
 
