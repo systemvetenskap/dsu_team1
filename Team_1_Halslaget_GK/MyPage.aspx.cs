@@ -25,6 +25,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["Username"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
             if(!IsPostBack)
             {
                 InitializeGUI();
@@ -270,6 +274,7 @@ namespace Team_1_Halslaget_GK
 
         protected void btnGoToBooking_Click(object sender, EventArgs e)
         {
+            Session["userID"] = lblMemberID.Text;
             Response.Redirect("~/Tidsbokning.aspx");              
 
         }

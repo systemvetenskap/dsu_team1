@@ -14,6 +14,10 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
             if(!IsPostBack)
             {
                 Season test = new Season();

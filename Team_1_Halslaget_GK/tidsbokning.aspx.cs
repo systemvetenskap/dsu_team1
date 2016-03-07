@@ -16,6 +16,11 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
 		{
+            if(Session["userID"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
+            
             bool admin = Convert.ToBoolean(Session["admin"]);
    
             if (!IsPostBack)

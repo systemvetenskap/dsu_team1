@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AdminPanel.aspx.cs" Inherits="Team_1_Halslaget_GK.AdminPanel" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="AdminPanel.aspx.cs" Inherits="Team_1_Halslaget_GK.AdminPanel" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Admin Panel</title>
     <link href="css/AdminPanelCss.css" rel="stylesheet" />

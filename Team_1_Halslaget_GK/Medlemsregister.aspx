@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Medlemsregister.aspx.cs" Inherits="Team_1_Halslaget_GK.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="Medlemsregister.aspx.cs" Inherits="Team_1_Halslaget_GK.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
     <link type="text/css" rel="stylesheet" href="css/Medlemsregister.css"/>
