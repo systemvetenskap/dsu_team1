@@ -88,7 +88,6 @@ namespace Team_1_Halslaget_GK
                 
                 for (int i = 0; i < 6; i++)
                 {
-                    tr.Cells[i].BackColor = Color.Green;
                     cellcount++;
                     playercount = 0;
 
@@ -182,28 +181,52 @@ namespace Team_1_Halslaget_GK
 
                 if (dt.Rows.Count > 0)
                 {
-                    newbooking.Newbooking(Convert.ToInt32(dt.Rows[0][0]), boknings_id, date, conn);
+                    bool success = newbooking.Newbooking(Convert.ToInt32(dt.Rows[0][0]), boknings_id, date, conn);
+                    
+                    if (dt.Rows.Count == 1 && success)
+                    {
+                        BookingInfoText.InnerText = "Bokning lyckades";
+                        ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                    }
                 }
 
                 if (dt.Rows.Count > 1)
                 {
-                    newbooking.Newbooking(Convert.ToInt32(dt.Rows[1][0]), boknings_id, date, conn);
+                    bool success = newbooking.Newbooking(Convert.ToInt32(dt.Rows[1][0]), boknings_id, date, conn);
+
+                    if (dt.Rows.Count == 2 && success)
+                    {
+                        BookingInfoText.InnerText = "Bokning lyckades";
+                        ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                    }
                 }
 
                 if (dt.Rows.Count > 2)
                 {
-                    newbooking.Newbooking(Convert.ToInt32(dt.Rows[2][0]), boknings_id, date, conn);
+                    bool success = newbooking.Newbooking(Convert.ToInt32(dt.Rows[2][0]), boknings_id, date, conn);
+
+                    if (dt.Rows.Count == 3 && success)
+                    {
+                        BookingInfoText.InnerText = "Bokning lyckades";
+                        ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                    }
                 }
 
                 if (dt.Rows.Count > 3)
                 {
-                    newbooking.Newbooking(Convert.ToInt32(dt.Rows[2][0]), boknings_id, date, conn);
+                    bool success = newbooking.Newbooking(Convert.ToInt32(dt.Rows[3][0]), boknings_id, date, conn);
+
+                    if (dt.Rows.Count == 4 && success)
+                    {
+                        BookingInfoText.InnerText = "Bokning lyckades";
+                        ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                    }
                 }
             }
 
             else
             {
-                //Varningsruta
+                //Do nothing
             }
 
         }
@@ -258,11 +281,15 @@ namespace Team_1_Halslaget_GK
 
             if (dt.Rows.Count == 0)
             {
+                BookingInfoText.InnerText = "Golfbanan har tyvärr inte öppet detta datum";
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
                 return false;
             }
 
             else if (dt.Rows.Count == 1 && dt.Rows[0]["bana"] == "range")
             {
+                BookingInfoText.InnerText = "Golfbanan har tyvärr inte öppet detta datum";
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
                 return false;
             }
 
@@ -309,16 +336,18 @@ namespace Team_1_Halslaget_GK
                 }
             }
 
-            if (hcp + 15 > 100) //Session["hcp"]
+            if (playercount + dt.Rows.Count > 4)
             {
-                //Varningsruta, för dåliga spelare
-                return false;
+                BookingInfoText.InnerText = "Max 4 spelare kan boka tid samtidigt";
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                return false;               
             }
 
-            else if (playercount + dt.Rows.Count > 4)
+            else if (hcp + 15 > 100) //Session["hcp"]
             {
-                //Varningsruta, för många spelare
-                return false;               
+                BookingInfoText.InnerText = "Sammanlagt handikapp på en bokning får tyvärr inte överstiga 100";
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                return false;
             }
 
             else
@@ -414,8 +443,9 @@ namespace Team_1_Halslaget_GK
 
             if (dt.Rows.Count < no)
             {
-                //varningsruta fel golfid
-                return null;
+                BookingInfoText.InnerText = "Felaktigt golf ID";
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                return dt;
             }
 
             else

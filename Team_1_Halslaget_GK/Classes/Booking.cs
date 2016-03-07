@@ -74,7 +74,7 @@ namespace Team_1_Halslaget_GK
         }
 
         // Adds a new booking to a signed in member.
-        public void Newbooking(int medlems_id, int boknings_id, DateTime date, NpgsqlConnection conn)
+        public bool Newbooking(int medlems_id, int boknings_id, DateTime date, NpgsqlConnection conn)
         {
             try
             {
@@ -90,12 +90,13 @@ namespace Team_1_Halslaget_GK
             }
             catch (NpgsqlException ex)
             {
-
+                return false;
             }
             finally
             {
-                conn.Close();
+                conn.Close();                
             }
+            return true;
 
         }
     }

@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/tidsbokning.css" rel="stylesheet" />
+    <script src="ja/tidsbokning.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="fullBox page-title">
@@ -126,4 +127,12 @@
             <asp:Button ID="confirmBtn" runat="server" CssClass="my-button" Text="Boka" OnClick="confirmBtn_Click"/>
         </div>
     </div>    
+<%--    Ruta för konfirmation och felmeddelanden--%>
+    <div class="page-overlay-info-box">
+      <div class="overlay-message">
+          <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="closeOverlayInfoBox();"></span></p>
+          <h3 class="my-h3" id="BookingInfoText" runat="server">Ditt lösenord har ändrats</h3>  
+         <asp:Button ID="OK" runat="server" Text="OK" CssClass="my-button top-n-bottom-space" OnClientClick="closeOverlayInfoBox();"/>     
+      </div>
+    </div>
 </asp:Content>

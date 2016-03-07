@@ -57,3 +57,31 @@ a {
     color: black;
 }
 
+.page-overlay-info-box{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 500;
+    display: none;
+}
+
+.overlay-message {
+    margin: 0em auto;
+    margin-top: 30%;
+    padding: 1em;
+    background: white;
+    width: 400px;
+}
+ 
+   .my-glyph-close{
+    cursor: pointer;
+}
+
+   .my-h3{
+    text-align: center;
+}
+
+
