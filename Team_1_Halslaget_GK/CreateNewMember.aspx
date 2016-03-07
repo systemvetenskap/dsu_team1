@@ -88,7 +88,7 @@
                 <asp:ListItem>Kvinna</asp:ListItem>
                 <asp:ListItem>Man</asp:ListItem>
             </asp:DropDownList>
-            <p class="em-margin-horizontal">Födelsedatum: 
+            <!--<p class="em-margin-horizontal">Födelsedatum: 
                 <asp:RequiredFieldValidator 
                     ID="validatorBirthDate" 
                     runat="server" 
@@ -108,7 +108,7 @@
                     runat="server" 
                     ErrorMessage="Endast siffror"></asp:RangeValidator>
             </p>
-            <asp:TextBox ID="txtBirthDate" CssClass="my-txt-box" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtBirthDate" CssClass="my-txt-box" runat="server"></asp:TextBox>-->
             <p class="em-margin-horizontal">Telefonnummer: 
                 <asp:RequiredFieldValidator 
                     ID="validatorPhone" 

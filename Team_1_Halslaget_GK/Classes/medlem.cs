@@ -195,13 +195,15 @@ namespace Team_1_Halslaget_GK
         }
 
         /// <summary>
-        /// Creates a golfid with the members date of birth and ID from database.
+        /// Genereates a random number with 5 digits and creates it with the new id for the member. 
         /// </summary>
         /// <returns></returns>
         private string CreateGolfID()
         {
             int newID = SetNewID();
-            string golfID = fodelseDatum + "_" + newID.ToString();
+            Random r = new Random();
+            double randomNum = r.Next(10000, 99999);
+            string golfID = randomNum.ToString() +"_" + newID.ToString();
             return golfID;
         }
 
