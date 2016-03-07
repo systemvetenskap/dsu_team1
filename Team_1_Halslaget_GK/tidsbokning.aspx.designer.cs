@@ -670,6 +670,51 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label lblPlayer4;
         
         /// <summary>
+        /// LabelNOPlayers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelNOPlayers;
+        
+        /// <summary>
+        /// DropDownListNOPlayers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListNOPlayers;
+        
+        /// <summary>
+        /// LabelPlayer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelPlayer1;
+        
+        /// <summary>
+        /// TextBoxPlayer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPlayer1;
+        
+        /// <summary>
+        /// LabelPlayer2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelPlayer2;
+        
+        /// <summary>
         /// TextBoxPlayer2 control.
         /// </summary>
         /// <remarks>
@@ -679,6 +724,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox TextBoxPlayer2;
         
         /// <summary>
+        /// LabelPlayer3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelPlayer3;
+        
+        /// <summary>
         /// TextBoxPlayer3 control.
         /// </summary>
         /// <remarks>
@@ -686,6 +740,15 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxPlayer3;
+        
+        /// <summary>
+        /// LabelPlayer4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelPlayer4;
         
         /// <summary>
         /// TextBoxPlayer4 control.

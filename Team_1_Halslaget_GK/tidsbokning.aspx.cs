@@ -16,11 +16,18 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
 		{
-            
+            bool admin = true; //Convert.ToBoolean(Session["admin"])
+   
             if (!IsPostBack)
             {
                 Table1.Visible = false;
                 Calendar1.SelectedDate = DateTime.Today;
+
+                if(admin) 
+                {
+                    TextBoxPlayer1.Visible = true;
+                    LabelPlayer1.Visible = true;
+                }
             }
                               
         }
@@ -159,17 +166,19 @@ namespace Team_1_Halslaget_GK
         protected void confirmBtn_Click(object sender, EventArgs e)
         {
             DataTable dt = CheckNoOfPlayers();
+            int boknings_id = Convert.ToInt32(Session["BokningsID"]);
+            DateTime date = Convert.ToDateTime(Session["selectedDate"]);
+            Booking newbooking = new Booking();
+            bool admin = true;//Convert.ToBoolean(Session["admin"]);
 
             if (CheckSeason() && CheckBookingRestrictions(dt))
             {
-                int medlems_id = 5; //Session["Username"]
-                int boknings_id = Convert.ToInt32(Session["BokningsID"]);
+                if(!admin)
+                {
+                    int medlems_id = 5; //Session["Username"]
 
-                DateTime date = Convert.ToDateTime(Session["selectedDate"]);
-
-                Booking newbooking = new Booking();
-
-                newbooking.Newbooking(medlems_id, boknings_id, date, conn);
+                    newbooking.Newbooking(medlems_id, boknings_id, date, conn);
+                }
 
                 if (dt.Rows.Count > 0)
                 {
@@ -182,6 +191,11 @@ namespace Team_1_Halslaget_GK
                 }
 
                 if (dt.Rows.Count > 2)
+                {
+                    newbooking.Newbooking(Convert.ToInt32(dt.Rows[2][0]), boknings_id, date, conn);
+                }
+
+                if (dt.Rows.Count > 3)
                 {
                     newbooking.Newbooking(Convert.ToInt32(dt.Rows[2][0]), boknings_id, date, conn);
                 }
@@ -261,7 +275,19 @@ namespace Team_1_Halslaget_GK
         protected bool CheckBookingRestrictions(DataTable dt)
         {
             int hcp = 0;
-            int playercount = 1;
+            int playercount;
+            bool admin = true;//Convert.ToBoolean(Session["admin"]);
+
+            if (admin)
+            {
+                playercount = 0;
+            }
+
+            else
+            {
+                playercount = 1;
+            }
+            
 
             if (dt.Rows.Count > 0)
             {
@@ -304,12 +330,27 @@ namespace Team_1_Halslaget_GK
         protected DataTable CheckNoOfPlayers()
         {
 
-            if (TextBoxPlayer2.Text == "" && TextBoxPlayer3.Text == "" && TextBoxPlayer4.Text == "")
+            if (TextBoxPlayer1.Text == "" && TextBoxPlayer2.Text == "" && TextBoxPlayer3.Text == "" && TextBoxPlayer4.Text == "")
             {
-                return null;
+                DataTable dt = new DataTable();
+                return dt;
+            }
+
+            else if (TextBoxPlayer1.Text != "" && TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "" && TextBoxPlayer4.Text != "")
+            {
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2 , @golfid3, @golfid4)";
+                int no = 4;
+                return GetExtraPlayerInfo(sql, no);
             }
 
             else if (TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "" && TextBoxPlayer4.Text != "")
+            {
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid2, @golfid3 , @golfid4)";
+                int no = 3;
+                return GetExtraPlayerInfo(sql, no);
+            }
+
+            else if (TextBoxPlayer1.Text != "" && TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "")
             {
                 string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2 , @golfid3)";
                 int no = 3;
@@ -318,14 +359,28 @@ namespace Team_1_Halslaget_GK
 
             else if (TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "")
             {
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid2, @golfid3)";
+                int no = 2;
+                return GetExtraPlayerInfo(sql, no);
+            }
+
+            else if (TextBoxPlayer1.Text != "" && TextBoxPlayer2.Text != "")
+            {
                 string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2)";
                 int no = 2;
                 return GetExtraPlayerInfo(sql, no);
             }
 
+            else if (TextBoxPlayer2.Text != "")
+            {
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid2)";
+                int no = 1;
+                return GetExtraPlayerInfo(sql, no);
+            }
+
             else
             {
-                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2)";
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1)";
                 int no = 1;
                 return GetExtraPlayerInfo(sql, no);
             }    
@@ -335,9 +390,10 @@ namespace Team_1_Halslaget_GK
         {
             DataTable dt = new DataTable();
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
-            da.SelectCommand.Parameters.AddWithValue("@golfid1", TextBoxPlayer2.Text);
-            da.SelectCommand.Parameters.AddWithValue("@golfid2", TextBoxPlayer3.Text);
-            da.SelectCommand.Parameters.AddWithValue("@golfid3", TextBoxPlayer4.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid1", TextBoxPlayer1.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid2", TextBoxPlayer2.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid3", TextBoxPlayer3.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid4", TextBoxPlayer4.Text);
 
 
             try
@@ -365,6 +421,41 @@ namespace Team_1_Halslaget_GK
             else
             {
                 return dt;
+            }
+        }
+
+        protected void DropDownListNOPlayers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LabelPlayer2.Visible = false;
+            LabelPlayer3.Visible = false;
+            LabelPlayer4.Visible = false;
+            TextBoxPlayer2.Visible = false;
+            TextBoxPlayer3.Visible = false;
+            TextBoxPlayer4.Visible = false;
+
+
+            if (DropDownListNOPlayers.SelectedIndex == 1)
+            {
+                LabelPlayer2.Visible = true;
+                TextBoxPlayer2.Visible = true;
+            }
+
+            if (DropDownListNOPlayers.SelectedIndex == 2)
+            {
+                LabelPlayer2.Visible = true;
+                TextBoxPlayer2.Visible = true;
+                LabelPlayer3.Visible = true;
+                TextBoxPlayer3.Visible = true;
+            }
+
+            if (DropDownListNOPlayers.SelectedIndex == 3)
+            {
+                LabelPlayer2.Visible = true;
+                TextBoxPlayer2.Visible = true;
+                LabelPlayer3.Visible = true;
+                TextBoxPlayer3.Visible = true;
+                LabelPlayer4.Visible = true;
+                TextBoxPlayer4.Visible = true;
             }
         }
     }

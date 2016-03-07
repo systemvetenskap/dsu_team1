@@ -108,10 +108,17 @@
         <asp:Label ID="lblPlayer3" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer4" runat="server" Text=""></asp:Label>
     </div>
-          <div>
-              <asp:TextBox ID="TextBoxPlayer2" runat="server"></asp:TextBox>
-              <asp:TextBox ID="TextBoxPlayer3" runat="server"></asp:TextBox>
-              <asp:TextBox ID="TextBoxPlayer4" runat="server"></asp:TextBox>
+          <div class="extraplayers">
+              <asp:Label ID="LabelNOPlayers" runat="server" Text="Antal spelare"></asp:Label>
+              <asp:DropDownList ID="DropDownListNOPlayers" runat="server" OnSelectedIndexChanged="DropDownListNOPlayers_SelectedIndexChanged" AutoPostBack="true"><asp:ListItem>1</asp:ListItem><asp:ListItem>2</asp:ListItem><asp:ListItem>3</asp:ListItem><asp:ListItem>4</asp:ListItem></asp:DropDownList><br />
+              <asp:Label ID="LabelPlayer1" runat="server" Text="GolfID spelare 1" Visible="false"></asp:Label>
+              <asp:TextBox ID="TextBoxPlayer1" runat="server"  Visible="false"></asp:TextBox><br />
+              <asp:Label ID="LabelPlayer2" runat="server" Text="GolfID spelare 2" Visible="false"></asp:Label>
+              <asp:TextBox ID="TextBoxPlayer2" runat="server"  Visible="false"></asp:TextBox><br />
+              <asp:Label ID="LabelPlayer3" runat="server" Text="GolfID spelare 3" Visible="false"></asp:Label>              
+              <asp:TextBox ID="TextBoxPlayer3" runat="server"  Visible="false"></asp:TextBox><br />
+              <asp:Label ID="LabelPlayer4" runat="server" Text="GolfID spelare 4" Visible="false"></asp:Label>              
+              <asp:TextBox ID="TextBoxPlayer4" runat="server"  Visible="false"></asp:TextBox>
           </div>
     </div>
         
