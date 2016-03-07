@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PublishNewsAdmin.aspx.cs" Inherits="Team_1_Halslaget_GK.PublishNewsAdmin" %>
+﻿<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="PublishNewsAdmin.aspx.cs" Inherits="Team_1_Halslaget_GK.PublishNewsAdmin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 <link href="css/Publishnewsstyle.css" rel="stylesheet" />

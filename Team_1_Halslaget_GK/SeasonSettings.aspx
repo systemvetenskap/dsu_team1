@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="SeasonSettings.aspx.cs" Inherits="Team_1_Halslaget_GK.SeasonSettings" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="SeasonSettings.aspx.cs" Inherits="Team_1_Halslaget_GK.SeasonSettings" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <link href="css/SeasonSettingStyle.css" rel="stylesheet" />
 </asp:Content>

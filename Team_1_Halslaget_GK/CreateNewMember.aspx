@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CreateNewMember.aspx.cs" Inherits="Team_1_Halslaget_GK.CreateNewMember" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="CreateNewMember.aspx.cs" Inherits="Team_1_Halslaget_GK.CreateNewMember" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Lägg till ny medlem</title>
     <link href="css/CreateNewMemberCss.css" rel="stylesheet" />
