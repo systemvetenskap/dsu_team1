@@ -8,6 +8,11 @@ function scrolltoNews() {
         scrollTop: $(".news").offset().top - 70
     }, 1000);
 };
+function scrolltoBookings() {
+    $('html, body').animate({
+        scrollTop: $(".bookings").offset().top - 70
+    }, 1000);
+};
 function scrolltoRegister() {
     $('html, body').animate({
         scrollTop: $(".registerbox").offset().top

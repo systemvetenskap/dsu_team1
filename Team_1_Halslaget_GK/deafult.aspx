@@ -46,6 +46,7 @@
             <ul class="main-navbar">
               <li onclick="scrolltoTop();"><a href='#'>HEM</a></li>
               <li onclick="scrolltoNews();"><a href="#">NYHETER</a></li>                                                                  
+              <li onclick="scrolltoBookings();"><a href="#">DAGENS BOKNINGAR</a></li>
               <li onclick="scrolltoRegister();"><a href="#">BLI MEDLEM</a></li>  
             </ul>
             <ul class="main-navbar right">
@@ -83,7 +84,7 @@
                         <div class="fullBox" runat="server" id="newsdiv">
                         </div>
                     </div> 
-                        <div class="fullBox">
+                        <div class="fullBox bookings">
                             <div class="page-title"><h1>Bokningar och Väder</h1></div>
                                 <div class="weatherBox">
                                     <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
@@ -211,6 +212,16 @@
                             ErrorMessage="Fyll i din email!"
                             display="Dynamic">                       
                          </asp:RequiredFieldValidator>
+                         <asp:RegularExpressionValidator 
+                            ID="regExValidatorEmail" 
+                            ForeColor="Red" 
+                            Font-Size="Medium" 
+                            ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                            ControlToValidate="tbEmail" 
+                            runat="server" 
+                            ErrorMessage="Felaktigt epost format"
+                            display="Dynamic"> 
+                </asp:RegularExpressionValidator>
                          <asp:TextBox ID="tbEmail" runat="server" CssClass="my-txt-box" placeholder="Email"></asp:TextBox>
                          <asp:RequiredFieldValidator
                             ID="RequiredFieldValidator7"
