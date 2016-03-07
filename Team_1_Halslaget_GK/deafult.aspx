@@ -26,14 +26,34 @@
        <h2>Välkommen</h2> 
        <br />
        <div class="textboxcontainer">
+            <asp:RequiredFieldValidator
+                ID="RequiredFieldValidator11"
+                ControlToValidate="TextBoxEmailLogin"
+                ForeColor ="Red"
+                runat="server"
+                Font-Size="Medium"
+                ErrorMessage="Du måste ange en Emailadress!"
+                display="Dynamic"
+                ValidationGroup="LoginGroup">                       
+           </asp:RequiredFieldValidator>
            <asp:TextBox ID="TextBoxEmailLogin" runat="server" placeholder="Email" CssClass="my-txt-box"></asp:TextBox>
            <br />
-           <br />      
+           <br />
+           <asp:RequiredFieldValidator
+                ID="RequiredFieldValidator12"
+                ControlToValidate="TextBoxPwLogin"
+                ForeColor ="Red"
+                runat="server"
+                Font-Size="Medium"
+                ErrorMessage="Du måste ange ett lösenord!"
+                display="Dynamic"
+                ValidationGroup="LoginGroup">                       
+           </asp:RequiredFieldValidator>    
            <asp:TextBox ID="TextBoxPwLogin" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="my-txt-box" ></asp:TextBox>
            <br />
            <asp:Label ID="LabelWrongPW" runat="server" Text="Label" Visible="false"></asp:Label>
            <br />
-           <asp:Button ID="signInBtn" runat="server" Text="Logga in" CssClass="my-button" OnClick="signInBtn_Click" />
+           <asp:Button ID="signInBtn" runat="server" Text="Logga in" CssClass="my-button" ValidationGroup="LoginGroup" OnClick="signInBtn_Click" />
        </div>   
 
    </div>
@@ -135,7 +155,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Fyll i ditt namn!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbName" runat="server" CssClass="my-txt-box" placeholder="Namn"></asp:TextBox>
                          <asp:RequiredFieldValidator
@@ -145,7 +166,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Fyll i ditt efternamn!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbLastname" runat="server" CssClass="my-txt-box" placeholder="Efternamn"></asp:TextBox>
                          <asp:RequiredFieldValidator
@@ -155,7 +177,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Fyll i ditt telefonnummer!"
-                            display="Dynamic">
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">
                          </asp:RequiredFieldValidator>                                           
                          <asp:RangeValidator
                             ID="rangeValidPonenumber" 
@@ -167,7 +190,8 @@
                             MaximumValue="9999999999999999" 
                             runat="server" 
                             ErrorMessage="Ett telefonnummer får bara innehålla siffror!"
-                            display="Dynamic"></asp:RangeValidator>               
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup"></asp:RangeValidator>               
                          <asp:TextBox ID="tbPonenumber" runat="server" CssClass="my-txt-box" placeholder="Telefonnummer"></asp:TextBox>                        
                      </div> 
                      <div class="thirdBox">
@@ -178,7 +202,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Fyll i din adress!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbAdress" runat="server" CssClass="my-txt-box" placeholder="Adress"></asp:TextBox>
                          <asp:RequiredFieldValidator
@@ -188,7 +213,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Fyll i ditt postnummer!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbZipcode" runat="server" CssClass="my-txt-box" placeholder="Postnummer"></asp:TextBox>
                          <asp:RequiredFieldValidator
@@ -198,7 +224,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Fyll i din stad!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbCity" runat="server" CssClass="my-txt-box" placeholder="Postort"></asp:TextBox>
                      </div>
@@ -210,7 +237,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Fyll i din email!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:RegularExpressionValidator 
                             ID="regExValidatorEmail" 
@@ -220,7 +248,8 @@
                             ControlToValidate="tbEmail" 
                             runat="server" 
                             ErrorMessage="Felaktigt epost format"
-                            display="Dynamic"> 
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup"> 
                 </asp:RegularExpressionValidator>
                          <asp:TextBox ID="tbEmail" runat="server" CssClass="my-txt-box" placeholder="Email"></asp:TextBox>
                          <asp:RequiredFieldValidator
@@ -230,7 +259,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Fyll i ett lösenord!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbPassword" runat="server" CssClass="my-txt-box" placeholder="Lösenord"></asp:TextBox>
                          <asp:RequiredFieldValidator
@@ -240,7 +270,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Får inte lämnas tomt!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:CompareValidator 
                             id="comparePasswords" 
@@ -250,7 +281,8 @@
                             ControlToCompare="tbPassword"
                             ControlToValidate="tbConfirmPassword"
                             ErrorMessage="Lösenorden stämmer inte överens!"
-                            display="Dynamic">
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">
                          </asp:CompareValidator>
                          <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox>
                      </div>
@@ -261,7 +293,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Fyll i ditt handikapp!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:TextBox ID="tbhcp" runat="server" CssClass="my-txt-box" placeholder="Handikapp"></asp:TextBox>                 
                          <asp:RequiredFieldValidator
@@ -272,7 +305,8 @@
                             runat="server"
                             Font-Size="Medium"
                             ErrorMessage="Välj kön!"
-                            display="Dynamic">                       
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
                          <asp:DropDownList ID="DdlKon" CssClass="DropDown" runat="server">
                              <asp:ListItem>V&#228;lj k&#246;n</asp:ListItem>
@@ -287,10 +321,11 @@
                             Font-Size="Medium"  
                             runat="server" 
                             ErrorMessage="Du måste välja medlemstyp!"
-                            display="Dynamic">
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">
                         </asp:RequiredFieldValidator>                                                                                                                                                                                                                                  
                      <asp:DropDownList ID="dropDownMembertype" runat="server" CssClass="DropDown"></asp:DropDownList>                                                                          
-                     <asp:Button ID="Button2" runat="server" Text="Ansök om medlemskap" Cssclass="my-button" placeholder="Hej" OnClick="Button2_Click"/><br /><br />                                     
+                     <asp:Button ID="Button2" runat="server" Text="Ansök om medlemskap" Cssclass="my-button" placeholder="Hej" OnClick="Button2_Click" ValidationGroup="RegisterGroup"/><br /><br />                                     
                    </div>
                 </div>
             </div>
