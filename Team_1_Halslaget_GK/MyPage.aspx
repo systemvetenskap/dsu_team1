@@ -109,7 +109,7 @@
                         <p class="p-my-info" id="CancelBookingInfo" runat="server">För att avboka en tid, klicka på markera och sedan på knappen "Avboka tid"</p>
                         <br />
                         <div class="halfBox">
-                            <asp:Button ID="btnGoToBooking" runat="server" Text="BOKA TIDER" CssClass="my-button"/>
+                            <asp:Button ID="btnGoToBooking" runat="server" Text="BOKA TIDER" CssClass="my-button" OnClick="btnGoToBooking_Click"/>
                         </div>
                         <div class="halfBox">
                             <a id="btnCancelBooking" class="my-button btn-mobile-space" title="Välj tid för att kunna avboka." onclick="openCancelBookingOverlay();">AVBOKA TID</a>

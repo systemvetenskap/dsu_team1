@@ -16,7 +16,7 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
 		{
-            bool admin = true; //Convert.ToBoolean(Session["admin"])
+            bool admin = Convert.ToBoolean(Session["admin"]);
    
             if (!IsPostBack)
             {
@@ -168,15 +168,20 @@ namespace Team_1_Halslaget_GK
             int boknings_id = Convert.ToInt32(Session["BokningsID"]);
             DateTime date = Convert.ToDateTime(Session["selectedDate"]);
             Booking newbooking = new Booking();
-            bool admin = true;//Convert.ToBoolean(Session["admin"]);
+            bool admin = Convert.ToBoolean(Session["admin"]);
 
             if (CheckSeason() && CheckBookingRestrictions(dt))
             {
                 if(!admin)
                 {
-                    int medlems_id = 5; //Session["Username"]
+                    int medlems_id = Convert.ToInt32(Session["Username"]);
 
-                    newbooking.Newbooking(medlems_id, boknings_id, date, conn);
+                    bool success = newbooking.Newbooking(medlems_id, boknings_id, date, conn);
+                    if (success)
+                    {
+                        BookingInfoText.InnerText = "Bokning lyckades";
+                        ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
+                    }
                 }
 
                 if (dt.Rows.Count > 0)
@@ -301,18 +306,21 @@ namespace Team_1_Halslaget_GK
 
         protected bool CheckBookingRestrictions(DataTable dt)
         {
-            int hcp = 0;
+            double hcp = 0;
             int playercount;
-            bool admin = true;//Convert.ToBoolean(Session["admin"]);
+            bool admin = Convert.ToBoolean(Session["admin"]);
 
             if (admin)
             {
                 playercount = 0;
+                hcp = 0;
             }
 
             else
             {
                 playercount = 1;
+                hcp = Convert.ToDouble(Session["hcp"]);
+
             }
             
 
@@ -343,7 +351,7 @@ namespace Team_1_Halslaget_GK
                 return false;               
             }
 
-            else if (hcp + 15 > 100) //Session["hcp"]
+            else if (hcp > 100)
             {
                 BookingInfoText.InnerText = "Sammanlagt handikapp på en bokning får tyvärr inte överstiga 100";
                 ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);

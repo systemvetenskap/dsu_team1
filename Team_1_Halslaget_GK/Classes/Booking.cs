@@ -26,7 +26,7 @@ namespace Team_1_Halslaget_GK
                 conn.Open();
                 string sql = "SELECT bokningsnr, datum, starttid FROM medlem_bokning INNER JOIN bokning ON bokning_id = slot_id WHERE medlem_id = @id AND datum > CURRENT_DATE";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", memberID); //Session["Username"].ToString()
+                cmd.Parameters.AddWithValue("@id", memberID);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmd;
                 DataTable dt = new DataTable();

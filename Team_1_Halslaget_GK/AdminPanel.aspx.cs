@@ -22,7 +22,7 @@ namespace Team_1_Halslaget_GK
 
         protected void btnGoToBooking_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Tidsbokning.aspx");                
         }
 
         protected void btnGoToHandleBookings_Click(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace Team_1_Halslaget_GK
 
         protected void btnGoToCreateNewMember_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/CreateNewMember.aspx");                
         }
     }
 }

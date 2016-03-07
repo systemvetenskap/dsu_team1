@@ -55,8 +55,7 @@ namespace Team_1_Halslaget_GK
             DataTable dt = new DataTable();
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, con); //gjorde denna med datareader först men hur jag än gjorde så fick jag inga värden, bytte till da och funkade klockrent
 
-            //Session["Username"].ToString() ska in här nedan ist för 2
-            da.SelectCommand.Parameters.AddWithValue("@id", 2);
+            da.SelectCommand.Parameters.AddWithValue("@id", Session["Username"].ToString());
 
             try
             {
@@ -89,7 +88,7 @@ namespace Team_1_Halslaget_GK
             NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
             cmd.Parameters.AddWithValue("@pw", HashSHA1(txtNewPasswordOne.Text + guid));
-            cmd.Parameters.AddWithValue("@id", 2); //Session["Username"].ToString()
+            cmd.Parameters.AddWithValue("@id", Session["Username"].ToString()); 
 
             try 
             {

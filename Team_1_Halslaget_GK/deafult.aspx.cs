@@ -189,7 +189,7 @@ namespace Team_1_Halslaget_GK
             if (password == HashSHA1(TextBoxPwLogin.Text + guid) && admin == false)
             {
                 Session["admin"] = admin.ToString();
-                Session["hcp"] = hcp;
+                Session["hcp"] = hcp.ToString();
                 Session["Username"] = id.ToString();
                 Response.Redirect("~/MyPage.aspx");                
             }
@@ -197,7 +197,7 @@ namespace Team_1_Halslaget_GK
             else if (password == HashSHA1(TextBoxPwLogin.Text + guid) && admin == true)
             {
                 Session["admin"] = admin.ToString();
-                Session["hcp"] = hcp;
+                Session["hcp"] = hcp.ToString();
                 Session["Username"] = id.ToString();
                 Response.Redirect("~/AdminPanel.aspx");
             }

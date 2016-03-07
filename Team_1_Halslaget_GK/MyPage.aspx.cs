@@ -42,7 +42,7 @@ namespace Team_1_Halslaget_GK
 
             //Row 43 and 44, Set medlemID, currently ASSUMING that when user/member is logged in member/username vill be displayed in lblUserName 
             //and either a method is being used to retrieve member ID from database or it comes with a session. Some of it anyway.
-            medlemObj.ID = 2;//Convert.ToInt32(Session["Username"]); //ID kommer in med session här, bara att aktivera när det är dags/jacob
+            medlemObj.ID = Convert.ToInt32(Session["Username"]); //ID kommer in med session här, bara att aktivera när det är dags/jacob
             lblMemberID.Text = medlemObj.ID.ToString();
 
             BindGridView();
@@ -265,6 +265,12 @@ namespace Team_1_Halslaget_GK
 
         protected void ListViewFutureTeeTimes_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnGoToBooking_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Tidsbokning.aspx");              
 
         }
 
