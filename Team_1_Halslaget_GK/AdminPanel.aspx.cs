@@ -14,6 +14,11 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
+
             if(!IsPostBack)
             {
 
@@ -22,6 +27,10 @@ namespace Team_1_Halslaget_GK
 
         protected void btnGoToBooking_Click(object sender, EventArgs e)
         {
+            string admin = Session["admin"].ToString();
+            string userID = Session["Username"].ToString();
+            Session["userID"] = userID;
+            Session["admin"] = admin;
             Response.Redirect("~/Tidsbokning.aspx");                
         }
 

@@ -10,7 +10,7 @@
 namespace Team_1_Halslaget_GK {
     
     
-    public partial class MasterPage {
+    public partial class AdminMaster {
         
         /// <summary>
         /// head control.
