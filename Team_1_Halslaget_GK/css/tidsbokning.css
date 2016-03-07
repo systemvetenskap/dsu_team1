@@ -4,12 +4,16 @@
 }
 .timeTable{
     width:100%;
-    height:570px;
+    height:675px;    
 }
 .timeTable td:hover {
     background-color: green;
     cursor: pointer;
 }
+.timeTable td:active {
+    background-color:red;
+}
+    
 
 .booked td{
     background-color: #f5fb64;
@@ -40,6 +44,12 @@
     background: white;
     width: 400px;
 }
+.calenderBox {
+    padding: 20px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;   
+}
 .aspCalender {
     width: 100%;
 }
@@ -61,6 +71,6 @@
     height: 100px;
 }
 .CalnderOtherMonthDay {
-    visibility:hidden;
+    height: 100px;
 }
 

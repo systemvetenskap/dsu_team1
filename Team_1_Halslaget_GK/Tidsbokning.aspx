@@ -8,7 +8,7 @@
     <div class="fullBox page-title">
         <h1>Tidsbokning</h1>
     </div>
-    <div class="halfBox">
+    <div class="halfBox calenderBox">
             <asp:Calendar ID="Calendar1" runat="server" CssClass="aspCalender" OnSelectionChanged="Calendar1_SelectionChanged">               
                 <DayStyle CssClass="CalenderDay" />
                 <DayHeaderStyle CssClass="CalenderHeaderDay" />
@@ -22,7 +22,7 @@
             </asp:Calendar>
     </div>
     <div>
-      <div class="halfBox">
+      <div class="halfBox calenderBox">
         <asp:Table ID="Table1" CssClass="timeTable" runat="server">
             <asp:TableRow ID="Row1" runat="server">
                 <asp:TableCell runat="server"><asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton_Click">07:00</asp:LinkButton></asp:TableCell>
@@ -113,25 +113,29 @@
                 <asp:TableCell><asp:LinkButton ID="LinkButton66" runat="server" OnClick="LinkButton_Click">17:50</asp:LinkButton></asp:TableCell>
             </asp:TableRow>    
         </asp:Table>
-    <div class="otherplayers">
+    </div>
+<div class="fullBox calenderBox">
+     <div class="otherplayers">
         <asp:Label ID="lblPlayer1" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer2" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer3" runat="server" Text=""></asp:Label><br />
         <asp:Label ID="lblPlayer4" runat="server" Text=""></asp:Label>
     </div>
-          <div class="extraplayers">
-              <asp:Label ID="LabelNOPlayers" runat="server" Text="Antal spelare"></asp:Label>
-              <asp:DropDownList ID="DropDownListNOPlayers" runat="server" OnSelectedIndexChanged="DropDownListNOPlayers_SelectedIndexChanged" AutoPostBack="true"><asp:ListItem>1</asp:ListItem><asp:ListItem>2</asp:ListItem><asp:ListItem>3</asp:ListItem><asp:ListItem>4</asp:ListItem></asp:DropDownList><br />
-              <asp:Label ID="LabelPlayer1" runat="server" Text="GolfID spelare 1" Visible="false"></asp:Label>
-              <asp:TextBox ID="TextBoxPlayer1" runat="server"  Visible="false"></asp:TextBox><br />
-              <asp:Label ID="LabelPlayer2" runat="server" Text="GolfID spelare 2" Visible="false"></asp:Label>
-              <asp:TextBox ID="TextBoxPlayer2" runat="server"  Visible="false"></asp:TextBox><br />
-              <asp:Label ID="LabelPlayer3" runat="server" Text="GolfID spelare 3" Visible="false"></asp:Label>              
-              <asp:TextBox ID="TextBoxPlayer3" runat="server"  Visible="false"></asp:TextBox><br />
-              <asp:Label ID="LabelPlayer4" runat="server" Text="GolfID spelare 4" Visible="false"></asp:Label>              
-              <asp:TextBox ID="TextBoxPlayer4" runat="server"  Visible="false"></asp:TextBox>
-          </div>
+    <div class="extraplayers calenderBox">
+        <asp:Label ID="LabelNOPlayers" runat="server" Text="Antal spelare"></asp:Label><br />
+        <asp:DropDownList ID="DropDownListNOPlayers" runat="server" CssClass="DropDown" OnSelectedIndexChanged="DropDownListNOPlayers_SelectedIndexChanged" AutoPostBack="true"><asp:ListItem>1</asp:ListItem><asp:ListItem>2</asp:ListItem><asp:ListItem>3</asp:ListItem><asp:ListItem>4</asp:ListItem></asp:DropDownList><br />
+
+        <asp:TextBox ID="tbPlayer1" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />
+
+        <asp:TextBox ID="tbPlayer2" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />
+         
+        <asp:TextBox ID="tbPlayer3" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />
+          
+        <asp:TextBox ID="tbPlayer4" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox>
+
     </div>
+</div>
+
         
         <div id="confirmButtonDiv">
             <asp:Button ID="confirmBtn" runat="server" CssClass="my-button" Text="Boka" OnClick="confirmBtn_Click"/>

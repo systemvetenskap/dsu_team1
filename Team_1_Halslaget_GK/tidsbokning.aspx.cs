@@ -17,7 +17,12 @@ namespace Team_1_Halslaget_GK
         protected void Page_Load(object sender, EventArgs e)
 		{
             bool admin = Convert.ToBoolean(Session["admin"]);
-   
+
+            lblPlayer1.Text = "";
+            lblPlayer2.Text = "";
+            lblPlayer3.Text = "";
+            lblPlayer4.Text = "";
+
             if (!IsPostBack)
             {
                 Table1.Visible = false;
@@ -25,9 +30,9 @@ namespace Team_1_Halslaget_GK
 
                 if(admin) 
                 {
-                    TextBoxPlayer1.Visible = true;
-                    LabelPlayer1.Visible = true;
+                    tbPlayer1.Visible = true;
                 }
+
             }
                               
         }
@@ -139,25 +144,25 @@ namespace Team_1_Halslaget_GK
             {               
                 if (golfplayer.startid == time && playercount == 1)
                 {
-                    lblPlayer1.Text = golfplayer.golfID + " " + golfplayer.hcp + " " + golfplayer.kon;
+                    lblPlayer1.Text = golfplayer.hcp + " " + golfplayer.kon;                  
                     playercount++;
                 }
 
                 else if (golfplayer.startid == time && playercount == 2)
                 {
-                    lblPlayer2.Text = golfplayer.golfID + " " + golfplayer.hcp + " " + golfplayer.kon;
+                    lblPlayer2.Text = golfplayer.hcp + " " + golfplayer.kon;
                     playercount++;
                 }
 
                 else if (golfplayer.startid == time && playercount == 3)
                 {
-                    lblPlayer3.Text = golfplayer.golfID + " " + golfplayer.hcp + " " + golfplayer.kon;
+                    lblPlayer3.Text = golfplayer.hcp + " " + golfplayer.kon;
                     playercount++;
                 }
 
                 else if (golfplayer.startid == time && playercount == 4)
                 {
-                    lblPlayer4.Text = golfplayer.golfID + " " + golfplayer.hcp + " " + golfplayer.kon;
+                    lblPlayer4.Text = golfplayer.hcp + " " + golfplayer.kon;
                     playercount++;
                 }
             }
@@ -368,48 +373,48 @@ namespace Team_1_Halslaget_GK
         protected DataTable CheckNoOfPlayers()
         {
 
-            if (TextBoxPlayer1.Text == "" && TextBoxPlayer2.Text == "" && TextBoxPlayer3.Text == "" && TextBoxPlayer4.Text == "")
+            if (tbPlayer1.Text == "" && tbPlayer2.Text == "" && tbPlayer3.Text == "" && tbPlayer4.Text == "")
             {
                 DataTable dt = new DataTable();
                 return dt;
             }
 
-            else if (TextBoxPlayer1.Text != "" && TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "" && TextBoxPlayer4.Text != "")
+            else if (tbPlayer1.Text != "" && tbPlayer2.Text != "" && tbPlayer3.Text != "" && tbPlayer4.Text != "")
             {
                 string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2 , @golfid3, @golfid4)";
                 int no = 4;
                 return GetExtraPlayerInfo(sql, no);
             }
 
-            else if (TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "" && TextBoxPlayer4.Text != "")
+            else if (tbPlayer2.Text != "" && tbPlayer3.Text != "" && tbPlayer4.Text != "")
             {
                 string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid2, @golfid3 , @golfid4)";
                 int no = 3;
                 return GetExtraPlayerInfo(sql, no);
             }
 
-            else if (TextBoxPlayer1.Text != "" && TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "")
+            else if (tbPlayer1.Text != "" && tbPlayer2.Text != "" && tbPlayer3.Text != "")
             {
                 string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2 , @golfid3)";
                 int no = 3;
                 return GetExtraPlayerInfo(sql, no);
             }
 
-            else if (TextBoxPlayer2.Text != "" && TextBoxPlayer3.Text != "")
+            else if (tbPlayer2.Text != "" && tbPlayer3.Text != "")
             {
                 string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid2, @golfid3)";
                 int no = 2;
                 return GetExtraPlayerInfo(sql, no);
             }
 
-            else if (TextBoxPlayer1.Text != "" && TextBoxPlayer2.Text != "")
+            else if (tbPlayer1.Text != "" && tbPlayer2.Text != "")
             {
                 string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid1, @golfid2)";
                 int no = 2;
                 return GetExtraPlayerInfo(sql, no);
             }
 
-            else if (TextBoxPlayer2.Text != "")
+            else if (tbPlayer2.Text != "")
             {
                 string sql = "SELECT id, hcp FROM medlem WHERE golfid IN (@golfid2)";
                 int no = 1;
@@ -428,10 +433,10 @@ namespace Team_1_Halslaget_GK
         {
             DataTable dt = new DataTable();
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
-            da.SelectCommand.Parameters.AddWithValue("@golfid1", TextBoxPlayer1.Text);
-            da.SelectCommand.Parameters.AddWithValue("@golfid2", TextBoxPlayer2.Text);
-            da.SelectCommand.Parameters.AddWithValue("@golfid3", TextBoxPlayer3.Text);
-            da.SelectCommand.Parameters.AddWithValue("@golfid4", TextBoxPlayer4.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid1", tbPlayer1.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid2", tbPlayer2.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid3", tbPlayer3.Text);
+            da.SelectCommand.Parameters.AddWithValue("@golfid4", tbPlayer4.Text);
 
 
             try
@@ -465,36 +470,27 @@ namespace Team_1_Halslaget_GK
 
         protected void DropDownListNOPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LabelPlayer2.Visible = false;
-            LabelPlayer3.Visible = false;
-            LabelPlayer4.Visible = false;
-            TextBoxPlayer2.Visible = false;
-            TextBoxPlayer3.Visible = false;
-            TextBoxPlayer4.Visible = false;
+            tbPlayer2.Visible = false;
+            tbPlayer3.Visible = false;
+            tbPlayer4.Visible = false;
 
 
             if (DropDownListNOPlayers.SelectedIndex == 1)
             {
-                LabelPlayer2.Visible = true;
-                TextBoxPlayer2.Visible = true;
+                tbPlayer2.Visible = true;
             }
 
             if (DropDownListNOPlayers.SelectedIndex == 2)
             {
-                LabelPlayer2.Visible = true;
-                TextBoxPlayer2.Visible = true;
-                LabelPlayer3.Visible = true;
-                TextBoxPlayer3.Visible = true;
+                tbPlayer2.Visible = true;           
+                tbPlayer3.Visible = true;
             }
 
             if (DropDownListNOPlayers.SelectedIndex == 3)
             {
-                LabelPlayer2.Visible = true;
-                TextBoxPlayer2.Visible = true;
-                LabelPlayer3.Visible = true;
-                TextBoxPlayer3.Visible = true;
-                LabelPlayer4.Visible = true;
-                TextBoxPlayer4.Visible = true;
+                tbPlayer2.Visible = true;
+                tbPlayer3.Visible = true;
+                tbPlayer4.Visible = true;
             }
         }
     }
