@@ -19,6 +19,7 @@
 <body>
 
  <form id="form1" runat="server">
+ <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
   <div class="logincontainer">
    <div class="loginbox">
        <input id="Button1" type="button" value="X" class="closebtn"  onclick="closeOverlay();"/>
@@ -140,6 +141,8 @@
                     </div>  
                 </div>         
         </section>
+     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+         <ContentTemplate>
      <section class="container">
          <div class="content">
              <div class="contentRow">
@@ -324,12 +327,20 @@
                             display="Dynamic"
                             ValidationGroup="RegisterGroup">
                         </asp:RequiredFieldValidator>                                                                                                                                                                                                                                  
-                     <asp:DropDownList ID="dropDownMembertype" runat="server" CssClass="DropDown"></asp:DropDownList>                                                                          
+                     <asp:DropDownList ID="dropDownMembertype" runat="server" CssClass="DropDown">
+                         <asp:ListItem>V&#228;lj medlemstyp</asp:ListItem>
+                         <asp:ListItem>Junior 0 - 12 &#229;r</asp:ListItem>
+                         <asp:ListItem>Junior 13 - 21 &#229;r</asp:ListItem>
+                         <asp:ListItem>Studerande</asp:ListItem>
+                         <asp:ListItem>Senior</asp:ListItem>
+                     </asp:DropDownList>                                                                          
                      <asp:Button ID="Button2" runat="server" Text="Ansök om medlemskap" Cssclass="my-button" placeholder="Hej" OnClick="Button2_Click" ValidationGroup="RegisterGroup"/><br /><br />                                     
                    </div>
                 </div>
             </div>
      </section>
+   </ContentTemplate>
+  </asp:UpdatePanel>
        <!-- Footer ================================================== -->
     <section class="container" id="section-footer">
       <div class="content">

@@ -17,7 +17,7 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-                LoadMedlemstyper();
+                
                 LoadNews();
                 SetTableBanstatus(GetBanstatus());
         }      
@@ -189,10 +189,11 @@ namespace Team_1_Halslaget_GK
             MedlemObj.medlemsKategori = dropDownMembertype.Text;
             MedlemObj.payStatus = false;
 
-
             MedlemObj.InsertNewMember();
-        }
 
+            tbName.Text = "";
+            tbLastname.Text = "";
+        }
         //Funktioner
         protected DataTable GetBanstatus()
         {
