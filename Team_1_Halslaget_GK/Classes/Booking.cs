@@ -10,6 +10,7 @@ namespace Team_1_Halslaget_GK
 {
     public class Booking
     {
+        NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
         //Properties
         public int ID { get; set; }
         public DateTime StartTime { get; set; }
@@ -20,7 +21,6 @@ namespace Team_1_Halslaget_GK
         /// </summary>
         public DataTable GetFutureTeeTimeData(string memberID)
         {
-            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             try
             {
                 conn.Open();
@@ -52,7 +52,6 @@ namespace Team_1_Halslaget_GK
         /// <param name="bokningsnr"></param>
         public void CancelBooking(string bokningsnr)
         {
-            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 
             try
             {
@@ -74,7 +73,7 @@ namespace Team_1_Halslaget_GK
         }
 
         // Adds a new booking to a signed in member.
-        public bool Newbooking(int medlems_id, int boknings_id, DateTime date, NpgsqlConnection conn)
+        public bool Newbooking(int medlems_id, int boknings_id, DateTime date)
         {
             try
             {

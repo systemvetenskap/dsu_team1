@@ -126,7 +126,7 @@
         <asp:Label ID="lblPlayer2" CssClass="players" runat="server" Text=""></asp:Label><br /><br  />    
         <asp:Label ID="lblPlayer3" CssClass="players" runat="server" Text=""></asp:Label><br /><br  />  
         <asp:Label ID="lblPlayer4" CssClass="players" runat="server" Text=""></asp:Label>
-        <div class="fullBox">
+        <div id="otherplayers" runat="server" class="fullBox">
                 <asp:Label ID="lblGolfID" runat="server" Text="Ditt Golf-ID"></asp:Label>
                 <asp:TextBox ID="tbPlayer1" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
                 <asp:Label ID="lblOtherPlayerGolfID" runat="server" Text="För att boka in fler personer kan du ange deras Golf-ID:"></asp:Label>
