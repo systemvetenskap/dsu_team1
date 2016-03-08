@@ -94,6 +94,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button btnUpdateUserinfo;
         
         /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        
+        /// <summary>
         /// lblBookingID control.
         /// </summary>
         /// <remarks>

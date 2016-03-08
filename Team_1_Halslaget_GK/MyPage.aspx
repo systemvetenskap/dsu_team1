@@ -41,8 +41,9 @@
          <asp:Button ID="btnUpdateUserinfo" runat="server" Text="SPARA OCH STÄNG" CssClass="my-button top-n-bottom-space" OnClick="btnUpdateUserinfo_Click"/>     
       </div>
     </div>
-
-    <!-- Overlay/modal to cancel booking ================================================== -->
+   <!-- Overlay/modal to cancel booking ================================================== -->
+    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+    <ContentTemplate>
     <div class="page-overlay-cancel-booking">
       <div class="overlay-message-booking">
           <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="closeCancelBookingOverlay();"></span></p>
@@ -65,9 +66,9 @@
           <p class="p-my-info-modal">.</p>
       </div>
     </div>
-
-
-    <!-- MAIN PAGE================================================== -->
+    </ContentTemplate>
+   </asp:UpdatePanel>
+   <!-- MAIN PAGE================================================== -->
     <div class="fullBox page-title">
         <h1>MIN SIDA</h1>
     </div>
@@ -77,16 +78,12 @@
             samt ändra din personliga information. Har du några frågor eller funderingar är du varmt välkommen till att kontakta hos på Hålsaget GK!
         </p>
     </div>
-
-
-    <!-- USER BOOKED TIMES ================================================== -->
+   <!-- USER BOOKED TIMES ================================================== -->
     <div class="fullBox top-n-bottom-space">
         <div class="halfBox my-page-half-box">
             <div class="fullBox my-page-title">
                 <h3>MINA BOKADE TIDER</h3>
             </div>
-
-
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="fullBox">            
@@ -101,9 +98,7 @@
                         <asp:Label ID="lblTempBookingID" runat="server" Text="Empty" style="display:none;"></asp:Label>
                         <asp:Label ID="lblTempDate" runat="server" Text="Empty" style="display:none;"></asp:Label>
                         <asp:Label ID="lblTempStartTime" runat="server" Text="Empty" style="display:none;"></asp:Label>           
-
                     </div>
-
                     <div class="fullBox center-text">
                         <br />
                         <p class="p-my-info" id="CancelBookingInfo" runat="server">För att avboka en tid, klicka på markera och sedan på knappen "Avboka tid"</p>
@@ -118,9 +113,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-
-
-        <!-- USER STATISTICS ================================================== -->
+       <!-- USER STATISTICS ================================================== -->
         <div class="halfBox my-page-half-box">
             <div class="fullBox">
                 <div class="fullBox my-page-title">
@@ -134,8 +127,7 @@
             </div>
         </div>
     </div>
-
-    <!-- USER INFO ================================================== -->
+   <!-- USER INFO ================================================== -->
     <div class="fullBox top-n-bottom-space">
         <div class="fullBox page-title">
             <h3>DINA UPPGIFTER</h3>
@@ -146,7 +138,6 @@
                 <p class="p-my-info"><strong>Efternam:</strong> <asp:Label ID="lblLastName" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Telefonnummer:</strong> <asp:Label ID="lblPhoneNum" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Email:</strong> <asp:Label ID="lblEmail" runat="server" Text="Label"></asp:Label></p>
-
             </div>
             <div class="halfBox">
                 <p class="p-my-info"><strong>Gata:</strong> <asp:Label ID="lblStreet" runat="server" Text="Label"></asp:Label></p>
@@ -161,8 +152,7 @@
             </div>
         </div>
     </div>
-
-    <!-- ACCOUNT SETTINGS ================================================== -->
+   <!-- ACCOUNT SETTINGS ================================================== -->
     <div class="fullBox top-n-bottom-space">
         <div class="fullBox page-title">
             <h3>KONTOINSTÄLLNINGAR</h3>
