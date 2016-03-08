@@ -120,6 +120,10 @@
 
 }
 
+.halfBox-right{
+    margin-left: 2%;
+}
+
 @media (max-width: 952px) {	
 	.overlay-message {
     width: 100%;

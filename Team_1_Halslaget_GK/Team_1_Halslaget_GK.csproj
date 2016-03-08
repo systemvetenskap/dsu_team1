@@ -65,7 +65,6 @@
     <Content Include="bin\Team_1_Halslaget_GK.dll" />
     <Content Include="bin\Team_1_Halslaget_GK.pdb" />
     <Content Include="BookingAdmin.aspx" />
-    <Content Include="css\BookingAdmin.css" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminPanelCss.css" />

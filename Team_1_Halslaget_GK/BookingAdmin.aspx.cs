@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Npgsql;
 using System.Data;
+using System.Drawing;
 
 namespace Team_1_Halslaget_GK
 {
@@ -13,17 +14,55 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
 
+            }
         }
 
-        protected void GridView1_RowCommand(object sender, EventArgs e)
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName == "Select")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                lblTempBookingID.Text = GridView1.Rows[rowIndex].Cells[0].Text;
+                lblTempDate.Text = GridView1.Rows[rowIndex].Cells[1].Text;
+                lblTempStartTime.Text = GridView1.Rows[rowIndex].Cells[2].Text;
+            }
+        }
 
+        private void BindGridView()
+        {
+            GridViewRow row = GridView2.SelectedRow;
+            string medlemid = row.Cells[0].Text;
+
+
+            Booking medlemObj = new Booking();
+
+            Booking getBookings = new Booking();
+            DataTable dt = getBookings.GetFutureTeeTimeData(medlemid);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+
+            if (GridView1.Rows.Count == 0)
+            {
+                CancelBookingInfo.InnerText = "Medlem har inga bokade tider.";
+            }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                if (row.RowIndex == GridView1.SelectedIndex)
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#6C6C6C");
+                }
+                else
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                }
+            }
         }
 
         protected void GridView1_SelectedIndexChanging(object sender, EventArgs e)
@@ -155,6 +194,19 @@ namespace Team_1_Halslaget_GK
 
             con.Close();
             con.Dispose();
+        }
+
+        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridView();
+        }
+
+        protected void btnCancelBooking_Click(object sender, EventArgs e)
+        {
+            Booking cancel = new Booking();
+            GridViewRow row = GridView1.SelectedRow;
+            string bookingID = row.Cells[0].Text;
+            cancel.CancelBooking(bookingID);
         }
     }
 }

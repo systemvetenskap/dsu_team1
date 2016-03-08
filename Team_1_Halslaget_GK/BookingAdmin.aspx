@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="Team_1_Halslaget_GK.WebForm2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <link type="text/css" rel="stylesheet" href="css/BookingAdmin.css"/> 
+        <link type="text/css" rel="stylesheet" href="css/MyPageCss.css"/>
+        <script src="ja/MyPageScripts.js"></script> 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -14,7 +15,15 @@
             <asp:TextBox ID="TextBoxGolfID" runat="server" placeholder="Golf ID" CssClass="my-txt-box"></asp:TextBox>
             <asp:Button ID="ButtonSearch" runat="server" Text="Sök" onclick="ButtonSearch_Click" class="my-button btn-mobile-space"/>
 
-            <asp:GridView ID="GridView2" runat="server" CssClass="Grid" GridLines="None"></asp:GridView>
+            <asp:GridView ID="GridView2" runat="server" CssClass="Grid" AutoGenerateColumns="false" GridLines="None" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
+                <Columns>
+                    <asp:BoundField DataField="id" HeaderText="ID"/>
+                    <asp:BoundField DataField="fornamn" HeaderText="Förnamn"/>
+                    <asp:BoundField DataField="efternamn" HeaderText="Efternamn"/>
+                    <asp:BoundField DataField="golfid" HeaderText="Golf ID"/>
+                    <asp:CommandField ShowSelectButton="true" />
+                </Columns>
+            </asp:GridView>
 
         </div>
 
@@ -53,5 +62,29 @@
                 </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
+
+        <!-- Overlay/modal to cancel booking ================================================== -->
+    <div class="page-overlay-cancel-booking">
+      <div class="overlay-message-booking">
+          <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="closeCancelBookingOverlay();"></span></p>
+            <h3 class="my-h3">AVBOKA</h3>  
+            <p class="p-my-info-modal"><strong>Du håller på att avboka följande tid:</strong></p>
+            <p class="p-my-info-modal"><strong>Bokningsnummer: </strong><asp:Label ID="lblBookingID" runat="server" Text="Label"></asp:Label></p>
+            <p class="p-my-info-modal"><strong>Datum: </strong><asp:Label ID="lblDate" runat="server" Text="Label"></asp:Label></p>
+            <p class="p-my-info-modal"><strong>Starttid: </strong><asp:Label ID="lblStartTime" runat="server" Text="Label"></asp:Label></p>
+            <div class="fullBox">
+                <p class="p-my-info-modal center-text">Är du säker på att du vill avboka?</p>
+            </div>
+            <div class="fullBox">
+                <div class="halfBox">
+                    <asp:Button ID="btnConfirmCancelBooking" runat="server" Text="JA" CssClass="my-button btn-mobile-space" OnClick="btnCancelBooking_Click"/>   
+                </div>  
+                <div class="halfBox">
+                    <a class="my-button btn-mobile-space" onclick="closeCancelBookingOverlay();">NEJ</a> 
+                </div> 
+            </div>   
+          <p class="p-my-info-modal">.</p>
+      </div>
+    </div>
 
 </asp:Content>
