@@ -133,10 +133,13 @@
     <Content Include="PublishNewsAdmin.aspx" />
     <Content Include="ScorecardAdmin.aspx" />
     <Content Include="SeasonSettings.aspx" />
+    <Content Include="SendMail.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Tidsbokning.aspx" />
     <Content Include="TidsbokningAdmin.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminMaster.Master.cs">
@@ -239,6 +242,13 @@
     </Compile>
     <Compile Include="SeasonSettings.aspx.designer.cs">
       <DependentUpon>SeasonSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SendMail.aspx.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SendMail.aspx.designer.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
