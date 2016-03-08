@@ -15,6 +15,6 @@ function scrolltoBookings() {
 };
 function scrolltoRegister() {
     $('html, body').animate({
-        scrollTop: $(".registerbox").offset().top
+        scrollTop: $(".registerbox").offset().top - 70
     }, 1000);
 };
