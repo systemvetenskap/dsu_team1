@@ -116,8 +116,7 @@
                 <h3>MEDLEMSUPPGIFTER</h3>
             </div>
             <div class="fullBox member-1em-margin-lat">
-                <p class="memberreg-1em-margin-horizontal">Medlems ID: </p> 
-                <asp:TextBox ID="TextBoxID" CssClass="my-txt-box member-txt-box"  runat="server" Visible="true"></asp:TextBox>
+                <p class="memberreg-1em-margin-horizontal">Medlems ID: <strong><asp:Label ID="lblMedlemsID" runat="server" Text="0"></asp:Label></strong></p> 
                 <p class="memberreg-1em-margin-horizontal">Förnamn: </p>
                 <asp:TextBox ID="TextBoxFornamn" CssClass="my-txt-box member-txt-box"  runat="server" Visible="true"></asp:TextBox>
                 <p class="memberreg-1em-margin-horizontal">Efternamn: </p>
@@ -134,6 +133,11 @@
                 <asp:TextBox ID="TextBoxOrt" CssClass="my-txt-box member-txt-box"  runat="server" Visible="true"></asp:TextBox>
                 <p class="memberreg-1em-margin-horizontal">Handikapp: </p>
                 <asp:TextBox ID="TextBoxHandikapp" CssClass="my-txt-box member-txt-box"  runat="server" Visible="true"></asp:TextBox>
+                <p class="memberreg-1em-margin-horizontal">Medlemsavgift betald: </p>
+                <asp:DropDownList ID="dropDownPayStatus" CssClass="DropDown" runat="server">
+                    <asp:ListItem>Ja</asp:ListItem>
+                    <asp:ListItem>Nej</asp:ListItem>
+                </asp:DropDownList>
             </div>
             <div class="fullBox memberreg-1em-margin-horizontal">
                 <div class="halfBox btn-mobile-space">
@@ -151,22 +155,5 @@
 </asp:UpdatePanel>
 
 </div>
-<div class="fullBox memberreg-1em-margin-horizontal" style="display:none;">
-    <p>GJort om GUI här. Gjorde om lite backend också som förslag. 
-        Förslaget är att det ska räcka med att en användare bara trycker i listboxen för att få upp 
-        medlemsinfo i boxarna till höger. Tog även bort så att de syns hela tiden och inte är gömda.
-        Gjorde även så att dom inte är read only, men det kanske är smart att dom är det ändå när man får upp
-        dem från första början?
-
-        Går att ändra och redigera som man vill. Ta bort den här biten om man känner att det här är okej.
-    </p>
-                    <asp:Button ID="ButtonVisaMedlemInfo" runat="server" Text="Visa Medlem" OnClick="ButtonVisaMedlemInfo_Click"/>
-
-                    <asp:button id="ButtonTillbaka" runat="server" text="Tillbaka" Visible="true" OnClientClick="JavaScript:window.history.back(1);return false;"></asp:button>
-
-                    <asp:Button ID="ButtonRedigera" runat="server" Text="Redigera medlemsinfo" Visible="true" OnClick="ButtonRedigera_Click"/>
-
-  
-    </div> 
 
 </asp:Content>
