@@ -40,8 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Npgsql">
-      <HintPath>..\..\..\..\..\Programmering\npgsql\Net45\Npgsql.dll</HintPath>
+    <Reference Include="Npgsql, Version=2.2.4.3, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>data\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -78,6 +79,7 @@
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
     <Content Include="css\tidsbokning.css" />
+    <Content Include="data\Npgsql.dll" />
     <Content Include="default.aspx" />
     <Content Include="css\font.css" />
     <Content Include="fonts\generator_config.txt" />
