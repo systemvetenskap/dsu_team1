@@ -131,6 +131,7 @@
     <Content Include="MyPage.aspx" />
     <Content Include="NotAllowed.aspx" />
     <Content Include="PublishNewsAdmin.aspx" />
+    <Content Include="ScorecardAdmin.aspx" />
     <Content Include="SeasonSettings.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Tidsbokning.aspx" />
@@ -225,6 +226,13 @@
       <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\Season.cs" />
+    <Compile Include="ScorecardAdmin.aspx.cs">
+      <DependentUpon>ScorecardAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ScorecardAdmin.aspx.designer.cs">
+      <DependentUpon>ScorecardAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SeasonSettings.aspx.cs">
       <DependentUpon>SeasonSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
