@@ -153,7 +153,7 @@ namespace Team_1_Halslaget_GK
 
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showotherplayers", "showotherplayers();", true);
 
-            tbPlayer1.Text = "GolfID";//Session["UserID"].ToString();
+            tbPlayer1.Text = Session["GolfID"].ToString();
             tbPlayer1.Enabled = false;
 
             lblotherplayers.Text = "På den här tiden finns det inga tidigare bokningar";
