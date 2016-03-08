@@ -121,13 +121,13 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button ButtonSearch;
         
         /// <summary>
-        /// TextBoxID control.
+        /// lblMedlemsID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxID;
+        protected global::System.Web.UI.WebControls.Label lblMedlemsID;
         
         /// <summary>
         /// TextBoxFornamn control.
@@ -202,6 +202,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox TextBoxHandikapp;
         
         /// <summary>
+        /// dropDownPayStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dropDownPayStatus;
+        
+        /// <summary>
         /// ButtonSpara control.
         /// </summary>
         /// <remarks>
@@ -218,32 +227,5 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSavedConfirmed;
-        
-        /// <summary>
-        /// ButtonVisaMedlemInfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonVisaMedlemInfo;
-        
-        /// <summary>
-        /// ButtonTillbaka control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonTillbaka;
-        
-        /// <summary>
-        /// ButtonRedigera control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonRedigera;
     }
 }

@@ -9,6 +9,7 @@ using System.Web;
 using Npgsql;
 using System.Data;
 using System.Web.Configuration;
+using System.Globalization;
 
 namespace Team_1_Halslaget_GK
 {
@@ -41,7 +42,7 @@ namespace Team_1_Halslaget_GK
             try
             {
                 conn.Open();
-                NpgsqlCommand cmdGetMemberInfo = new NpgsqlCommand("SELECT fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori, telefonnummer, medlemsavgift_betald FROM medlem WHERE id = @id", conn);
+                NpgsqlCommand cmdGetMemberInfo = new NpgsqlCommand("SELECT id, fornamn, efternamn, adress, postnummer, ort, epost, hcp, medlemskategori, telefonnummer, medlemsavgift_betald FROM medlem WHERE id = @id", conn);
                 cmdGetMemberInfo.Parameters.AddWithValue("@id", ID);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmdGetMemberInfo;
@@ -139,25 +140,25 @@ namespace Team_1_Halslaget_GK
                 string golfID = CreateGolfID();
 
                 conn.Open();
-                NpgsqlCommand cmdUpdateMemberInfo = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald, admin) " +
+                NpgsqlCommand cmdInsertNewMember = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald, admin) " +
                                                                         " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @golfid, @medlemsKategori, @telefonnummer, @paydate, @adminStatus); ", conn);
-                
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@id", ID);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@fornamn", fornamn);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@efternamn", efternamn);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@adress", adress);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@postnummer", postnummer);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@ort", ort);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@epost", epost);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@kon", kon);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@hcp", handikapp);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@golfid", golfID);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@medlemsKategori", medlemsKategori);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@telefonnummer", telefonNummer);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@paydate", payDate);
-                cmdUpdateMemberInfo.Parameters.AddWithValue("@adminStatus", false); //Temporary work around should be changed later so one can insert an admin later.
 
-                cmdUpdateMemberInfo.ExecuteNonQuery();
+                cmdInsertNewMember.Parameters.AddWithValue("@id", ID);
+                cmdInsertNewMember.Parameters.AddWithValue("@fornamn", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fornamn.ToLower()));
+                cmdInsertNewMember.Parameters.AddWithValue("@efternamn", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(efternamn.ToLower()));
+                cmdInsertNewMember.Parameters.AddWithValue("@adress", adress);
+                cmdInsertNewMember.Parameters.AddWithValue("@postnummer", postnummer);
+                cmdInsertNewMember.Parameters.AddWithValue("@ort", ort);
+                cmdInsertNewMember.Parameters.AddWithValue("@epost", epost);
+                cmdInsertNewMember.Parameters.AddWithValue("@kon", kon);
+                cmdInsertNewMember.Parameters.AddWithValue("@hcp", handikapp);
+                cmdInsertNewMember.Parameters.AddWithValue("@golfid", golfID);
+                cmdInsertNewMember.Parameters.AddWithValue("@medlemsKategori", medlemsKategori);
+                cmdInsertNewMember.Parameters.AddWithValue("@telefonnummer", telefonNummer);
+                cmdInsertNewMember.Parameters.AddWithValue("@paydate", payDate);
+                cmdInsertNewMember.Parameters.AddWithValue("@adminStatus", false); //Temporary work around should be changed later so one can insert an admin later.
+
+                cmdInsertNewMember.ExecuteNonQuery();
 
                 return true;
             }
@@ -267,19 +268,105 @@ namespace Team_1_Halslaget_GK
             return newID;
         }
 
-        /// <summary>
-        /// Seems like this method is not necessary. But save it for later just in case.
-        /// Replaces comma sign with dot in double handikapp due to european (?)
-        /// culture standard so it can be inserted into database correctly.
-        /// </summary>
-        /// <returns>Returns handicap with a dot instead. </returns>
-        //private double ReplaceComma()
-        //{
-        //    string hcpString = handikapp.ToString();
-        //    string hcpStringDot = hcpString.Replace(",", ".");
-        //    double hcpDoubleDot = Convert.ToDouble(hcpStringDot);
-        //    return hcpDoubleDot;
-        //}
+        public List<medlem> GetAllMembers()
+        {
+            List<medlem> medlemmar = new List<medlem>();
+            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
+            try
+            {
+                string sql = "SELECT id, fornamn, efternamn, hcp FROM medlem";
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+
+                con.Open();
+
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    medlem nymedlem = new medlem();
+                    nymedlem.ID = Convert.ToInt32(dr["id"]);
+                    nymedlem.fornamn = Convert.ToString(dr["fornamn"]);
+                    nymedlem.efternamn = Convert.ToString(dr["efternamn"]);
+                    nymedlem.handikapp = Convert.ToDouble(dr["hcp"]);
+
+                    medlemmar.Add(nymedlem);
+                }
+                return medlemmar;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }            
+        }
+
+
+        public bool AdminUpdateMemberInfo()
+        {
+            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
+            try
+            {
+                DateTime payDate = SetMedlemsAvgiftDate();
+                string sql = "UPDATE medlem SET fornamn = @fornamn, efternamn = @efternamn, adress = @adress, postnummer = @postnummer, ort = @ort, epost = @epost, hcp = @handikapp, telefonnummer = @telefonnummer, medlemsavgift_betald = @paydate WHERE id = @id"; 
+
+
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+                cmd.Parameters.AddWithValue("@id", ID);
+                cmd.Parameters.AddWithValue("@fornamn", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fornamn.ToLower()));
+                cmd.Parameters.AddWithValue("@efternamn", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(efternamn.ToLower()));
+                cmd.Parameters.AddWithValue("@adress", adress);
+                cmd.Parameters.AddWithValue("@postnummer", postnummer);
+                cmd.Parameters.AddWithValue("@ort", ort);
+                cmd.Parameters.AddWithValue("@epost", epost);
+                cmd.Parameters.AddWithValue("@handikapp", handikapp);
+                cmd.Parameters.AddWithValue("@telefonnummer", telefonNummer);
+                cmd.Parameters.AddWithValue("@paydate", payDate);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+
+        }
+
+        public void DeleteMember()
+        {
+
+            NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
+            try
+            {
+                string sql = "DELETE FROM medlem WHERE id = @id;";
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@id", ID);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+        }
 
         public override string ToString()
         {
