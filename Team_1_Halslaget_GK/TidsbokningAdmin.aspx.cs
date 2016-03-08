@@ -15,6 +15,7 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            UpdateTable(GetBookedTimes());
             if (!IsPostBack)
             {
                 Table1.Visible = false;
@@ -113,6 +114,7 @@ namespace Team_1_Halslaget_GK
                 lblotherplayers.ForeColor = Color.Red;
                 Label1.Visible = false;
             }
+            
         }
 
         protected void ShowPlayerInfo(string time)
@@ -331,6 +333,7 @@ namespace Team_1_Halslaget_GK
             }
 
             lblotherplayers.Text = "Handikapp överstiger tyvärr 100";
+            UpdateTable(GetBookedTimes());
         }
 
         public void Deletebooking(int medlem_id, int bokning_id, string date)
@@ -363,8 +366,7 @@ namespace Team_1_Halslaget_GK
             string date = Session["selectedDate"].ToString();
 
             Deletebooking(medlems_id, bokning_id, date);
-
-            UpdateTable(GetBookedTimes());
+            
         }
 
         protected void Removeplayer2Btn_Click(object sender, EventArgs e)
@@ -374,8 +376,7 @@ namespace Team_1_Halslaget_GK
             string date = Session["selectedDate"].ToString();
 
             Deletebooking(medlems_id, bokning_id, date);
-
-            UpdateTable(GetBookedTimes());
+            
         }
 
         protected void Removeplayer3Btn_Click(object sender, EventArgs e)
@@ -385,8 +386,7 @@ namespace Team_1_Halslaget_GK
             string date = Session["selectedDate"].ToString();
 
             Deletebooking(medlems_id, bokning_id, date);
-
-            UpdateTable(GetBookedTimes());
+            
         }
 
         protected void Removeplayer4Btn_Click(object sender, EventArgs e)
@@ -396,8 +396,7 @@ namespace Team_1_Halslaget_GK
             string date = Session["selectedDate"].ToString();
 
             Deletebooking(medlems_id, bokning_id, date);
-
-            UpdateTable(GetBookedTimes());
+          
         }
     }
 }
