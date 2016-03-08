@@ -127,4 +127,14 @@
  .players {
      font-size:large;
  }
+ .delete{
+  display: inline-block;
+  width: 25px;
+  background-color: #D2D2D2;
+  border-radius: 50%;
+  font-size: 25px;
+  line-height: 18px;
+  cursor: pointer;
+  margin-left: 5px;
+    }
 

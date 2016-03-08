@@ -31,7 +31,7 @@ namespace Team_1_Halslaget_GK
             string userID = Session["Username"].ToString();
             Session["userID"] = userID;
             Session["admin"] = admin;
-            Response.Redirect("~/Tidsbokning.aspx");                
+            Response.Redirect("~/Tidsbokningadmin.aspx");                
         }
 
         protected void btnGoToHandleBookings_Click(object sender, EventArgs e)

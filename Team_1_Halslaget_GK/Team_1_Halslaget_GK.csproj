@@ -129,8 +129,8 @@
     <Content Include="PublishNewsAdmin.aspx" />
     <Content Include="SeasonSettings.aspx" />
     <Content Include="TestPage.aspx" />
-    <Content Include="Tidsbokningadmin.aspx" />
     <Content Include="Tidsbokning.aspx" />
+    <Content Include="TidsbokningAdmin.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -235,19 +235,19 @@
     <Compile Include="TestPage.aspx.designer.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tidsbokningadmin.aspx.cs">
-      <DependentUpon>Tidsbokningadmin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Tidsbokningadmin.aspx.designer.cs">
-      <DependentUpon>Tidsbokningadmin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Tidsbokning.aspx.cs">
       <DependentUpon>Tidsbokning.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Tidsbokning.aspx.designer.cs">
       <DependentUpon>Tidsbokning.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TidsbokningAdmin.aspx.cs">
+      <DependentUpon>TidsbokningAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TidsbokningAdmin.aspx.designer.cs">
+      <DependentUpon>TidsbokningAdmin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
