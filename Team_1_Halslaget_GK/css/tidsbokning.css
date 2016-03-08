@@ -1,0 +1,140 @@
+.timeTable td{
+    background-color: #7cff82;
+    text-align:center;
+}
+.timeTable{
+    width:100%;
+    height:675px;    
+}
+.timeTable td:hover {
+    background-color: red;
+    cursor: pointer;
+}
+.timeTable td:active {
+    background-color:red;
+}
+.booked td{
+    background-color: #f5fb64;
+}
+
+.fullybooked td{
+    background-color: #fe6969;
+}
+.timeTable a {
+    color: black;
+}
+.page-overlay-info-box{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 500;
+    display: none;
+}
+
+.overlay-message {
+    margin: 0em auto;
+    margin-top: 30%;
+    padding: 1em;
+    background: white;
+    width: 400px;
+}
+.calenderBox {
+    padding: 20px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;   
+}
+.aspCalender {
+    width: 100%;
+}
+
+.CalenderDay {
+    font-size:50px;
+    height: 100px;
+}
+.CalenderTitel {    
+    font-size:50px;
+
+}
+.CalenderSelectedDay {
+    font-size:50px;
+    height: 100px;
+}
+.CalenderWeekendDay {
+    font-size:50px;
+    height: 100px;
+}
+.CalnderOtherMonthDay {
+    height: 100px;
+}
+.otherplayersbackground {
+    position:fixed;
+    padding:0;
+    margin:0;
+    display: none;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.5);
+    z-index: 11100;
+
+}
+
+.otherplayers{
+    width:40%; 
+    min-width: 350px;   
+    background-color: #2d2d2d;
+    margin: 150px auto;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+    text-align: center;
+    z-index: 11101;
+    color: white;
+    padding: 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;   
+}
+ .otherplayers .closebtn {
+    float:right;
+    margin-top:-50px;
+    margin-right:-50px;
+    cursor:pointer;
+    color: #fff;
+    border: 1px solid #AEAEAE;
+    border-radius: 30px;
+    background: #605F61;
+    font-size: 31px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0px;
+    padding: 11px 3px;       
+}
+ .otherplayers .my-txt-box {
+     margin: 2% auto;
+     width: 50%;
+     height:50px;    
+ }
+
+ .lblotherplayers {
+     font-size:xx-large;
+ }
+ .players {
+     font-size:large;
+ }
+ .delete{
+  display: inline-block;
+  width: 25px;
+  background-color: #D2D2D2;
+  border-radius: 50%;
+  font-size: 25px;
+  line-height: 18px;
+  cursor: pointer;
+  margin-left: 5px;
+    }
+

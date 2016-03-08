@@ -13,5 +13,46 @@ namespace Team_1_Halslaget_GK
         {
 
         }
+
+        protected void btnLogOut_ServerClick(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("~/deafult.aspx");
+
+        }
+
+        protected void btnLogOutResponsive_ServerClick(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("~/deafult.aspx");
+        }
+
+        protected void btnGoToBookingResponsive_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["userID"] = userID;
+            Response.Redirect("~/Tidsbokning.aspx");
+        }
+
+        protected void btnGoToBookingMain_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["userID"] = userID;
+            Response.Redirect("~/Tidsbokning.aspx");
+        }
+
+        protected void btnGoToMyPage_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["userID"] = userID;
+            Response.Redirect("~/MyPage.aspx");
+        }
+
+        protected void btnGoToMyPageResponsive_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["userID"] = userID;
+            Response.Redirect("~/MyPage.aspx");
+        }
     }
 }

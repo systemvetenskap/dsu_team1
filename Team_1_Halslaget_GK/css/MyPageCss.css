@@ -1,0 +1,165 @@
+﻿.p-my-page{
+    display:block;
+    float: left;
+    margin: 0.5em;
+}
+
+.pull-right{
+    float: right;
+}
+
+.my-page-title{
+    width: 98%;
+    border-bottom: 1px solid #E5C100;
+}
+
+.p-my-game{
+    margin-top: 3em;
+}
+
+.p-my-info{
+    margin-left: 2em;
+    margin-top: 1em;
+}
+.p-my-info-modal{
+    margin-top: 1em;
+    cursor:pointer;
+}
+
+.top-n-bottom-space{
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.my-button-50{
+    width: 50%;
+}
+
+.page-overlay-edit-info{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 500;
+    display: none;
+}
+
+.page-overlay-cancel-booking{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 500;
+    display: none;
+}
+
+.overlay-message {
+	margin: 0em auto;
+	margin-top: 10%;
+	padding: 1em;
+	background: white;
+	width: 900px;
+	/*text-align: center;*/
+}
+.overlay-message-booking {
+	margin: 0em auto;
+	margin-top: 10%;
+	padding: 1em;
+	background: white;
+	width: 500px;
+	/*text-align: center;*/
+}
+
+.my-h3{
+    text-align: center;
+}
+
+.my-txt-box{
+      text-align: left;
+  display: block;
+  width: 98%;
+  border-radius: 5px;
+  border-style: solid; /*org inset, want more of a minimalistic style. but can be changed back */
+  border-width: 1px;
+  border-color: #989898;
+	font-size: 1.4em;
+    height: 2em;
+    margin-right: 1em;
+	/*padding: 6px 12px;*/
+	font-family: 'latolight', helvetica, arial, sans-serif;	
+}
+
+.my-glyph-close{
+    cursor: pointer;
+}
+.Grid {
+    /*background-color: #fff; 
+    margin: 5px 0 10px 0; 
+    border: solid 1px #525252; 
+    border-collapse:collapse; */
+    font-family:'latolight'; 
+    color: black;}
+
+.Grid td {
+      padding: 1em;
+      text-align: center;
+      font-size: 1.2em;
+/*      border: solid 1px #c1c1c1; */
+      width: 200px;
+}
+.Grid th  {
+      padding : 1em;
+      color: black;
+      /*background: #AF3C3C;
+      border-left: solid 1px #525252;*/
+      font-size: 1.3em; 
+
+}
+
+.halfBox-right{
+    margin-left: 2%;
+}
+
+@media (max-width: 952px) {	
+	.overlay-message {
+    width: 100%;
+    margin-top: 5em;
+    padding-left: 0em;
+  }
+}
+
+@media (max-width: 500px) {	
+	.overlay-message-booking {
+    width: 100%;
+    margin-top: 5em;
+    padding-left: 0em;
+  }
+}
+
+@media (max-width: 768px) {	
+	.btn-mobile-space {
+    margin-top: 0.5em;
+    margin-bottom: 0.7em;
+  }
+}
+
+@media (max-width: 916px) {	
+    .my-page-half-box{
+    width: 100%;
+    }
+}
+
+@media (max-width: 466px) {	
+    .Grid td{
+      padding: 0em;
+      padding-top: 0.4em;
+      padding-bottom: 0.4em;
+      text-align: center;
+      width: 100%;
+    }
+}
+
