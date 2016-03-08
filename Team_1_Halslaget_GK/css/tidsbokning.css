@@ -85,9 +85,8 @@
 }
 
 .otherplayers{
-    min-width: 300px;
-    width: 20%;
-    height: 300px;
+    width:40%; 
+    min-width: 350px;   
     background-color: #2d2d2d;
     margin: 150px auto;
     -webkit-box-shadow: 0 10px 6px -6px #777;
@@ -96,11 +95,15 @@
     text-align: center;
     z-index: 11101;
     color: white;
+    padding: 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;   
 }
  .otherplayers .closebtn {
     float:right;
-    margin-top:-12px;
-    margin-right:-12px;
+    margin-top:-50px;
+    margin-right:-50px;
     cursor:pointer;
     color: #fff;
     border: 1px solid #AEAEAE;
@@ -112,4 +115,16 @@
     line-height: 0px;
     padding: 11px 3px;       
 }
+ .otherplayers .my-txt-box {
+     margin: 2% auto;
+     width: 50%;
+     height:50px;    
+ }
+
+ .lblotherplayers {
+     font-size:xx-large;
+ }
+ .players {
+     font-size:large;
+ }
 

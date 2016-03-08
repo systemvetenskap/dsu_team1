@@ -121,29 +121,23 @@
      <div class="otherplayersbackground">
        <div class="otherplayers">
         <input id="Button1" type="button" value="X" class="closebtn"  onclick="closeotherplayers();"/>
-        <h4>Här är det några som redan bokat in sig</h4>
-        <asp:Label ID="lblPlayer1" runat="server" Text=""></asp:Label><br />     
-        <asp:Label ID="lblPlayer2" runat="server" Text=""></asp:Label><br />  
-        <asp:Label ID="lblPlayer3" runat="server" Text=""></asp:Label><br />
-        <asp:Label ID="lblPlayer4" runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblotherplayers" CssClass="lblotherplayers" runat="server" Text=""></asp:Label><br /><br />
+        <asp:Label ID="lblPlayer1" CssClass="players" runat="server" Text=""></asp:Label><br /><br  />   
+        <asp:Label ID="lblPlayer2" CssClass="players" runat="server" Text=""></asp:Label><br /><br  />    
+        <asp:Label ID="lblPlayer3" CssClass="players" runat="server" Text=""></asp:Label><br /><br  />  
+        <asp:Label ID="lblPlayer4" CssClass="players" runat="server" Text=""></asp:Label>
+        <div class="fullBox">
+                <asp:Label ID="lblGolfID" runat="server" Text="Ditt Golf-ID"></asp:Label>
+                <asp:TextBox ID="tbPlayer1" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
+                <asp:Label ID="lblOtherPlayerGolfID" runat="server" Text="För att boka in fler personer kan du ange deras Golf-ID:"></asp:Label>
+                <asp:TextBox ID="tbPlayer2" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
+                 <asp:TextBox ID="tbPlayer3" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
+                <asp:TextBox ID="tbPlayer4" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
+        </div>
+        <asp:Button ID="confirmBtn" runat="server" CssClass="my-button" Text="Boka" OnClick="confirmBtn_Click"/>
+    </div>    
        </div>
     </div>
-<div class="fullBox calenderBox">
-    <div class="extraplayers calenderBox">
-        <asp:Label ID="LabelNOPlayers" runat="server" Text="Antal spelare"></asp:Label><br />
-        <asp:DropDownList ID="DropDownListNOPlayers" runat="server" CssClass="DropDown" OnSelectedIndexChanged="DropDownListNOPlayers_SelectedIndexChanged" AutoPostBack="true"><asp:ListItem>1</asp:ListItem><asp:ListItem>2</asp:ListItem><asp:ListItem>3</asp:ListItem><asp:ListItem>4</asp:ListItem></asp:DropDownList><br />
-        <asp:TextBox ID="tbPlayer1" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />
-        <asp:TextBox ID="tbPlayer2" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />      
-        <asp:TextBox ID="tbPlayer3" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox><br />      
-        <asp:TextBox ID="tbPlayer4" runat="server" CssClass="my-txt-box" Visible="false" placeholder="Golf-id på den spelare du vill boka in på den här tiden"></asp:TextBox>
-    </div>
-</div>
-
-        
-        <div id="confirmButtonDiv">
-            <asp:Button ID="confirmBtn" runat="server" CssClass="my-button" Text="Boka" OnClick="confirmBtn_Click"/>
-        </div>
-    </div>    
     </ContentTemplate>
 </asp:UpdatePanel>  
 <%--    Ruta för konfirmation och felmeddelanden--%>

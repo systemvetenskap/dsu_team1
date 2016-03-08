@@ -16,11 +16,11 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
 		{
-            if(Session["userID"] == null)
+            if (Session["userID"] == null)
             {
                 Response.Redirect("~/NotAllowed.aspx");
             }
-            
+
             bool admin = Convert.ToBoolean(Session["admin"]);
 
             lblPlayer1.Text = "";
@@ -108,7 +108,7 @@ namespace Team_1_Halslaget_GK
                         {
                             
                             playercount++;
-                            if (playercount == 4)
+                            if (playercount >= 4)
                             {
                                 tr.Cells[i].BackColor = Color.Red; //byta ut till css class sen
                             }
@@ -126,6 +126,17 @@ namespace Team_1_Halslaget_GK
 
         protected void LinkButton_Click(object sender, EventArgs e)
         {
+            confirmBtn.Enabled = true;
+            confirmBtn.Visible = true;
+            lblGolfID.Visible = true;
+            lblOtherPlayerGolfID.Visible = true;
+            tbPlayer1.Visible = true;
+            tbPlayer2.Visible = true;
+            tbPlayer3.Visible = true;
+            tbPlayer4.Visible = true;
+
+            lblotherplayers.ForeColor = Color.White;
+
             LinkButton btn = (LinkButton)sender;
 
             lblPlayer1.Text = "";
@@ -138,7 +149,42 @@ namespace Team_1_Halslaget_GK
             string LinkButtonID = btn.ID;
             string bokningsID = LinkButtonID.Remove(0,10);
 
-            Session["BokningsID"] = bokningsID;                     
+            Session["BokningsID"] = bokningsID;
+
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showotherplayers", "showotherplayers();", true);
+
+            tbPlayer1.Text = "GolfID";//Session["UserID"].ToString();
+            tbPlayer1.Enabled = false;
+
+            lblotherplayers.Text = "På den här tiden finns det inga tidigare bokningar";
+
+            if (lblPlayer1.Text != "")
+            {
+                tbPlayer4.Visible = false;
+                lblotherplayers.Text = "På den här tiden finns det redan vissa bokningar";
+            }
+            if (lblPlayer2.Text != "")
+            {
+                tbPlayer3.Visible = false;
+                lblotherplayers.Text = "På den här tiden finns det redan vissa bokningar";
+            }
+            if (lblPlayer3.Text != "")
+            {
+                tbPlayer2.Visible = false;
+                lblotherplayers.Text = "På den här tiden finns det redan vissa bokningar";
+            }
+            if (lblPlayer4.Text != "")
+            {
+                tbPlayer1.Visible = false;
+                confirmBtn.Enabled = false;
+                confirmBtn.Visible = false;
+                lblOtherPlayerGolfID.Visible = false;
+                lblGolfID.Visible = false;
+
+                lblotherplayers.Text = "Den här tiden är tyvärr fullbokad!";
+                lblotherplayers.ForeColor = Color.Red;
+            }
+
         }
 
         protected void ShowPlayerInfo(string time)
@@ -151,32 +197,31 @@ namespace Team_1_Halslaget_GK
                      
                 if (golfplayer.startid == time && playercount == 1)
                 {
-                    lblPlayer1.Text = golfplayer.hcp + " " + golfplayer.kon;                  
+                    lblPlayer1.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: "+ golfplayer.kon;                  
                     playercount++;
                 }
 
                 else if (golfplayer.startid == time && playercount == 2)
                 {
-                    lblPlayer2.Text = golfplayer.hcp + " " + golfplayer.kon;
+                    lblPlayer2.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: " + golfplayer.kon;
                     playercount++;
                 }
 
                 else if (golfplayer.startid == time && playercount == 3)
                 {
-                    lblPlayer3.Text = golfplayer.hcp + " " + golfplayer.kon;
+                    lblPlayer3.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: " + golfplayer.kon;
                     playercount++;
                 }
 
                 else if (golfplayer.startid == time && playercount == 4)
                 {
-                    lblPlayer4.Text = golfplayer.hcp + " " + golfplayer.kon;
+                    lblPlayer4.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: " + golfplayer.kon;
                     playercount++;
                 }
             }
-            if (lblPlayer1.Text != "")
-            {
-                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showotherplayers", "showotherplayers();", true);
-            }
+
+                
+
         }
 
         protected void confirmBtn_Click(object sender, EventArgs e)
@@ -191,7 +236,7 @@ namespace Team_1_Halslaget_GK
             {
                 if(!admin)
                 {
-                    int medlems_id = Convert.ToInt32(Session["Username"]);
+                    int medlems_id = Convert.ToInt32(Session["userID"]);
 
                     bool success = newbooking.Newbooking(medlems_id, boknings_id, date, conn);
                     if (success)
@@ -359,7 +404,7 @@ namespace Team_1_Halslaget_GK
                     hcp += pl.hcp;
                     playercount++;
 
-                    if (!admin && Convert.ToInt32(Session["username"]) == pl.id)
+                    if (!admin && Convert.ToInt32(Session["userID"]) == pl.id)
                     {
                         BookingInfoText.InnerText = "Du är redan inbokad på denna tid";
                         ClientScript.RegisterStartupScript(GetType(), "hwa", "openOverlayInfoBox();", true);
@@ -494,32 +539,6 @@ namespace Team_1_Halslaget_GK
             {
                 return dt;
             }
-        }
-
-        protected void DropDownListNOPlayers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            tbPlayer2.Visible = false;
-            tbPlayer3.Visible = false;
-            tbPlayer4.Visible = false;
-
-
-            if (DropDownListNOPlayers.SelectedIndex == 1)
-            {
-                tbPlayer2.Visible = true;
-            }
-
-            if (DropDownListNOPlayers.SelectedIndex == 2)
-            {
-                tbPlayer2.Visible = true;           
-                tbPlayer3.Visible = true;
-            }
-
-            if (DropDownListNOPlayers.SelectedIndex == 3)
-            {
-                tbPlayer2.Visible = true;
-                tbPlayer3.Visible = true;
-                tbPlayer4.Visible = true;
-            }
-        }
+        }      
     }
 }
