@@ -652,6 +652,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label lblotherplayers;
         
         /// <summary>
+        /// hcpcheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hcpcheck;
+        
+        /// <summary>
         /// lblPlayer1 control.
         /// </summary>
         /// <remarks>
