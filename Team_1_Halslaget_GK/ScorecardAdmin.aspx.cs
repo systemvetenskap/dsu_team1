@@ -23,7 +23,7 @@ namespace Team_1_Halslaget_GK
 
             h.slag = Convert.ToInt32(TextBox1.Text); // Tänkte loopa här först men de visade sig vara krångligare än planeat.
                                                      // Kanske behövs det inte loopas heller egentligen, eller så gör det det. Kör man alltid 18 hål?
-            h.nummer = 1;
+            h.nummer = 1;                            // - Dunno, LoL. Erik.D.
             round.Add(h);
 
             h.slag = Convert.ToInt32(TextBox2.Text);
