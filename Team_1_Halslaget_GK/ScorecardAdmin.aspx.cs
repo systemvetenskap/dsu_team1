@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Serialization;
+using System.Data;
 
 namespace Team_1_Halslaget_GK
 {
@@ -13,7 +14,26 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
+                InitilizeGUI();
+            }
+        }
 
+        private void InitilizeGUI()
+        {
+            BindDropDownCompetition();
+        }
+
+        private void BindDropDownCompetition()
+        {
+            Competition getCompetitions = new Competition();
+            DataTable competitions = getCompetitions.GetAllCompetitions();
+
+            dropDownCompetition.DataSource = competitions;
+            dropDownCompetition.DataTextField = "namn";
+            dropDownCompetition.DataBind();
+            this.dropDownCompetition.Items.Insert(0, "Välj");
         }
 
         protected List<Hole> FindNOShots()
@@ -99,8 +119,8 @@ namespace Team_1_Halslaget_GK
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            int memberid = 4;
-            int compid = 1;
+            int memberid = int.Parse(lblMemberId.Text); //BOrde fungera.
+            int compid = int.Parse(lblCompetitionID.Text); //Borde fungera.
 
             List<Hole> round = FindNOShots();
             string xml = SerializeRound(round);
@@ -118,6 +138,57 @@ namespace Team_1_Halslaget_GK
                 xmlSerializer.Serialize(textWriter, round);
                 return textWriter.ToString();
             }
+        }
+
+        /// <summary>
+        /// Click event for btnGetMemberInfo, uses medlem class to get memberinfo and
+        /// most importantly memberid from database. Uses golfid to identify what member to take.
+        /// </summary>
+        protected void btnGetMemberInfo_Click(object sender, EventArgs e)
+        {
+            medlem getMedlem = new medlem();
+            string golfID = txtGoldID.Text;
+            txtGoldID.Text = "";
+            DataTable memberInfo = getMedlem.GetMemberWithGolfID(golfID);
+
+            if(memberInfo.Rows.Count <= 0)
+            {
+                lblErrorNoMember.Text = "Det fanns ingen medlem med golf id " + golfID;
+            }
+            else
+            {
+                lblErrorNoMember.Text = "";
+                lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
+                lblFirstName.Text = memberInfo.Rows[0]["fornamn"].ToString();
+                lblLastName.Text = memberInfo.Rows[0]["efternamn"].ToString();
+                txtBoxMemberID.Text = lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
+            }
+        }
+
+        /// <summary>
+        /// Event for dropdown. 
+        /// </summary>
+        protected void dropDownCompetition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string compName = dropDownCompetition.Text;
+            if(compName == "Välj")
+            {
+                lblCompetitionID.Text = "";
+                lblDate.Text = "";
+                lblEndTime.Text = "";
+                lblStartTime.Text = "";
+            }
+            else
+            {
+                Competition specCompetition = new Competition();
+                compName = dropDownCompetition.Text;
+                DataTable competition = specCompetition.GetSpecificCompetition(compName);
+
+                lblCompetitionID.Text = competition.Rows[0]["id"].ToString();
+                lblDate.Text = DateTime.Parse(competition.Rows[0]["datum"].ToString()).ToShortDateString(); ;
+                lblEndTime.Text = DateTime.Parse(competition.Rows[0]["sluttid"].ToString()).ToShortTimeString();
+                lblStartTime.Text = DateTime.Parse(competition.Rows[0]["starttid"].ToString()).ToShortTimeString();
+            }            
         }
     }
 }

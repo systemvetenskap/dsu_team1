@@ -20,10 +20,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e) //Fyller i listboxen med alla medlemmar vid start
         {
-            if (Session["Username"] == null && Session["admin"] == null)
-            {
-                Response.Redirect("~/NotAllowed.aspx");
-            }
+            //if (Session["Username"] == null && Session["admin"] == null)
+            //{
+            //    Response.Redirect("~/NotAllowed.aspx");
+            //}
             if(!IsPostBack)
             {
                 InitilizeGUI();
@@ -108,7 +108,7 @@ namespace Team_1_Halslaget_GK
         {
             string paystatus = "Ja";
             DateTime oneYearAgo = DateTime.Now.AddYears(-1);
-            if(payDate > oneYearAgo)
+            if(payDate < oneYearAgo)
             {
                 paystatus = "Nej";
                 return paystatus;

@@ -268,6 +268,10 @@ namespace Team_1_Halslaget_GK
             return newID;
         }
 
+        /// <summary>
+        /// Method gets all the members in the database.
+        /// </summary>
+        /// <returns>List with all members.</returns>
         public List<medlem> GetAllMembers()
         {
             List<medlem> medlemmar = new List<medlem>();
@@ -305,7 +309,10 @@ namespace Team_1_Halslaget_GK
             }            
         }
 
-
+        /// <summary>
+        /// Method updates a members information from the admin side.
+        /// </summary>
+        /// <returns></returns>
         public bool AdminUpdateMemberInfo()
         {
             NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
@@ -344,6 +351,9 @@ namespace Team_1_Halslaget_GK
 
         }
 
+        /// <summary>
+        /// Method deletes a member from the database.
+        /// </summary>
         public void DeleteMember()
         {
 
@@ -365,6 +375,34 @@ namespace Team_1_Halslaget_GK
             {
                 con.Close();
                 con.Dispose();
+            }
+        }
+
+        public DataTable GetMemberWithGolfID(string golfID)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                string golfID1 = golfID;
+                conn.Open();
+                NpgsqlCommand cmdGetMemberInfo = new NpgsqlCommand("SELECT id, fornamn, efternamn FROM medlem WHERE golfid = @golfid; ", conn);
+                cmdGetMemberInfo.Parameters.AddWithValue("@golfid", golfID1);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetMemberInfo;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
             }
         }
 

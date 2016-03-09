@@ -1,0 +1,15 @@
+﻿.em-margin-horizontal{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.line-up{
+    margin-top: 8.25em;
+}
+
+@media (max-width: 768px) {	
+	.line-up {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+}

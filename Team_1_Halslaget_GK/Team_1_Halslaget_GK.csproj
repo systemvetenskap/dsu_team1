@@ -75,6 +75,7 @@
     <Content Include="css\Medlemsregister.css" />
     <Content Include="css\MyPageCss.css" />
     <Content Include="css\Publishnewsstyle.css" />
+    <Content Include="css\ScoreCardStyle.css" />
     <Content Include="css\SeasonSettingStyle.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
@@ -170,6 +171,7 @@
     </Compile>
     <Compile Include="Classes\Hole.cs" />
     <Compile Include="Classes\Player.cs" />
+    <Compile Include="Classes\Competition.cs" />
     <Compile Include="CreateNewMember.aspx.cs">
       <DependentUpon>CreateNewMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

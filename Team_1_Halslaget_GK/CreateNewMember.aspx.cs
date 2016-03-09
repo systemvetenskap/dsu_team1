@@ -65,7 +65,6 @@ namespace Team_1_Halslaget_GK
             MedlemObj.kon = dropDownListKon.Text;
             MedlemObj.medlemsKategori = dropDownMemberType.Text;
             MedlemObj.payStatus = SetPayStatus();
-            //MedlemObj.fodelseDatum = txtBirthDate.Text;
 
             if(MedlemObj.InsertNewMember())
             {
