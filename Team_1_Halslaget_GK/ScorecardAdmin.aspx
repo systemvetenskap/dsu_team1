@@ -26,4 +26,6 @@
         <asp:TextBox ID="TextBox18" CssClass="my-txt-box" runat="server"></asp:TextBox>
    </div>
 
+    <asp:Button ID="Button1" runat="server" Text="Button" onclick="Button1_Click"/>
+
 </asp:Content>
