@@ -13,5 +13,10 @@ namespace Team_1_Halslaget_GK
         {
 
         }
+
+        protected void Beräkna_Slope_Click(object sender, EventArgs e)
+        {
+            //Beräkning av slope => spelhandicap = Exakthandicap * (Slopevärde/113) + (banvärde - banans par).  Banvärde = "CR"
+        }
     }
 }
