@@ -37,6 +37,12 @@
    </div>
 
             <br />
+
+            <br />
+            <asp:Image ID="Slope_Tabell_Damer" src="img/Slope_Tabell_Damer.jpg" runat="server" />
+            <asp:Image ID="Slope_Tabell_Herrar" src="img/Slope_Tabell_Herrar.jpg" runat="server" />
+        <br />
+    <br />
         <br />
         <asp:Label ID="Label4" runat="server" Font-Size="Large" Text="Beräkna Slope för Hålslaget GK :"></asp:Label>
         <br />

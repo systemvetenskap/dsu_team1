@@ -98,6 +98,8 @@
     <Content Include="img\golf2.jpg" />
     <Content Include="img\golf.jpg" />
     <Content Include="img\golfboll.jpg" />
+    <Content Include="img\Slope_Tabell_Damer.jpg" />
+    <Content Include="img\Slope_Tabell_Herrar.jpg" />
     <Content Include="ja\ChangePasswordJs.js" />
     <Content Include="ja\memberRegScript.js" />
     <Content Include="ja\MyPageScripts.js" />

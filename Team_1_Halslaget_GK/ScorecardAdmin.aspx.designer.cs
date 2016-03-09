@@ -202,6 +202,24 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox TextBox18;
         
         /// <summary>
+        /// Slope_Tabell_Damer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Slope_Tabell_Damer;
+        
+        /// <summary>
+        /// Slope_Tabell_Herrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Slope_Tabell_Herrar;
+        
+        /// <summary>
         /// Label4 control.
         /// </summary>
         /// <remarks>
