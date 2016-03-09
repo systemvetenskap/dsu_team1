@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Code behind for tidsbokning.aspx
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -400,5 +402,58 @@ namespace Team_1_Halslaget_GK
                 }
             }
         }
+
+        /// <summary>
+        /// Dayrender event to "Lock" out dates that are outside of the season and make sure a user cannot
+        /// make a booking more than 30 days into the "future".
+        /// </summary>
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            Season setDates = new Season();
+            string year = DateTime.Now.Year.ToString();
+            DateTime start = setDates.GetSeasonStartDate(year);
+            DateTime end = setDates.GetSeasonEndDate(year);
+
+            if (start <= DateTime.Today) //Sets so that any date after today is not selactable.
+            {
+                start = DateTime.Today;
+                if(end >= DateTime.Today.AddMonths(1))
+                {
+                    end = DateTime.Today.AddMonths(1);
+                    if((e.Day.Date < start) || (e.Day.Date > end))
+                    {
+                        e.Day.IsSelectable = false;
+                        e.Cell.ForeColor = System.Drawing.Color.Black;
+                        e.Cell.BackColor = System.Drawing.Color.Gray;
+                        e.Cell.Style.Add("cursor", "not-allowed");
+                        e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+                    } 
+                }
+                else 
+                {
+                    if((e.Day.Date < start) || (e.Day.Date > end))
+                    {
+                        e.Day.IsSelectable = false;
+                        e.Cell.ForeColor = System.Drawing.Color.Black;
+                        e.Cell.BackColor = System.Drawing.Color.Gray;
+                        e.Cell.Style.Add("cursor", "not-allowed");
+                        e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+                    } 
+                }
+            }
+            else
+            {
+                if ((e.Day.Date < start) || (e.Day.Date > end))
+                {
+                    e.Day.IsSelectable = false;
+                    e.Cell.ForeColor = System.Drawing.Color.Black;
+                    e.Cell.BackColor = System.Drawing.Color.Gray;
+                    e.Cell.Style.Add("cursor", "not-allowed");
+                    e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+                }
+            }
+        }
+
+
     }
 }

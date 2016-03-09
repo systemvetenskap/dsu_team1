@@ -15,6 +15,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
             UpdateTable(GetBookedTimes());
             if (!IsPostBack)
             {
@@ -397,6 +401,40 @@ namespace Team_1_Halslaget_GK
 
             Deletebooking(medlems_id, bokning_id, date);
           
+        }
+        /// <summary>
+        /// Dayrender event to "Lock" out dates that are outside of the season.
+        /// </summary>
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            Season setDates = new Season();
+            string year = DateTime.Now.Year.ToString();
+            DateTime start = setDates.GetSeasonStartDate(year);
+            DateTime end = setDates.GetSeasonEndDate(year);
+
+            if (start <= DateTime.Today) //Sets so that any date before today is not selactable.
+            {
+                start = DateTime.Today;
+                if ((e.Day.Date < start) || (e.Day.Date > end))
+                {
+                    e.Day.IsSelectable = false;
+                    e.Cell.ForeColor = System.Drawing.Color.Black;
+                    e.Cell.BackColor = System.Drawing.Color.Gray;
+                    e.Cell.Style.Add("cursor", "not-allowed");
+                    e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
+                }
+            }
+            else
+            {
+                if ((e.Day.Date < start) || (e.Day.Date > end))
+                {
+                    e.Day.IsSelectable = false;
+                    e.Cell.ForeColor = System.Drawing.Color.Black;
+                    e.Cell.BackColor = System.Drawing.Color.Gray;
+                    e.Cell.Style.Add("cursor", "not-allowed");
+                    e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
+                }
+            }
         }
     }
 }

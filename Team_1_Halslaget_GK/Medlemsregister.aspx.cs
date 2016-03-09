@@ -214,16 +214,6 @@ namespace Team_1_Halslaget_GK
 
         protected void ButtonRadera_Click (object sender, EventArgs e)
         {
-            //string sql = "DELETE FROM medlem WHERE id = " + Convert.ToInt32(lblMedlemsID.Text);
-            //NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
-
-            //NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-
-            //con.Open();
-            //cmd.ExecuteNonQuery();
-            //con.Close();
-            //con.Dispose();
-
             medlem deleteMember = new medlem();
             deleteMember.ID = Convert.ToInt32(lblMedlemsID.Text);
             deleteMember.DeleteMember();
