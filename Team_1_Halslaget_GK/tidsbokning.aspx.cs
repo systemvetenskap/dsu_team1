@@ -44,7 +44,6 @@ namespace Team_1_Halslaget_GK
                               
         }
 
-
         protected void LinkButton_Click(object sender, EventArgs e)
         {
             confirmBtn.Enabled = true;

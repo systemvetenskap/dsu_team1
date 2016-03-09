@@ -52,7 +52,6 @@ namespace Team_1_Halslaget_GK
         /// <param name="bokningsnr"></param>
         public void CancelBooking(string bokningsnr)
         {
-
             try
             {
                 conn.Open();
