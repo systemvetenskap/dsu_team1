@@ -42,7 +42,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Npgsql, Version=2.2.4.3, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>data\Npgsql.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\PostgreSQL\Npgsql\ms.net45\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -168,6 +168,7 @@
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Hole.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="CreateNewMember.aspx.cs">
       <DependentUpon>CreateNewMember.aspx</DependentUpon>
