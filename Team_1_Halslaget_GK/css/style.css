@@ -373,6 +373,20 @@ h3 {
   font-family: 'latolight', helvetica, arial, sans-serif;	
 }
 
+.my-list-box{
+  text-align: left;
+  display: block;
+  width: 98%;
+  border-radius: 5px;
+  border-style: solid; 
+  border-width: 1px;
+  border-color: #989898;
+  font-size: 1.4em;
+  margin-right: 1em;
+  padding: 2px 2px 2px 6px;
+  font-family: 'latolight', helvetica, arial, sans-serif;	
+}
+
 /*****************************************************
 	Glyphstorlek
 *****************************************************/
