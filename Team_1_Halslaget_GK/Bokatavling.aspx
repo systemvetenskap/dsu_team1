@@ -13,14 +13,28 @@
                     <asp:ListItem>Singeltävlingar</asp:ListItem>
                     <asp:ListItem>Lagtävlingar</asp:ListItem>
                 </asp:RadioButtonList>
-                <br />                           
-                <asp:ListBox ID="lbTavlingar" CssClass="my-list-box" runat="server"></asp:ListBox>      
+                <br />
+                hej                         
+                <asp:GridView ID="gvTavlingar" DataKeyNames="id" CssClass="Grid" GridLines="None" runat="server" AutoGenerateColumns="false"  OnSelectedIndexChanged="gvTavlingar_SelectedIndexChanged">
+                           <Columns>
+                                    <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="id" />
+                                    <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" />
+                                    <asp:BoundField DataField="starttid" HeaderText="Start" DataFormatString="{0:HH:mm}" />
+                                    <asp:BoundField DataField="sluttid" HeaderText="Slut" DataFormatString="{0:HH:mm}"  />                            
+                                    <asp:CommandField ShowSelectButton="true" />
+                            </Columns>
+                    </asp:GridView>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             </div>
             <div class="halfBox">
                 <h3><asp:Label ID="lblTavlingNamn" runat="server" Text="TÄVLING!!!!"></asp:Label></h3><br />
                 <h4><asp:Label ID="lblTavlingTyp" runat="server" Text="Singel"></asp:Label></h4><br />
-                <p><asp:Label ID="lblTavlingDesc" runat="server" Text=" Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"></asp:Label></p><br />
-                <asp:Button ID="btnConfirm" CssClass="my-button" runat="server" Text="Anmäl mig" /><br />
+                <p><asp:Label ID="lblTavlingDesc" runat="server" Text=" Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"></asp:Label></p><br /><br />
+                <asp:TextBox ID="tbgolfid1" CssClass="my-txt-box" placeholder="Golf-ID" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tbgolfid2" CssClass="my-txt-box"  placeholder="Golf-ID" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tbgolfid3" CssClass="my-txt-box"  placeholder="Golf-ID" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tbgolfid4" CssClass="my-txt-box"  placeholder="Golf-ID" runat="server"></asp:TextBox><br /><br />
+                <asp:Button ID="btnConfirm" CssClass="my-button" runat="server" Text="Anmäl mig" OnClick="btnConfirm_Click" /><br />
                 <asp:Button ID="btnRemove" CssClass="my-button" runat="server" Text="Ta bort mig från tävlingen" />
             </div>
         </ContentTemplate>
