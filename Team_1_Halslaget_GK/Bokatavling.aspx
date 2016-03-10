@@ -26,7 +26,7 @@
                     </asp:GridView>
                 <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             </div>
-            <div class="halfBox">
+            <div class="halfBox"><div id="jaha" runat="server"></div>
                 <h3><asp:Label ID="lblTavlingNamn" runat="server" Text="Namn"></asp:Label></h3><br />
                 <h4><asp:Label ID="lblTavlingTyp" runat="server" Text="Typ"></asp:Label></h4><br />
                 <p><asp:Label ID="lblTavlingDesc" runat="server" Text="Desc"></asp:Label></p><br /><br />

@@ -272,9 +272,7 @@ namespace Team_1_Halslaget_GK
 
         public bool bookTeam()
         {
-
-            
-
+            Team 
             return true;
         }
 
