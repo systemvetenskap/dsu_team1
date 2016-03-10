@@ -26,7 +26,7 @@
                     </asp:GridView>
                 <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             </div>
-            <div class="halfBox"><div id="jaha" runat="server"></div>
+            <div class="halfBox">
                 <h3><asp:Label ID="lblTavlingNamn" runat="server" Text="Namn"></asp:Label></h3><br />
                 <h4><asp:Label ID="lblTavlingTyp" runat="server" Text="Typ"></asp:Label></h4><br />
                 <p><asp:Label ID="lblTavlingDesc" runat="server" Text="Desc"></asp:Label></p><br /><br />
@@ -41,6 +41,7 @@
                     display="Dynamic"
                     ValidationGroup="typelaggroup">                       
                 </asp:RequiredFieldValidator>
+                <div id="teamtb" runat="server">
                 <asp:TextBox ID="tbgolfid2" CssClass="my-txt-box"  placeholder="Golf-ID" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator
                     ID="RequiredFieldValidator3"
@@ -63,7 +64,7 @@
                     display="Dynamic"
                     ValidationGroup="typelaggroup">                       
                 </asp:RequiredFieldValidator>
-                <asp:TextBox ID="tbgolfid4" CssClass="my-txt-box"  placeholder="Golf-ID" runat="server"></asp:TextBox><br /><br />
+                <asp:TextBox ID="tbgolfid4" CssClass="my-txt-box"  placeholder="Golf-ID" runat="server"></asp:TextBox><br /><br /></div>
                 <asp:Button ID="btnConfirm" CssClass="my-button" runat="server" Text="Anmäl mig" OnClick="btnConfirm_Click" /><br />
                 <asp:Button ID="btnConfirm2" ValidationGroup="typelaggroup" CssClass="my-button" runat="server" Text="Anmäl lag" OnClick="btnConfirm2_Click"/>
                 <asp:Button ID="btnRemove" CssClass="my-button" runat="server" Text="Ta bort mig från tävlingen" OnClick="btnRemove_Click" />            

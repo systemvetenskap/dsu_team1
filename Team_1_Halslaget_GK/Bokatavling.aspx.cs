@@ -132,7 +132,7 @@ namespace Team_1_Halslaget_GK
 
         protected void btnConfirm2_Click(object sender, EventArgs e)
         {
-
+            bookTeam();
         }
 
         // ----------- Funktioner --------- //   
@@ -272,7 +272,57 @@ namespace Team_1_Halslaget_GK
 
         public bool bookTeam()
         {
-            Team 
+            Team newteam = new Team();
+            List<string> GolfidList = new List<string>();
+
+            foreach (TextBox tb in teamtb.Controls.OfType<TextBox>())
+            {
+                GolfidList.Add(tb.Text);
+            }
+
+            foreach (string golfid in GolfidList)
+            {
+                string sql = "SELECT * FROM medlem WHERE golfid = @golfid";
+
+                conn.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("golfid", golfid);
+
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    medlem newmedlem = new medlem();
+                    newmedlem.ID = Convert.ToInt32(dr["id"]);
+                    newteam.Listofmedlem.Add(newmedlem);
+                }
+                conn.Close();        
+            }
+
+            string sql2 = "INSERT INTO lag(lag_namn) VALUES(@lag_namn) RETURNING lag_id";
+            conn.Open();
+            NpgsqlCommand cmd2 = new NpgsqlCommand(sql2, conn);
+            cmd2.Parameters.AddWithValue("@lag_namn", "null");
+            string teamid = cmd2.ExecuteNonQuery().ToString();
+
+            conn.Close();
+
+            foreach (medlem m in newteam.Listofmedlem)
+            {
+                string sql3 = "INSERT INTO lag_medlem (medlem_id, lag_id) VALUES (@medlem_id, @lag_id)";
+                conn.Open();
+                NpgsqlCommand cmd3 = new NpgsqlCommand(sql3, conn);
+                cmd3.Parameters.AddWithValue("@medlem_id", m.ID.ToString());
+                cmd3.Parameters.AddWithValue("lag_id", teamid);
+                conn.Close();
+            }
+
+            string sql4 = "INSERT INTO lag_tavling (id_lag, id_tavling) VALUES (@lag_id, @tavling_id)";
+            conn.Open();
+            NpgsqlCommand cmd4 = new NpgsqlCommand(sql4, conn);
+            cmd4.Parameters.AddWithValue("@lag_id", teamid);
+            cmd4.Parameters.AddWithValue("@tavling_id", gvTavlingar.SelectedValue.ToString());
+
             return true;
         }
 

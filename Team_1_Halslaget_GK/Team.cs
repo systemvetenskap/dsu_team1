@@ -10,7 +10,7 @@ namespace Team_1_Halslaget_GK
         public string id { get; set; }
         public string namn { get; set; }
 
-        public List<medlem> Listofmedlem { get; set; }
+        public List<medlem> Listofmedlem = new List<medlem>();
     }
 
     

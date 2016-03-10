@@ -67,15 +67,6 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// jaha control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl jaha;
-        
-        /// <summary>
         /// lblTavlingNamn control.
         /// </summary>
         /// <remarks>
@@ -119,6 +110,15 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        
+        /// <summary>
+        /// teamtb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl teamtb;
         
         /// <summary>
         /// tbgolfid2 control.
