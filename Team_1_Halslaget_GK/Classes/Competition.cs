@@ -13,6 +13,9 @@ namespace Team_1_Halslaget_GK
         public string namn { get; set; }
         public string starttid { get; set; }
         public string sluttid { get; set; }
+        public string desc { get; set; }
+        public string type { get; set; }
+        public string id { get; set; }
 
         /// <summary>
         /// Gets all the competition that is in the database.
