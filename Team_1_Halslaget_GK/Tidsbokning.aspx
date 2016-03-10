@@ -50,7 +50,8 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
 
-<asp:ScriptManager runat="server"></asp:ScriptManager>
+
+
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <div class="fullBox page-title">
