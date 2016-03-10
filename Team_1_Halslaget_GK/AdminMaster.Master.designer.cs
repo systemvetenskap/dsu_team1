@@ -31,6 +31,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// btnGoToAdminPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnGoToAdminPanel;
+        
+        /// <summary>
         /// btnLogOut control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btnLogOut;
+        
+        /// <summary>
+        /// btnGoToAdminPanelResponsive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnGoToAdminPanelResponsive;
         
         /// <summary>
         /// btnLogOutResponsive control.

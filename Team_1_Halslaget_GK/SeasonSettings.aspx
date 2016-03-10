@@ -25,7 +25,8 @@
                                 runat="server" 
                                 ErrorMessage="Du måste välja vilken säsong du vill skapa."
                                 ForeColor="Red" 
-                                Font-Size="Smaller" >
+                                Font-Size="Smaller"
+                                 ValidationGroup="season">
                             </asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -50,7 +51,8 @@
                                     runat="server" 
                                     ErrorMessage="Slutdatumet kan inte vara efter startdatumet." 
                                     Font-Size="Smaller" 
-                                    ForeColor="Red">
+                                    ForeColor="Red"
+                                    ValidationGroup="season">
                                 </asp:CompareValidator>
                             </p>
 
@@ -63,7 +65,8 @@
                                         ControlToValidate="txtStartDate" runat="server" 
                                         ErrorMessage="Du måste välja ett startdatum." 
                                         Font-Size="Smaller" 
-                                        ForeColor="Red">
+                                        ForeColor="Red"
+                                        ValidationGroup="season">
                                     </asp:RequiredFieldValidator></p>
                                 </div>
                                 <div class="fullBox">
@@ -89,7 +92,8 @@
                                             runat="server" 
                                             ErrorMessage="Du måste välja ett slutdatum." 
                                             Font-Size="Smaller" 
-                                            ForeColor="Red">
+                                            ForeColor="Red"
+                                            ValidationGroup="season">
                                         </asp:RequiredFieldValidator></p>    
                                     </div>
                                 </div>
@@ -107,7 +111,7 @@
                         </div>
 
                         <div class="fullBox em-margin-horizontal">           
-                            <asp:Button ID="ButtonSetSeason" CssClass="my-button" runat="server" Text="Spara" OnClick="ButtonSetSeason_Click"/> <%--la till den här rackaren bara för att kunna prova min "reverese backend" kod typ som behövs för den typen av db jag skapade--%>
+                            <asp:Button ID="ButtonSetSeason" CssClass="my-button"  ValidationGroup="season" runat="server" Text="Spara" OnClick="ButtonSetSeason_Click"/> <%--la till den här rackaren bara för att kunna prova min "reverese backend" kod typ som behövs för den typen av db jag skapade--%>
                         </div> 
                     </div>
                 </div>

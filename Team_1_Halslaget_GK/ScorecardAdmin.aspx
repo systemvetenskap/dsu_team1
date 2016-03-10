@@ -1,13 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="ScorecardAdmin.aspx.cs" Inherits="Team_1_Halslaget_GK.ScorecardAdmin" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>SCOREKORT</title>
     <link href="css/ScoreCardStyle.css" rel="stylesheet" />
+    <script src="ja/jquery.maskedinput.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
+        <script>
+            $(document).ready(function () {
+                jQuery(function ($) {
+                    $("#ContentPlaceHolder1_txtGoldID").mask("99999_9?999", { placeholder: "x" });
+                });
+            });
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_endRequest(function () {
+                jQuery(function ($) {
+                    $("#ContentPlaceHolder1_txtGoldID").mask("99999_9?999", { placeholder: "x" });
+                });
+            });
+
+        </script>
     <div class="fullBox page-title">
         <h1>SCORECARD</h1>
     </div>
@@ -41,21 +57,20 @@
                 <asp:RequiredFieldValidator 
                     ID="validatorGolfID"
                     ControlToValidate="txtGoldID" 
-                    Forecolor="Red"
-
+                    Forecolor="Red"                    
                     runat="server" 
-                    ErrorMessage="Golf id kan inte lämnas tomt">
+                    ErrorMessage="Golf id kan inte lämnas tomt" ValidationGroup="golfIdGroup"                    >
                 </asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator 
                     ID="regexValidator" 
                     ControlToValidate = "txtGoldID"
                     runat="server" 
-                    ErrorMessage="RegularExpressionValidator"
+                    ErrorMessage="Skriv in minst 6 siffror!"
                     ForeColor="Red"
-                    ValidationExpression = "^[\s\S]{6,}$">
+                    ValidationExpression = "^[\s\S]{6,}$" ValidationGroup="golfIdGroup"                    >
                 </asp:RegularExpressionValidator>
                 <div class="fullBox center-text">
-                    <asp:Button ID="btnGetMemberInfo" CssClass="my-button button-80 em-margin-horizontal" runat="server" Text="HÄMTA SPELARE" OnClick="btnGetMemberInfo_Click" />
+                    <asp:Button ID="btnGetMemberInfo" CssClass="my-button button-80 em-margin-horizontal" ValidationGroup="golfIdGroup" runat="server" Text="HÄMTA SPELARE" OnClick="btnGetMemberInfo_Click" />
                 </div>
             </div>
 

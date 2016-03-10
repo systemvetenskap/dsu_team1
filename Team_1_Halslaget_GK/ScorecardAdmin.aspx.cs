@@ -14,6 +14,11 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
+
             if(!IsPostBack)
             {
                 InitilizeGUI();
@@ -135,8 +140,8 @@ namespace Team_1_Halslaget_GK
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            int memberid = 4;
-            int compid = 1;
+            int memberid = 4; //lblMemberId.Text; //Kommentera bort för att använda medlemsid.
+            int compid = 1; //lblCompetitionID.Text; //Kommentera bort för att använda tävlingsid.
 
             List<Hole> round = FindNOShots();
             string xml = SerializeRound(round);

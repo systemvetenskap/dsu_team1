@@ -94,33 +94,6 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.DropDownList dropDownListKon;
         
         /// <summary>
-        /// validatorBirthDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorBirthDate;
-        
-        /// <summary>
-        /// rangeValidBIrth control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator rangeValidBIrth;
-        
-        /// <summary>
-        /// txtBirthDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBirthDate;
-        
-        /// <summary>
         /// validatorPhone control.
         /// </summary>
         /// <remarks>

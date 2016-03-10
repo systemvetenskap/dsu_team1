@@ -33,7 +33,7 @@
         <div class="contentRow">
             
             <ul class="main-navbar">
-              <li><a class="active" href='#'>ADMINPANEL</a></li>
+              <li><a href='#' id="btnGoToAdminPanel" runat="server" onserverclick="btnGoToAdminPanel_ServerClick">ADMINPANEL</a></li>
               <li><a href="#"></a></li>                                                                  
             </ul>
             <ul class="main-navbar right">
@@ -44,7 +44,7 @@
             <div class="responsive-navbar-holder" id="open-menu">
               <ul class="responsive-navbar">
                 <li><a  href="#">☰ STÄNG MENY</a></li>
-                <li><a class="active" href='#'>ADMINPANEL</a></li>     
+                <li><a  href='#' id="btnGoToAdminPanelResponsive" runat="server" onserverclick="btnGoToAdminPanelResponsive_ServerClick">ADMINPANEL</a></li>     
                 <li><a href="#" id="btnLogOutResponsive" runat="server" onserverclick="btnLogOutResponsive_ServerClick">LOGGA UT</a></li>                                 
               </ul>
             </div>

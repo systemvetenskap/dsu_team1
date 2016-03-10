@@ -92,7 +92,6 @@ namespace Team_1_Halslaget_GK
             txtAddress.Text = "";
             txtPostalCode.Text = "";
             txtCity.Text = "";
-            txtBirthDate.Text = "";
 
             dropDownListKon.SelectedIndex = 0;
             dropDownPayStatus.SelectedIndex = 0;
