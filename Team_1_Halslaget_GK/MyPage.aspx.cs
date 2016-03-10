@@ -68,7 +68,7 @@ namespace Team_1_Halslaget_GK
             if(GridView1.Rows.Count == 0)
             {
                 CancelBookingInfo.InnerText = "Du har inga kommande bokade tider!";
-        }
+            }
         }
 
         /// <summary>
