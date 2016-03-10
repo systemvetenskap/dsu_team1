@@ -49,13 +49,22 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.RadioButtonList rdlTavlingType;
         
         /// <summary>
-        /// lbTavlingar control.
+        /// gvTavlingar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbTavlingar;
+        protected global::System.Web.UI.WebControls.GridView gvTavlingar;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// lblTavlingNamn control.
