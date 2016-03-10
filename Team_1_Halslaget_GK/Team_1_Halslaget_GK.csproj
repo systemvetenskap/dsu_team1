@@ -110,6 +110,7 @@
     <Content Include="ja\memberRegScript.js" />
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
+    <Content Include="ja\ScoreCard.js" />
     <Content Include="ja\Scrollto.js" />
     <Content Include="ja\tidsbokning.js" />
     <Content Include="ja\Tinymce.js" />

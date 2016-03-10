@@ -14,10 +14,10 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Username"] == null && Session["admin"] == null)
-            {
-                Response.Redirect("~/NotAllowed.aspx");
-            }
+            //if (Session["Username"] == null && Session["admin"] == null)
+            //{
+            //    Response.Redirect("~/NotAllowed.aspx");
+            //}
 
             if(!IsPostBack)
             {
@@ -28,6 +28,7 @@ namespace Team_1_Halslaget_GK
         private void InitilizeGUI()
         {
             BindDropDownCompetition();
+            LockTextBoxes();
         }
 
         private void BindDropDownCompetition()
@@ -148,6 +149,7 @@ namespace Team_1_Halslaget_GK
             
             Hole h = new Hole();
             h.SetRound(xml, compid, memberid);
+
         }
 
         protected string SerializeRound(List<Hole> round)
@@ -182,7 +184,9 @@ namespace Team_1_Halslaget_GK
                 lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
                 lblFirstName.Text = memberInfo.Rows[0]["fornamn"].ToString();
                 lblLastName.Text = memberInfo.Rows[0]["efternamn"].ToString();
-                txtBoxMemberID.Text = lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();               
+                lblhcp.Text = memberInfo.Rows[0]["hcp"].ToString();
+                txtBoxMemberID.Text = lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
+                OpenTextBoxes();
             }
         }
 
@@ -210,6 +214,158 @@ namespace Team_1_Halslaget_GK
                 lblEndTime.Text = DateTime.Parse(competition.Rows[0]["sluttid"].ToString()).ToShortTimeString();
                 lblStartTime.Text = DateTime.Parse(competition.Rows[0]["starttid"].ToString()).ToShortTimeString();
             }            
+        }
+
+        private void LockTextBoxes()
+        {
+            TextBox1.ReadOnly = true;
+            TextBox1.ToolTip = "Du måste välja en medlem först";
+            TextBox1.BackColor = System.Drawing.Color.Gray;
+            TextBox1.Style.Add("cursor", "not-allowed");
+
+            TextBox2.ReadOnly = true;
+            TextBox2.ToolTip = "Du måste välja en medlem först";
+            TextBox2.BackColor = System.Drawing.Color.Gray;
+            TextBox2.Style.Add("cursor", "not-allowed");
+
+            TextBox3.ReadOnly = true;
+            TextBox3.ToolTip = "Du måste välja en medlem först";
+            TextBox3.BackColor = System.Drawing.Color.Gray;
+            TextBox3.Style.Add("cursor", "not-allowed");
+
+            TextBox4.ReadOnly = true;
+            TextBox4.ToolTip = "Du måste välja en medlem först";
+            TextBox4.BackColor = System.Drawing.Color.Gray;
+            TextBox4.Style.Add("cursor", "not-allowed");
+
+            TextBox5.ReadOnly = true;
+            TextBox5.ToolTip = "Du måste välja en medlem först";
+            TextBox5.BackColor = System.Drawing.Color.Gray;
+            TextBox5.Style.Add("cursor", "not-allowed");
+
+            TextBox6.ReadOnly = true;
+            TextBox6.ToolTip = "Du måste välja en medlem först";
+            TextBox6.BackColor = System.Drawing.Color.Gray;
+            TextBox6.Style.Add("cursor", "not-allowed");
+
+            TextBox7.ReadOnly = true;
+            TextBox7.ToolTip = "Du måste välja en medlem först";
+            TextBox7.BackColor = System.Drawing.Color.Gray;
+            TextBox7.Style.Add("cursor", "not-allowed");
+
+            TextBox8.ReadOnly = true;
+            TextBox8.ToolTip = "Du måste välja en medlem först";
+            TextBox8.BackColor = System.Drawing.Color.Gray;
+            TextBox8.Style.Add("cursor", "not-allowed");
+
+            TextBox9.ReadOnly = true;
+            TextBox9.ToolTip = "Du måste välja en medlem först";
+            TextBox9.BackColor = System.Drawing.Color.Gray;
+            TextBox9.Style.Add("cursor", "not-allowed");
+
+            TextBox10.ReadOnly = true;
+            TextBox10.ToolTip = "Du måste välja en medlem först";
+            TextBox10.BackColor = System.Drawing.Color.Gray;
+            TextBox10.Style.Add("cursor", "not-allowed");
+
+            TextBox11.ReadOnly = true;
+            TextBox11.ToolTip = "Du måste välja en medlem först";
+            TextBox11.BackColor = System.Drawing.Color.Gray;
+            TextBox11.Style.Add("cursor", "not-allowed");
+
+            TextBox12.ReadOnly = true;
+            TextBox12.ToolTip = "Du måste välja en medlem först";
+            TextBox12.BackColor = System.Drawing.Color.Gray;
+            TextBox12.Style.Add("cursor", "not-allowed");
+
+            TextBox13.ReadOnly = true;
+            TextBox13.ToolTip = "Du måste välja en medlem först";
+            TextBox13.BackColor = System.Drawing.Color.Gray;
+            TextBox13.Style.Add("cursor", "not-allowed");
+
+            TextBox14.ReadOnly = true;
+            TextBox14.ToolTip = "Du måste välja en medlem först";
+            TextBox14.BackColor = System.Drawing.Color.Gray;
+            TextBox14.Style.Add("cursor", "not-allowed");
+
+            TextBox15.ReadOnly = true;
+            TextBox15.ToolTip = "Du måste välja en medlem först";
+            TextBox15.BackColor = System.Drawing.Color.Gray;
+            TextBox15.Style.Add("cursor", "not-allowed");
+
+            TextBox16.ReadOnly = true;
+            TextBox16.ToolTip = "Du måste välja en medlem först";
+            TextBox16.BackColor = System.Drawing.Color.Gray;
+            TextBox16.Style.Add("cursor", "not-allowed");
+
+            TextBox17.ReadOnly = true;
+            TextBox17.ToolTip = "Du måste välja en medlem först";
+            TextBox17.BackColor = System.Drawing.Color.Gray;
+            TextBox17.Style.Add("cursor", "not-allowed");
+
+            TextBox18.ReadOnly = true;
+            TextBox18.ToolTip = "Du måste välja en medlem först";
+            TextBox18.BackColor = System.Drawing.Color.Gray;
+            TextBox18.Style.Add("cursor", "not-allowed");
+        }
+
+        private void OpenTextBoxes()
+        {
+            TextBox1.ReadOnly = false;
+            TextBox2.ReadOnly = false;
+            TextBox3.ReadOnly = false;
+            TextBox4.ReadOnly = false;
+            TextBox5.ReadOnly = false;
+            TextBox6.ReadOnly = false;
+            TextBox7.ReadOnly = false;
+            TextBox8.ReadOnly = false;
+            TextBox9.ReadOnly = false;
+            TextBox10.ReadOnly = false;
+            TextBox11.ReadOnly = false;
+            TextBox12.ReadOnly = false;
+            TextBox13.ReadOnly = false;
+            TextBox14.ReadOnly = false;
+            TextBox15.ReadOnly = false;
+            TextBox16.ReadOnly = false;
+            TextBox17.ReadOnly = false;
+            TextBox18.ReadOnly = false;
+            TextBox1.BackColor = System.Drawing.Color.White;
+            TextBox2.BackColor = System.Drawing.Color.White;
+            TextBox3.BackColor = System.Drawing.Color.White;
+            TextBox4.BackColor = System.Drawing.Color.White;
+            TextBox5.BackColor = System.Drawing.Color.White;
+            TextBox6.BackColor = System.Drawing.Color.White;
+            TextBox7.BackColor = System.Drawing.Color.White;
+            TextBox8.BackColor = System.Drawing.Color.White;
+            TextBox9.BackColor = System.Drawing.Color.White;
+            TextBox10.BackColor = System.Drawing.Color.White;
+            TextBox11.BackColor = System.Drawing.Color.White;
+            TextBox12.BackColor = System.Drawing.Color.White;
+            TextBox13.BackColor = System.Drawing.Color.White;
+            TextBox14.BackColor = System.Drawing.Color.White;
+            TextBox15.BackColor = System.Drawing.Color.White;
+            TextBox16.BackColor = System.Drawing.Color.White;
+            TextBox17.BackColor = System.Drawing.Color.White;
+            TextBox18.BackColor = System.Drawing.Color.White;
+            TextBox1.Style.Add("cursor", "text");
+            TextBox2.Style.Add("cursor", "text");
+            TextBox3.Style.Add("cursor", "text");
+            TextBox4.Style.Add("cursor", "text");
+            TextBox5.Style.Add("cursor", "text");
+            TextBox6.Style.Add("cursor", "text");
+            TextBox7.Style.Add("cursor", "text");
+            TextBox8.Style.Add("cursor", "text");
+            TextBox9.Style.Add("cursor", "text");
+            TextBox10.Style.Add("cursor", "text");
+            TextBox11.Style.Add("cursor", "text");
+            TextBox12.Style.Add("cursor", "text");
+            TextBox13.Style.Add("cursor", "text");
+            TextBox14.Style.Add("cursor", "text");
+            TextBox15.Style.Add("cursor", "text");
+            TextBox16.Style.Add("cursor", "text");
+            TextBox17.Style.Add("cursor", "text");
+            TextBox18.Style.Add("cursor", "text");
+
         }
     }
 }

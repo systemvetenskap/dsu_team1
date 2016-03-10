@@ -4,12 +4,14 @@
     <title>SCOREKORT</title>
     <link href="css/ScoreCardStyle.css" rel="stylesheet" />
     <script src="ja/jquery.maskedinput.js"></script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
+        <script src="ja/ScoreCard.js"></script>
         <script>
             $(document).ready(function () {
                 jQuery(function ($) {
@@ -82,6 +84,7 @@
                 <p class="em-margin-horizontal"><strong>Medlems ID: </strong><asp:Label ID="lblMemberId" runat="server" Text=""></asp:Label></p>
                 <p class="em-margin-horizontal"><strong>Förnamn: </strong><asp:Label ID="lblFirstName" runat="server" Text=""></asp:Label></p>
                 <p class="em-margin-horizontal"><strong>Efternamn: </strong><asp:Label ID="lblLastName" runat="server" Text=""></asp:Label></p>
+                <p class="em-margin-horizontal"><strong>Handikapp: </strong><asp:Label ID="lblhcp" runat="server" Text=""></asp:Label></p>
                 <asp:TextBox ID="txtBoxMemberID" style="display: none;" runat="server"></asp:TextBox>
             </div>
         </div>
@@ -100,6 +103,9 @@
             <p>7. <asp:TextBox ID="TextBox7" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
             <p>8. <asp:TextBox ID="TextBox8" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
             <p>9. <asp:TextBox ID="TextBox9" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
+            <div class="fullBox center-text">
+                <h3 class="em-margin-horizontal"><strong>IN: </strong><asp:Label ID="lblIn" runat="server" Text=""></asp:Label></h3>
+            </div>
         </div>
        <div class="halfBox">
             <p>10. <asp:TextBox ID="TextBox10" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
@@ -111,7 +117,16 @@
             <p>16. <asp:TextBox ID="TextBox16" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
             <p>17. <asp:TextBox ID="TextBox17" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
             <p>18. <asp:TextBox ID="TextBox18" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
+            <div class="fullBox center-text">
+                <h3 class="em-margin-horizontal"><strong>UT: </strong><asp:Label ID="lblOut" runat="server" Text=""></asp:Label></h3>
+            </div>
        </div>
+        <div class="fullBox center-text">
+            <h3><strong>TOTALT: </strong><asp:Label ID="lblTotalt" runat="server" Text=""></asp:Label></h3>
+        </div>
+        <div class="fullBox center-text">
+            <h3><strong>SCORE: </strong><asp:Label ID="lblScore" runat="server" Text=""></asp:Label></h3>
+        </div>
     </div>
     <div class="fullBox em-margin-horizontal center-text">
         <div class="fullBox">

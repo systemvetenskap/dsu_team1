@@ -385,7 +385,7 @@ namespace Team_1_Halslaget_GK
             {
                 string golfID1 = golfID;
                 conn.Open();
-                NpgsqlCommand cmdGetMemberInfo = new NpgsqlCommand("SELECT id, fornamn, efternamn FROM medlem WHERE golfid = @golfid; ", conn);
+                NpgsqlCommand cmdGetMemberInfo = new NpgsqlCommand("SELECT id, fornamn, efternamn,hcp FROM medlem WHERE golfid = @golfid; ", conn);
                 cmdGetMemberInfo.Parameters.AddWithValue("@golfid", golfID1);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmdGetMemberInfo;
