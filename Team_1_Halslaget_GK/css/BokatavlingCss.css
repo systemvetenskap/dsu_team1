@@ -1,0 +1,22 @@
+﻿.my-list-box {
+    width:100%;
+    height:100%;
+    min-height: 300px;
+    overflow:auto;
+}
+.my-radiobutton-list { 
+    list-style:none; 
+    margin: 0; 
+    padding: 0;
+}
+.my-radiobutton-list.horizontal li { 
+    display: inline;
+
+}
+
+.my-radiobutton-list label{
+    display:inline;
+}
+.my-button {
+    display:none;
+}
