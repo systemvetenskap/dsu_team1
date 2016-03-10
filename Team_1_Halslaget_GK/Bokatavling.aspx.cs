@@ -14,19 +14,34 @@ namespace Team_1_Halslaget_GK
     {
         NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 
+        medlem openmedlem;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Competition newcomp = new Competition();
+
+            if (Session["Username"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
+
+            openmedlem = Getmember(Session["Username"].ToString());
+            
+
             gvTavlingar.DataSource = newcomp.GetAllCompetitions();
             gvTavlingar.DataBind();
+
             lblTavlingDesc.Visible = false;
             lblTavlingNamn.Visible = false;
             lblTavlingTyp.Visible = false;
+
             tbgolfid1.Visible = false;
             tbgolfid2.Visible = false;
             tbgolfid3.Visible = false;
             tbgolfid4.Visible = false;
+
             btnConfirm.Visible = false;
+            btnConfirm2.Visible = false;
             btnRemove.Visible = false;
 
         }
@@ -57,17 +72,70 @@ namespace Team_1_Halslaget_GK
 
             string type = lblTavlingTyp.Text;
 
-
-            
             if (type.ToLower() == "singel")
             {
                 tbgolfid1.Visible = true;
                 tbgolfid1.Enabled = false;
                 tbgolfid1.Text = "test";
                 btnConfirm.Visible = true;
-            }                    
-           
+            }
+
+            else if (type.ToLower() == "lag")
+            {
+                tbgolfid1.Visible = true;
+                tbgolfid1.Enabled = false;
+                tbgolfid1.Text = "test";
+                tbgolfid2.Visible = true;
+                tbgolfid3.Visible = true;
+                tbgolfid4.Visible = true;
+                btnConfirm2.Visible = true;
+
+            }
+
+            if (alreadybooked())
+            {
+                tbgolfid1.Visible = false;
+                tbgolfid2.Visible = false;
+                tbgolfid3.Visible = false;
+                tbgolfid4.Visible = false;
+
+                btnConfirm.Visible = false;
+                btnConfirm2.Visible = false;
+                btnRemove.Visible = true;
+            }         
+        }     
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            string tavlingid = gvTavlingar.SelectedValue.ToString();
+            string medlemid = openmedlem.ID.ToString();
+            
+           if (bookMember(medlemid, tavlingid))
+            {
+                             
+            }
+            else
+            {
+                
+            }
+
         }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+
+            if (cancelbookingsingel(openmedlem.ID.ToString(), gvTavlingar.SelectedValue.ToString()))
+            {
+
+            }
+        }
+
+        protected void btnConfirm2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // ----------- Funktioner --------- //   
 
         public Competition GetspecificComp(string compid)
         {
@@ -96,9 +164,119 @@ namespace Team_1_Halslaget_GK
             return newcom;
         }
 
-        protected void btnConfirm_Click(object sender, EventArgs e)
+        public medlem Getmember(string id)
         {
+            medlem newmedlem = new medlem();
+
+            string sql = "SELECT * FROM medlem where id = @id";
+
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                newmedlem.ID = Convert.ToInt32(dr["id"]);
+                newmedlem.golfid = dr["golfid"].ToString();
+            }
+
+            conn.Close();
+
+            return newmedlem;
+        }
+
+        public bool bookMember(string medlemid, string tavlingid)
+        {
+            try
+            {
+                string sql = "INSERT INTO medlem_tavling (medlem_id, tavling_id) VALUES (@medlem_id, @bokning_id)";
+                conn.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@medlem_id", medlemid);
+                cmd.Parameters.AddWithValue("@bokning_id", tavlingid);
+                
+                cmd.ExecuteNonQuery();
+            }
+            catch (NpgsqlException ex)
+            {
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+                
+            }
+            return true;
 
         }
+
+        public bool cancelbookingsingel(string medlemid, string tavlingid)
+        {
+            try
+            {
+                string sql = "DELETE FROM medlem_tavling WHERE medlem_id = @medlem_id AND @tavling_id = tavling_id";
+                conn.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@medlem_id", medlemid);
+                cmd.Parameters.AddWithValue("@tavling_id", tavlingid);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (NpgsqlException ex)
+            {
+                Label1.Text = ex.Message.ToString();
+                return false;
+                
+            }
+            finally
+            {
+                conn.Close();
+
+            }
+            return true;
+        }
+
+        public bool alreadybooked()
+        {
+            List<string> tavlingid = new List<string>();
+            medlem newmedlem = Getmember(Session["Username"].ToString());
+            string sql = "SELECT * FROM medlem_tavling WHERE medlem_id = @medlem_id";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@medlem_id", newmedlem.ID.ToString());
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string id;
+                id = dr["tavling_id"].ToString() + newmedlem.ID.ToString();
+                tavlingid.Add(id);
+            }
+
+            string tmidselected = gvTavlingar.SelectedValue.ToString() + newmedlem.ID.ToString();
+
+            foreach (string tmid in tavlingid)
+            {
+                if(tmid == tmidselected)
+                {
+                    return true;                    
+                }
+            }
+
+            return false;
+        }
+
+        public bool bookTeam()
+        {
+
+            
+
+            return true;
+        }
+
     }
 }

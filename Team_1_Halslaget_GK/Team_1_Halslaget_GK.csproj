@@ -192,6 +192,7 @@
     <Compile Include="Classes\Hole.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Competition.cs" />
+    <Compile Include="Classes\Team.cs" />
     <Compile Include="CreateNewMember.aspx.cs">
       <DependentUpon>CreateNewMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

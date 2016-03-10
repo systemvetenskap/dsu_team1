@@ -30,6 +30,7 @@ namespace Team_1_Halslaget_GK
         public bool payStatus { get; set; }
         public DateTime senastebetalning { get; set; }
         public string fodelseDatum { get; set; }
+        public string golfid { get; set; }
         
         /// <summary>
         /// Gets a specific members info based on member ID. 

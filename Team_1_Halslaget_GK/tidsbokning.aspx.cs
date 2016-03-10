@@ -304,6 +304,7 @@ namespace Team_1_Halslaget_GK
                     newbooking.Newbooking(medlem.ID, bokningsid, date);
                 }
             }
+
             lblotherplayers.Text = "Handikapp överstiger tyvärr 100";
         }
 
@@ -315,10 +316,6 @@ namespace Team_1_Halslaget_GK
             
             Table1.Visible = true;
         }
-
-
-
-
 
         protected List<Player> GetBookedTimes()
         {
@@ -406,6 +403,8 @@ namespace Team_1_Halslaget_GK
         /// Dayrender event to "Lock" out dates that are outside of the season and make sure a user cannot
         /// make a booking more than 30 days into the "future".
         /// </summary>
+        /// 
+
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
             Season setDates = new Season();
