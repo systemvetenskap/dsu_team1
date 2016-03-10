@@ -22,6 +22,12 @@ namespace Team_1_Halslaget_GK
             lblTavlingDesc.Visible = false;
             lblTavlingNamn.Visible = false;
             lblTavlingTyp.Visible = false;
+            tbgolfid1.Visible = false;
+            tbgolfid2.Visible = false;
+            tbgolfid3.Visible = false;
+            tbgolfid4.Visible = false;
+            btnConfirm.Visible = false;
+            btnRemove.Visible = false;
 
         }
 
@@ -49,6 +55,17 @@ namespace Team_1_Halslaget_GK
             lblTavlingNamn.Visible = true;
             lblTavlingTyp.Visible = true;
 
+            string type = lblTavlingTyp.Text;
+
+
+            
+            if (type.ToLower() == "singel")
+            {
+                tbgolfid1.Visible = true;
+                tbgolfid1.Enabled = false;
+                tbgolfid1.Text = "test";
+                btnConfirm.Visible = true;
+            }                    
            
         }
 
@@ -77,6 +94,11 @@ namespace Team_1_Halslaget_GK
             conn.Close();
 
             return newcom;
+        }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -43,6 +43,10 @@
       <HintPath>..\packages\AjaxControlToolkit.15.1.4.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>data\Mono.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql, Version=2.2.4.3, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\PostgreSQL\Npgsql\ms.net45\Npgsql.dll</HintPath>
@@ -85,6 +89,7 @@
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
     <Content Include="css\tidsbokning.css" />
+    <Content Include="data\Mono.Security.dll" />
     <Content Include="data\Npgsql.dll" />
     <Content Include="default.aspx" />
     <Content Include="css\font.css" />
