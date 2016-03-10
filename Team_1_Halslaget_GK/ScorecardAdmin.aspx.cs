@@ -135,8 +135,8 @@ namespace Team_1_Halslaget_GK
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            int memberid = int.Parse(lblMemberId.Text); //BOrde fungera.
-            int compid = int.Parse(lblCompetitionID.Text); //Borde fungera.
+            int memberid = 4;
+            int compid = 1;
 
             List<Hole> round = FindNOShots();
             string xml = SerializeRound(round);
@@ -177,7 +177,7 @@ namespace Team_1_Halslaget_GK
                 lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
                 lblFirstName.Text = memberInfo.Rows[0]["fornamn"].ToString();
                 lblLastName.Text = memberInfo.Rows[0]["efternamn"].ToString();
-                txtBoxMemberID.Text = lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
+                txtBoxMemberID.Text = lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();               
             }
         }
 
