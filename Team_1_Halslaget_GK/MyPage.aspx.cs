@@ -256,11 +256,11 @@ namespace Team_1_Halslaget_GK
             Response.Redirect("~/ChangePassword.aspx");
 
         }
+
         protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
 
         }
-
 
         protected void btnEditPersonInfo_Click(object sender, EventArgs e)
         {
@@ -278,7 +278,6 @@ namespace Team_1_Halslaget_GK
             Response.Redirect("~/Tidsbokning.aspx");              
 
         }
-
 
     }
 }
