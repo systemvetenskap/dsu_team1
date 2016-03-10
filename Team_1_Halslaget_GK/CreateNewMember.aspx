@@ -58,7 +58,8 @@
                     ControlToValidate="txtFistName" 
                     ForeColor="Red" runat="server" 
                     Font-Size="Smaller" 
-                    ErrorMessage="Fyll i ett namn">
+                    ErrorMessage="Fyll i ett namn" 
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
             </p>
             <asp:TextBox ID="txtFistName" CssClass="my-txt-box" runat="server"></asp:TextBox>
@@ -68,7 +69,8 @@
                     ControlToValidate="txtLastName"  
                     ForeColor="Red" runat="server" 
                     Font-Size="Smaller"  
-                    ErrorMessage="Fyll i ett efternamn">
+                    ErrorMessage="Fyll i ett efternamn"
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
             </p>
             <asp:TextBox ID="txtLastName" CssClass="my-txt-box" runat="server"></asp:TextBox>
@@ -80,7 +82,8 @@
                     ForeColor="Red" 
                     Font-Size="Smaller"  
                     runat="server" 
-                    ErrorMessage="Välj kön">
+                    ErrorMessage="Välj kön"
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
             </p>
             <asp:DropDownList ID="dropDownListKon" CssClass="DropDown" runat="server">
@@ -88,27 +91,6 @@
                 <asp:ListItem>Kvinna</asp:ListItem>
                 <asp:ListItem>Man</asp:ListItem>
             </asp:DropDownList>
-            <!--<p class="em-margin-horizontal">Födelsedatum: 
-                <asp:RequiredFieldValidator 
-                    ID="validatorBirthDate" 
-                    runat="server" 
-                    ErrorMessage="Kan ej vara tom!"
-                    ControlToValidate="txtBirthDate"
-                    Font-Size="Smaller"  
-                    ForeColor="Red" >                    
-                </asp:RequiredFieldValidator>
-                <asp:RangeValidator 
-                    ID="rangeValidBIrth" 
-                    ControlToValidate="txtBirthDate" 
-                    Type="Double"
-                    Font-Size="Smaller"  
-                    ForeColor="Red"
-                    MinimumValue="19000000"
-                    MaximumValue="22000000" 
-                    runat="server" 
-                    ErrorMessage="Endast siffror"></asp:RangeValidator>
-            </p>
-            <asp:TextBox ID="txtBirthDate" CssClass="my-txt-box" runat="server"></asp:TextBox>-->
             <p class="em-margin-horizontal">Telefonnummer: 
                 <asp:RequiredFieldValidator 
                     ID="validatorPhone" 
@@ -116,7 +98,8 @@
                     ForeColor="Red" 
                     runat="server" 
                     Font-Size="Smaller"  
-                    ErrorMessage="Fyll i ett telefonnummer">
+                    ErrorMessage="Fyll i ett telefonnummer"
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
             </p>
             <asp:TextBox ID="txtPhone" CssClass="my-txt-box" runat="server"></asp:TextBox>
@@ -126,7 +109,8 @@
                     ControlToValidate="txtEmail" 
                     ForeColor="Red" runat="server" 
                     Font-Size="Smaller"  
-                    ErrorMessage="Ange en epost.">
+                    ErrorMessage="Ange en epost."
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator 
                     ID="regExValidatorEmail" 
@@ -135,7 +119,8 @@
                     ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
                     ControlToValidate="txtEmail" 
                     runat="server" 
-                    ErrorMessage="Felaktigt epost format">
+                    ErrorMessage="Felaktigt epost format"
+                    ValidationGroup="member"                    >
                 </asp:RegularExpressionValidator>
             </p>
             <asp:TextBox ID="txtEmail" CssClass="my-txt-box" runat="server"></asp:TextBox>
@@ -149,7 +134,8 @@
                     ForeColor="Red" 
                     runat="server" 
                     Font-Size="Smaller"  
-                    ErrorMessage="Fyll i en adress">
+                    ErrorMessage="Fyll i en adress"
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
             </p>
             <asp:TextBox ID="txtAddress" CssClass="my-txt-box" runat="server"></asp:TextBox>
@@ -160,7 +146,8 @@
                     ForeColor="Red" 
                     runat="server" 
                     Font-Size="Smaller"  
-                    ErrorMessage="Fyll i ett postnummer">
+                    ErrorMessage="Fyll i ett postnummer"
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
             </p>
             <asp:TextBox ID="txtPostalCode" CssClass="my-txt-box" runat="server"></asp:TextBox>
@@ -171,7 +158,8 @@
                     ForeColor="Red" 
                     runat="server" 
                     Font-Size="Smaller"  
-                    ErrorMessage="Fyll i en ort">
+                    ErrorMessage="Fyll i en ort"
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
             </p>
             <asp:TextBox ID="txtCity" CssClass="my-txt-box" runat="server"></asp:TextBox>
@@ -182,7 +170,8 @@
                     ForeColor="Red" 
                     runat="server" 
                     Font-Size="Smaller"  
-                    ErrorMessage="Fyll i ett handikapp">
+                    ErrorMessage="Fyll i ett handikapp"
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
                 <asp:RangeValidator 
                     ID="rangeValidatorHcp" 
@@ -193,7 +182,8 @@
                     ForeColor="Red"
                     MinimumValue="0" 
                     runat="server" 
-                    ErrorMessage="Endast siffror och kommatecken.">
+                    ErrorMessage="Endast siffror och kommatecken."
+                    ValidationGroup="member">
                 </asp:RangeValidator>
             </p>
                 
@@ -206,7 +196,8 @@
                     Font-Size="Smaller"  
                     ForeColor="Red"
                     runat="server" 
-                    ErrorMessage="Välj medlemstyp">
+                    ErrorMessage="Välj medlemstyp"
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
             </p>
             <asp:DropDownList ID="dropDownMemberType" CssClass="DropDown" runat="server"></asp:DropDownList>
@@ -218,7 +209,8 @@
                     Font-Size="Smaller"  
                     ForeColor="Red" 
                     runat="server" 
-                    ErrorMessage="Du måste välja ja eller nej.">
+                    ErrorMessage="Du måste välja ja eller nej."
+                    ValidationGroup="member">
                 </asp:RequiredFieldValidator>
             </p>
             <asp:DropDownList ID="dropDownPayStatus" CssClass="DropDown" runat="server">
@@ -228,7 +220,7 @@
             </asp:DropDownList>
             <asp:Label ID="lblSavedConfirm"  style="display:none;" runat="server" Text=""></asp:Label>
             <div class="fullBox em-margin-horizontal">
-                <asp:Button ID="btnAddMember" runat="server" CssClass="my-button" Text="LÄGG TILL" OnClick="btnAddMember_Click" />
+                <asp:Button ID="btnAddMember" runat="server" CssClass="my-button" ValidationGroup="member" Text="LÄGG TILL" OnClick="btnAddMember_Click" />
             </div>
 
         </div>

@@ -94,6 +94,42 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label lblTavlingDesc;
         
         /// <summary>
+        /// tbgolfid1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbgolfid1;
+        
+        /// <summary>
+        /// tbgolfid2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbgolfid2;
+        
+        /// <summary>
+        /// tbgolfid3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbgolfid3;
+        
+        /// <summary>
+        /// tbgolfid4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbgolfid4;
+        
+        /// <summary>
         /// btnConfirm control.
         /// </summary>
         /// <remarks>

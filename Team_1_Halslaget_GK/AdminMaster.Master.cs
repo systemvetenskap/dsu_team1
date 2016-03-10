@@ -25,5 +25,19 @@ namespace Team_1_Halslaget_GK
             Session.Abandon();
             Response.Redirect("~/default.aspx");
         }
+
+        protected void btnGoToAdminPanel_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["Username"] = userID;
+            Response.Redirect("~/AdminPanel.aspx");
+        }
+
+        protected void btnGoToAdminPanelResponsive_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["Username"] = userID;
+            Response.Redirect("~/AdminPanel.aspx");
+        }
     }
 }

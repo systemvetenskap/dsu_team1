@@ -44,7 +44,7 @@
         </div>
         <div class="quarterBox admin-qBox">
             <img class="admin-img" src="img/admin03.jpg"/>
-            <asp:Button ID="btnGoToRegisterResult" runat="server" CssClass="my-button admin-btn-txt"  Text="REGISTRERA RESULTAT" />        
+            <asp:Button ID="btnGoToRegisterResult" runat="server" CssClass="my-button admin-btn-txt"  Text="REGISTRERA RESULTAT" OnClick="btnGoToRegisterResult_Click" />        
         </div>
         <div class="quarterBox admin-qBox">
             <img class="admin-img" src="img/admin04.jpg"/>

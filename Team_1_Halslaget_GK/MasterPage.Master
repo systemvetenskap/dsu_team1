@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Team_1_Halslaget_GK.MasterPage" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -20,14 +19,16 @@
       <link href="css/font.css" rel="stylesheet" />
       <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
       <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>   
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  
 
     <asp:ContentPlaceHolder ID="head" runat="server">
 
     </asp:ContentPlaceHolder>
 </head>
 <body>
+
     <form id="form1" runat="server">
+
     <!-- Navbar ================================================== -->
     <section class="container" id="navbar-section">
       <div class="content">

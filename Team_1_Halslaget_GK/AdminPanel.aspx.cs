@@ -54,5 +54,10 @@ namespace Team_1_Halslaget_GK
         {
             Response.Redirect("~/SeasonSettings.aspx");
         }
+
+        protected void btnGoToRegisterResult_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ScoreCardAdmin.aspx");
+        }
     }
 }
