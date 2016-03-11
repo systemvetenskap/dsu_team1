@@ -423,6 +423,15 @@ namespace Team_1_Halslaget_GK
                     e.Cell.Style.Add("cursor", "not-allowed");
                     e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
                 }
+
+                if (e.Day.Date > start.AddMonths(1))
+                {
+                    e.Day.IsSelectable = false;
+                    e.Cell.ForeColor = System.Drawing.Color.Black;
+                    e.Cell.BackColor = System.Drawing.Color.Gray;
+                    e.Cell.Style.Add("cursor", "not-allowed");
+                    e.Cell.ToolTip = "Du kan enbart boka banan en månad i förväg.";
+                }
             }
             else
             {
