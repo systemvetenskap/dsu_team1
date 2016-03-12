@@ -117,6 +117,11 @@ namespace Team_1_Halslaget_GK
                 lblotherplayers.Text = "Den här tiden är tyvärr fullbokad!";
                 lblotherplayers.ForeColor = Color.Red;
                 Label1.Visible = false;
+
+                //FÖr tävlingar behövs detta
+                tbPlayer2.Visible = false;
+                tbPlayer3.Visible = false;
+                tbPlayer4.Visible = false;
             }
             
         }
@@ -129,7 +134,12 @@ namespace Team_1_Halslaget_GK
             foreach (Player golfplayer in Players)
             {
 
-                if (golfplayer.startid == time && playercount == 1)
+                if (golfplayer.tavlingsnamn.ToString() != "" && golfplayer.startid == time)
+                {
+                    lblPlayer4.Text = "Denna tid är uppbokad för " + Session["compname"].ToString();
+                }
+
+                else if (golfplayer.startid == time && playercount == 1)
                 {
                     lblPlayer1.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: " + golfplayer.kon;
                     lblPlayer1.ID = golfplayer.golfID;
@@ -179,11 +189,11 @@ namespace Team_1_Halslaget_GK
             List<Booking> BookedTimes = new List<Booking>();
             List<Player> Players = new List<Player>();
 
-            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid, id FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = @selecteddate INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
+            string sql = "SELECT bokning_id, tavlings_id, medlem_id, hcp, golfid, kon, bokning.starttid, namn FROM medlem_bokning FULL JOIN medlem ON medlem_id = medlem.id FULL JOIN tavling ON tavlings_id = tavling.id FULL JOIN bokning ON bokning_id = slot_id WHERE medlem_bokning.datum = @selecteddate ORDER BY bokning_id ASC";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@selecteddate", selecteddatestring);
-            ;
+
             try
             {
                 conn.Open();
@@ -194,12 +204,71 @@ namespace Team_1_Halslaget_GK
                     Player golfplayer = new Player();
 
                     golfplayer.slot_id = Convert.ToInt32(dr["bokning_id"]);
-                    golfplayer.golfID = dr["golfid"].ToString();
-                    golfplayer.kon = dr["kon"].ToString();
-                    golfplayer.hcp = Convert.ToInt32(dr["hcp"]);
+
+                    if (dr["golfid"] != DBNull.Value)
+                    {
+                        golfplayer.golfID = dr["golfid"].ToString();
+                    }
+
+                    else
+                    {
+                        golfplayer.golfID = "";
+                    }
+
+                    if (dr["kon"] != DBNull.Value)
+                    {
+                        golfplayer.kon = dr["kon"].ToString();
+                    }
+
+                    else
+                    {
+                        golfplayer.kon = "";
+                    }
+
+                    if (dr["hcp"] != DBNull.Value)
+                    {
+                        golfplayer.hcp = Convert.ToInt32(dr["hcp"]);
+                    }
+
+                    else
+                    {
+                        golfplayer.hcp = 0;
+                    }
+
+                    if (dr["medlem_id"] != DBNull.Value)
+                    {
+                        golfplayer.id = Convert.ToInt32(dr["medlem_id"]);
+                    }
+
+                    else
+                    {
+                        golfplayer.id = 0;
+                    }
+
+                    if (dr["tavlings_id"] != DBNull.Value)
+                    {
+                        golfplayer.tavlingsid = Convert.ToInt32(dr["tavlings_id"]);
+                    }
+
+                    else
+                    {
+                        golfplayer.tavlingsid = 0;
+                    }
+
+                    if (dr["namn"] != DBNull.Value)
+                    {
+                        golfplayer.tavlingsnamn = dr["namn"].ToString();
+                        Session["compname"] = golfplayer.tavlingsnamn;
+                    }
+
+                    else
+                    {
+                        golfplayer.tavlingsnamn = "";
+                    }
+
                     DateTime starttid = Convert.ToDateTime(dr["starttid"]);
                     golfplayer.startid = starttid.ToString("HH:mm");
-                    golfplayer.id = Convert.ToInt32(dr["id"]);
+
                     Players.Add(golfplayer);
                 }
             }
@@ -226,11 +295,11 @@ namespace Team_1_Halslaget_GK
             foreach (TableRow tr in Table1.Rows)
             {
 
-                for (int i = 0; i < 6; i++)
+                foreach(TableCell tc in tr.Cells)
                 {
                     cellcount++;
                     playercount = 0;
-                    tr.Cells[i].BackColor = ColorTranslator.FromHtml("#7cff82");
+                    tc.BackColor = ColorTranslator.FromHtml("#7cff82");
 
                     foreach (Player time in Players)
                     {
@@ -238,14 +307,14 @@ namespace Team_1_Halslaget_GK
                         {
 
                             playercount++;
-                            if (playercount >= 4)
+                            if (playercount >= 4 || time.tavlingsid != 0)
                             {
-                                tr.Cells[i].BackColor = Color.Red; //byta ut till css class sen
+                                tc.BackColor = Color.Red; //byta ut till css class sen
                             }
 
-                            if (playercount <= 3)
+                            if (playercount <= 3 && time.tavlingsid == 0)
                             {
-                                tr.Cells[i].BackColor = Color.Yellow;
+                                tc.BackColor = Color.Yellow;
                             }
 
                         }
