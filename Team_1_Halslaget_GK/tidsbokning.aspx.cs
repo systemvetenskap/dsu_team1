@@ -196,9 +196,9 @@ namespace Team_1_Halslaget_GK
 
             foreach (Player golfplayer in Players)
             {
-                if (Session["compname"].ToString() != "" && golfplayer.startid ==  time)
+                if (golfplayer.tavlingsnamn.ToString() != "" && golfplayer.startid ==  time)
                 {
-                    lblPlayer1.Text = "Denna tid är uppbokad för" + Session["compname"].ToString();
+                    lblPlayer4.Text = "Denna tid är uppbokad för" + Session["compname"].ToString();
                 }
 
                 else if (golfplayer.startid == time && playercount == 1)
