@@ -1,15 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Bokatavling.aspx.cs" Inherits="Team_1_Halslaget_GK.Bokatavling" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/BokatavlingCss.css" rel="stylesheet" />
-    <script src="ja/ChangePasswordJs.js"></script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server"><asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>   
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server"><asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="fullBox page-title"><h1>Tävlingar</h1></div>
+  <!-- Main Page ================================================== -->       
+            <div class="fullBox page-title"><h1>Tävlingar</h1></div>           
             <div class="halfBox">
-                <asp:TextBox ID="tbsearchTavling" CssClass="my-txt-box" Placeholder="Sök" runat="server"></asp:TextBox><br />
-                <asp:RadioButtonList ID="rdlTavlingType" CssClass="my-radiobutton-list" runat="server">
+                <asp:TextBox ID="tbsearchTavling" CssClass="my-txt-box" Placeholder="Sök" runat="server"></asp:TextBox>
+                <asp:Button ID="BtnSearch" CssClass="my-button" runat="server" Text="Sök" OnClick="BtnSearch_Click1" />
+                <br />
+                <asp:RadioButtonList ID="rdlTavlingType" CssClass="my-radiobutton-list" runat="server" RepeatDirection="Horizontal">
                     <asp:ListItem>Alla</asp:ListItem>
                     <asp:ListItem>Singeltävlingar</asp:ListItem>
                     <asp:ListItem>Lagtävlingar</asp:ListItem>
@@ -24,7 +26,6 @@
                                     <asp:CommandField ShowSelectButton="true" />
                             </Columns>
                     </asp:GridView>
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             </div>
             <div class="halfBox">
                 <h3><asp:Label ID="lblTavlingNamn" runat="server" Text="Namn"></asp:Label></h3><br />
@@ -67,7 +68,8 @@
                 <asp:TextBox ID="tbgolfid4" CssClass="my-txt-box"  placeholder="Golf-ID" runat="server"></asp:TextBox><br /><br /></div>
                 <asp:Button ID="btnConfirm" CssClass="my-button" runat="server" Text="Anmäl mig" OnClick="btnConfirm_Click" /><br />
                 <asp:Button ID="btnConfirm2" ValidationGroup="typelaggroup" CssClass="my-button" runat="server" Text="Anmäl lag" OnClick="btnConfirm2_Click"/>
-                <asp:Button ID="btnRemove" CssClass="my-button" runat="server" Text="Ta bort mig från tävlingen" OnClick="btnRemove_Click" />            
+                <asp:Button ID="btnRemove" CssClass="my-button" runat="server" Text="Ta bort mig från tävlingen" OnClick="btnRemove_Click" />  
+                <asp:Button ID="BtnRemove2" CssClass="my-button" runat="server" Text="Ta bort laget från den här tävlingen!" OnClick="BtnRemove2_Click" />          
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

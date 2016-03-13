@@ -40,6 +40,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox tbsearchTavling;
         
         /// <summary>
+        /// BtnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnSearch;
+        
+        /// <summary>
         /// rdlTavlingType control.
         /// </summary>
         /// <remarks>
@@ -56,15 +65,6 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvTavlingar;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// lblTavlingNamn control.
@@ -191,5 +191,14 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRemove;
+        
+        /// <summary>
+        /// BtnRemove2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnRemove2;
     }
 }

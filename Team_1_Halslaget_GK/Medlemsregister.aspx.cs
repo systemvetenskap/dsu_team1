@@ -313,7 +313,6 @@ namespace Team_1_Halslaget_GK
                 con.Dispose();            
         }
 
-
         /// <summary>
         /// La till detta eventet. Tänkte att det kanske blir lättare för användaren
         /// om hen bara behöver klicka på den personen som hen vill åt i listboxen istället för att först
