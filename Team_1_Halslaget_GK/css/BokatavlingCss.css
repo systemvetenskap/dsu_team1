@@ -83,3 +83,12 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;   
 }
+
+.search-button {
+    width: 30%;
+}
+
+.search-box {
+    width: 69%;
+    
+}

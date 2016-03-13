@@ -8,21 +8,24 @@
   <!-- Main Page ================================================== -->       
             <div class="fullBox page-title"><h1>Tävlingar</h1></div>           
             <div class="halfBox">
-                <asp:TextBox ID="tbsearchTavling" CssClass="my-txt-box" Placeholder="Sök" runat="server"></asp:TextBox>
-                <asp:Button ID="BtnSearch" CssClass="my-button" runat="server" Text="Sök" OnClick="BtnSearch_Click1" />
+                <div class="halfBox search-box">
+                    <asp:TextBox ID="tbsearchTavling" CssClass="my-txt-box " Placeholder="Sök" runat="server"></asp:TextBox>
+                </div>   
+                <div class="halfBox search-button">
+                    <asp:Button ID="BtnSearch" CssClass="my-button" runat="server" Text="Sök" OnClick="BtnSearch_Click1" />
+                </div>              
                 <br />
-                <asp:RadioButtonList ID="rdlTavlingType" CssClass="my-radiobutton-list" runat="server" RepeatDirection="Horizontal">
+                <asp:RadioButtonList ID="rdlTavlingType" CssClass="my-radiobutton-list" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdlTavlingType_SelectedIndexChanged">
                     <asp:ListItem>Alla</asp:ListItem>
                     <asp:ListItem>Singeltävlingar</asp:ListItem>
                     <asp:ListItem>Lagtävlingar</asp:ListItem>
                 </asp:RadioButtonList>
-                <br />                      
+                <br />                                 
                 <asp:GridView ID="gvTavlingar" DataKeyNames="id" CssClass="Grid" GridLines="None" runat="server" AutoGenerateColumns="false"  OnSelectedIndexChanged="gvTavlingar_SelectedIndexChanged">
                            <Columns>
                                     <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="id" />
                                     <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" />
-                                    <asp:BoundField DataField="starttid" HeaderText="Start" DataFormatString="{0:HH:mm}" />
-                                    <asp:BoundField DataField="sluttid" HeaderText="Slut" DataFormatString="{0:HH:mm}"  />                            
+                                    <asp:BoundField DataField="starttid" HeaderText="Start" DataFormatString="{0:HH:mm}" />                          
                                     <asp:CommandField ShowSelectButton="true" />
                             </Columns>
                     </asp:GridView>
