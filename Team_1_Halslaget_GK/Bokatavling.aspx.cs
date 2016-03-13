@@ -76,7 +76,7 @@ namespace Team_1_Halslaget_GK
             {
                 tbgolfid1.Visible = true;
                 tbgolfid1.Enabled = false;
-                tbgolfid1.Text = "test";
+                tbgolfid1.Text = openmedlem.golfid.ToString();
                 btnConfirm.Visible = true;
             }
 
@@ -84,7 +84,7 @@ namespace Team_1_Halslaget_GK
             {
                 tbgolfid1.Visible = true;
                 tbgolfid1.Enabled = false;
-                tbgolfid1.Text = "test";
+                tbgolfid1.Text = openmedlem.golfid.ToString(); ;
                 tbgolfid2.Visible = true;
                 tbgolfid3.Visible = true;
                 tbgolfid4.Visible = true;
@@ -273,6 +273,7 @@ namespace Team_1_Halslaget_GK
         public bool bookTeam()
         {
             Team newteam = new Team();
+            newteam.Listofmedlem.Add(openmedlem);
             List<string> GolfidList = new List<string>();
 
             foreach (TextBox tb in teamtb.Controls.OfType<TextBox>())
@@ -303,8 +304,7 @@ namespace Team_1_Halslaget_GK
             conn.Open();
             NpgsqlCommand cmd2 = new NpgsqlCommand(sql2, conn);
             cmd2.Parameters.AddWithValue("@lag_namn", "null");
-            string teamid = cmd2.ExecuteNonQuery().ToString();
-
+            string teamid = cmd2.ExecuteScalar().ToString();
             conn.Close();
 
             foreach (medlem m in newteam.Listofmedlem)
@@ -314,6 +314,7 @@ namespace Team_1_Halslaget_GK
                 NpgsqlCommand cmd3 = new NpgsqlCommand(sql3, conn);
                 cmd3.Parameters.AddWithValue("@medlem_id", m.ID.ToString());
                 cmd3.Parameters.AddWithValue("lag_id", teamid);
+                cmd3.ExecuteNonQuery();
                 conn.Close();
             }
 
@@ -322,6 +323,8 @@ namespace Team_1_Halslaget_GK
             NpgsqlCommand cmd4 = new NpgsqlCommand(sql4, conn);
             cmd4.Parameters.AddWithValue("@lag_id", teamid);
             cmd4.Parameters.AddWithValue("@tavling_id", gvTavlingar.SelectedValue.ToString());
+            cmd4.ExecuteNonQuery();
+            conn.Close();
 
             return true;
         }
