@@ -148,6 +148,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label lblLastName;
         
         /// <summary>
+        /// lblhcp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblhcp;
+        
+        /// <summary>
         /// txtBoxMemberID control.
         /// </summary>
         /// <remarks>
@@ -238,6 +247,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox TextBox9;
         
         /// <summary>
+        /// lblIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIn;
+        
+        /// <summary>
         /// TextBox10 control.
         /// </summary>
         /// <remarks>
@@ -317,6 +335,33 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox18;
+        
+        /// <summary>
+        /// lblOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOut;
+        
+        /// <summary>
+        /// lblTotalt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalt;
+        
+        /// <summary>
+        /// lblScore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblScore;
         
         /// <summary>
         /// validatorMemberID control.

@@ -15,6 +15,24 @@
     margin-bottom: 1em;
 }
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.dropdownbox:hover .dropdown-content {
+    display: block;
+    }
+
+.dropdownbox:hover .dropbtn {
+	background: #818181;
+}
+
+.admin-bottom{
+    margin-bottom: 150px;
+}
+
 @media (max-width: 992px) {	
 	.admin-btn-txt {
     font-size: 1.1em;
