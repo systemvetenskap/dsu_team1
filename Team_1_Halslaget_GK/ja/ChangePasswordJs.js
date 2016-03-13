@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    alert("Empty!");
 
     $('#ContentPlaceHolder1_txtNewPasswordTwo').on('input', function () {
         var valueTxtBox1 = document.getElementById('ContentPlaceHolder1_txtNewPasswordOne').value;
@@ -15,4 +14,13 @@
         }
     });
 });
+
+function openOverlayPasswordChange() {
+    $('.page-overlay-password-change').fadeIn('slow');
+
+}
+
+function closeOverlayPasswordChange() {
+    $('.page-overlay-password-change').fadeOut('slow');
+}
 

@@ -120,6 +120,10 @@
 
 }
 
+.halfBox-right{
+    margin-left: 2%;
+}
+
 @media (max-width: 952px) {	
 	.overlay-message {
     width: 100%;
@@ -142,3 +146,20 @@
     margin-bottom: 0.7em;
   }
 }
+
+@media (max-width: 916px) {	
+    .my-page-half-box{
+    width: 100%;
+    }
+}
+
+@media (max-width: 466px) {	
+    .Grid td{
+      padding: 0em;
+      padding-top: 0.4em;
+      padding-bottom: 0.4em;
+      text-align: center;
+      width: 100%;
+    }
+}
+

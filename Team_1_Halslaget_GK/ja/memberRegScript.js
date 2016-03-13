@@ -1,17 +1,19 @@
 ﻿$(document).ready(function () {
-    var memberID = document.getElementById('ContentPlaceHolder1_TextBoxID').value;
+    var memberID = document.getElementById('ContentPlaceHolder1_lblMedlemsID').textContent;
     var firstName = document.getElementById('ContentPlaceHolder1_TextBoxFornamn').value;
     var lastName = document.getElementById('ContentPlaceHolder1_TextBoxEfternamn').value;
 
-    if (memberID == "" && firstName == "" && lastName == "") {
+    if (memberID == "0" && firstName == "" && lastName == "") {
         $('#btnOpenDeleteMemberModal').removeAttr("onclick");
         $('#btnOpenDeleteMemberModal').css("background", "#818181");
         $('#btnOpenDeleteMemberModal').css("cursor", "not-allowed");
     }
+
+
 });
 
 function openOverlayDeleteMember() {
-    var memberID = document.getElementById('ContentPlaceHolder1_TextBoxID').value;
+    var memberID = document.getElementById('ContentPlaceHolder1_lblMedlemsID').textContent;
     var firstName = document.getElementById('ContentPlaceHolder1_TextBoxFornamn').value;
     var lastName = document.getElementById('ContentPlaceHolder1_TextBoxEfternamn').value;
 
@@ -25,4 +27,8 @@ function openOverlayDeleteMember() {
 
 function closeOverlayDeleteMember() {
     $('.page-overlay-delete-member').fadeOut('slow');
+}
+
+function closeOverlaySaved() {
+    $('.page-overlay-saved').fadeOut('slow');
 }

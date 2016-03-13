@@ -54,23 +54,48 @@
      width: 60%;
      margin: 0 auto;
  }
+
 .news .fullBox {
-    margin:2% 0;
-    
-    
+    margin:1% 0;    
 }
 .news .halfBox {
-    margin:2% 0.5%;
+    margin:1% 0.5%;
 }
 .registerbox .my-txt-box {
-    margin: 5px 0;
-    display: inline;
-    width: 32%;
+    width: 97%;
+    margin: 2% 0 0 0;
+    
     height: 50px;
 }
 .registerbox  {
-   margin:2% 0;
+   padding:2% 2%;
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;  
+
 }
+
+.newsBox {
+    border-bottom: 0.5px solid;
+    padding: 2% 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;   
+}
+.DropDown{
+    width:100%;
+    margin: 5px 0 5px;
+    height:50px;   
+}
+
+.thirdBox {
+    padding: 0.25%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;   
+}
+
+
 
 
 

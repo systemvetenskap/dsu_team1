@@ -40,8 +40,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\Mono.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql">
-      <HintPath>..\..\..\..\..\Programmering\npgsql\Net45\Npgsql.dll</HintPath>
+      <HintPath>..\..\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -61,21 +64,27 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminPanel.aspx" />
     <Content Include="bin\Team_1_Halslaget_GK.dll" />
     <Content Include="bin\Team_1_Halslaget_GK.pdb" />
+    <Content Include="BookingAdmin.aspx" />
     <Content Include="ChangePassword.aspx" />
+    <Content Include="CreateCompetition.aspx" />
+    <Content Include="CreateNewMember.aspx" />
+    <Content Include="css\AdminPanelCss.css" />
     <Content Include="css\changePasswordCss.css" />
+    <Content Include="css\CreateCompetition.css" />
+    <Content Include="css\CreateNewMemberCss.css" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\Medlemsregister.css" />
-    <Content Include="css\memberSearch.css" />
     <Content Include="css\MyPageCss.css" />
-    <Content Include="bin\Team_1_Halslaget_GK.dll" />
-    <Content Include="bin\Team_1_Halslaget_GK.pdb" />
     <Content Include="css\Publishnewsstyle.css" />
+    <Content Include="css\SeasonSettingStyle.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
+    <Content Include="css\tidsbokning.css" />
     <Content Include="deafult.aspx" />
-    <Content Include="font.css" />
+    <Content Include="css\font.css" />
     <Content Include="fonts\generator_config.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\lato-lig-demo.html" />
@@ -84,14 +93,21 @@
     <Content Include="fonts\specimen_files\grid_12-825-55-15.css" />
     <Content Include="fonts\specimen_files\specimen_stylesheet.css" />
     <Content Include="fonts\stylesheet.css" />
-    <Content Include="Glyphicons.css" />
+    <Content Include="css\Glyphicons.css" />
+    <Content Include="img\admin01.jpg" />
+    <Content Include="img\admin02.jpg" />
+    <Content Include="img\admin03.jpg" />
+    <Content Include="img\admin04.jpg" />
     <Content Include="img\golf2.jpg" />
     <Content Include="img\golf.jpg" />
+    <Content Include="img\golfboll.jpg" />
     <Content Include="ja\ChangePasswordJs.js" />
+    <Content Include="ja\CreateCompetitionJS.js" />
     <Content Include="ja\memberRegScript.js" />
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\Scrollto.js" />
+    <Content Include="ja\tidsbokning.js" />
     <Content Include="ja\Tinymce.js" />
     <Content Include="langs\sv_SE.js" />
     <Content Include="MasterPage.Master" />
@@ -104,6 +120,7 @@
     <Content Include="fonts\lato-lig-webfont.woff" />
     <Content Include="fonts\monofont.ttf" />
     <Content Include="bin\Team_1_Halslaget_GK.dll.config" />
+    <Content Include="AdminMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -114,21 +131,58 @@
   <ItemGroup>
     <Content Include="Medlemsregister.aspx" />
     <Content Include="MyPage.aspx" />
-    <Content Include="obj\Debug\Team_1_Halslaget_GK.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\Team_1_Halslaget_GK.dll" />
-    <Content Include="obj\Debug\Team_1_Halslaget_GK.pdb" />
+    <Content Include="NotAllowed.aspx" />
     <Content Include="PublishNewsAdmin.aspx" />
-    <Content Include="searchMembers.aspx" />
+    <Content Include="SeasonSettings.aspx" />
     <Content Include="TestPage.aspx" />
+    <Content Include="Tidsbokning.aspx" />
+    <Content Include="TidsbokningAdmin.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMaster.Master.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMaster.Master.designer.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanel.aspx.cs">
+      <DependentUpon>AdminPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPanel.aspx.designer.cs">
+      <DependentUpon>AdminPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BookingAdmin.aspx.cs">
+      <DependentUpon>BookingAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BookingAdmin.aspx.designer.cs">
+      <DependentUpon>BookingAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Booking.cs" />
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Player.cs" />
+    <Compile Include="CreateCompetition.aspx.cs">
+      <DependentUpon>CreateCompetition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateCompetition.aspx.designer.cs">
+      <DependentUpon>CreateCompetition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewMember.aspx.cs">
+      <DependentUpon>CreateNewMember.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateNewMember.aspx.designer.cs">
+      <DependentUpon>CreateNewMember.aspx</DependentUpon>
     </Compile>
     <Compile Include="deafult.aspx.cs">
       <DependentUpon>deafult.aspx</DependentUpon>
@@ -144,7 +198,7 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
-    <Compile Include="medlem.cs" />
+    <Compile Include="Classes\medlem.cs" />
     <Compile Include="Medlemsregister.aspx.cs">
       <DependentUpon>Medlemsregister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -152,12 +206,21 @@
     <Compile Include="Medlemsregister.aspx.designer.cs">
       <DependentUpon>Medlemsregister.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\MemberTypes.cs" />
     <Compile Include="MyPage.aspx.cs">
       <DependentUpon>MyPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MyPage.aspx.designer.cs">
       <DependentUpon>MyPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\news.cs" />
+    <Compile Include="NotAllowed.aspx.cs">
+      <DependentUpon>NotAllowed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NotAllowed.aspx.designer.cs">
+      <DependentUpon>NotAllowed.aspx</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -170,12 +233,13 @@
     <Compile Include="PublishNewsAdmin.aspx.designer.cs">
       <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="searchMembers.aspx.cs">
-      <DependentUpon>searchMembers.aspx</DependentUpon>
+    <Compile Include="Classes\Season.cs" />
+    <Compile Include="SeasonSettings.aspx.cs">
+      <DependentUpon>SeasonSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="searchMembers.aspx.designer.cs">
-      <DependentUpon>searchMembers.aspx</DependentUpon>
+    <Compile Include="SeasonSettings.aspx.designer.cs">
+      <DependentUpon>SeasonSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
@@ -183,6 +247,20 @@
     </Compile>
     <Compile Include="TestPage.aspx.designer.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tidsbokning.aspx.cs">
+      <DependentUpon>Tidsbokning.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tidsbokning.aspx.designer.cs">
+      <DependentUpon>Tidsbokning.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TidsbokningAdmin.aspx.cs">
+      <DependentUpon>TidsbokningAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TidsbokningAdmin.aspx.designer.cs">
+      <DependentUpon>TidsbokningAdmin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
@@ -197,7 +275,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57251</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

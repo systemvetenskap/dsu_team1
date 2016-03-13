@@ -97,7 +97,7 @@
         }
     </script> 
         <div class="wrapper text-center small-margin">
-            <asp:Button ID="newDate" runat="server" Text="Lägg till datum och tävlingstyp" CssClass="btn" OnClick="newDate_Click" UseSubmitBehavior="false" />
+            <asp:Button ID="newDate" runat="server" Text="Lägg till datum och tävlingstyp" CssClass="btn" OnClick="newDate_Click" UseSubmitBehavior="false" AutoPostback="false"/>
         </div>
         <div id="dateFiller" runat="server" class="small-margin">
         </div>

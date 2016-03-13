@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PublishNewsAdmin.aspx.cs" Inherits="Team_1_Halslaget_GK.PublishNewsAdmin" %>
+﻿<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="PublishNewsAdmin.aspx.cs" Inherits="Team_1_Halslaget_GK.PublishNewsAdmin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 <link href="css/Publishnewsstyle.css" rel="stylesheet" />
@@ -14,6 +14,6 @@
     <div class="fullBox">
         <asp:TextBox ID="txtHTMLContent" runat="server" TextMode="MultiLine"></asp:TextBox>           
         <br />
-        <asp:Button ID="Button1" runat="server" Text="Publicera" CssClass="my-button" />     
+        <asp:Button ID="Button1" runat="server" Text="Publicera" CssClass="my-button" OnClick="Button1_Click" /> 
     </div>          
     </asp:Content>

@@ -5,3 +5,12 @@
         });
     });
 });
+
+function openOverlayInfoBox() {
+    $('.page-overlay-info-box').fadeIn('slow');
+
+}
+
+function closeOverlayInfoBox() {
+    $('.page-overlay-info-boc').fadeOut('slow');
+}

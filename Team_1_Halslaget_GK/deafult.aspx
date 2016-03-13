@@ -1,25 +1,25 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="deafult.aspx.cs" Inherits="Team_1_Halslaget_GK.deafult" %>
+﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="deafult.aspx.cs" Inherits="Team_1_Halslaget_GK.deafult" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>HÅLSLAGET GK1</title>
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/deafultstyle.css" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
-    <link type="text/css" rel="stylesheet" href="font.css"/> 
-    <link type="text/css" rel="stylesheet" href="Glyphicons.css"/> 
+    <link href="css/Glyphicons.css" rel="stylesheet" />
+    <link href="css/font.css" rel="stylesheet" />
     <script src="ja/opencloseoverlay.js"></script>
     <script src="ja/Scrollto.js"></script>
     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>   
 </head>
 <body>
 
  <form id="form1" runat="server">
+ <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
   <div class="logincontainer">
    <div class="loginbox">
        <input id="Button1" type="button" value="X" class="closebtn"  onclick="closeOverlay();"/>
@@ -27,13 +27,34 @@
        <h2>Välkommen</h2> 
        <br />
        <div class="textboxcontainer">
-       <asp:TextBox ID="TextBox1" runat="server" placeholder="Email" CssClass="my-txt-box"></asp:TextBox>
-       <br />
-       <br />      
-       <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="my-txt-box" ></asp:TextBox>
-       <br />
-       <br />
-       <asp:Button ID="signInBtn" runat="server" Text="Logga in" CssClass="my-button" />
+            <asp:RequiredFieldValidator
+                ID="RequiredFieldValidator11"
+                ControlToValidate="TextBoxEmailLogin"
+                ForeColor ="Red"
+                runat="server"
+                Font-Size="Medium"
+                ErrorMessage="Du måste ange en Emailadress!"
+                display="Dynamic"
+                ValidationGroup="LoginGroup">                       
+           </asp:RequiredFieldValidator>
+           <asp:TextBox ID="TextBoxEmailLogin" runat="server" placeholder="Email" CssClass="my-txt-box"></asp:TextBox>
+           <br />
+           <br />
+           <asp:RequiredFieldValidator
+                ID="RequiredFieldValidator12"
+                ControlToValidate="TextBoxPwLogin"
+                ForeColor ="Red"
+                runat="server"
+                Font-Size="Medium"
+                ErrorMessage="Du måste ange ett lösenord!"
+                display="Dynamic"
+                ValidationGroup="LoginGroup">                       
+           </asp:RequiredFieldValidator>    
+           <asp:TextBox ID="TextBoxPwLogin" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="my-txt-box" ></asp:TextBox>
+           <br />
+           <asp:Label ID="LabelWrongPW" runat="server" Text="Label" Visible="false"></asp:Label>
+           <br />
+           <asp:Button ID="signInBtn" runat="server" Text="Logga in" CssClass="my-button" ValidationGroup="LoginGroup" OnClick="signInBtn_Click" />
        </div>   
 
    </div>
@@ -46,6 +67,7 @@
             <ul class="main-navbar">
               <li onclick="scrolltoTop();"><a href='#'>HEM</a></li>
               <li onclick="scrolltoNews();"><a href="#">NYHETER</a></li>                                                                  
+              <li onclick="scrolltoBookings();"><a href="#">DAGENS BOKNINGAR</a></li>
               <li onclick="scrolltoRegister();"><a href="#">BLI MEDLEM</a></li>  
             </ul>
             <ul class="main-navbar right">
@@ -74,70 +96,258 @@
           <img class="header-logo" src="img/golf.jpg" alt="Headimage" title="Fint landskap"/>
         </div> 
       </div>
-    </section>
-
-        <section class="container">
+    </section>   
+     <section class="container">
             <div class="content">
                 <div class="contentRow">
                     <div class="fullBox news">
                         <div class="page-title"><h1>Nyheter</h1></div>
-                        <div class="fullBox">
-                            <h2>Påhittad Nyhet!</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus lectus, ultricies eget lacus et, ullamcorper viverra est. Nullam hendrerit ex eget risus commodo viverra. Aliquam malesuada felis mauris, vitae posuere mauris faucibus at. Donec congue, neque eu sodales efficitur, leo nisi dictum leo, id facilisis nisl metus nec lectus. Nulla pulvinar sed enim vel porta. Phasellus aliquet lacus ut nibh interdum eleifend. Mauris eros massa, cursus ac lectus in, vestibulum molestie elit. Etiam faucibus nulla vitae turpis consectetur rhoncus.
-                            Sed ac dapibus ex, id commodo nibh. Phasellus vitae volutpat elit, et semper augue. Phasellus elit sem, posuere et ligula nec, mattis suscipit tortor. Curabitur at lacus lacus. Quisque feugiat finibus condimentum. Nam eu eleifend ante, at fermentum velit. Proin non porttitor odio. Curabitur pulvinar pellentesque nibh id bibendum. Nulla consectetur laoreet est fringilla bibendum. Proin sed vehicula risus. Phasellus eleifend risus ut ex gravida, a porta magna rutrum. Maecenas non enim ultricies, facilisis eros sed, consectetur purus. Cras laoreet quis lorem ut hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur eu feugiat felis, in consequat ipsum.
-                            Nunc sollicitudin lacinia accumsan. Curabitur semper diam eu nibh molestie facilisis. Sed porttitor pellentesque turpis fermentum commodo. Donec aliquam arcu quis mi lacinia, euismod congue orci cursus. Cras quis sollicitudin lectus. Integer sed facilisis velit. Cras non sapien lectus. Quisque pretium lacus ac pellentesque varius.
-                            Nullam id blandit lorem. Nam congue ante lacinia, vestibulum diam sit amet, facilisis est. Etiam nec rutrum mi. Duis interdum eros ut congue tempus. Ut vitae risus a enim pellentesque dignissim faucibus sagittis nibh. Praesent sem ipsum, placerat id magna vel, faucibus pharetra lorem. Donec consectetur risus vel sodales condimentum. Donec augue nisl, convallis id nunc ut, semper ullamcorper ligula. Nulla suscipit dolor sed tellus convallis condimentum. Nam sit amet tortor vel leo egestas semper. Donec quis sem eleifend, venenatis sem eu, porta ligula. Vivamus et pretium tellus. Nullam congue felis fermentum quam volutpat, ut cursus est pellentesque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                            Maecenas eu enim metus. Suspendisse eleifend enim at diam tempus auctor. Maecenas eleifend lacus ac lobortis vulputate. Nulla bibendum feugiat eleifend. Sed in magna tortor. Aenean congue auctor leo, vitae volutpat velit eleifend nec. Cras ac arcu at orci ullamcorper sagittis. Suspendisse varius sem non sapien commodo bibendum. Etiam ac erat vitae mi dapibus egestas a non urna. Duis pretium ac metus a finibus. Donec id egestas orci, a pretium tellus. Vestibulum eleifend erat sapien. Integer lorem metus, luctus ut dolor sed, accumsan dignissim mauris.</p>
+                        <div class="fullBox" runat="server" id="newsdiv">
                         </div>
-                        <div class="halfBox">                  
-                            <h3>Påhittad Nyhet!</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus lectus, ultricies eget lacus et, ullamcorper viverra est. Nullam hendrerit ex eget risus commodo viverra. Aliquam malesuada felis mauris, vitae posuere mauris faucibus at. Donec congue, neque eu sodales efficitur, leo nisi dictum leo, id facilisis nisl metus nec lectus. Nulla pulvinar sed enim vel porta. Phasellus aliquet lacus ut nibh interdum eleifend. Mauris eros massa, cursus ac lectus in, vestibulum molestie elit. Etiam faucibus nulla vitae turpis consectetur rhoncus.
-                            Sed ac dapibus ex, id commodo nibh. Phasellus vitae volutpat elit, et semper augue. Phasellus elit sem, posuere et ligula nec, mattis suscipit tortor. Curabitur at lacus lacus. Quisque feugiat finibus condimentum. Nam eu eleifend ante, at fermentum velit. Proin non porttitor odio. Curabitur pulvinar pellentesque nibh id bibendum. Nulla consectetur laoreet est fringilla bibendum. Proin sed vehicula risus. Phasellus eleifend risus ut ex gravida, a porta magna rutrum. Maecenas non enim ultricies, facilisis eros sed, consectetur purus. Cras laoreet quis lorem ut hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur eu feugiat felis, in consequat ipsum.
-                            Nunc sollicitudin lacinia accumsan. Curabitur semper diam eu nibh molestie facilisis. Sed porttitor pellentesque turpis fermentum commodo. Donec aliquam arcu quis mi lacinia, euismod congue orci cursus. Cras quis sollicitudin lectus. Integer sed facilisis velit. Cras non sapien lectus. Quisque pretium lacus ac pellentesque varius.
-                            Nullam id blandit lorem. Nam congue ante lacinia, vestibulum diam sit amet, facilisis est. Etiam nec rutrum mi. Duis interdum eros ut congue tempus. Ut vitae risus a enim pellentesque dignissim faucibus sagittis nibh. Praesent sem ipsum, placerat id magna vel, faucibus pharetra lorem. Donec consectetur risus vel sodales condimentum. Donec augue nisl, convallis id nunc ut, semper ullamcorper ligula. Nulla suscipit dolor sed tellus convallis condimentum. Nam sit amet tortor vel leo egestas semper. Donec quis sem eleifend, venenatis sem eu, porta ligula. Vivamus et pretium tellus. Nullam congue felis fermentum quam volutpat, ut cursus est pellentesque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                            Maecenas eu enim metus. Suspendisse eleifend enim at diam tempus auctor. Maecenas eleifend lacus ac lobortis vulputate. Nulla bibendum feugiat eleifend. Sed in magna tortor. Aenean congue auctor leo, vitae volutpat velit eleifend nec. Cras ac arcu at orci ullamcorper sagittis. Suspendisse varius sem non sapien commodo bibendum. Etiam ac erat vitae mi dapibus egestas a non urna. Duis pretium ac metus a finibus. Donec id egestas orci, a pretium tellus. Vestibulum eleifend erat sapien. Integer lorem metus, luctus ut dolor sed, accumsan dignissim mauris.</p>
-
-                        </div>
-                        <div class="halfBox">  
-                            <h3>Påhittad nyhet</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus lectus, ultricies eget lacus et, ullamcorper viverra est. Nullam hendrerit ex eget risus commodo viverra. Aliquam malesuada felis mauris, vitae posuere mauris faucibus at. Donec congue, neque eu sodales efficitur, leo nisi dictum leo, id facilisis nisl metus nec lectus. Nulla pulvinar sed enim vel porta. Phasellus aliquet lacus ut nibh interdum eleifend. Mauris eros massa, cursus ac lectus in, vestibulum molestie elit. Etiam faucibus nulla vitae turpis consectetur rhoncus.
-                            Sed ac dapibus ex, id commodo nibh. Phasellus vitae volutpat elit, et semper augue. Phasellus elit sem, posuere et ligula nec, mattis suscipit tortor. Curabitur at lacus lacus. Quisque feugiat finibus condimentum. Nam eu eleifend ante, at fermentum velit. Proin non porttitor odio. Curabitur pulvinar pellentesque nibh id bibendum. Nulla consectetur laoreet est fringilla bibendum. Proin sed vehicula risus. Phasellus eleifend risus ut ex gravida, a porta magna rutrum. Maecenas non enim ultricies, facilisis eros sed, consectetur purus. Cras laoreet quis lorem ut hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur eu feugiat felis, in consequat ipsum.
-                            Nunc sollicitudin lacinia accumsan. Curabitur semper diam eu nibh molestie facilisis. Sed porttitor pellentesque turpis fermentum commodo. Donec aliquam arcu quis mi lacinia, euismod congue orci cursus. Cras quis sollicitudin lectus. Integer sed facilisis velit. Cras non sapien lectus. Quisque pretium lacus ac pellentesque varius.
-                            Nullam id blandit lorem. Nam congue ante lacinia, vestibulum diam sit amet, facilisis est. Etiam nec rutrum mi. Duis interdum eros ut congue tempus. Ut vitae risus a enim pellentesque dignissim faucibus sagittis nibh. Praesent sem ipsum, placerat id magna vel, faucibus pharetra lorem. Donec consectetur risus vel sodales condimentum. Donec augue nisl, convallis id nunc ut, semper ullamcorper ligula. Nulla suscipit dolor sed tellus convallis condimentum. Nam sit amet tortor vel leo egestas semper. Donec quis sem eleifend, venenatis sem eu, porta ligula. Vivamus et pretium tellus. Nullam congue felis fermentum quam volutpat, ut cursus est pellentesque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                            Maecenas eu enim metus. Suspendisse eleifend enim at diam tempus auctor. Maecenas eleifend lacus ac lobortis vulputate. Nulla bibendum feugiat eleifend. Sed in magna tortor. Aenean congue auctor leo, vitae volutpat velit eleifend nec. Cras ac arcu at orci ullamcorper sagittis. Suspendisse varius sem non sapien commodo bibendum. Etiam ac erat vitae mi dapibus egestas a non urna. Duis pretium ac metus a finibus. Donec id egestas orci, a pretium tellus. Vestibulum eleifend erat sapien. Integer lorem metus, luctus ut dolor sed, accumsan dignissim mauris.</p>
-                        </div>
-                   </div>                     
-                </div>
-            </div>
+                    </div> 
+                        <div class="fullBox bookings">
+                            <div class="page-title"><h1>Bokningar och Väder</h1></div>
+                                <div class="weatherBox">
+                                    <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
+                                    <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/e67186ae70807f54f0e967f0f38dac9f"></script>
+                                    <asp:Table ID="Table2" runat="server" CssClass="banstatus">
+                                        <asp:TableRow CssClass="border_bottom">
+                                            <asp:TableCell>
+                                            </asp:TableCell>
+                                            <asp:TableCell CssClass="alignright">
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow CssClass="border_bottom">
+                                            <asp:TableCell>
+                                            </asp:TableCell>
+                                            <asp:TableCell CssClass="alignright">
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow CssClass="border_bottom">
+                                            <asp:TableCell>
+                                            </asp:TableCell>
+                                            <asp:TableCell CssClass="alignright">
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow>
+                                            <asp:TableCell>
+                                            </asp:TableCell>
+                                            <asp:TableCell CssClass="alignright">
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                </asp:Table>
+                            </div>
+                        </div>                                     
+                    </div>  
+                </div>         
         </section>
+     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+         <ContentTemplate>
      <section class="container">
          <div class="content">
              <div class="contentRow">
                  <div class="fullBox page-title">
                      <h1>Bli Medlem</h1>
                  </div>
-                 <div class="fullBox registerbox">                                   
-                     <asp:TextBox ID="tbName" runat="server" CssClass="my-txt-box" placeholder="Namn"></asp:TextBox>
-                     <asp:TextBox ID="tbAdress" runat="server" CssClass="my-txt-box" placeholder="Adress"></asp:TextBox>
-                     <asp:TextBox ID="tbEmail" runat="server" CssClass="my-txt-box" placeholder="Email"></asp:TextBox><br />
-                     <asp:TextBox ID="tbLastname" runat="server" CssClass="my-txt-box" placeholder="Efternamn"></asp:TextBox>
-                     <asp:TextBox ID="tbCity" runat="server" CssClass="my-txt-box" placeholder="Postort"></asp:TextBox>
-                     <asp:TextBox ID="tbPassword" runat="server" CssClass="my-txt-box" placeholder="Lösenord"></asp:TextBox><br />   
-                     <asp:TextBox ID="tbPonenumber" runat="server" CssClass="my-txt-box" placeholder="Telefonnummer"></asp:TextBox>                                           
-                     <asp:TextBox ID="tbZipcode" runat="server" CssClass="my-txt-box" placeholder="Postnummer"></asp:TextBox>
-                     <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox><br /><br />                                                       
-                     <asp:Button ID="Button2" runat="server" Text="Bli medlem" Cssclass="my-button"/>                                            
-             </div>
-           </div>
-         </div>
+                 <div class="fullBox registerbox">  
+                     <div class="thirdBox">
+                         <asp:RequiredFieldValidator
+                            ID="ValidatorFirstName"
+                            ControlToValidate="tbName"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt namn!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:TextBox ID="tbName" runat="server" CssClass="my-txt-box" placeholder="Namn"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator1"
+                            ControlToValidate="tbLastname"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt efternamn!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:TextBox ID="tbLastname" runat="server" CssClass="my-txt-box" placeholder="Efternamn"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator2"
+                            ControlToValidate="tbPonenumber"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt telefonnummer!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">
+                         </asp:RequiredFieldValidator>                                           
+                         <asp:RangeValidator
+                            ID="rangeValidPonenumber" 
+                            ControlToValidate="tbPonenumber" 
+                            Type="Double"
+                            Font-Size="Medium"  
+                            ForeColor="Red"
+                            MinimumValue="0"
+                            MaximumValue="9999999999999999" 
+                            runat="server" 
+                            ErrorMessage="Ett telefonnummer får bara innehålla siffror!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup"></asp:RangeValidator>               
+                         <asp:TextBox ID="tbPonenumber" runat="server" CssClass="my-txt-box" placeholder="Telefonnummer"></asp:TextBox>                        
+                     </div> 
+                     <div class="thirdBox">
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator3"
+                            ControlToValidate="tbAdress"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i din adress!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:TextBox ID="tbAdress" runat="server" CssClass="my-txt-box" placeholder="Adress"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator4"
+                            ControlToValidate="tbZipcode"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt postnummer!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:TextBox ID="tbZipcode" runat="server" CssClass="my-txt-box" placeholder="Postnummer"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator5"
+                            ControlToValidate="tbCity"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i din stad!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:TextBox ID="tbCity" runat="server" CssClass="my-txt-box" placeholder="Postort"></asp:TextBox>
+                     </div>
+                     <div class="thirdBox">
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator6"
+                            ControlToValidate="tbEmail"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i din email!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:RegularExpressionValidator 
+                            ID="regExValidatorEmail" 
+                            ForeColor="Red" 
+                            Font-Size="Medium" 
+                            ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                            ControlToValidate="tbEmail" 
+                            runat="server" 
+                            ErrorMessage="Felaktigt epost format"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup"> 
+                </asp:RegularExpressionValidator>
+                         <asp:TextBox ID="tbEmail" runat="server" CssClass="my-txt-box" placeholder="Email"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator7"
+                            ControlToValidate="tbPassword"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ett lösenord!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:TextBox ID="tbPassword" runat="server" CssClass="my-txt-box" placeholder="Lösenord"></asp:TextBox>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator8"
+                            ControlToValidate="tbConfirmPassword"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Får inte lämnas tomt!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:CompareValidator 
+                            id="comparePasswords" 
+                            runat="server"
+                            foreColor="Red"
+                            font-Sie="Medium"
+                            ControlToCompare="tbPassword"
+                            ControlToValidate="tbConfirmPassword"
+                            ErrorMessage="Lösenorden stämmer inte överens!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">
+                         </asp:CompareValidator>
+                         <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox>
+                     </div>
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator10"
+                            ControlToValidate="tbhcp"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Fyll i ditt handikapp!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:TextBox ID="tbhcp" runat="server" CssClass="my-txt-box" placeholder="Handikapp"></asp:TextBox>                 
+                         <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator9"
+                            ControlToValidate="DdlKon"
+                            ForeColor ="Red"
+                            initialValue="Välj kön"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Välj kön!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">                       
+                         </asp:RequiredFieldValidator>
+                         <asp:DropDownList ID="DdlKon" CssClass="DropDown" runat="server">
+                             <asp:ListItem>V&#228;lj k&#246;n</asp:ListItem>
+                             <asp:ListItem>Man</asp:ListItem>
+                             <asp:ListItem>Kvinna</asp:ListItem>
+                         </asp:DropDownList>                        
+                         <asp:RequiredFieldValidator 
+                            ID="validatorKon" 
+                            ControlToValidate="dropDownMembertype" 
+                            InitialValue="Välj medlemstyp" 
+                            ForeColor="Red" 
+                            Font-Size="Medium"  
+                            runat="server" 
+                            ErrorMessage="Du måste välja medlemstyp!"
+                            display="Dynamic"
+                            ValidationGroup="RegisterGroup">
+                        </asp:RequiredFieldValidator>                                                                                                                                                                                                                                  
+                     <asp:DropDownList ID="dropDownMembertype" runat="server" CssClass="DropDown">
+                         <asp:ListItem>V&#228;lj medlemstyp</asp:ListItem>
+                         <asp:ListItem>Junior 0 - 12 &#229;r</asp:ListItem>
+                         <asp:ListItem>Junior 13 - 21 &#229;r</asp:ListItem>
+                         <asp:ListItem>Studerande</asp:ListItem>
+                         <asp:ListItem>Senior</asp:ListItem>
+                     </asp:DropDownList>                                                                          
+                     <asp:Button ID="Button2" runat="server" Text="Ansök om medlemskap" Cssclass="my-button" placeholder="Hej" OnClick="Button2_Click" ValidationGroup="RegisterGroup"/><br /><br />                                     
+                   </div>
+                </div>
+            </div>
      </section>
+   </ContentTemplate>
+  </asp:UpdatePanel>
        <!-- Footer ================================================== -->
     <section class="container" id="section-footer">
       <div class="content">
         <div class="contentRow">      
 
           <div class="fullBox" id="footer">        
-            <p class="foot-text">HÅLSAGET GK</p>
+            <p class="foot-text">HÅLSLAGET GK</p>
 
             <div class="halfBox">
               <a class="phone-links" href="callto:#">
@@ -149,7 +359,6 @@
               <a class="mail-links"href="#" target="_top">              
               <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><br> HÅLSALGETGK@EMAIL.COM</a>
             </div>
-
           </div>
       </div>
       </div>

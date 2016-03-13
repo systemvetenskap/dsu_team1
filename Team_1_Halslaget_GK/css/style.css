@@ -8,14 +8,13 @@
 }
 
 .DropDown{
-    font-size: 1em;
-    padding: 0.2em;
+    font-size: 1.4em;
+    padding: 2px 2px 2px 6px;
+    width: 98%;
+    cursor: pointer;
+    border-radius: 5px;
 }
-#textBoxSearch {
-    width: 1000px;
-    text-align:center;
-    margin: 0 auto;
-}
+
 .container {
 	width: 100%;
 	overflow: hidden;
@@ -23,9 +22,10 @@
 }
 
 #oddRow {
-	background-color: #F2F2F2; /*test olika gråa, möjligtvis mörka ner font color också för hela sidan*/
+	background-color: #F2F2F2; 
     box-shadow: 0px 0px 7px #F2F2F2;
 }
+
 .content {
 	/*text-align: center;*/
 	margin: 0em auto;
@@ -134,7 +134,7 @@ h3 {
 	float: left;
 }
 .quarterBox {
-	width: 24.5%;
+	width: 23%;
 	float: left;
 	overflow: hidden;
 }
@@ -145,6 +145,34 @@ h3 {
 	overflow: hidden;
 }
 
+ .widget {
+     color: #595959;
+     text-align: center;
+     padding: 10px;
+     margin-left: 10px;
+     margin-top: 15px;
+ }
+
+ p.fet{
+     font-weight: bold;
+ }
+
+ .banstatus{
+     border: 1px solid black;
+     width: 280px;
+     padding: 10px;
+     margin-left: 10px;
+     margin-top: 15px;
+ }
+
+
+ tr.border_bottom td {
+  border-bottom:1pt solid #cfcfcf;
+}
+
+ p.alignright{
+     text-align: right;
+ }
 /*****************************************************
 	SECTION IDS
 *****************************************************/
@@ -295,6 +323,7 @@ h3 {
 *****************************************************/
 .page-title {
     border-bottom: 1px solid #E5C100;
+    margin-bottom: 20px;
 }
 
 #small-home-heading {

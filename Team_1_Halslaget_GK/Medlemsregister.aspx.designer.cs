@@ -58,6 +58,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button ButtonRadera;
         
         /// <summary>
+        /// lblConfirmed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblConfirmed;
+        
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,13 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button ButtonSearch;
         
         /// <summary>
-        /// TextBoxID control.
+        /// lblMedlemsID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxID;
+        protected global::System.Web.UI.WebControls.Label lblMedlemsID;
         
         /// <summary>
         /// TextBoxFornamn control.
@@ -148,13 +157,13 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox TextBoxEmail;
         
         /// <summary>
-        /// TextBoxTelefunNummer control.
+        /// TextBoxTelefonNummer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxTelefunNummer;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxTelefonNummer;
         
         /// <summary>
         /// TextBoxAdress control.
@@ -193,6 +202,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.TextBox TextBoxHandikapp;
         
         /// <summary>
+        /// dropDownPayStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dropDownPayStatus;
+        
+        /// <summary>
         /// ButtonSpara control.
         /// </summary>
         /// <remarks>
@@ -202,30 +220,12 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button ButtonSpara;
         
         /// <summary>
-        /// ButtonVisaMedlemInfo control.
+        /// lblSavedConfirmed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonVisaMedlemInfo;
-        
-        /// <summary>
-        /// ButtonTillbaka control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonTillbaka;
-        
-        /// <summary>
-        /// ButtonRedigera control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonRedigera;
+        protected global::System.Web.UI.WebControls.Label lblSavedConfirmed;
     }
 }
