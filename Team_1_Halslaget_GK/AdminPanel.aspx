@@ -10,10 +10,7 @@
     </div>
     <div class="fullBox admin-top-n-bottom-margin">
         <h3>Välkommen <asp:Label ID="lblAdminUserName" runat="server" Text="AdminUserName"></asp:Label></h3>
-        <p class="admin-top-n-bottom-margin">Hej och välkommen, här kan du som anställd hos hålslaget GK utföra din arbetsuppgifter och då bland annat boka tider åt medlemmar,
-            hantera medlermmas bokningar, skapa nya medlemskap och med mera.
-        </p>
-    </div>
+        </div>
     <div class="fullBox center-text">
         <div class="quarterBox admin-qBox">
             <img class="admin-img" src="img/admin01.jpg"/>
