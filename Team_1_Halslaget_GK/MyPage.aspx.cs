@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Web.UI.HtmlControls;
 using Npgsql;
 using System.Globalization;
+using System.IO;
 
 namespace Team_1_Halslaget_GK
 {
@@ -52,6 +53,7 @@ namespace Team_1_Halslaget_GK
             BindGridView();
             SetMemberInfoLabels();
             SetMemberTextBoxes();
+            SetCompGrid();
         }
 
         /// <summary>
@@ -147,6 +149,64 @@ namespace Team_1_Halslaget_GK
             return TeeTime;
         }
 
+        private void SetCompGrid()
+        {
+            Competition comp = new Competition();
+            DataTable dt = comp.GetComingCompetitionMember(Convert.ToInt32(Session["username"]));
+            DataTable compdt = new DataTable();
+            compdt.Columns.Add("namn");
+            compdt.Columns.Add("datum");
+            compdt.Columns.Add("starttid");
+
+            if (dt.Rows.Count == 0)
+            {
+                compinfo.InnerText = "Du är inte anmäld på någon tävling";
+            }
+
+            else
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    compdt.Rows.Add();
+                    compdt.Rows[i]["namn"] = dt.Rows[i]["namn"];
+                    compdt.Rows[i]["datum"] = dt.Rows[i]["datum"];
+
+                    if (dt.Rows[i]["startlistxml"].ToString() == "")
+                    {
+                        compdt.Rows[i]["starttid"] = "-";
+                    }
+
+                    else
+                    {
+                        DataSet ds = new DataSet();
+
+                        try
+                        {
+                            StringReader sr = new StringReader(dt.Rows[i]["startlistxml"].ToString());
+                            ds.ReadXml(sr);
+                        }
+
+                        catch (Exception ex)
+                        {
+
+                        }
+
+                        for (int j = 0; j < ds.Tables[0].Rows.Count; j++)
+                        {
+                            if (ds.Tables[0].Rows[j]["Golf ID"].ToString() == Session["GolfID"].ToString())
+                            {
+                                compdt.Rows[i]["starttid"] = ds.Tables[0].Rows[j]["Starttid"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+
+            GridView2.DataSource = compdt;
+            GridView2.DataBind();
+            btnShowStartList.Enabled = false;
+        }
+
         /// <summary>
         /// When user selects a row this event highlights and changes the colour.
         /// </summary>
@@ -162,6 +222,36 @@ namespace Team_1_Halslaget_GK
                 {
                     row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
                 }
+            }
+        }
+
+        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in GridView2.Rows)
+            {
+                if (row.RowIndex == GridView2.SelectedIndex)
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#6C6C6C");
+                }
+                else
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                }
+            }
+        }
+
+        protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Select")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+
+                if (GridView2.Rows[rowIndex].Cells[2].Text == "-")
+                {
+                    btnShowStartList.Enabled = false;
+                }
+
+                else btnShowStartList.Enabled = true;
             }
         }
 
@@ -277,6 +367,11 @@ namespace Team_1_Halslaget_GK
             Session["userID"] = lblMemberID.Text;
             Response.Redirect("~/Tidsbokning.aspx");              
 
+        }
+
+        protected void btnShowStartList_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ViewStartList.aspx");              
         }
 
     }
