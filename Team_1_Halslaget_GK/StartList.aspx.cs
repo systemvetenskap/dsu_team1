@@ -48,6 +48,8 @@ namespace Team_1_Halslaget_GK
                 infotext.InnerText = "";
                 NOcompetitorstext.InnerText = "";
                 btnGeneratePlaylist.Enabled = false;
+                GridView1.Visible = false;
+
             }
 
             else
@@ -63,19 +65,34 @@ namespace Team_1_Halslaget_GK
 
                 if (competition.Rows[0]["startlistxml"] is DBNull)
                 {
-
+                    GridView1.Visible = false;
                 }
 
                 else
                 {
-                    BindGrid();
+                    BindGrid(competition.Rows[0]["startlistxml"].ToString());
+                    GridView1.Visible = true;
                 }
             }            
         }
 
-        protected void BindGrid()
+        protected void BindGrid(string xml)
         {
-            DataTable RndTeeTimes = new DataTable();
+            DataSet ds = new DataSet();
+
+            try
+            {
+                StringReader sr = new StringReader(xml);
+                ds.ReadXml(sr);
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            GridView1.DataSource = ds.Tables[0];
+            GridView1.DataBind();
             
         }
 
@@ -140,6 +157,7 @@ namespace Team_1_Halslaget_GK
 
             GridView1.DataSource = RndTeeTimes;
             GridView1.DataBind();
+            GridView1.Visible = true;
             return RndTeeTimes;
         }
     }
