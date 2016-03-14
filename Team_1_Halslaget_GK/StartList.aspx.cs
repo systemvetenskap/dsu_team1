@@ -68,9 +68,15 @@ namespace Team_1_Halslaget_GK
 
                 else
                 {
-                    Bind
+                    BindGrid();
                 }
             }            
+        }
+
+        protected void BindGrid()
+        {
+            DataTable RndTeeTimes = new DataTable();
+            
         }
 
         protected void btnGeneratePlaylist_Click(object sender, EventArgs e)
