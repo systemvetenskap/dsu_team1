@@ -157,6 +157,7 @@ namespace Team_1_Halslaget_GK
             compdt.Columns.Add("namn");
             compdt.Columns.Add("datum");
             compdt.Columns.Add("starttid");
+            compdt.Columns.Add("id");
 
             if (dt.Rows.Count == 0)
             {
@@ -170,6 +171,7 @@ namespace Team_1_Halslaget_GK
                     compdt.Rows.Add();
                     compdt.Rows[i]["namn"] = dt.Rows[i]["namn"];
                     compdt.Rows[i]["datum"] = dt.Rows[i]["datum"];
+                    compdt.Rows[i]["id"] = dt.Rows[i]["id"];
 
                     if (dt.Rows[i]["startlistxml"].ToString() == "")
                     {
@@ -251,7 +253,11 @@ namespace Team_1_Halslaget_GK
                     btnShowStartList.Enabled = false;
                 }
 
-                else btnShowStartList.Enabled = true;
+                else 
+                {
+                    btnShowStartList.Enabled = true;
+                    Session["compid"] = GridView2.DataKeys[rowIndex]["id"];
+                }
             }
         }
 
@@ -371,7 +377,8 @@ namespace Team_1_Halslaget_GK
 
         protected void btnShowStartList_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/ViewStartList.aspx");              
+            Response.Redirect("~/ViewStartList.aspx");
+            
         }
 
     }
