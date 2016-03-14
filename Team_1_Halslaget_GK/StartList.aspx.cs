@@ -36,14 +36,16 @@ namespace Team_1_Halslaget_GK
 
             DropDownList1.DataSource = comps;
             DropDownList1.DataTextField = "namn";
+            DropDownList1.DataValueField = "id";
             DropDownList1.DataBind();
             this.DropDownList1.Items.Insert(0, "Välj");
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string compName = DropDownList1.Text;
-            if(compName == "Välj")
+            string compName = DropDownList1.SelectedValue.ToString();
+
+            if(DropDownList1.Text == "hej")
             {
                 infotext.InnerText = "";
                 NOcompetitorstext.InnerText = "";
@@ -55,13 +57,24 @@ namespace Team_1_Halslaget_GK
             else
             {
                 Competition specCompetition = new Competition();
-                compName = DropDownList1.Text;
+                compName = DropDownList1.SelectedValue.ToString();
                 DataTable competition = specCompetition.GetSpecificCompetition(compName);
 
-                infotext.InnerText = competition.Rows[0]["namn"].ToString() + " " + DateTime.Parse(competition.Rows[0]["datum"].ToString()).ToShortDateString();
-                NOcompetitorstext.InnerText = specCompetition.GetNOcompetitors(compName) + " spelare är anmälda";
+                infotext.InnerText = DateTime.Parse(competition.Rows[0]["datum"].ToString()).ToShortDateString();
 
-                btnGeneratePlaylist.Enabled = true;
+                int players = Convert.ToInt32(specCompetition.GetNOcompetitors(compName));
+                NOcompetitorstext.InnerText =  players.ToString() + " spelare är anmälda";
+
+                if (players > 0)
+                {
+                    btnGeneratePlaylist.Visible = true;
+
+                }
+                if (players == 0)
+                {
+                    btnGeneratePlaylist.Visible = false;
+                }
+                
 
                 if (competition.Rows[0]["startlistxml"] is DBNull)
                 {
@@ -73,7 +86,7 @@ namespace Team_1_Halslaget_GK
                     BindGrid(competition.Rows[0]["startlistxml"].ToString());
                     GridView1.Visible = true;
                 }
-            }            
+            }      
         }
 
         protected void BindGrid(string xml)

@@ -14,7 +14,7 @@
             </div>
             <asp:Button ID="btnGeneratePlaylist" CssClass="my-button" runat="server" Text="Generera Spellista" OnClick="btnGeneratePlaylist_Click"/>
         </div>
-        <div class ="halfbox tablehalfbox">
+        <div class="halfBox tablehalfbox">
             <asp:GridView ID="GridView1" runat="server" CssClass="Grid"></asp:GridView>
         </div>
     </div>

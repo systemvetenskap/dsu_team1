@@ -15,11 +15,26 @@ namespace Team_1_Halslaget_GK
     {
         NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 
+        Competition newcomp = new Competition();
+
         protected void Page_Load(object sender, EventArgs e)
         {
                 
                 LoadNews();
                 SetTableBanstatus(GetBanstatus());
+
+                gvComp.DataSource = newcomp.GetAllUpcomingCompetitions();
+                gvComp.DataBind();
+
+            if(gvComp.Rows.Count > 0)
+            {
+                lblcomp.Text = "Om du vill anmäla dig till en tävling kan du logga in eller kontakta receptionen.";
+            }
+            else
+            {
+                lblcomp.Text = "Just nu finns det inga kommande tävlingar.";
+            }
+
         }      
         //Visar banans status
         private void SetTableBanstatus(DataTable dt)

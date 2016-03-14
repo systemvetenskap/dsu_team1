@@ -102,14 +102,14 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        public int GetNOcompetitors(string compName)
+        public int GetNOcompetitors(string id)
         {
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             try
             {
                 conn.Open();
-                NpgsqlCommand cmdGetPlayers = new NpgsqlCommand("SELECT count(medlem_id) FROM medlem_tavling WHERE tavling_id = (SELECT id FROM tavling WHERE namn = @compName)", conn);
-                cmdGetPlayers.Parameters.AddWithValue("@compName", compName);
+                NpgsqlCommand cmdGetPlayers = new NpgsqlCommand("SELECT count(medlem_id) FROM medlem_tavling WHERE tavling_id = (SELECT id FROM tavling WHERE id = @id)", conn);
+                cmdGetPlayers.Parameters.AddWithValue("@id", id);
                 int noplayers = Convert.ToInt32(cmdGetPlayers.ExecuteScalar());
 
                 return noplayers;
