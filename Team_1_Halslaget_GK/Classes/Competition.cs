@@ -49,14 +49,14 @@ namespace Team_1_Halslaget_GK
         /// <summary>
         /// Gets a specific competition based on tournaments name
         /// </summary>
-        public DataTable GetSpecificCompetition(string compName)
+        public DataTable GetSpecificCompetition(string id)
         {
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             try
             {
                 conn.Open();
-                NpgsqlCommand cmdGetSpecComp = new NpgsqlCommand("SELECT * FROM tavling WHERE namn = @compName", conn);
-                cmdGetSpecComp.Parameters.AddWithValue("@compName", compName);
+                NpgsqlCommand cmdGetSpecComp = new NpgsqlCommand("SELECT * FROM tavling WHERE id = @id", conn);
+                cmdGetSpecComp.Parameters.AddWithValue("@id", id);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmdGetSpecComp;
                 DataTable dt = new DataTable();
