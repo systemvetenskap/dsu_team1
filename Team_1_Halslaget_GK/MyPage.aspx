@@ -133,7 +133,7 @@
             <div class="fullBox my-page-title">
                 <h3>MINA UPPGIFTER</h3>
             </div>
-            <div class="halfBox">
+            <div class="fullBox">
                 <p class="p-my-info"><strong>Förnamn:</strong> <asp:Label ID="lblFirstName" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Efternam:</strong> <asp:Label ID="lblLastName" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Telefonnummer:</strong> <asp:Label ID="lblPhoneNum" runat="server" Text="Label"></asp:Label></p>
