@@ -14,10 +14,10 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Username"] == null && Session["admin"] == null)
-            {
-                Response.Redirect("~/NotAllowed.aspx");
-            }
+            //if (Session["Username"] == null && Session["admin"] == null)
+            //{
+            //    Response.Redirect("~/NotAllowed.aspx");
+            //}
 
             if(!IsPostBack)
             {
@@ -45,6 +45,7 @@ namespace Team_1_Halslaget_GK
 
             dropDownCompetition.DataSource = competitions;
             dropDownCompetition.DataTextField = "namn";
+            dropDownCompetition.DataValueField = "id";
             dropDownCompetition.DataBind();
             this.dropDownCompetition.Items.Insert(0, "Välj");
         }
@@ -219,8 +220,8 @@ namespace Team_1_Halslaget_GK
         /// </summary>
         protected void dropDownCompetition_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string compName = dropDownCompetition.Text;
-            if(compName == "Välj")
+            string name = dropDownCompetition.Text;
+            if(dropDownCompetition.Text == "Välj")
             {
                 lblCompetitionID.Text = "";
                 lblDate.Text = "";
@@ -230,8 +231,8 @@ namespace Team_1_Halslaget_GK
             else
             {
                 Competition specCompetition = new Competition();
-                compName = dropDownCompetition.Text;
-                DataTable competition = specCompetition.GetSpecificCompetition(compName);
+                string id = dropDownCompetition.SelectedValue;
+                DataTable competition = specCompetition.GetSpecificCompetition(id);
 
                 lblCompetitionID.Text = competition.Rows[0]["id"].ToString();
                 lblDate.Text = DateTime.Parse(competition.Rows[0]["datum"].ToString()).ToShortDateString(); ;
@@ -247,7 +248,7 @@ namespace Team_1_Halslaget_GK
         /// <param name="e"></param>
         protected void dropDownTee_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(dropDownTee.SelectedIndex > -1)
+            if(dropDownTee.Text != "Välj")
             {
                 Tee specTee = new Tee();
                 string id = dropDownTee.SelectedValue;

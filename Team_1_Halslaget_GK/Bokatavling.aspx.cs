@@ -28,7 +28,7 @@ namespace Team_1_Halslaget_GK
             OpenPage();
             if (!IsPostBack)
             {
-                gvTavlingar.DataSource = newcomp.GetAllCompetitions();
+                gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
                 gvTavlingar.DataBind();
                 
             }
@@ -87,7 +87,7 @@ namespace Team_1_Halslaget_GK
            if (bookMember(medlemid, tavlingid))
             {
                 tbsearchTavling.Text = "";
-                gvTavlingar.DataSource = newcomp.GetAllCompetitions();
+                gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
                 gvTavlingar.DataBind();
             }
             else
@@ -102,7 +102,7 @@ namespace Team_1_Halslaget_GK
             if (bookTeam())
             {
                 tbsearchTavling.Text = "";
-                gvTavlingar.DataSource = newcomp.GetAllCompetitions();
+                gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
                 gvTavlingar.DataBind();
             }                       
         }
@@ -112,7 +112,7 @@ namespace Team_1_Halslaget_GK
             if (cancelbookingsingel(openmedlem.ID.ToString(), gvTavlingar.SelectedValue.ToString()))
             {
                 tbsearchTavling.Text = "";
-                gvTavlingar.DataSource = newcomp.GetAllCompetitions();
+                gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
                 gvTavlingar.DataBind();
             }
             
@@ -123,7 +123,7 @@ namespace Team_1_Halslaget_GK
             if (CancelBookingTeam(Session["lagid"].ToString(), gvTavlingar.SelectedValue.ToString()))
             {
                 tbsearchTavling.Text = "";
-                gvTavlingar.DataSource = newcomp.GetAllCompetitions();
+                gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
                 gvTavlingar.DataBind();
             }
         }
