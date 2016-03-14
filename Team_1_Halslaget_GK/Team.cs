@@ -12,6 +12,4 @@ namespace Team_1_Halslaget_GK
 
         public List<medlem> Listofmedlem = new List<medlem>();
     }
-
-    
 }

@@ -266,8 +266,8 @@
       <DependentUpon>SeasonSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Stringwriter.cs" />
-    <Compile Include="Team.cs" />
     <Compile Include="Classes\Tee.cs" />
+    <Compile Include="Team.cs" />
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
