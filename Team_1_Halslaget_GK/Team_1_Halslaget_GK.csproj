@@ -275,6 +275,7 @@
     </Compile>
     <Compile Include="Classes\Tee.cs" />
     <Compile Include="Team.cs" />
+    <Compile Include="Teamslump.cs" />
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

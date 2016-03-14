@@ -15,6 +15,8 @@ namespace Team_1_Halslaget_GK
         public int ID { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime Date { get; set; }
+        public string lagid { get; set; }
+        public string tavlingid { get; set; }
 
         /// <summary>
         /// Method retrieves booked tee times for a member.

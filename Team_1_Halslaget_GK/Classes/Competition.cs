@@ -153,11 +153,11 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        public void SetStartList(string xml, string compName)
+        public void SetStartList(string xml, string compId)
         {
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            NpgsqlCommand cmd = new NpgsqlCommand("UPDATE tavling SET startlistxml = @xml WHERE namn = @compName", conn);
-            cmd.Parameters.AddWithValue("@compName", compName);
+            NpgsqlCommand cmd = new NpgsqlCommand("UPDATE tavling SET startlistxml = @xml WHERE id = @compid", conn);
+            cmd.Parameters.AddWithValue("@compid", compId);
             cmd.Parameters.AddWithValue("@xml", xml);
             
             try
