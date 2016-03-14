@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
         $("#ContentPlaceHolder1_TextBox1").on('change keyup paste', function () {
             document.getElementById('ContentPlaceHolder1_lblIn').innerHTML = summarizeBox1to9();
-            document.getElementById('ContentPlaceHolder1_lblTotalt').innerHTML = CalculateTotal();
-            document.getElementById('ContentPlaceHolder1_lblScore').innerHTML = CalculateScore();
+            document.getElementById('ContentPlaceHolder1_lblTotalt').textContent = CalculateTotal();
+            document.getElementById('ContentPlaceHolder1_lblScore').textContent = CalculateScore();
         });
         $("#ContentPlaceHolder1_TextBox2").on('change keyup paste', function () {
             document.getElementById('ContentPlaceHolder1_lblIn').innerHTML = summarizeBox1to9();
@@ -96,8 +96,8 @@ var prm = Sys.WebForms.PageRequestManager.getInstance();
 prm.add_endRequest(function () {
     $("#ContentPlaceHolder1_TextBox1").on('change keyup paste', function () {
         document.getElementById('ContentPlaceHolder1_lblIn').innerHTML = summarizeBox1to9();
-        document.getElementById('ContentPlaceHolder1_lblTotalt').innerHTML = CalculateTotal();
-        document.getElementById('ContentPlaceHolder1_lblScore').innerHTML = CalculateScore();
+        document.getElementById('ContentPlaceHolder1_lblTotalt').textContent = CalculateTotal();
+        document.getElementById('ContentPlaceHolder1_lblScore').textContent = CalculateScore();
     });
     $("#ContentPlaceHolder1_TextBox2").on('change keyup paste', function () {
         document.getElementById('ContentPlaceHolder1_lblIn').innerHTML = summarizeBox1to9();

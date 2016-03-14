@@ -14,6 +14,8 @@ namespace Team_1_Halslaget_GK
 
         public int nummer { get; set; }
         public int slag { get; set; }
+        public int totalSlag { get; set; }
+        public int score { get; set; }
 
 
         public void SetRound(string xml, int compid, int memberid)
