@@ -176,5 +176,33 @@ namespace Team_1_Halslaget_GK
             }
         }
 
+        public DataTable GetComingCompetitionMember(int id)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT * FROM tavling WHERE id IN (SELECT tavling_id FROM medlem_tavling WHERE medlem_id = @medlem_id) AND datum > CURRENT_DATE", conn);
+                cmdGetCompetitions.Parameters.AddWithValue("@medlem_id", id);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetCompetitions;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+        
+
     }
 }

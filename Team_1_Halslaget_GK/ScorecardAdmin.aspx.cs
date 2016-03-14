@@ -159,22 +159,33 @@ namespace Team_1_Halslaget_GK
             h18.nummer = 18;
             round.Add(h18);
 
+            Hole h19 = new Hole();
+            h19.totalSlag = calculateTotal();
+            round.Add(h19);
+
+            //string score = lblScore.Text;
+            Hole h20 = new Hole();
+            h20.score = calculateScore();
+            round.Add(h20);
+
             return round;
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            int memberid = Convert.ToInt32(lblMemberId.Text); //Kommentera bort för att använda medlemsid.
-            int compid = Convert.ToInt32(lblCompetitionID.Text); //Kommentera bort för att använda tävlingsid.
-            //int total = Convert.ToInt32(lblTotalt.Text);
-            //int score = Convert.ToInt32(lblScore.Text);
+            //string test = calculateTotal().ToString();
+            //string test2 = calculateScore().ToString();
+
+            //Label1.Text = test;
+            //Label2.Text = test2;
+            int memberid = Convert.ToInt32(lblMemberId.Text);
+            int compid = Convert.ToInt32(lblCompetitionID.Text);
 
             List<Hole> round = FindNOShots();
             string xml = SerializeRound(round);
-            
+
             Hole h = new Hole();
             h.SetRound(xml, compid, memberid);
-
         }
 
         protected string SerializeRound(List<Hole> round)
@@ -264,6 +275,51 @@ namespace Team_1_Halslaget_GK
                 lblCourseRating.Text = "";
                 lblPar.Text = "";
             }
+        }
+
+        private int calculateTotal()
+        {
+            int txt1 = Convert.ToInt32(TextBox1.Text);
+            int txt2 = Convert.ToInt32(TextBox2.Text);
+            int txt3 = Convert.ToInt32(TextBox3.Text);
+            int txt4 = Convert.ToInt32(TextBox4.Text);
+            int txt5 = Convert.ToInt32(TextBox5.Text);
+            int txt6 = Convert.ToInt32(TextBox6.Text);
+            int txt7 = Convert.ToInt32(TextBox7.Text);
+            int txt8 = Convert.ToInt32(TextBox8.Text);
+            int txt9 = Convert.ToInt32(TextBox9.Text);
+            int txt10 = Convert.ToInt32(TextBox10.Text);
+            int txt11 = Convert.ToInt32(TextBox11.Text);
+            int txt12 = Convert.ToInt32(TextBox12.Text);
+            int txt13 = Convert.ToInt32(TextBox13.Text);
+            int txt14 = Convert.ToInt32(TextBox14.Text);
+            int txt15 = Convert.ToInt32(TextBox15.Text);
+            int txt16 = Convert.ToInt32(TextBox16.Text);
+            int txt17 = Convert.ToInt32(TextBox17.Text);
+            int txt18 = Convert.ToInt32(TextBox18.Text);
+
+            int total = txt1 + txt2 + txt3 + txt4 + txt5 + txt6 + txt7 + txt8 + txt9 + txt10 + txt11 + txt12 + txt13 + txt14 + txt15 + txt16 + txt17 + txt18;
+
+            return total;
+        }
+
+        private int calculateScore()
+        {
+            int total = calculateTotal();
+            double slope = Convert.ToDouble(lblSlopeValue.Text);
+            double courseRating = Convert.ToDouble(lblCourseRating.Text);
+            double par = Convert.ToDouble(lblPar.Text);
+            double playerActualHcp = Convert.ToDouble(lblhcp.Text);
+
+            double diff = slope / 113;
+            double diff2 = courseRating - par;
+
+            double score = playerActualHcp * diff;
+            score = score + diff2;
+
+            int theScore = total - Convert.ToInt32(score);
+
+            return theScore;
         }
 
         /// <summary>
