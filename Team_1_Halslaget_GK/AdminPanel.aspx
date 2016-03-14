@@ -46,6 +46,7 @@
             <div class="dropdown-content quarterBox">
                 <asp:LinkButton ID="LinkButton5" runat="server" class="my-button admin-btn-txt" >SKAPA TÄVLING</asp:LinkButton>
                 <asp:LinkButton ID="LinkButton6" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToRegisterResult_Click">REGISTRERA RESULTAT</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton7" runat="server" class="my-button admin-btn-txt" >STARTLISTA</asp:LinkButton>
             </div>
             </div>
         </div>
