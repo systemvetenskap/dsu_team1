@@ -149,6 +149,7 @@
     <Content Include="PublishNewsAdmin.aspx" />
     <Content Include="ScorecardAdmin.aspx" />
     <Content Include="SeasonSettings.aspx" />
+    <Content Include="StartList.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Tidsbokning.aspx" />
     <Content Include="TidsbokningAdmin.aspx" />
@@ -265,7 +266,13 @@
     <Compile Include="SeasonSettings.aspx.designer.cs">
       <DependentUpon>SeasonSettings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Stringwriter.cs" />
+    <Compile Include="StartList.aspx.cs">
+      <DependentUpon>StartList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StartList.aspx.designer.cs">
+      <DependentUpon>StartList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Tee.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="TestPage.aspx.cs">
