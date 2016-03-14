@@ -17,8 +17,7 @@
             <div class="dropdownbox">
             <asp:Button ID="btnGoToBooking" CssClass="my-button admin-btn-txt" runat="server" Text="BOKNINGAR" />
             <div class="dropdown-content quarterBox">
-                <asp:LinkButton ID="LinkButton1" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToHandleBookings_Click" >AVBOKA MEDLEM</asp:LinkButton>
-                <asp:LinkButton ID="LinkButton2" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToBooking_Click" >BOKNINGSSCHEMA</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton2" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToBooking_Click" >HANTERA BOKNINGAR</asp:LinkButton>
         </div>
             </div>
         </div>
