@@ -10,114 +10,105 @@
 namespace Team_1_Halslaget_GK {
     
     
-    public partial class AdminPanel {
+    public partial class CreateCompetition {
         
         /// <summary>
-        /// lblAdminUserName control.
+        /// nameBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdminUserName;
+        protected global::System.Web.UI.WebControls.TextBox nameBox;
         
         /// <summary>
-        /// btnGoToBooking control.
+        /// descriptionBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGoToBooking;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea descriptionBox;
         
         /// <summary>
-        /// LinkButton2 control.
+        /// dropDownYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.DropDownList dropDownYear;
         
         /// <summary>
-        /// btnGoToSeasonSettings control.
+        /// dropDownMonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGoToSeasonSettings;
+        protected global::System.Web.UI.WebControls.DropDownList dropDownMonth;
         
         /// <summary>
-        /// btnGoToMemberRegistry control.
+        /// dropDownDay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGoToMemberRegistry;
+        protected global::System.Web.UI.WebControls.DropDownList dropDownDay;
         
         /// <summary>
-        /// LinkButton3 control.
+        /// checkBoxLag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.CheckBox checkBoxLag;
         
         /// <summary>
-        /// LinkButton4 control.
+        /// checkBoxSingel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton4;
+        protected global::System.Web.UI.WebControls.CheckBox checkBoxSingel;
         
         /// <summary>
-        /// btnGoToCreateSeason control.
+        /// newDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGoToCreateSeason;
+        protected global::System.Web.UI.WebControls.Button newDate;
         
         /// <summary>
-        /// LinkButton5 control.
+        /// dateFiller control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dateFiller;
         
         /// <summary>
-        /// LinkButton6 control.
+        /// buttonDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl buttonDiv;
         
         /// <summary>
-        /// LinkButton7 control.
+        /// bookDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton7;
-        
-        /// <summary>
-        /// btnGoToNews control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGoToNews;
+        protected global::System.Web.UI.WebControls.Button bookDate;
     }
 }

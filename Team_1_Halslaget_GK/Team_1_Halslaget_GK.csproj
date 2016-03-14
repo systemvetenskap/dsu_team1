@@ -79,6 +79,7 @@
     <Content Include="css\AdminPanelCss.css" />
     <Content Include="css\BokatavlingCss.css" />
     <Content Include="css\changePasswordCss.css" />
+    <Content Include="css\CreateCompetition.css" />
     <Content Include="css\CreateNewMemberCss.css" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\Medlemsregister.css" />
@@ -276,6 +277,7 @@
     </Compile>
     <Compile Include="Classes\Tee.cs" />
     <Compile Include="Team.cs" />
+    <Compile Include="Teamslump.cs" />
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -299,7 +301,6 @@
     </Compile>
     <Compile Include="ViewStartList.aspx.cs">
       <DependentUpon>ViewStartList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewStartList.aspx.designer.cs">
       <DependentUpon>ViewStartList.aspx</DependentUpon>

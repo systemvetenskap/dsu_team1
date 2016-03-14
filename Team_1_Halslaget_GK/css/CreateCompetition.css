@@ -1,0 +1,41 @@
+﻿.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.wrapper-small {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.text-center {
+    text-align: center;
+}
+.small-margin {
+    margin-top: 10px;
+}
+#competitionDiv {
+}
+input[type=text] {
+    height: 25px;
+    padding: 3px;
+    width: 100%;
+}
+#newDate {
+    height: 30px;
+    width: 100%;
+}
+.btn {
+    width: 100%;
+    height: 30px;
+}
+#dateFiller {
+    z-index: 100;
+    width: 210px;
+    background-color: yellowgreen;
+}
+ul li {
+    display: block;
+    list-style: none;
+    margin: 1px;
+}

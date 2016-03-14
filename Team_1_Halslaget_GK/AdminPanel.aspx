@@ -39,12 +39,18 @@
             <img class="admin-img" src="img/admin04.jpg"/>
             <div class="dropdownbox">
             <asp:Button ID="btnGoToCreateSeason" runat="server" CssClass="my-button admin-btn-txt"  Text="TÄVLINGAR" />        
-            <div class="dropdown-content quarterBox">
-                <asp:LinkButton ID="LinkButton5" runat="server" class="my-button admin-btn-txt" >SKAPA TÄVLING</asp:LinkButton>
-                <asp:LinkButton ID="LinkButton6" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToRegisterResult_Click">REGISTRERA RESULTAT</asp:LinkButton>
-                <asp:LinkButton ID="LinkButton7" runat="server" class="my-button admin-btn-txt" >STARTLISTA</asp:LinkButton>
+                <div class="dropdown-content quarterBox">
+                    <asp:LinkButton ID="LinkButton5" runat="server" class="my-button admin-btn-txt" >SKAPA TÄVLING</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton6" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToRegisterResult_Click">REGISTRERA RESULTAT</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton7" runat="server" class="my-button admin-btn-txt" >STARTLISTA</asp:LinkButton>
+                </div>
+            </div>
         </div>
-        </div>
+    </div>
+    <div class="fullBox">
+        <div class="quarterBox admin-qBox">
+            <img class="admin-img" src="img/admin02.jpg"/>
+            <asp:Button ID="btnGoToNews" runat="server" CssClass="my-button admin-btn-txt"  Text="SKAPA NYHET" OnClick="btnGoToNews_Click" />
         </div>
     </div>
 
