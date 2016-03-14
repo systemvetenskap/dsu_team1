@@ -10,9 +10,6 @@
     </div>
     <div class="fullBox admin-top-n-bottom-margin">
         <h3>Välkommen <asp:Label ID="lblAdminUserName" runat="server" Text="AdminUserName"></asp:Label></h3>
-        <p class="admin-top-n-bottom-margin">Hej och välkommen, här kan du som anställd hos hålslaget GK utföra din arbetsuppgifter och då bland annat boka tider åt medlemmar,
-            hantera medlermmas bokningar, skapa nya medlemskap och med mera.
-        </p>
     </div>
     <div class="fullBox center-text admin-bottom">
         <div class="quarterBox admin-qBox">
@@ -22,7 +19,7 @@
             <div class="dropdown-content quarterBox">
                 <asp:LinkButton ID="LinkButton1" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToHandleBookings_Click" >AVBOKA MEDLEM</asp:LinkButton>
                 <asp:LinkButton ID="LinkButton2" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToBooking_Click" >BOKNINGSSCHEMA</asp:LinkButton>
-            </div>                
+        </div>
             </div>
         </div>
         <div class="quarterBox admin-qBox">
@@ -36,9 +33,9 @@
             <div class="dropdown-content quarterBox">
                 <asp:LinkButton ID="LinkButton3" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToMemberRegistry_Click" >MEDLEMSREGISTER</asp:LinkButton>
                 <asp:LinkButton ID="LinkButton4" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToCreateNewMember_Click" >NY MEDLEM</asp:LinkButton>
-            </div>
-            </div>
         </div>
+        </div>
+    </div>
         <div class="quarterBox admin-qBox">
             <img class="admin-img" src="img/admin04.jpg"/>
             <div class="dropdownbox">
@@ -47,8 +44,8 @@
                 <asp:LinkButton ID="LinkButton5" runat="server" class="my-button admin-btn-txt" >SKAPA TÄVLING</asp:LinkButton>
                 <asp:LinkButton ID="LinkButton6" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToRegisterResult_Click">REGISTRERA RESULTAT</asp:LinkButton>
                 <asp:LinkButton ID="LinkButton7" runat="server" class="my-button admin-btn-txt" >STARTLISTA</asp:LinkButton>
-            </div>
-            </div>
+        </div>
+        </div>
         </div>
     </div>
 
