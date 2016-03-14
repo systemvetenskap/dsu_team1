@@ -133,7 +133,6 @@
     <Content Include="bin\Team_1_Halslaget_GK.dll.config" />
     <Content Include="AdminMaster.Master" />
     <Content Include="packages.config" />
-    <Content Include="StartList.aspx" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
@@ -268,6 +267,7 @@
     </Compile>
     <Compile Include="Stringwriter.cs" />
     <Compile Include="Team.cs" />
+    <Compile Include="Classes\Tee.cs" />
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -288,13 +288,6 @@
     </Compile>
     <Compile Include="TidsbokningAdmin.aspx.designer.cs">
       <DependentUpon>TidsbokningAdmin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="StartList.aspx.cs">
-      <DependentUpon>StartList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="StartList.aspx.designer.cs">
-      <DependentUpon>StartList.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

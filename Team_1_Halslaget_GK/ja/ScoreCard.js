@@ -233,12 +233,38 @@ function CalculateTotal() {
 function CalculateScore() {
     var totalString = document.getElementById('ContentPlaceHolder1_lblTotalt').textContent;
     var hcpString = document.getElementById('ContentPlaceHolder1_lblhcp').textContent;
+    var slope = document.getElementById('ContentPlaceHolder1_lblSlopeValue').textContent;
+    var courserating = document.getElementById('ContentPlaceHolder1_lblCourseRating').textContent;
+    var par = document.getElementById('ContentPlaceHolder1_lblPar').textContent;
     
-    var totalFloat = parseFloat(totalString);
-    var hcpStringDot = hcpString.replace(/,/g, '.');
-    var hcpFloat = parseFloat(hcpStringDot);
-    
-    var score = totalFloat - hcpFloat;
+    //Conversion for total
+    //var totalFloat = parseFloat(totalString);
 
-    return score;
+    //Converstion for playeractual hcp
+    var hcpStringDot = hcpString.replace(/,/g, '.'); //Replace comma with dot.
+    var playerActualhcpFloat = parseFloat(hcpStringDot);
+
+    //Conversion for slope value
+    var slopeDot = slope.replace(/,/g, '.'); //Rplace comma with dot.
+    var slopeFloat = parseFloat(slopeDot);
+
+    //Converstion for Courserating.
+    var courseDot = courserating.replace(/,/g, '.');
+    var courseratingFloat = parseFloat(courseDot);
+
+    //Make par a float too...
+    var parFloat = parseFloat(par);
+
+    
+    //Calculation...
+    var someshit = slopeFloat / 113;
+    var someshit2 = courseratingFloat - parFloat;
+
+    var score = playerActualhcpFloat * someshit;
+    var score = score + someshit2;
+
+    var theScore = +totalString - Math.round(score);;
+
+    return theScore;
 }
+

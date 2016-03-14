@@ -38,6 +38,18 @@
                 <p><strong>Välj tävling: </strong></p>
                 <asp:DropDownList ID="dropDownCompetition" CssClass="DropDown" AutoPostBack="true" runat="server" OnSelectedIndexChanged="dropDownCompetition_SelectedIndexChanged"></asp:DropDownList>
             </div>
+            <div class="fullBox">
+                <p><strong>Välj tee: </strong>
+                <asp:RequiredFieldValidator ID="validatorTee" 
+                    runat="server" 
+                    ErrorMessage="Du måste välja"
+                    IntialValue="Välj"
+                    ValidationGroup="golfIdGroup"
+                    ControlToValidate="dropDownTee">
+                </asp:RequiredFieldValidator></p>
+                <asp:DropDownList ID="dropDownTee" CssClass="DropDown" AutoPostBack="true" runat="server" OnSelectedIndexChanged="dropDownTee_SelectedIndexChanged"></asp:DropDownList>
+            </div>
+
             <div class="fullBox  line-up">
                 <div class="fullBox page-title">
                     <h3>TÄVLINGS INFO</h3>
@@ -46,6 +58,9 @@
                 <p class="em-margin-horizontal"><strong>Starttid: </strong><asp:Label ID="lblStartTime" runat="server" Text=""></asp:Label></p>
                 <p class="em-margin-horizontal"><strong>Sluttid: </strong><asp:Label ID="lblEndTime" runat="server" Text=""></asp:Label></p>
                 <asp:Label ID="lblCompetitionID" style="display: none;" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblCourseRating" style="display: none;" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblSlopeValue" style="display: none;" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblPar" style="display: none;" runat="server" Text=""></asp:Label>
             </div>
         </div>
 
@@ -71,6 +86,7 @@
                     ForeColor="Red"
                     ValidationExpression = "^[\s\S]{6,}$" ValidationGroup="golfIdGroup"                    >
                 </asp:RegularExpressionValidator>
+
                 <div class="fullBox center-text">
                     <asp:Button ID="btnGetMemberInfo" CssClass="my-button button-80 em-margin-horizontal" ValidationGroup="golfIdGroup" runat="server" Text="HÄMTA SPELARE" OnClick="btnGetMemberInfo_Click" />
                 </div>
@@ -121,11 +137,13 @@
                 <h3 class="em-margin-horizontal"><strong>UT: </strong><asp:Label ID="lblOut" runat="server" Text=""></asp:Label></h3>
             </div>
        </div>
-        <div class="fullBox center-text">
-            <h3><strong>TOTALT: </strong><asp:Label ID="lblTotalt" runat="server" Text=""></asp:Label></h3>
-        </div>
-        <div class="fullBox center-text">
-            <h3><strong>SCORE: </strong><asp:Label ID="lblScore" runat="server" Text=""></asp:Label></h3>
+        <div class="fullBox em-margin-horizontal">
+            <div class="halfBox center-text">
+                <h3><strong>TOTALT: </strong><asp:Label ID="lblTotalt" runat="server" Text=""></asp:Label></h3>
+            </div>
+            <div class="halfBox center-text">
+                <h3><strong>SCORE: </strong><asp:Label ID="lblScore" runat="server" Text=""></asp:Label></h3>
+            </div>
         </div>
     </div>
     <div class="fullBox em-margin-horizontal center-text">
@@ -146,6 +164,7 @@
                 ValidationGroup="memberID"
                 ControlToValidate="dropDownCompetition">
             </asp:RequiredFieldValidator>
+
         </div>
         <div class="fullBox em-margin-horizontal">
             <asp:Button ID="Button1" runat="server" ValidationGroup="memberID" CssClass="my-button button-80" Text="SPARA SCOREKORT" onclick="Button1_Click"/>

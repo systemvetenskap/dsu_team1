@@ -25,12 +25,19 @@ namespace Team_1_Halslaget_GK
             }
         }
 
+        /// <summary>
+        /// Initilization of gui with standardvalues.
+        /// </summary>
         private void InitilizeGUI()
         {
             BindDropDownCompetition();
+            BindDropDownTee();
             LockTextBoxes();
         }
 
+        /// <summary>
+        /// Binds dropdowncompetition with all the current competitions.
+        /// </summary>
         private void BindDropDownCompetition()
         {
             Competition getCompetitions = new Competition();
@@ -40,6 +47,21 @@ namespace Team_1_Halslaget_GK
             dropDownCompetition.DataTextField = "namn";
             dropDownCompetition.DataBind();
             this.dropDownCompetition.Items.Insert(0, "Välj");
+        }
+
+        /// <summary>
+        /// Binds dropdowntee with all available tees.
+        /// </summary>
+        private void BindDropDownTee()
+        {
+            Tee getTee = new Tee();
+            DataTable allTees = getTee.GetAllTees();
+
+            dropDownTee.DataSource = allTees;
+            dropDownTee.DataTextField = "name";
+            dropDownTee.DataValueField = "id";
+            dropDownTee.DataBind();
+            this.dropDownTee.Items.Insert(0, "Välj");
         }
 
         protected List<Hole> FindNOShots()
@@ -143,6 +165,8 @@ namespace Team_1_Halslaget_GK
         {
             int memberid = 4; //lblMemberId.Text; //Kommentera bort för att använda medlemsid.
             int compid = 1; //lblCompetitionID.Text; //Kommentera bort för att använda tävlingsid.
+            //int total = Convert.ToInt32(lblTotalt.Text);
+            //int score = Convert.ToInt32(lblScore.Text);
 
             List<Hole> round = FindNOShots();
             string xml = SerializeRound(round);
@@ -191,7 +215,7 @@ namespace Team_1_Halslaget_GK
         }
 
         /// <summary>
-        /// Event for dropdown. 
+        /// Event for dropdowncompetition. 
         /// </summary>
         protected void dropDownCompetition_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -216,6 +240,34 @@ namespace Team_1_Halslaget_GK
             }            
         }
 
+        /// <summary>
+        /// Event for dropdowntee
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void dropDownTee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(dropDownTee.SelectedIndex > -1)
+            {
+                Tee specTee = new Tee();
+                string id = dropDownTee.SelectedValue;
+                DataTable specificTee = specTee.GetSpecificTee(id);
+
+                lblSlopeValue.Text = specificTee.Rows[0]["slopevalue"].ToString();
+                lblCourseRating.Text = specificTee.Rows[0]["courserating"].ToString();
+                lblPar.Text = specificTee.Rows[0]["par"].ToString();
+            }
+            else
+            {
+                lblSlopeValue.Text = "";
+                lblCourseRating.Text = "";
+                lblPar.Text = "";
+            }
+        }
+
+        /// <summary>
+        /// Locks all the textboxes and sets color and cursor.
+        /// </summary>
         private void LockTextBoxes()
         {
             TextBox1.ReadOnly = true;
@@ -309,6 +361,9 @@ namespace Team_1_Halslaget_GK
             TextBox18.Style.Add("cursor", "not-allowed");
         }
 
+        /// <summary>
+        /// Opens all the textboxes and sets cursor and color.
+        /// </summary>
         private void OpenTextBoxes()
         {
             TextBox1.ReadOnly = false;
@@ -366,6 +421,27 @@ namespace Team_1_Halslaget_GK
             TextBox17.Style.Add("cursor", "text");
             TextBox18.Style.Add("cursor", "text");
 
+
+            TextBox1.ToolTip = "Fyll i antal slag.";
+            TextBox2.ToolTip = "Fyll i antal slag.";
+            TextBox3.ToolTip = "Fyll i antal slag.";
+            TextBox4.ToolTip = "Fyll i antal slag.";
+            TextBox5.ToolTip = "Fyll i antal slag.";
+            TextBox6.ToolTip = "Fyll i antal slag.";
+            TextBox7.ToolTip = "Fyll i antal slag.";
+            TextBox8.ToolTip = "Fyll i antal slag.";
+            TextBox9.ToolTip = "Fyll i antal slag.";
+            TextBox10.ToolTip = "Fyll i antal slag.";
+            TextBox11.ToolTip = "Fyll i antal slag.";
+            TextBox12.ToolTip = "Fyll i antal slag.";
+            TextBox13.ToolTip = "Fyll i antal slag.";
+            TextBox14.ToolTip = "Fyll i antal slag.";
+            TextBox15.ToolTip = "Fyll i antal slag.";
+            TextBox16.ToolTip = "Fyll i antal slag.";
+            TextBox17.ToolTip = "Fyll i antal slag.";
+            TextBox18.ToolTip = "Fyll i antal slag.";
         }
+
+
     }
 }
