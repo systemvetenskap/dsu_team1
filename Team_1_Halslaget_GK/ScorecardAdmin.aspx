@@ -27,7 +27,7 @@
 
         </script>
     <div class="fullBox page-title">
-        <h1>SCORECARD</h1>
+        <h1>SCORECARD </h1>
     </div>
     <div class="fullBox">
         <div class="halfBox  em-margin-horizontal">

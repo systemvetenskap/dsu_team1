@@ -163,8 +163,8 @@ namespace Team_1_Halslaget_GK
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            int memberid = 4; //lblMemberId.Text; //Kommentera bort för att använda medlemsid.
-            int compid = 1; //lblCompetitionID.Text; //Kommentera bort för att använda tävlingsid.
+            int memberid = Convert.ToInt32(lblMemberId.Text); //Kommentera bort för att använda medlemsid.
+            int compid = Convert.ToInt32(lblCompetitionID.Text); //Kommentera bort för att använda tävlingsid.
             //int total = Convert.ToInt32(lblTotalt.Text);
             //int score = Convert.ToInt32(lblScore.Text);
 
