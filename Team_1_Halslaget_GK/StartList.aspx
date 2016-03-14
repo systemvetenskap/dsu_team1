@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="StartList.aspx.cs" Inherits="Team_1_Halslaget_GK.StartList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="StartList.aspx.cs" Inherits="Team_1_Halslaget_GK.StartList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <link href="css/StartList.css" rel="stylesheet" />
 </asp:Content>
