@@ -89,22 +89,27 @@
       </div>
     </section>
 
-    <!-- Header ================================================== -->
+    <!--------------------------------------- Header ================================================== -->
     <section class="container" id="head-seaction">
       <div class="content" id="header-content">
        <div class="logoContainer">
           <img class="header-logo" src="img/golf.jpg" alt="Headimage" title="Fint landskap"/>
         </div> 
       </div>
-    </section>   
+    </section> 
+     
+     <!--------------------------------------- NEWS ================================================== -->
+      
      <section class="container">
-            <div class="content">
-                <div class="contentRow">
-                    <div class="fullBox news">
-                        <div class="page-title"><h1>Nyheter</h1></div>
-                        <div class="fullBox" runat="server" id="newsdiv">
-                        </div>
-                    </div> 
+        <div class="content">
+            <div class="contentRow">
+                <div class="fullBox news">
+                    <div class="page-title"><h1>Nyheter</h1></div>
+                    <div class="fullBox" runat="server" id="newsdiv"></div>                       
+                </div> 
+
+    <!--------------------------------------- BOKNINGAR/VÄDER ================================================== -->
+
                         <div class="fullBox bookings">
                             <div class="page-title"><h1>Bokningar och Väder</h1></div>
                                 <div class="weatherBox">
@@ -141,6 +146,9 @@
                     </div>  
                 </div>         
         </section>
+
+     <!--------------------------------------- BLI MEDLEM ================================================== -->
+
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
          <ContentTemplate>
      <section class="container">
@@ -341,7 +349,9 @@
      </section>
    </ContentTemplate>
   </asp:UpdatePanel>
-       <!-- Footer ================================================== -->
+
+       <!------------------------------------------- Footer ================================================== -->
+
     <section class="container" id="section-footer">
       <div class="content">
         <div class="contentRow">      
