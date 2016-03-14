@@ -13,5 +13,7 @@ namespace Team_1_Halslaget_GK
         public int slot_id { get; set; }
         public string startid { get; set; }
         public int id { get; set; }
+        public int tavlingsid { get; set; }
+        public string tavlingsnamn { get; set; }
     }
 }
