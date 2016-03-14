@@ -68,7 +68,7 @@ namespace Team_1_Halslaget_GK
             if(GridView1.Rows.Count == 0)
             {
                 CancelBookingInfo.InnerText = "Du har inga kommande bokade tider!";
-        }
+            }
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace Team_1_Halslaget_GK
 
         protected string GetRoundStatistics()
         {
-            string sql = "SELECT count(medlem_id) FROM medlem_bokning WHERE medlem_id = @id";
+            string sql = "SELECT count(medlem_id) FROM medlem_bokning WHERE medlem_id = @id AND datum < CURRENT_DATE";
             NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
@@ -256,11 +256,11 @@ namespace Team_1_Halslaget_GK
             Response.Redirect("~/ChangePassword.aspx");
 
         }
+
         protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
 
         }
-
 
         protected void btnEditPersonInfo_Click(object sender, EventArgs e)
         {
@@ -278,7 +278,6 @@ namespace Team_1_Halslaget_GK
             Response.Redirect("~/Tidsbokning.aspx");              
 
         }
-
 
     }
 }

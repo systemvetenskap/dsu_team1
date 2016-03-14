@@ -1,59 +1,45 @@
-﻿//Code behind for tidsbokning.aspx
-
+﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Npgsql;
-using System.Drawing;
-using System.Data;
 
 namespace Team_1_Halslaget_GK
 {
-	public partial class Tidsbokning : System.Web.UI.Page
-	{
+    public partial class tidsbokningAdmin : System.Web.UI.Page
+    {
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
         protected void Page_Load(object sender, EventArgs e)
-		{
-            //if (Session["userID"] == null)
-            //{
-            //    Response.Redirect("~/NotAllowed.aspx");
-            //}
-
-            bool admin = Convert.ToBoolean(Session["admin"]);
-
-            lblPlayer1.Text = "";
-            lblPlayer2.Text = "";
-            lblPlayer3.Text = "";
-            lblPlayer4.Text = "";
-
+        {
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
+            UpdateTable(GetBookedTimes());
             if (!IsPostBack)
             {
                 Table1.Visible = false;
                 Calendar1.SelectedDate = DateTime.Today;
-
-                if(admin) 
-                {
-                    tbPlayer1.Visible = true;
-                }
-
             }
-                              
         }
 
-        protected void LinkButton_Click(object sender, EventArgs e)
+        protected void LinkButton1_Click(object sender, EventArgs e)
         {
             confirmBtn.Enabled = true;
             confirmBtn.Visible = true;
-            lblGolfID.Visible = true;
-            lblOtherPlayerGolfID.Visible = true;
             tbPlayer1.Visible = true;
             tbPlayer2.Visible = true;
             tbPlayer3.Visible = true;
             tbPlayer4.Visible = true;
+
+            Removeplayer1Btn.Visible = false;
+            Removeplayer2Btn.Visible = false;
+            Removeplayer3Btn.Visible = false;
+            Removeplayer4Btn.Visible = false;
 
             lblotherplayers.ForeColor = Color.White;
 
@@ -64,6 +50,7 @@ namespace Team_1_Halslaget_GK
             lblPlayer3.Text = "";
             lblPlayer4.Text = "";
 
+            tbPlayer1.Text = "";
             tbPlayer2.Text = "";
             tbPlayer3.Text = "";
             tbPlayer4.Text = "";
@@ -76,34 +63,32 @@ namespace Team_1_Halslaget_GK
             ShowPlayerInfo(btn.Text);
 
             string LinkButtonID = btn.ID;
-            string bokningsID = LinkButtonID.Remove(0,10);
+            string bokningsID = LinkButtonID.Remove(0, 10);
 
             Session["BokningsID"] = bokningsID;
 
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showotherplayers", "showotherplayers();", true);
-
-            tbPlayer1.Text = Session["GolfID"].ToString();
-            tbPlayer1.Enabled = false;
 
             lblotherplayers.Text = "På den här tiden finns det inga tidigare bokningar";
 
             if (lblPlayer1.Text != "")
             {
                 tbPlayer4.Visible = false;
+                
                 lblotherplayers.Text = "På den här tiden finns det redan vissa bokningar";
             }
             if (lblPlayer2.Text != "")
             {
                 tbPlayer3.Visible = false;
+                
                 lblotherplayers.Text = "På den här tiden finns det redan vissa bokningar";
             }
             if (lblPlayer3.Text != "")
             {
                 tbPlayer2.Visible = false;
+                
                 lblotherplayers.Text = "På den här tiden finns det redan vissa bokningar";
             }
-
-            
 
             List<double> oldplayersList = new List<double>();
 
@@ -123,70 +108,22 @@ namespace Team_1_Halslaget_GK
             {
                 oldplayersList.Add(Convert.ToDouble(Session["player4"]));
             }
-
-            double totalhcp = 0;
-
-            foreach (double hcp in oldplayersList)
-            {
-                totalhcp += hcp;
-            }
-
-            string sql = "SELECT id, hcp FROM medlem WHERE golfid = '" + tbPlayer1.Text + "'";
-
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-
-            conn.Open();
-
-            NpgsqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                medlem newmedlem = new medlem();
-                newmedlem.ID = Convert.ToInt32(dr[0]);
-                newmedlem.handikapp = Convert.ToDouble(dr[1]);
-                totalhcp += newmedlem.handikapp;               
-            }
-            conn.Close();
-
-            if (totalhcp > 100)
-            {
-                tbPlayer1.Visible = false;
-                confirmBtn.Enabled = false;
-                confirmBtn.Visible = false;
-                lblOtherPlayerGolfID.Visible = false;
-                lblGolfID.Visible = false;
-                tbPlayer2.Visible = false;
-                tbPlayer3.Visible = false;
-                tbPlayer4.Visible = false;
-                lblotherplayers.Text = "Gemensam handikapp blir tyvärr för hög.";
-                lblotherplayers.ForeColor = Color.Red;
-            }
-
+           
             if (lblPlayer4.Text != "")
             {
                 tbPlayer1.Visible = false;
                 confirmBtn.Enabled = false;
                 confirmBtn.Visible = false;
-                lblOtherPlayerGolfID.Visible = false;
-                lblGolfID.Visible = false;
-
                 lblotherplayers.Text = "Den här tiden är tyvärr fullbokad!";
                 lblotherplayers.ForeColor = Color.Red;
-            }
+                Label1.Visible = false;
 
-            if (tbPlayer1.Text == lblPlayer1.ID || tbPlayer1.Text == lblPlayer2.ID || tbPlayer1.Text == lblPlayer3.ID || tbPlayer1.Text == lblPlayer4.ID)
-            {
-                tbPlayer1.Visible = false;
-                confirmBtn.Enabled = false;
-                confirmBtn.Visible = false;
-                lblOtherPlayerGolfID.Visible = false;
-                lblGolfID.Visible = false;
+                //FÖr tävlingar behövs detta
                 tbPlayer2.Visible = false;
                 tbPlayer3.Visible = false;
                 tbPlayer4.Visible = false;
-                lblotherplayers.Text = "Du är redan inbokad på den här tiden!";
-                lblotherplayers.ForeColor = Color.Red;
             }
+            
         }
 
         protected void ShowPlayerInfo(string time)
@@ -196,16 +133,19 @@ namespace Team_1_Halslaget_GK
 
             foreach (Player golfplayer in Players)
             {
-                if (golfplayer.tavlingsnamn.ToString() != "" && golfplayer.startid ==  time)
+
+                if (golfplayer.tavlingsnamn.ToString() != "" && golfplayer.startid == time)
                 {
-                    lblPlayer4.Text = "Denna tid är uppbokad för" + Session["compname"].ToString();
+                    lblPlayer4.Text = "Denna tid är uppbokad för " + Session["compname"].ToString();
                 }
 
                 else if (golfplayer.startid == time && playercount == 1)
                 {
-                    lblPlayer1.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: "+ golfplayer.kon;
+                    lblPlayer1.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: " + golfplayer.kon;
                     lblPlayer1.ID = golfplayer.golfID;
-                    Session["player1"] = golfplayer.hcp;          
+                    Session["player1"] = golfplayer.hcp;
+                    Session["player1ID"] = golfplayer.id;
+                    Removeplayer1Btn.Visible = true;
                     playercount++;
                 }
 
@@ -214,6 +154,8 @@ namespace Team_1_Halslaget_GK
                     lblPlayer2.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: " + golfplayer.kon;
                     lblPlayer2.ID = golfplayer.golfID;
                     Session["player2"] = golfplayer.hcp;
+                    Session["player2ID"] = golfplayer.id;
+                    Removeplayer2Btn.Visible = true;
                     playercount++;
                 }
 
@@ -222,6 +164,8 @@ namespace Team_1_Halslaget_GK
                     lblPlayer3.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: " + golfplayer.kon;
                     lblPlayer2.ID = golfplayer.golfID;
                     Session["player3"] = golfplayer.hcp;
+                    Session["player3ID"] = golfplayer.id;
+                    Removeplayer3Btn.Visible = true;
                     playercount++;
                 }
 
@@ -230,97 +174,11 @@ namespace Team_1_Halslaget_GK
                     lblPlayer4.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: " + golfplayer.kon;
                     lblPlayer2.ID = golfplayer.golfID;
                     Session["player4"] = golfplayer.hcp;
+                    Session["player4ID"] = golfplayer.id;
+                    Removeplayer4Btn.Visible = true;
                     playercount++;
                 }
             }
-
-                
-
-        }
-
-        protected void confirmBtn_Click(object sender, EventArgs e)
-        {
-            List<double> oldplayersList = new List<double>();
-
-            if (Session["player1"] != null)
-            {
-                oldplayersList.Add(Convert.ToDouble(Session["player1"]));
-            }
-            if (Session["player2"] != null)
-            {
-                oldplayersList.Add(Convert.ToDouble(Session["player2"]));
-            }
-            if (Session["player3"] != null)
-            {
-                oldplayersList.Add(Convert.ToDouble(Session["player3"]));
-            }
-            if (Session["player4"] != null)
-            {
-                oldplayersList.Add(Convert.ToDouble(Session["player4"]));
-            }
-
-            double totalhcp = 0;
-
-            foreach (double hcp in oldplayersList)
-            {
-                totalhcp += hcp;
-            }
-               
-            Booking newbooking = new Booking();
-            int bokningsid = Convert.ToInt32(Session["BokningsID"]);
-            DateTime date = Convert.ToDateTime(Session["selectedDate"]);
-
-            List<string> golfidlist = new List<string>();
-
-            foreach (TextBox tb in otherplayers.Controls.OfType<TextBox>())
-            {
-                if(tb.Text != "")
-                {
-                    golfidlist.Add(tb.Text);
-                }
-            }
-
-            List<medlem> medlemsidlist = new List<medlem>();
-
-            foreach (string golfid in golfidlist)
-            {
-                string sql = "SELECT id, hcp FROM medlem WHERE golfid = '" + golfid + "'";
-
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-
-                conn.Open();
-
-                NpgsqlDataReader dr = cmd.ExecuteReader();
-
-                while (dr.Read())
-                {
-                    medlem newmedlem = new medlem();
-                    newmedlem.ID = Convert.ToInt32(dr[0]);
-                    newmedlem.handikapp = Convert.ToDouble(dr[1]);
-                    totalhcp += newmedlem.handikapp;
-                    medlemsidlist.Add(newmedlem);
-                }
-                conn.Close();
-            }
-
-            if(totalhcp <= 100)
-            {
-                foreach (medlem medlem in medlemsidlist)
-                {
-                    newbooking.Newbooking(medlem.ID, bokningsid, date);
-                }
-            }
-
-            lblotherplayers.Text = "Handikapp överstiger tyvärr 100";
-        }
-
-        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
-        {
-            Session["selectedDate"] = Calendar1.SelectedDate.ToShortDateString();
-
-            UpdateTable(GetBookedTimes());
-            
-            Table1.Visible = true;
         }
 
         protected List<Player> GetBookedTimes()
@@ -328,13 +186,14 @@ namespace Team_1_Halslaget_GK
             DateTime selecteddate = Convert.ToDateTime(Session["selectedDate"]);
             string selecteddatestring = selecteddate.ToString("yyyy-MM-dd");
 
+            List<Booking> BookedTimes = new List<Booking>();
             List<Player> Players = new List<Player>();
 
             string sql = "SELECT bokning_id, tavlings_id, medlem_id, hcp, golfid, kon, bokning.starttid, namn FROM medlem_bokning FULL JOIN medlem ON medlem_id = medlem.id FULL JOIN tavling ON tavlings_id = tavling.id FULL JOIN bokning ON bokning_id = slot_id WHERE medlem_bokning.datum = @selecteddate ORDER BY bokning_id ASC";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@selecteddate", selecteddatestring);
-            
+
             try
             {
                 conn.Open();
@@ -436,11 +295,12 @@ namespace Team_1_Halslaget_GK
             foreach (TableRow tr in Table1.Rows)
             {
 
-                foreach (TableCell tc in tr.Cells)
+                foreach(TableCell tc in tr.Cells)
                 {
                     cellcount++;
                     playercount = 0;
                     tc.BackColor = ColorTranslator.FromHtml("#7cff82");
+
                     foreach (Player time in Players)
                     {
                         if (cellcount == time.slot_id)
@@ -463,12 +323,157 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        /// <summary>
-        /// Dayrender event to "Lock" out dates that are outside of the season and make sure a user cannot
-        /// make a booking more than 30 days into the "future".
-        /// </summary>
-        /// 
+        protected void Calendar1_SelectionChanged1(object sender, EventArgs e)
+        {
+            Session["selectedDate"] = Calendar1.SelectedDate.ToShortDateString();
 
+            UpdateTable(GetBookedTimes());
+
+            Table1.Visible = true;
+        }
+
+        protected void confirmBtn_Click1(object sender, EventArgs e)
+        {
+            List<double> oldplayersList = new List<double>();
+
+            if (Session["player1"] != null)
+            {
+                oldplayersList.Add(Convert.ToDouble(Session["player1"]));
+            }
+            if (Session["player2"] != null)
+            {
+                oldplayersList.Add(Convert.ToDouble(Session["player2"]));
+            }
+            if (Session["player3"] != null)
+            {
+                oldplayersList.Add(Convert.ToDouble(Session["player3"]));
+            }
+            if (Session["player4"] != null)
+            {
+                oldplayersList.Add(Convert.ToDouble(Session["player4"]));
+            }
+
+            double totalhcp = 0;
+
+            foreach (double hcp in oldplayersList)
+            {
+                totalhcp += hcp;
+            }
+
+            Booking newbooking = new Booking();
+            int bokningsid = Convert.ToInt32(Session["BokningsID"]);
+            DateTime date = Convert.ToDateTime(Session["selectedDate"]);
+
+            List<string> golfidlist = new List<string>();
+
+            foreach (TextBox tb in otherplayers.Controls.OfType<TextBox>())
+            {
+                if (tb.Text != "")
+                {
+                    golfidlist.Add(tb.Text);
+                }
+            }
+
+            List<medlem> medlemsidlist = new List<medlem>();
+
+            foreach (string golfid in golfidlist)
+            {
+                string sql = "SELECT id, hcp FROM medlem WHERE golfid = '" + golfid + "'";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+
+                conn.Open();
+
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    medlem newmedlem = new medlem();
+                    newmedlem.ID = Convert.ToInt32(dr[0]);
+                    newmedlem.handikapp = Convert.ToDouble(dr[1]);
+                    totalhcp += newmedlem.handikapp;
+                    medlemsidlist.Add(newmedlem);
+                }
+                conn.Close();
+            }
+
+            if (totalhcp <= 100)
+            {
+                foreach (medlem medlem in medlemsidlist)
+                {
+                    newbooking.Newbooking(medlem.ID, bokningsid, date);
+                }
+            }
+
+            lblotherplayers.Text = "Handikapp överstiger tyvärr 100";
+            UpdateTable(GetBookedTimes());
+        }
+
+        public void Deletebooking(int medlem_id, int bokning_id, string date)
+        {
+                    try
+                    {
+                        conn.Open();
+                        string sql = "DELETE FROM medlem_bokning WHERE medlem_id = @medlem_id AND bokning_id = @bokning_id AND datum = @datum" ;
+                        NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                        cmd.Parameters.AddWithValue("@medlem_id", medlem_id);
+                        cmd.Parameters.AddWithValue("@bokning_id", bokning_id);
+                        cmd.Parameters.AddWithValue("@datum", date);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        NpgsqlException ex;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                        conn.Dispose();
+                    }
+                }
+
+        protected void Removeplayer1Btn_Click(object sender, EventArgs e)
+        {
+            int medlems_id = Convert.ToInt32(Session["player1ID"]);
+            int bokning_id = Convert.ToInt32(Session["BokningsID"]);
+            string date = Session["selectedDate"].ToString();
+
+            Deletebooking(medlems_id, bokning_id, date);
+            
+        }
+
+        protected void Removeplayer2Btn_Click(object sender, EventArgs e)
+        {
+            int medlems_id = Convert.ToInt32(Session["player2ID"]);
+            int bokning_id = Convert.ToInt32(Session["BokningsID"]);
+            string date = Session["selectedDate"].ToString();
+
+            Deletebooking(medlems_id, bokning_id, date);
+            
+        }
+
+        protected void Removeplayer3Btn_Click(object sender, EventArgs e)
+        {
+            int medlems_id = Convert.ToInt32(Session["player3ID"]);
+            int bokning_id = Convert.ToInt32(Session["BokningsID"]);
+            string date = Session["selectedDate"].ToString();
+
+            Deletebooking(medlems_id, bokning_id, date);
+            
+        }
+
+        protected void Removeplayer4Btn_Click(object sender, EventArgs e)
+        {
+            int medlems_id = Convert.ToInt32(Session["player4ID"]);
+            int bokning_id = Convert.ToInt32(Session["BokningsID"]);
+            string date = Session["selectedDate"].ToString();
+
+            Deletebooking(medlems_id, bokning_id, date);
+          
+        }
+        /// <summary>
+        /// Dayrender event to "Lock" out dates that are outside of the season.
+        /// </summary>
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
             Season setDates = new Season();
@@ -476,31 +481,25 @@ namespace Team_1_Halslaget_GK
             DateTime start = setDates.GetSeasonStartDate(year);
             DateTime end = setDates.GetSeasonEndDate(year);
 
-            if (start <= DateTime.Today) //Sets so that any date after today is not selactable.
+            if (start <= DateTime.Today) //Sets so that any date before today is not selactable.
             {
                 start = DateTime.Today;
-                if(end >= DateTime.Today.AddMonths(1))
+                if ((e.Day.Date < start) || (e.Day.Date > end))
                 {
-                    end = DateTime.Today.AddMonths(1);
-                    if((e.Day.Date < start) || (e.Day.Date > end))
-                    {
-                        e.Day.IsSelectable = false;
-                        e.Cell.ForeColor = System.Drawing.Color.Black;
-                        e.Cell.BackColor = System.Drawing.Color.Gray;
-                        e.Cell.Style.Add("cursor", "not-allowed");
-                        e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
-                    } 
+                    e.Day.IsSelectable = false;
+                    e.Cell.ForeColor = System.Drawing.Color.Black;
+                    e.Cell.BackColor = System.Drawing.Color.Gray;
+                    e.Cell.Style.Add("cursor", "not-allowed");
+                    e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
                 }
-                else 
+
+                if (e.Day.Date > start.AddMonths(1))
                 {
-                    if((e.Day.Date < start) || (e.Day.Date > end))
-                    {
-                        e.Day.IsSelectable = false;
-                        e.Cell.ForeColor = System.Drawing.Color.Black;
-                        e.Cell.BackColor = System.Drawing.Color.Gray;
-                        e.Cell.Style.Add("cursor", "not-allowed");
-                        e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
-                    } 
+                    e.Day.IsSelectable = false;
+                    e.Cell.ForeColor = System.Drawing.Color.Black;
+                    e.Cell.BackColor = System.Drawing.Color.Gray;
+                    e.Cell.Style.Add("cursor", "not-allowed");
+                    e.Cell.ToolTip = "Du kan enbart boka banan en månad i förväg.";
                 }
             }
             else
@@ -511,11 +510,9 @@ namespace Team_1_Halslaget_GK
                     e.Cell.ForeColor = System.Drawing.Color.Black;
                     e.Cell.BackColor = System.Drawing.Color.Gray;
                     e.Cell.Style.Add("cursor", "not-allowed");
-                    e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+                    e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
                 }
             }
         }
-
-
     }
 }

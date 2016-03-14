@@ -1,0 +1,16 @@
+﻿body {
+}
+
+.comp-info{
+    height: 70px;
+    padding:10px;
+}
+
+.Grid{
+    width:40%;
+    margin-left: 0.5em;
+    text-align: left;
+    display: inline-block;
+    padding: 2em;
+    border: none;
+}
