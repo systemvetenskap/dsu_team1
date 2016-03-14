@@ -6,11 +6,38 @@
     padding:10px;
 }
 
-.Grid{
+/*.Grid{
     width:40%;
     margin-left: 0.5em;
     text-align: left;
     display: inline-block;
     padding: 2em;
     border: none;
+}*/
+
+.Grid {
+    /*background-color: #fff; 
+    margin: 5px 0 10px 0; 
+    border: solid 1px #525252; 
+    border-collapse:collapse; */
+    font-family:'latolight'; 
+    color: black;}
+
+.Grid td {
+      padding: 1em;
+      text-align: center;
+      font-size: 1.2em;
+/*      border: solid 1px #c1c1c1; */
+      width: 200px;
+}
+.Grid th  {
+      padding : 1em;
+      color: black;
+      /*background: #AF3C3C;
+      border-left: solid 1px #525252;*/
+      font-size: 1.3em; 
+}
+.tablehalfbox {
+    max-height:500px;
+    overflow:auto;
 }

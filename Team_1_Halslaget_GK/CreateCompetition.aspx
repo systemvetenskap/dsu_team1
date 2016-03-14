@@ -22,6 +22,8 @@
         <textarea id="descriptionBox" cols="20" rows="2" runat="server" placeholder="Beskrivning" style="width: 100%;height: 25px;padding: 3px;"></textarea>
     </div>
     <div class="wrapper-small text-center small-margin">
+            <p style="font-weight: bold;">Datum</p>
+        <div class="small-margin">
         <asp:DropDownList ID ="dropDownYear" runat="server">
             <asp:ListItem Value="2016">2016</asp:ListItem>
             <asp:ListItem Value="2017">2017</asp:ListItem>
@@ -74,6 +76,7 @@
             <asp:ListItem>30</asp:ListItem>
             <asp:ListItem>31</asp:ListItem>
         </asp:DropDownList>
+            </div>
     </div>
     <div class="wrapper-small text-center small-margin" id="dateDiv">
 
@@ -97,7 +100,7 @@
         }
     </script> 
         <div class="wrapper text-center small-margin">
-            <asp:Button ID="newDate" runat="server" Text="Lägg till datum och tävlingstyp" CssClass="btn" OnClick="newDate_Click" UseSubmitBehavior="false" AutoPostback="false"/>
+            <asp:Button ID="newDate" runat="server" Text="Lägg till datum och tävlingstyp" CssClass="btn" OnClick="newDate_Click" UseSubmitBehavior="false" />
         </div>
         <div id="dateFiller" runat="server" class="small-margin">
         </div>

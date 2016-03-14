@@ -89,25 +89,41 @@
       </div>
     </section>
 
-    <!-- Header ================================================== -->
+    <!--------------------------------------- Header ================================================== -->
     <section class="container" id="head-seaction">
       <div class="content" id="header-content">
        <div class="logoContainer">
           <img class="header-logo" src="img/golf.jpg" alt="Headimage" title="Fint landskap"/>
         </div> 
       </div>
-    </section>   
+    </section> 
+     
+     <!--------------------------------------- NEWS ================================================== -->
+      
      <section class="container">
-            <div class="content">
-                <div class="contentRow">
-                    <div class="fullBox news">
-                        <div class="page-title"><h1>Nyheter</h1></div>
-                        <div class="fullBox" runat="server" id="newsdiv">
-                        </div>
-                    </div> 
+        <div class="content">
+            <div class="contentRow">
+                <div class="fullBox news">
+                    <div class="page-title"><h1>Nyheter</h1></div>
+                    <div class="fullBox" runat="server" id="newsdiv"></div>                       
+                </div> 
+
+    <!--------------------------------------- BOKNINGAR/VÄDER ================================================== -->
+
                         <div class="fullBox bookings">
-                            <div class="page-title"><h1>Bokningar och Väder</h1></div>
-                                <div class="weatherBox">
+                            <div class="page-title"><h1>Tävlingar och Väder</h1></div>
+                                <div class="halfBox">
+                                    <asp:GridView ID="gvComp" runat="server" DataKeyNames="id" CssClass="Grid" GridLines="None" AutoGenerateColumns="false">
+                                        <Columns>
+                                            <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="id" />
+                                            <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" />
+                                            <asp:BoundField DataField="starttid" HeaderText="Start" DataFormatString="{0:HH:mm}" /> 
+                                            <asp:BoundField DataField="type" HeaderText="Tävlingstyp" />                                                                    
+                                        </Columns>
+                                    </asp:GridView>
+                                    <asp:Label ID="lblcomp" runat="server" Text=""></asp:Label>
+                                </div>
+                                <div class="halfBox weatherBox">
                                     <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
                                     <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/e67186ae70807f54f0e967f0f38dac9f"></script>
                                     <asp:Table ID="Table2" runat="server" CssClass="banstatus">
@@ -141,6 +157,9 @@
                     </div>  
                 </div>         
         </section>
+
+     <!--------------------------------------- BLI MEDLEM ================================================== -->
+
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
          <ContentTemplate>
      <section class="container">
@@ -341,7 +360,9 @@
      </section>
    </ContentTemplate>
   </asp:UpdatePanel>
-       <!-- Footer ================================================== -->
+
+       <!------------------------------------------- Footer ================================================== -->
+
     <section class="container" id="section-footer">
       <div class="content">
         <div class="contentRow">      

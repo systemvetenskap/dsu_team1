@@ -14,10 +14,10 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Username"] == null && Session["admin"] == null)
-            //{
-            //    Response.Redirect("~/NotAllowed.aspx");
-            //}
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
 
             if(!IsPostBack)
             {
@@ -58,6 +58,11 @@ namespace Team_1_Halslaget_GK
         protected void btnGoToRegisterResult_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/ScoreCardAdmin.aspx");
+        }
+
+        protected void btnGoToNews_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/PublishNewsAdmin.aspx");
         }
     }
 }

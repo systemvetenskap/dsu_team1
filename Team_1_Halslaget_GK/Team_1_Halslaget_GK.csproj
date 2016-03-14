@@ -79,6 +79,7 @@
     <Content Include="css\AdminPanelCss.css" />
     <Content Include="css\BokatavlingCss.css" />
     <Content Include="css\changePasswordCss.css" />
+    <Content Include="css\CreateCompetition.css" />
     <Content Include="css\CreateNewMemberCss.css" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\Medlemsregister.css" />
@@ -133,6 +134,7 @@
     <Content Include="bin\Team_1_Halslaget_GK.dll.config" />
     <Content Include="AdminMaster.Master" />
     <Content Include="packages.config" />
+    <Content Include="ViewStartList.aspx" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
@@ -295,6 +297,12 @@
     </Compile>
     <Compile Include="TidsbokningAdmin.aspx.designer.cs">
       <DependentUpon>TidsbokningAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewStartList.aspx.cs">
+      <DependentUpon>ViewStartList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewStartList.aspx.designer.cs">
+      <DependentUpon>ViewStartList.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

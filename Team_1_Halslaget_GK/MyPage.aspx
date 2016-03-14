@@ -129,28 +129,58 @@
     </div>
    <!-- USER INFO ================================================== -->
     <div class="fullBox top-n-bottom-space">
-        <div class="fullBox page-title">
-            <h3>DINA UPPGIFTER</h3>
-        </div>
-        <div class="fullBox ">
+        <div class="halfBox my-page-half-box">
+            <div class="fullBox my-page-title">
+                <h3>MINA UPPGIFTER</h3>
+            </div>
             <div class="halfBox">
                 <p class="p-my-info"><strong>Förnamn:</strong> <asp:Label ID="lblFirstName" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Efternam:</strong> <asp:Label ID="lblLastName" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Telefonnummer:</strong> <asp:Label ID="lblPhoneNum" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Email:</strong> <asp:Label ID="lblEmail" runat="server" Text="Label"></asp:Label></p>
-            </div>
-            <div class="halfBox">
                 <p class="p-my-info"><strong>Gata:</strong> <asp:Label ID="lblStreet" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Postkod:</strong> <asp:Label ID="lblPostalCode" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Stad:</strong> <asp:Label ID="lblCity" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info" style="display:none;"><strong>ID:</strong> <asp:Label ID="lblMemberID" runat="server" Text="Label"></asp:Label></p>
             </div>
+        </div>
+            <div class="halfBox my-page-half-box">
+                <div class="fullBox">
+                    <div class="fullBox my-page-title">
+                        <h3>MINA KOMMANDE TÄVLINGAR </h3>
+                    </div>
+                </div>
+                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                    <ContentTemplate>
+                        <div class="fullBox">            
+                            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" OnRowCommand="GridView2_RowCommand">
+                                <Columns>
+                                        <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="name" />
+                                        <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" SortExpression="date" />
+                                        <asp:BoundField DataField="starttid" HeaderText="Starttid" DataFormatString="{0:HH:mm}" SortExpression="starttime" />
+                                        <asp:CommandField ShowSelectButton="true" />
+                                </Columns>
+                            </asp:GridView>          
+                        </div>
+                        <div class="fullBox center-text">
+                            <br />
+                                <p class="p-my-info" id="compinfo" runat="server"></p>
+                            <br />
+                            <div class="halfBox">
+                                <asp:Button ID="btnShowStartList" runat="server" Text="VISA STARTLISTA" CssClass="my-button" onclick="btnShowStartList_Click" />
+                            </div>
+                            <div class="halfBox">
+                                <a id="btnShowResults" class="my-button btn-mobile-space">TIDIGARE RESULTAT</a>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
             <div class="fullBox top-n-bottom-space">
-                <div class="halfBox">
+                <div class="halfBox my-page-half-box">
                     <a class="my-button" title="Klicka här för att redigera din uppgifter, en ny ruta öppnas." onclick="openOverlayEditInfo();">REDIGERA UPPGIFTER</a>
                 </div>
             </div>
-        </div>
     </div>
    <!-- ACCOUNT SETTINGS ================================================== -->
     <div class="fullBox top-n-bottom-space">
