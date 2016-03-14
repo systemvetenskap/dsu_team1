@@ -102,14 +102,14 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        public int GetNOcompetitors(string compName)
+        public int GetNOcompetitors(string id)
         {
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             try
             {
                 conn.Open();
-                NpgsqlCommand cmdGetPlayers = new NpgsqlCommand("SELECT count(medlem_id) FROM medlem_tavling WHERE tavling_id = (SELECT id FROM tavling WHERE namn = @compName)", conn);
-                cmdGetPlayers.Parameters.AddWithValue("@compName", compName);
+                NpgsqlCommand cmdGetPlayers = new NpgsqlCommand("SELECT count(medlem_id) FROM medlem_tavling WHERE tavling_id = (SELECT id FROM tavling WHERE id = @id)", conn);
+                cmdGetPlayers.Parameters.AddWithValue("@id", id);
                 int noplayers = Convert.ToInt32(cmdGetPlayers.ExecuteScalar());
 
                 return noplayers;
@@ -175,6 +175,34 @@ namespace Team_1_Halslaget_GK
                 conn.Dispose();
             }
         }
+
+        public DataTable GetComingCompetitionMember(int id)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT * FROM tavling WHERE id IN (SELECT tavling_id FROM medlem_tavling WHERE medlem_id = @medlem_id) AND datum > CURRENT_DATE", conn);
+                cmdGetCompetitions.Parameters.AddWithValue("@medlem_id", id);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetCompetitions;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+        
 
     }
 }

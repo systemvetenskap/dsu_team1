@@ -94,6 +94,24 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl newsdiv;
         
         /// <summary>
+        /// gvComp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvComp;
+        
+        /// <summary>
+        /// lblcomp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcomp;
+        
+        /// <summary>
         /// Table2 control.
         /// </summary>
         /// <remarks>
