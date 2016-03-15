@@ -159,25 +159,13 @@
                 <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                     <ContentTemplate>
                         <div class="fullBox">            
-                            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" OnRowCommand="GridView2_RowCommand" DataKeyNames="id">
+                            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" DataKeyNames="id">
                                 <Columns>
                                         <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="name" />
                                         <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" SortExpression="date" />
                                         <asp:BoundField DataField="starttid" HeaderText="Starttid" DataFormatString="{0:HH:mm}" SortExpression="starttime" />
-                                    <asp:CommandField ShowSelectButton="true" />
                                 </Columns>
                             </asp:GridView>          
-                        </div>
-                        <div class="fullBox center-text">
-                            <br />
-                                <p class="p-my-info" id="compinfo" runat="server"></p>
-                            <br />
-                            <div class="halfBox">
-                                <asp:Button ID="btnShowStartList" runat="server" Text="VISA STARTLISTA" CssClass="my-button" onclick="btnShowStartList_Click" />
-                            </div>
-                            <div class="halfBox">
-                                <a id="btnShowResults" class="my-button btn-mobile-space">TIDIGARE RESULTAT</a>
-                            </div>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>

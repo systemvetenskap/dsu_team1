@@ -328,24 +328,6 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
-        /// compinfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl compinfo;
-        
-        /// <summary>
-        /// btnShowStartList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowStartList;
-        
-        /// <summary>
         /// btnGoToAccountSettings control.
         /// </summary>
         /// <remarks>
