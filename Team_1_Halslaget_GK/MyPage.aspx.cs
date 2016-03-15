@@ -179,40 +179,6 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (GridViewRow row in GridView2.Rows)
-            {
-                if (row.RowIndex == GridView2.SelectedIndex)
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#6C6C6C");
-                }
-                else
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                }
-            }
-        }
-
-        protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Select")
-            {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-
-                if (GridView2.Rows[rowIndex].Cells[2].Text == "")
-                {
-                    btnShowStartList.Visible = false;
-                }
-
-                else 
-                {
-                    btnShowStartList.Enabled = true;
-                    Session["compid"] = GridView2.DataKeys[rowIndex]["id"];
-                }
-            }
-        }
-
         /// <summary>
         /// Sets propertis in medlem class and triggers UpdateMemberInfo in same class
         /// to update member info in database. 
