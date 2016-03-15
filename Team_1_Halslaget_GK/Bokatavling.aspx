@@ -8,8 +8,17 @@
   <!-- Main Page ================================================== -->       
             <div class="fullBox page-title"><h1>Tävlingar</h1></div>           
             <div class="halfBox">
+
+                <!------------------ Visa Tävlingar ---------------->
+                 
                 <div class="halfBox search-box">
-                    <asp:TextBox ID="tbsearchTavling" CssClass="my-txt-box " Placeholder="Sök" runat="server"></asp:TextBox>
+                    <div class="halfBox">
+                        <asp:TextBox ID="tbsearchTavling" CssClass="my-txt-box " Placeholder="Sök" runat="server"></asp:TextBox>
+                    </div>
+                     <div class="halfBox">
+                         <asp:Button ID="btnsearch" CssClass="my-button" runat="server" Text="Sök" />
+                    </div>
+                    
                 </div>   
                 <div class="halfBox search-button">
                     <asp:Button ID="BtnSearch" CssClass="my-button" runat="server" Text="Sök" OnClick="BtnSearch_Click1" />
@@ -30,6 +39,7 @@
                             </Columns>
                     </asp:GridView>
             </div>
+            <!------------------ Visa Tävlingasinfo och anmäl medlem ----------------> 
             <div class="halfBox">
                 <h3><asp:Label ID="lblTavlingNamn" runat="server" Text="Namn"></asp:Label></h3><br />
                 <h4><asp:Label ID="lblTavlingTyp" runat="server" Text="Typ"></asp:Label></h4><br />
