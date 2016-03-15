@@ -14,11 +14,7 @@
                 <div class="halfBox search-box">
                     <div class="halfBox">
                         <asp:TextBox ID="tbsearchTavling" CssClass="my-txt-box " Placeholder="Sök" runat="server"></asp:TextBox>
-                    </div>
-                     <div class="halfBox">
-                         <asp:Button ID="btnsearch" CssClass="my-button" runat="server" Text="Sök" />
-                    </div>
-                    
+                    </div>                    
                 </div>   
                 <div class="halfBox search-button">
                     <asp:Button ID="BtnSearch" CssClass="my-button" runat="server" Text="Sök" OnClick="BtnSearch_Click1" />
