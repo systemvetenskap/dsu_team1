@@ -184,33 +184,46 @@ namespace Team_1_Halslaget_GK
                 {
                     row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
                 }
+
             }
 
-            GridView1.Visible = true;
-            btnGeneratePlaylist.Visible = true;
-            BtnGeneratePlaylistLag.Visible = false;
-            DataTable dt1 = getSingelCompPlaylist(gvComps.SelectedValue.ToString());
-            DataTable dt2 = getTeamCompPlaylist(gvComps.SelectedValue.ToString());
+            GridView1.Visible = true;                      
 
-            dt1.Merge(dt2);
-            GridView1.DataSource = dt1;
-            GridView1.DataBind();
-
-            if (dt1.Columns[3].ToString() == null)
+            if (gvComps.SelectedRow.Cells[3].Text.ToLower() == "singel")
             {
-                GridView1.Visible = false;
+                DataTable dt1 = getSingelCompPlaylist(gvComps.SelectedValue.ToString());
+                GridView1.DataSource = dt1;
+
+                btnGeneratePlaylist.Visible = true;
+
+                if(dt1.Rows.Count > 0)
+                {
+                    BtnGeneratePlaylistLag.Visible = false;
+                    btnGeneratePlaylist.Visible = false;
+                }            
+
+                GridView1.Columns[3].Visible = false;
+
+                lblcount.Text = "Det finns " + countsingle(gvComps.SelectedValue.ToString()).ToString() + " anmälda till den här tävlingen";
             }
-            else
+            if (gvComps.SelectedRow.Cells[3].Text.ToLower() == "lag")
             {
+                DataTable dt2 = getTeamCompPlaylist(gvComps.SelectedValue.ToString());
+                GridView1.DataSource = dt2;
+
+                BtnGeneratePlaylistLag.Visible = true;
+
+                if (dt2.Rows.Count > 0)
+                {
+                    BtnGeneratePlaylistLag.Visible = false;
+                    btnGeneratePlaylist.Visible = false;
+                }
+
                 GridView1.Columns[3].Visible = true;
+
+                lblcount.Text = "Det finns " + countteam(gvComps.SelectedValue.ToString()).ToString() + " anmälda lag till den här tävlingen";
             }
-
-            if(gvComps. == "singel")
-            {
-
-            }
-                
-
+            GridView1.DataBind();
         }
 
         protected void BtnGeneratePlaylistLag_Click(object sender, EventArgs e)
@@ -333,6 +346,32 @@ namespace Team_1_Halslaget_GK
             conn.Close();
             return dt;
         }
+
+        public int countsingle(string compid)
+        {
+            string sql = "SELECT Count(*) FROM medlem_tavling WHERE tavling_id = @id_tavling";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id_tavling", compid);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            
+            conn.Close();
+            return count;
+        }
+
+        public int countteam(string compid)
+        {
+            string sql = "SELECT Count(*) FROM lag_tavling WHERE id_tavling = @id_tavling";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id_tavling", compid);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+            conn.Close();
+            return count;
+        }
+
+
 
     }
 }

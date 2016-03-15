@@ -56,3 +56,6 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;   
 }
+.my-button {
+    margin-top: 2%;
+}
