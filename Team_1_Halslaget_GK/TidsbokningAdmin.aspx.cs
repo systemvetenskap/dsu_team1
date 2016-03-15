@@ -110,18 +110,12 @@ namespace Team_1_Halslaget_GK
             }
            
             if (lblPlayer4.Text != "")
-            {
-                tbPlayer1.Visible = false;
+            {                
                 confirmBtn.Enabled = false;
                 confirmBtn.Visible = false;
                 lblotherplayers.Text = "Den här tiden är tyvärr fullbokad!";
                 lblotherplayers.ForeColor = Color.Red;
                 Label1.Visible = false;
-
-                //FÖr tävlingar behövs detta
-                tbPlayer2.Visible = false;
-                tbPlayer3.Visible = false;
-                tbPlayer4.Visible = false;
             }
             
         }
@@ -136,7 +130,11 @@ namespace Team_1_Halslaget_GK
 
                 if (golfplayer.tavlingsnamn.ToString() != "" && golfplayer.startid == time)
                 {
-                    lblPlayer4.Text = "Denna tid är uppbokad för " + Session["compname"].ToString();
+                    lblPlayer4.Text = "Denna tid är uppbokad för tävlingen " + Session["compname"].ToString();
+                    tbPlayer1.Visible = false;
+                    tbPlayer2.Visible = false;
+                    tbPlayer3.Visible = false;
+                    tbPlayer4.Visible = false;
                 }
 
                 else if (golfplayer.startid == time && playercount == 1)
