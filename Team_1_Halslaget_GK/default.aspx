@@ -108,11 +108,12 @@
                     <div class="fullBox" runat="server" id="newsdiv"></div>                       
                 </div> 
 
-    <!--------------------------------------- BOKNINGAR/VÄDER ================================================== -->
+    <!--------------------------------------- TÄVLINGAR/VÄDER ================================================== -->
 
                         <div class="fullBox bookings">
                             <div class="page-title"><h1>Tävlingar och Väder</h1></div>
                                 <div class="halfBox">
+                                    <div class="tavlingsBox">
                                     <asp:GridView ID="gvComp" runat="server" DataKeyNames="id" CssClass="Grid" GridLines="None" AutoGenerateColumns="false">
                                         <Columns>
                                             <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="id" />
@@ -121,6 +122,7 @@
                                             <asp:BoundField DataField="type" HeaderText="Tävlingstyp" />                                                                    
                                         </Columns>
                                     </asp:GridView>
+                                        </div>
                                     <asp:Label ID="lblcomp" runat="server" Text=""></asp:Label>
                                 </div>
                                 <div class="halfBox weatherBox">

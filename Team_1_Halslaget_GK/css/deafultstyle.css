@@ -116,6 +116,10 @@
       border-left: solid 1px #525252;*/
       font-size: 1.3em; 
 }
+.tavlingsBox {
+    max-height:300px;
+    overflow:auto;
+}
 
 
 
