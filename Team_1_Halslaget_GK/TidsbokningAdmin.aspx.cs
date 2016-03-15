@@ -110,18 +110,12 @@ namespace Team_1_Halslaget_GK
             }
            
             if (lblPlayer4.Text != "")
-            {
-                tbPlayer1.Visible = false;
+            {                
                 confirmBtn.Enabled = false;
                 confirmBtn.Visible = false;
                 lblotherplayers.Text = "Den här tiden är tyvärr fullbokad!";
                 lblotherplayers.ForeColor = Color.Red;
                 Label1.Visible = false;
-
-                //FÖr tävlingar behövs detta
-                tbPlayer2.Visible = false;
-                tbPlayer3.Visible = false;
-                tbPlayer4.Visible = false;
             }
             
         }
@@ -136,7 +130,11 @@ namespace Team_1_Halslaget_GK
 
                 if (golfplayer.tavlingsnamn.ToString() != "" && golfplayer.startid == time)
                 {
-                    lblPlayer4.Text = "Denna tid är uppbokad för " + Session["compname"].ToString();
+                    lblPlayer4.Text = "Denna tid är uppbokad för tävlingen " + Session["compname"].ToString();
+                    tbPlayer1.Visible = false;
+                    tbPlayer2.Visible = false;
+                    tbPlayer3.Visible = false;
+                    tbPlayer4.Visible = false;
                 }
 
                 else if (golfplayer.startid == time && playercount == 1)
@@ -476,43 +474,50 @@ namespace Team_1_Halslaget_GK
         /// </summary>
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
-            Season setDates = new Season();
-            string year = DateTime.Now.Year.ToString();
-            DateTime start = setDates.GetSeasonStartDate(year);
-            DateTime end = setDates.GetSeasonEndDate(year);
 
-            if (start <= DateTime.Today) //Sets so that any date before today is not selactable.
+            if (e.Day.Date < DateTime.Today || e.Day.Date > DateTime.Today.AddDays(30))
             {
-                start = DateTime.Today;
-                if ((e.Day.Date < start) || (e.Day.Date > end))
-                {
-                    e.Day.IsSelectable = false;
-                    e.Cell.ForeColor = System.Drawing.Color.Black;
-                    e.Cell.BackColor = System.Drawing.Color.Gray;
-                    e.Cell.Style.Add("cursor", "not-allowed");
-                    e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
-                }
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
+            }
 
-                if (e.Day.Date > start.AddMonths(1))
-                {
-                    e.Day.IsSelectable = false;
-                    e.Cell.ForeColor = System.Drawing.Color.Black;
-                    e.Cell.BackColor = System.Drawing.Color.Gray;
-                    e.Cell.Style.Add("cursor", "not-allowed");
-                    e.Cell.ToolTip = "Du kan enbart boka banan en månad i förväg.";
-                }
-            }
-            else
-            {
-                if ((e.Day.Date < start) || (e.Day.Date > end))
-                {
-                    e.Day.IsSelectable = false;
-                    e.Cell.ForeColor = System.Drawing.Color.Black;
-                    e.Cell.BackColor = System.Drawing.Color.Gray;
-                    e.Cell.Style.Add("cursor", "not-allowed");
-                    e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
-                }
-            }
+            //Season setDates = new Season();
+            //string year = DateTime.Now.Year.ToString();
+            //DateTime start = setDates.GetSeasonStartDate(year);
+            //DateTime end = setDates.GetSeasonEndDate(year);
+
+            //if (start <= DateTime.Today) //Sets so that any date before today is not selactable.
+            //{
+            //    start = DateTime.Today;
+            //    if ((e.Day.Date < start) || (e.Day.Date > end))
+            //    {
+            //        e.Day.IsSelectable = false;
+            //        e.Cell.ForeColor = System.Drawing.Color.Black;
+            //        e.Cell.BackColor = System.Drawing.Color.Gray;
+            //        e.Cell.Style.Add("cursor", "not-allowed");
+            //        e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
+            //    }
+
+            //    if (e.Day.Date > start.AddMonths(1))
+            //    {
+            //        e.Day.IsSelectable = false;
+            //        e.Cell.ForeColor = System.Drawing.Color.Black;
+            //        e.Cell.BackColor = System.Drawing.Color.Gray;
+            //        e.Cell.Style.Add("cursor", "not-allowed");
+            //        e.Cell.ToolTip = "Du kan enbart boka banan en månad i förväg.";
+            //    }
+            //}
+            //else
+            //{
+            //    if ((e.Day.Date < start) || (e.Day.Date > end))
+            //    {
+            //        e.Day.IsSelectable = false;
+            //        e.Cell.ForeColor = System.Drawing.Color.Black;
+            //        e.Cell.BackColor = System.Drawing.Color.Gray;
+            //        e.Cell.Style.Add("cursor", "not-allowed");
+            //        e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
+            //    }
+            //}
         }
     }
 }

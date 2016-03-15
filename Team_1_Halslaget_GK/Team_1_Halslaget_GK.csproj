@@ -101,15 +101,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminBokatavling.aspx" />
     <Content Include="AdminPanel.aspx" />
     <Content Include="bin\Team_1_Halslaget_GK.dll" />
     <Content Include="bin\Team_1_Halslaget_GK.pdb" />
     <Content Include="Bokatavling.aspx" />
-    <Content Include="BookingAdmin.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="CreateCompetition.aspx" />
-    <Content Include="css\ViewStartList.css" />
     <Content Include="CreateNewMember.aspx" />
+    <Content Include="css\AdminBokatavlingCss.css" />
     <Content Include="css\AdminPanelCss.css" />
     <Content Include="css\BokatavlingCss.css" />
     <Content Include="css\changePasswordCss.css" />
@@ -193,6 +193,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminBokatavling.aspx.cs">
+      <DependentUpon>AdminBokatavling.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminBokatavling.aspx.designer.cs">
+      <DependentUpon>AdminBokatavling.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminMaster.Master.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,13 +221,6 @@
     </Compile>
     <Compile Include="Bokatavling.aspx.designer.cs">
       <DependentUpon>Bokatavling.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BookingAdmin.aspx.cs">
-      <DependentUpon>BookingAdmin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BookingAdmin.aspx.designer.cs">
-      <DependentUpon>BookingAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\Booking.cs" />
     <Compile Include="ChangePassword.aspx.cs">

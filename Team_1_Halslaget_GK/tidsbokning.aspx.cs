@@ -198,7 +198,11 @@ namespace Team_1_Halslaget_GK
             {
                 if (golfplayer.tavlingsnamn.ToString() != "" && golfplayer.startid ==  time)
                 {
-                    lblPlayer4.Text = "Denna tid är uppbokad för" + Session["compname"].ToString();
+                    lblPlayer4.Text = "Denna tid är uppbokad för tävlingen " + Session["compname"].ToString();                   
+                    tbPlayer1.Visible = false;
+                    tbPlayer2.Visible = false;
+                    tbPlayer3.Visible = false;
+                    tbPlayer4.Visible = false;
                 }
 
                 else if (golfplayer.startid == time && playercount == 1)
@@ -471,51 +475,60 @@ namespace Team_1_Halslaget_GK
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
-            Season setDates = new Season();
-            string year = DateTime.Now.Year.ToString();
-            DateTime start = setDates.GetSeasonStartDate(year);
-            DateTime end = setDates.GetSeasonEndDate(year);
 
-            if (start <= DateTime.Today) //Sets so that any date after today is not selactable.
+
+
+            if (e.Day.Date < DateTime.Today || e.Day.Date > DateTime.Today.AddDays(30))
             {
-                start = DateTime.Today;
-                if(end >= DateTime.Today.AddMonths(1))
-                {
-                    end = DateTime.Today.AddMonths(1);
-                    if((e.Day.Date < start) || (e.Day.Date > end))
-                    {
-                        e.Day.IsSelectable = false;
-                        e.Cell.ForeColor = System.Drawing.Color.Black;
-                        e.Cell.BackColor = System.Drawing.Color.Gray;
-                        e.Cell.Style.Add("cursor", "not-allowed");
-                        e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
-                    } 
-                }
-                else 
-                {
-                    if((e.Day.Date < start) || (e.Day.Date > end))
-                    {
-                        e.Day.IsSelectable = false;
-                        e.Cell.ForeColor = System.Drawing.Color.Black;
-                        e.Cell.BackColor = System.Drawing.Color.Gray;
-                        e.Cell.Style.Add("cursor", "not-allowed");
-                        e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
-                    } 
-                }
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
             }
-            else
-            {
-                if ((e.Day.Date < start) || (e.Day.Date > end))
-                {
-                    e.Day.IsSelectable = false;
-                    e.Cell.ForeColor = System.Drawing.Color.Black;
-                    e.Cell.BackColor = System.Drawing.Color.Gray;
-                    e.Cell.Style.Add("cursor", "not-allowed");
-                    e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
-                }
-            }
+
+            //    
+            //    
+            //    DateTime start = setDates.GetSeasonStartDate(year);
+            //    
+
+            //    if (start <= DateTime.Today) //Sets so that any date after today is not selactable.
+            //    {
+            //        start = DateTime.Today;
+            //        if(end >= DateTime.Today.AddMonths(1))
+            //        {
+            //            end = DateTime.Today.AddMonths(1);
+            //            if((e.Day.Date < start) || (e.Day.Date > end))
+            //            {
+            //                e.Day.IsSelectable = false;
+            //                e.Cell.ForeColor = System.Drawing.Color.Black;
+            //                e.Cell.BackColor = System.Drawing.Color.Gray;
+            //                e.Cell.Style.Add("cursor", "not-allowed");
+            //                e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+            //            } 
+            //        }
+            //        else 
+            //        {
+            //            if((e.Day.Date < start) || (e.Day.Date > end))
+            //            {
+            //                e.Day.IsSelectable = false;
+            //                e.Cell.ForeColor = System.Drawing.Color.Black;
+            //                e.Cell.BackColor = System.Drawing.Color.Gray;
+            //                e.Cell.Style.Add("cursor", "not-allowed");
+            //                e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+            //            } 
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if ((e.Day.Date < start) || (e.Day.Date > end))
+            //        {
+            //            e.Day.IsSelectable = false;
+            //            e.Cell.ForeColor = System.Drawing.Color.Black;
+            //            e.Cell.BackColor = System.Drawing.Color.Gray;
+            //            e.Cell.Style.Add("cursor", "not-allowed");
+            //            e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+            //        }
+            //    }
+            //}
+
         }
-
-
     }
 }

@@ -159,7 +159,7 @@ namespace Team_1_Halslaget_GK
 
 
 
-        // ----------- Funktioner --------- //
+        /* ----------- Funktioner --------- */
 
         // Hämta en tavling på tävlings id
         public Competition GetspecificComp(string compid)
