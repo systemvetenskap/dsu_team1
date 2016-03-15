@@ -63,8 +63,10 @@ namespace Team_1_Halslaget_GK
             newComp.firstRegDate = Calendar1.SelectedDate.AddDays(-14);
             newComp.lastRegDate = Calendar1.SelectedDate.AddDays(-2);
 
-            string sql = "INSERT INTO tavling (datum, starttid, sluttid, description, namn, type, firstregdate, lastregdate) VALUES(@datum, @starttid, @sluttid, @description, @namn, @type, @firstregdate, @lastregdate)";
+            string sql = "INSERT INTO tavling (datum, starttid, sluttid, description, namn, type, firstregdate, lastregdate) VALUES(@datum, @starttid, @sluttid, @description, @namn, @type, @firstregdate, @lastregdate) RETURNING id";
+
             conn.Open();
+
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@datum", newComp.date);       
             cmd.Parameters.AddWithValue("@starttid", newComp.starttid);
@@ -75,10 +77,14 @@ namespace Team_1_Halslaget_GK
             cmd.Parameters.AddWithValue("@firstregdate", newComp.firstRegDate);
             cmd.Parameters.AddWithValue("@lastregdate", newComp.lastRegDate);
 
-            cmd.ExecuteNonQuery();
+            int tavlingsid = Convert.ToInt32(cmd.ExecuteScalar());
+
             conn.Close();
 
+            BookCompTimes(tavlingsid);
+
             Resetpage();
+            
         }
 
         protected void btnConfirm_Click(object sender, EventArgs e)
@@ -94,6 +100,47 @@ namespace Team_1_Halslaget_GK
             ddlCompType.SelectedIndex = 0;
             ddlstarttime.SelectedIndex = 0;
             ddlendtime.SelectedIndex = 0;
+        }
+
+        public void BookCompTimes(int tavlingsid)
+        {
+            List<Booking> ListOfBookings = new List<Booking>();
+            string sql = "SELECT * FROM bokning WHERE starttid >= @starttid AND starttid <= @sluttid";
+
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@starttid", ddlstarttime.Text);
+            cmd.Parameters.AddWithValue("@sluttid", ddlendtime.Text);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Booking b = new Booking();
+                b.ID = Convert.ToInt32(dr["slot_id"]);
+                ListOfBookings.Add(b);
+            }
+            conn.Close();
+
+            foreach (Booking b in ListOfBookings)
+            {
+                string sql2 = "DELETE FROM medlem_bokning WHERE bokning_id = @bokning_id AND datum = @date";
+                conn.Open();
+                NpgsqlCommand cmd2 = new NpgsqlCommand(sql2, conn);
+                cmd2.Parameters.AddWithValue("@bokning_id", b.ID.ToString());
+                cmd2.Parameters.AddWithValue("@date", Calendar1.SelectedDate);
+                cmd2.ExecuteNonQuery();
+                conn.Close();
+
+                string sql3 = "INSERT INTO medlem_bokning (bokning_id, datum,tavlings_id) VALUES(@bokning_id, @date, @tavlings_id)";
+                conn.Open();
+                NpgsqlCommand cmd3 = new NpgsqlCommand(sql3, conn);
+                cmd3.Parameters.AddWithValue("@bokning_id", b.ID.ToString());
+                cmd3.Parameters.AddWithValue("@date", Calendar1.SelectedDate);
+                cmd3.Parameters.AddWithValue("@tavlings_id", tavlingsid.ToString());
+
+                cmd3.ExecuteNonQuery();
+                conn.Close();
+            }
         }
     } 
 }
