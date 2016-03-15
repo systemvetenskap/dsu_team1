@@ -85,13 +85,13 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button btnGoToCreateSeason;
         
         /// <summary>
-        /// LinkButton5 control.
+        /// GotoCreateComp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton5;
+        protected global::System.Web.UI.WebControls.LinkButton GotoCreateComp;
         
         /// <summary>
         /// LinkButton6 control.
@@ -103,13 +103,13 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
         
         /// <summary>
-        /// LinkButton7 control.
+        /// GoToStartlist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton7;
+        protected global::System.Web.UI.WebControls.LinkButton GoToStartlist;
         
         /// <summary>
         /// btnGoToNews control.

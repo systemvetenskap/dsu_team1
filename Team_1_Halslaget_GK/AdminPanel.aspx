@@ -40,9 +40,9 @@
             <div class="dropdownbox">
             <asp:Button ID="btnGoToCreateSeason" runat="server" CssClass="my-button admin-btn-txt"  Text="TÄVLINGAR" />        
                 <div class="dropdown-content quarterBox">
-                    <asp:LinkButton ID="LinkButton5" runat="server" class="my-button admin-btn-txt" >SKAPA TÄVLING</asp:LinkButton>
+                    <asp:LinkButton ID="GotoCreateComp" runat="server" class="my-button admin-btn-txt" OnClick="GotoCreateComp_Click" >SKAPA TÄVLING</asp:LinkButton>
                     <asp:LinkButton ID="LinkButton6" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToRegisterResult_Click">REGISTRERA RESULTAT</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButton7" runat="server" class="my-button admin-btn-txt" >STARTLISTA</asp:LinkButton>
+                    <asp:LinkButton ID="GoToStartlist" runat="server" class="my-button admin-btn-txt"  OnClick="GoToStartlist_Click">STARTLISTA</asp:LinkButton>
                 </div>
             </div>
         </div>
