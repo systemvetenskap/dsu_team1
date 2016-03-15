@@ -17,6 +17,8 @@ namespace Team_1_Halslaget_GK
         public string type { get; set; }
         public string id { get; set; }
         public DateTime date { get; set; }
+        public DateTime firstRegDate { get; set; }
+        public DateTime lastRegDate { get; set; }
 
         /// <summary>
         /// Gets all the competition that is in the database.

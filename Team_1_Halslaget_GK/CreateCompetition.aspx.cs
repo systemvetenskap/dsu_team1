@@ -16,10 +16,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Username"] == null && Session["admin"] == null)
-            {
-                Response.Redirect("~/NotAllowed.aspx");
-            }
+            //if (Session["Username"] == null && Session["admin"] == null)
+            //{
+            //    Response.Redirect("~/NotAllowed.aspx");
+            //}
             if (!IsPostBack)
             {
                 fillTime();
@@ -60,8 +60,10 @@ namespace Team_1_Halslaget_GK
             newComp.sluttid = ddlendtime.SelectedItem.ToString();
             newComp.date = Calendar1.SelectedDate;
             newComp.type = ddlCompType.SelectedItem.ToString();
+            newComp.firstRegDate = Calendar1.SelectedDate.AddDays(-14);
+            newComp.lastRegDate = Calendar1.SelectedDate.AddDays(-2);
 
-            string sql = "INSERT INTO tavling (datum, starttid, sluttid, description, namn, type) VALUES(@datum, @starttid, @sluttid, @description, @namn, @type)";
+            string sql = "INSERT INTO tavling (datum, starttid, sluttid, description, namn, type, firstregdate, lastregdate) VALUES(@datum, @starttid, @sluttid, @description, @namn, @type, @firstregdate, @lastregdate)";
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@datum", newComp.date);       
@@ -70,15 +72,28 @@ namespace Team_1_Halslaget_GK
             cmd.Parameters.AddWithValue("@description", newComp.desc);
             cmd.Parameters.AddWithValue("@namn", newComp.namn);
             cmd.Parameters.AddWithValue("@type", newComp.type.ToLower());
+            cmd.Parameters.AddWithValue("@firstregdate", newComp.firstRegDate);
+            cmd.Parameters.AddWithValue("@lastregdate", newComp.lastRegDate);
 
             cmd.ExecuteNonQuery();
             conn.Close();
 
+            Resetpage();
         }
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
             CreateComp();
+        }
+
+        public void Resetpage()
+        {
+            Calendar1.SelectedDate = DateTime.Today;
+            tbCompName.Text = "";
+            tbCompDesc.Text = "";
+            ddlCompType.SelectedIndex = 0;
+            ddlstarttime.SelectedIndex = 0;
+            ddlendtime.SelectedIndex = 0;
         }
     } 
 }
