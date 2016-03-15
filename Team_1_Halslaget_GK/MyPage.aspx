@@ -143,7 +143,13 @@
                 <p class="p-my-info"><strong>Stad:</strong> <asp:Label ID="lblCity" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info" style="display:none;"><strong>ID:</strong> <asp:Label ID="lblMemberID" runat="server" Text="Label"></asp:Label></p>
             </div>
+            <div class="fullBox top-n-bottom-space">
+                <!--<div class="halfBox my-page-half-box">-->
+                    <a class="my-button" title="Klicka här för att redigera din uppgifter, en ny ruta öppnas." onclick="openOverlayEditInfo();">REDIGERA UPPGIFTER</a>
+                <!--</div>-->
+            </div>
         </div>
+           <!-- TÄVLINGS INFO ================================================== -->
             <div class="halfBox my-page-half-box">
                 <div class="fullBox">
                     <div class="fullBox my-page-title">
@@ -176,11 +182,7 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
-            <div class="fullBox top-n-bottom-space">
-                <div class="halfBox my-page-half-box">
-                    <a class="my-button" title="Klicka här för att redigera din uppgifter, en ny ruta öppnas." onclick="openOverlayEditInfo();">REDIGERA UPPGIFTER</a>
-                </div>
-            </div>
+
     </div>
    <!-- ACCOUNT SETTINGS ================================================== -->
     <div class="fullBox top-n-bottom-space">
