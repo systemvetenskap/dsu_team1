@@ -44,3 +44,15 @@
 .capitalize {
     text-transform: capitalize;
 }
+.halfBox {   
+     
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;   
+}
+.fullBox {
+    
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;   
+}

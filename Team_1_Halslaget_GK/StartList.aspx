@@ -8,7 +8,7 @@
     <br />
     <div class="fullBox page-title"><h2>SKAPA SPELLISTA</h2></div>
     <div class="fullBox">
-        <div class="halfBox">           
+        <div class="halfBox tablehalfbox">                      
             <asp:GridView ID="gvComps" AutoGenerateColumns="false" DataKeyNames="id" CssClass="Grid" GridLines="None" runat="server" OnSelectedIndexChanged="gvComps_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="id" />
@@ -21,11 +21,20 @@
             <div class="comp-info">               
                 <asp:Label ID="lblinfo" runat="server" Text=""></asp:Label>
             </div>
-            <asp:Button ID="btnGeneratePlaylist" CssClass="my-button" runat="server" Text="Generera Spellista1" OnClick="btnGeneratePlaylist_Click"/>
-            <asp:Button ID="BtnGeneratePlaylistLag" CssClass="my-button" runat="server" Text="Generera Spellista2" OnClick="BtnGeneratePlaylistLag_Click" />
         </div>
         <div class="halfBox tablehalfbox">
-            <asp:GridView ID="GridView1" runat="server" CssClass="Grid"></asp:GridView>
+            <asp:GridView ID="GridView1" AutoGenerateColumns="false" runat="server" CssClass="Grid">
+                <Columns>
+                    <asp:BoundField DataField="fornamn" HeaderText="Förnamn" SortExpression="id" />
+                    <asp:BoundField DataField="efternamn" HeaderText="Efternamn" DataFormatString="{0:dd-MM-yyyy}" />
+                    <asp:BoundField DataField="starttid" HeaderText="Starttid" DataFormatString="{0:HH:mm}" />
+                    <asp:BoundField DataField="lag_id" HeaderText="Lagnummer" ConvertEmptyStringToNull="true" />
+                </Columns>  
+            </asp:GridView>
         </div>
     </div>
+        <div class="halfBox">
+            <asp:Button ID="btnGeneratePlaylist" CssClass="my-button" runat="server" Text="Generera Spellista1" OnClick="btnGeneratePlaylist_Click"/>
+            <asp:Button ID="BtnGeneratePlaylistLag" CssClass="my-button" runat="server" Text="Generera Spellista2" OnClick="BtnGeneratePlaylistLag_Click" />   
+        </div>
 </asp:Content>

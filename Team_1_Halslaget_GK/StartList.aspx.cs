@@ -172,13 +172,44 @@ namespace Team_1_Halslaget_GK
 
         }
 
-
-
         protected void gvComps_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GridView1.Visible = false;
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                if (row.RowIndex == GridView1.SelectedIndex)
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#6C6C6C");
+                }
+                else
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                }
+            }
+
+            GridView1.Visible = true;
             btnGeneratePlaylist.Visible = true;
             BtnGeneratePlaylistLag.Visible = false;
+            DataTable dt1 = getSingelCompPlaylist(gvComps.SelectedValue.ToString());
+            DataTable dt2 = getTeamCompPlaylist(gvComps.SelectedValue.ToString());
+
+            dt1.Merge(dt2);
+            GridView1.DataSource = dt1;
+            GridView1.DataBind();
+
+            if (dt1.Columns[3].ToString() == null)
+            {
+                GridView1.Visible = false;
+            }
+            else
+            {
+                GridView1.Columns[3].Visible = true;
+            }
+
+            if(gvComps. == "singel")
+            {
+
+            }
+                
 
         }
 
@@ -273,6 +304,34 @@ namespace Team_1_Halslaget_GK
                     break;
                 }
             }
+        }
+
+        public DataTable getSingelCompPlaylist(string compid)
+        {
+            string sql = "SELECT  bokning.starttid, medlem.fornamn, medlem.efternamn FROM tavling INNER JOIN medlem_tavling ON (tavling.id = medlem_tavling.tavling_id) INNER JOIN bokning ON (medlem_tavling.starttid_id = bokning.slot_id) INNER JOIN medlem ON( medlem_tavling.medlem_id = medlem.id) WHERE tavling.id = @tavling_id ORDER BY bokning.starttid ASC";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@tavling_id", compid);
+            NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+            nda.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            nda.Fill(dt);
+            conn.Close();
+            return dt;
+        }
+
+        public DataTable getTeamCompPlaylist(string compid)
+        {
+            string sql = "SELECT medlem.fornamn, medlem.efternamn, bokning.starttid, lag_medlem.lag_id FROM tavling INNER JOIN lag_tavling ON( tavling.id = lag_tavling.id_tavling) INNER JOIN lag_medlem ON (lag_tavling.id_lag = lag_medlem.lag_id) INNER JOIN medlem ON (lag_medlem.medlem_id = medlem.id) INNER JOIN bokning ON(lag_tavling.starttid_id = bokning.slot_id) WHERE tavling.id = @tavling_id ORDER BY bokning.starttid, lag_medlem.lag_id ASC";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@tavling_id", compid);
+            NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+            nda.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            nda.Fill(dt);
+            conn.Close();
+            return dt;
         }
 
     }
