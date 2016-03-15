@@ -6,105 +6,101 @@
     <script src="ja/CreateCompetition.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="wrapper">
-        <h1 class="text-center">Skapa tävling</h1>
-        <hr />
-    </div>
-    <div class="wrapper text-center small-margin">
-        <p>
-            Här skapar du en tävling, du kan välja hur många datum du vill.
-        </p>
-    </div>
-    <div class="wrapper-small text-center small-margin">
-        <asp:TextBox ID="nameBox" runat="server" placeholder="Tävlingsnamn"></asp:TextBox>
-    </div>
-    <div class="wrapper-small text-center small-margin">
-        <textarea id="descriptionBox" cols="20" rows="2" runat="server" placeholder="Beskrivning" style="width: 100%;height: 25px;padding: 3px;"></textarea>
-    </div>
-    <div class="wrapper-small text-center small-margin">
-            <p style="font-weight: bold;">Datum</p>
-        <div class="small-margin">
-        <asp:DropDownList ID ="dropDownYear" runat="server">
-            <asp:ListItem Value="2016">2016</asp:ListItem>
-            <asp:ListItem Value="2017">2017</asp:ListItem>
-            <asp:ListItem Value="2018">2018</asp:ListItem>
-        </asp:DropDownList>
-        <asp:DropDownList ID="dropDownMonth" runat="server">
-            <asp:ListItem Value="01">01</asp:ListItem>
-            <asp:ListItem Value="02">02</asp:ListItem>
-            <asp:ListItem Value="03">03</asp:ListItem>
-            <asp:ListItem Value="04">04</asp:ListItem>
-            <asp:ListItem Value="05">05</asp:ListItem>
-            <asp:ListItem Value="06">06</asp:ListItem>
-            <asp:ListItem Value="07">07</asp:ListItem>
-            <asp:ListItem Value="08">08</asp:ListItem>
-            <asp:ListItem Value="09">09</asp:ListItem>
-            <asp:ListItem Value="10">10</asp:ListItem>
-            <asp:ListItem Value="11">11</asp:ListItem>
-            <asp:ListItem Value="12">12</asp:ListItem>
-        </asp:DropDownList>
-        <asp:DropDownList ID="dropDownDay" runat="server">
-            <asp:ListItem>1</asp:ListItem>
-            <asp:ListItem>2</asp:ListItem>
-            <asp:ListItem>3</asp:ListItem>
-            <asp:ListItem>4</asp:ListItem>
-            <asp:ListItem>5</asp:ListItem>
-            <asp:ListItem>6</asp:ListItem>
-            <asp:ListItem>7</asp:ListItem>
-            <asp:ListItem>8</asp:ListItem>
-            <asp:ListItem>9</asp:ListItem>
-            <asp:ListItem>10</asp:ListItem>
-            <asp:ListItem>11</asp:ListItem>
-            <asp:ListItem>12</asp:ListItem>
-            <asp:ListItem>13</asp:ListItem>
-            <asp:ListItem>14</asp:ListItem>
-            <asp:ListItem>15</asp:ListItem>
-            <asp:ListItem>16</asp:ListItem>
-            <asp:ListItem>17</asp:ListItem>
-            <asp:ListItem>18</asp:ListItem>
-            <asp:ListItem>19</asp:ListItem>
-            <asp:ListItem>20</asp:ListItem>
-            <asp:ListItem>21</asp:ListItem>
-            <asp:ListItem>22</asp:ListItem>
-            <asp:ListItem>23</asp:ListItem>
-            <asp:ListItem>24</asp:ListItem>
-            <asp:ListItem>25</asp:ListItem>
-            <asp:ListItem>26</asp:ListItem>
-            <asp:ListItem>27</asp:ListItem>
-            <asp:ListItem>28</asp:ListItem>
-            <asp:ListItem>29</asp:ListItem>
-            <asp:ListItem>30</asp:ListItem>
-            <asp:ListItem>31</asp:ListItem>
-        </asp:DropDownList>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <br />
+    <br />
+    <br />
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="halfBox">
+                <asp:Calendar ID="Calendar1" CssClass="Calender" runat="server">
+                    <DayStyle CssClass="CalenderDay" />
+                    <DayHeaderStyle CssClass="CalenderHeaderDay" />
+                    <NextPrevStyle CssClass="CalenderNextPrev" />
+                    <OtherMonthDayStyle CssClass="CalnderOtherMonthDay" />
+                    <SelectedDayStyle CssClass="CalenderSelectedDay" />
+                    <SelectorStyle CssClass="CalenderSelector" />
+                    <TitleStyle CssClass="CalenderTitel" />
+                    <TodayDayStyle CssClass="CalenderToday" />
+                    <WeekendDayStyle CssClass="CalenderWeekendDay" />    
+                </asp:Calendar>
             </div>
-    </div>
-    <div class="wrapper-small text-center small-margin" id="dateDiv">
-
-        <div class="wrapper text-centrer small-margin">
-            <p style="font-weight: bold;">Lag</p><asp:CheckBox ID="checkBoxLag" runat="server" onclick="fnCheckOne(this)"/>
-            <p style="font-weight: bold;">Singel</p><asp:CheckBox ID="checkBoxSingel" runat="server" onclick="fnCheckOne(this)"/>
-        </div>
-        <script>
-        function fnCheckOne(me)
-            {
-                me.checked=true;
-                var chkary=document.getElementsByTagName('input');
-            for(i=0;i<chkary.length;i++)
-                {
-            if(chkary[i].type=='checkbox')
-                {
-                   if(chkary[i].id!=me.id)
-                   chkary[i].checked=false;
-                }
-            }
-        }
-    </script> 
-        <div class="wrapper text-center small-margin">
-            <asp:Button ID="newDate" runat="server" Text="Lägg till datum och tävlingstyp" CssClass="btn" OnClick="newDate_Click" UseSubmitBehavior="false" />
-        </div>
-        <div id="dateFiller" runat="server" class="small-margin">
-        </div>
-        <div id="buttonDiv" runat="server" class="small-margin">
-            <asp:Button ID="bookDate" runat="server" Text="Skapa tävling" OnClick="bookDate_Click" CssClass="btn" />
-        </div>
+            <div class="halfBox">
+                <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator10"
+                            ControlToValidate="tbCompName"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Ge tävlingen ett namn!"
+                            display="Dynamic"
+                            ValidationGroup="NewComp">                       
+                 </asp:RequiredFieldValidator>
+                <asp:TextBox ID="tbCompName" CssClass="my-txt-box my-txt-box2" runat="server" placeholder="Namn"></asp:TextBox>
+                <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator3"
+                            ControlToValidate="tbCompDesc"
+                            ForeColor ="Red"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Ge tävlingen en beskrivning!"
+                            display="Dynamic"
+                            ValidationGroup="NewComp">                       
+                 </asp:RequiredFieldValidator>
+                <asp:TextBox ID="tbCompDesc" CssClass="my-txt-box" runat="server" TextMode="MultiLine" Rows="10" placeholder="Beskrivning"></asp:TextBox>
+                <div class="fullBox">
+                    <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator9"
+                            ControlToValidate="ddlCompType"
+                            ForeColor ="Red"
+                            initialValue="Välj Tävlingstyp"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Glöm inte välja tävlingstyp!"
+                            display="Dynamic"
+                            ValidationGroup="NewComp">                       
+                         </asp:RequiredFieldValidator>
+                <asp:DropDownList ID="ddlCompType" CssClass="DropDown" runat="server" >
+                    <asp:ListItem>Välj Tävlingstyp</asp:ListItem>
+                    <asp:ListItem>Singel</asp:ListItem>
+                    <asp:ListItem>Lag</asp:ListItem>
+                </asp:DropDownList>
+                </div>        
+                <div class="halfBox">
+                    <asp:Label ID="Label1" runat="server" Text="Starttid"></asp:Label>
+                    <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator1"
+                            ControlToValidate="ddlstarttime"
+                            ForeColor ="Red"
+                            initialValue="Välj starttid"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Glöm inte välja starttid!"
+                            display="Dynamic"
+                            ValidationGroup="NewComp">                       
+                         </asp:RequiredFieldValidator>
+                    <asp:DropDownList ID="ddlstarttime" DataTextFormatString="{0:HH:mm}"  CssClass="DropDown DropDown2" runat="server">                       
+                    </asp:DropDownList>
+                </div>
+                <div class="halfBox">
+                    <asp:Label ID="Label2" runat="server" Text="Sluttid"></asp:Label>
+                        <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator2"
+                            ControlToValidate="ddlendtime"
+                            ForeColor ="Red"
+                            initialValue="Välj sluttid"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Glöm inte välja sluttid!"
+                            display="Dynamic"
+                            ValidationGroup="NewComp">                       
+                         </asp:RequiredFieldValidator>
+                    <asp:DropDownList DataTextFormatString="{0:HH:mm}"  ID="ddlendtime" CssClass="DropDown DropDown2" runat="server"></asp:DropDownList>
+                </div>               
+                <div class="fullBox">
+                    <asp:Button ID="btnConfirm" CssClass="my-button" runat="server" Text="Skapa Tävling" OnClick="btnConfirm_Click" ValidationGroup="NewComp"/>
+                </div>                 
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
