@@ -76,7 +76,6 @@
     <Content Include="BookingAdmin.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="CreateCompetition.aspx" />
-    <Content Include="css\ViewStartList.css" />
     <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminPanelCss.css" />
     <Content Include="css\BokatavlingCss.css" />

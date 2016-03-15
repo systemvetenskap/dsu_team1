@@ -5,56 +5,76 @@ using System.Web;
 using System.Web.UI;
 using Npgsql;
 using System.Web.UI.WebControls;
+using System.Web.Configuration;
+using System.Data;
 
 namespace Team_1_Halslaget_GK
 {
     public partial class CreateCompetition : System.Web.UI.Page
     {
-        int times = 0;
-        string date;
-        List<string> booking = new List<string>();
+        NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            bookDate.Visible = false;
+            if (!IsPostBack)
+            {
+                fillTime();
+                Calendar1.SelectedDate = DateTime.Today;
+            }           
         }
-        protected void newDate_Click(object sender, EventArgs e)
+
+        public void fillTime()
         {
-            times += 1;
-            if (!Page.IsPostBack)
-            {
-                dateFiller.InnerHtml = "";
-            }
-            else
-            {
-                bookDate.Visible = true;
-                dateFiller.InnerHtml += "<ul>";
-                dateFiller.InnerHtml += "<li>" + dropDownMonth.Text.ToString() + " " + dropDownDay.Text + "</li>";
-                dateFiller.InnerHtml += "</ul>";
-                date = dropDownYear.Text.ToString() + "-" + dropDownMonth.Text.ToString() + "-" + dropDownDay.Text.ToString();
-            }
-        }
-        protected void bookDate_Click(object sender, EventArgs e)
-        {
-            //for (int i = 0; i < times; i++)
-            //{
-            string competitionChecked = "";
-            if (checkBoxLag.Checked == true)
-            {
-                competitionChecked = "lag";
-            }
-            else
-            {
-                competitionChecked = "singel";
-            }
-            DateTime datum = Convert.ToDateTime(date);
-            string sql = "INSERT INTO tavling (datum, description, namn, type) VALUES ('" + datum + "', '" + descriptionBox.InnerText + "', '" + nameBox.Text + "', '" + competitionChecked + "');";
-            NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            string sql = "SELECT * FROM bokning ORDER BY slot_id ASC";
             conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+            nda.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            nda.Fill(dt);
+            ddlendtime.DataSource = dt;
+            ddlstarttime.DataSource = dt;
+
+            ddlstarttime.DataTextField = "starttid";
+            ddlendtime.DataTextField = "starttid";
+
+            ddlendtime.DataBind();
+            ddlstarttime.DataBind();
+
+            ddlstarttime.Items.Insert(0, new ListItem("Välj starttid", "Välj starttid"));
+            ddlendtime.Items.Insert(0, new ListItem("Välj sluttid", "Välj sluttid"));
+
+        }
+
+        public void CreateComp()
+        {
+            Competition newComp = new Competition();
+
+            newComp.desc = tbCompDesc.Text;
+            newComp.namn = tbCompName.Text;
+            newComp.starttid = ddlstarttime.SelectedItem.ToString();
+            newComp.sluttid = ddlendtime.SelectedItem.ToString();
+            newComp.date = Calendar1.SelectedDate;
+            newComp.type = ddlCompType.SelectedItem.ToString();
+
+            string sql = "INSERT INTO tavling (datum, starttid, sluttid, description, namn, type) VALUES(@datum, @starttid, @sluttid, @description, @namn, @type)";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@datum", newComp.date);       
+            cmd.Parameters.AddWithValue("@starttid", newComp.starttid);
+            cmd.Parameters.AddWithValue("@sluttid", newComp.sluttid);
+            cmd.Parameters.AddWithValue("@description", newComp.desc);
+            cmd.Parameters.AddWithValue("@namn", newComp.namn);
+            cmd.Parameters.AddWithValue("@type", newComp.type.ToLower());
+
             cmd.ExecuteNonQuery();
             conn.Close();
-            dateFiller.InnerHtml = "";
-            //}
+
         }
-    }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            CreateComp();
+        }
+    } 
 }
