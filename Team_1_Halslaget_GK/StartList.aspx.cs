@@ -371,7 +371,5 @@ namespace Team_1_Halslaget_GK
             return count;
         }
 
-
-
     }
 }
