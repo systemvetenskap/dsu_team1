@@ -15,6 +15,10 @@
     border-radius: 5px;
 }
 
+.admin-top-margin{
+    margin-bottom: 2.8em;
+}
+
 .container {
 	width: 100%;
 	overflow: hidden;
@@ -218,6 +222,26 @@ h3 {
 	overflow-x:hidden;
 }
 
+
+/*****************************************************
+	Header admin stuff
+*****************************************************/
+#admin-header-content {
+	width: 100%;
+	margin: 0em;
+	overflow: hidden;
+}
+
+.admin-logoContainer {
+	float: left;
+	overflow-x: hidden;
+}
+.admin-header-logo {
+	width: 100%;
+	height: auto; 
+	overflow-x:hidden;
+}
+
 /*****************************************************
 	Main-Navbar
 *****************************************************/
@@ -260,7 +284,7 @@ h3 {
 }
 /*****************************************************
 	Responsive-Navbar
-*****************************************************/
+*****************************************************/ 
 .open-menu-link {
 	display: none;
 	padding:20px 30px 20px 30px;
@@ -515,6 +539,29 @@ h3 {
 	}
 }
 
+@media (max-width: 768px) {
+    .admin-top-margin {
+        margin-bottom: 3em;
+	}
+}
+
+@media (max-width: 992px) {
+	.header-logo, 
+	#header-content,
+	.header-content {
+	width: 992px;
+	height: 280px; 
+	overflow-x: hidden;
+	}
+}
+
+@media (max-width: 992px) {
+	#admin-header-logo, 
+	#admin-header-content,
+	.admin-header-content {
+	overflow-x: hidden;
+	}
+}
 @media (max-width: 1200px) {
 	.header-logo {
 	width: 100%;
