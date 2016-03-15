@@ -16,6 +16,10 @@ namespace Team_1_Halslaget_GK
         Competition newcomp = new Competition();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
             if (!IsPostBack)
             {
                 OpenPage();
@@ -23,7 +27,6 @@ namespace Team_1_Halslaget_GK
             
             gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
             gvTavlingar.DataBind();
-
         }
 
         protected void btnConfirm_Click(object sender, EventArgs e)
