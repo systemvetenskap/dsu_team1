@@ -151,62 +151,14 @@ namespace Team_1_Halslaget_GK
 
         private void SetCompGrid()
         {
-            Competition comp = new Competition();
-            DataTable dt = comp.GetComingCompetitionMember(Convert.ToInt32(Session["username"]));
-            DataTable compdt = new DataTable();
-            compdt.Columns.Add("namn");
-            compdt.Columns.Add("datum");
-            compdt.Columns.Add("starttid");
-            compdt.Columns.Add("id");
+            Competition newcomp = new Competition();
+            DataTable dt1 = newcomp.GetComingCompetitionMember(medlemObj.ID);
+            DataTable dt2 = newcomp.GetComingTeamCompetitionMember(medlemObj.ID);
 
-            if (dt.Rows.Count == 0)
-            {
-                compinfo.InnerText = "Du är inte anmäld på någon tävling";
-            }
+            dt1.Merge(dt2);
 
-            else
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    compdt.Rows.Add();
-                    compdt.Rows[i]["namn"] = dt.Rows[i]["namn"];
-                    compdt.Rows[i]["datum"] = dt.Rows[i]["datum"];
-                    compdt.Rows[i]["id"] = dt.Rows[i]["id"];
-
-                    if (dt.Rows[i]["startlistxml"].ToString() == "")
-                    {
-                        compdt.Rows[i]["starttid"] = "-";
-                    }
-
-                    else
-                    {
-                        DataSet ds = new DataSet();
-
-                        try
-                        {
-                            StringReader sr = new StringReader(dt.Rows[i]["startlistxml"].ToString());
-                            ds.ReadXml(sr);
-                        }
-
-                        catch (Exception ex)
-                        {
-
-                        }
-
-                        for (int j = 0; j < ds.Tables[0].Rows.Count; j++)
-                        {
-                            if (ds.Tables[0].Rows[j]["Golf ID"].ToString() == Session["GolfID"].ToString())
-                            {
-                                compdt.Rows[i]["starttid"] = ds.Tables[0].Rows[j]["Starttid"].ToString();
-                            }
-                        }
-                    }
-                }
-            }
-
-            GridView2.DataSource = compdt;
+            GridView2.DataSource = dt1;
             GridView2.DataBind();
-            btnShowStartList.Enabled = false;
         }
 
         /// <summary>
@@ -248,9 +200,9 @@ namespace Team_1_Halslaget_GK
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
 
-                if (GridView2.Rows[rowIndex].Cells[2].Text == "-")
+                if (GridView2.Rows[rowIndex].Cells[2].Text == "")
                 {
-                    btnShowStartList.Enabled = false;
+                    btnShowStartList.Visible = false;
                 }
 
                 else 
