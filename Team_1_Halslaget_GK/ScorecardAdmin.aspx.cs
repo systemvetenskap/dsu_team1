@@ -163,29 +163,44 @@ namespace Team_1_Halslaget_GK
             h19.totalSlag = calculateTotal();
             round.Add(h19);
 
-            //string score = lblScore.Text;
-            Hole h20 = new Hole();
-            h20.score = calculateScore();
-            round.Add(h20);
+            if (lblType.Text == "singel")
+            {
+                //string score = lblScore.Text;
+                Hole h20 = new Hole();
+                h20.score = calculateScore();
+                round.Add(h20);
+            }
+
 
             return round;
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            //string test = calculateTotal().ToString();
-            //string test2 = calculateScore().ToString();
-
-            //Label1.Text = test;
-            //Label2.Text = test2;
             int memberid = Convert.ToInt32(lblMemberId.Text);
             int compid = Convert.ToInt32(lblCompetitionID.Text);
-
             List<Hole> round = FindNOShots();
-            string xml = SerializeRound(round);
-
             Hole h = new Hole();
-            h.SetRound(xml, compid, memberid);
+
+            if (lblType.Text == "singel")
+            {           
+                //string test = calculateTotal().ToString();
+                //string test2 = calculateScore().ToString();
+
+                //Label1.Text = test;
+                //Label2.Text = test2;
+
+
+                string xml = SerializeRound(round);
+
+                h.SetRound(xml, compid, memberid);
+            }
+
+            else
+            {
+                string xml = SerializeRound(round);
+                h.SetRoundTeam(xml, compid, memberid);
+            }
         }
 
         protected string SerializeRound(List<Hole> round)
@@ -238,6 +253,7 @@ namespace Team_1_Halslaget_GK
                 lblDate.Text = "";
                 lblEndTime.Text = "";
                 lblStartTime.Text = "";
+                lblType.Text = "";
             }
             else
             {
@@ -249,7 +265,18 @@ namespace Team_1_Halslaget_GK
                 lblDate.Text = DateTime.Parse(competition.Rows[0]["datum"].ToString()).ToShortDateString(); ;
                 lblEndTime.Text = DateTime.Parse(competition.Rows[0]["sluttid"].ToString()).ToShortTimeString();
                 lblStartTime.Text = DateTime.Parse(competition.Rows[0]["starttid"].ToString()).ToShortTimeString();
-            }            
+                lblType.Text = competition.Rows[0]["type"].ToString();
+            }
+
+            if (lblType.Text == "lag")
+            {
+                dropDownTee.Enabled = false;
+            }
+
+            if (lblType.Text == "singel")
+            {
+                dropDownTee.Enabled = true;
+            }
         }
 
         /// <summary>
