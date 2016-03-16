@@ -14,11 +14,9 @@ namespace Team_1_Halslaget_GK
     {
         NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
         Competition newcomp = new Competition();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            btnConfirm.Visible = false;
-            btnConfirm2.Visible = false;
-
             if (Session["Username"] == null && Session["admin"] == null)
             {
                 Response.Redirect("~/NotAllowed.aspx");
@@ -37,26 +35,59 @@ namespace Team_1_Halslaget_GK
             string tavlingid = gvTavlingar.SelectedValue.ToString();
             string medlemid = getIDByGolfId(tbgolfid1.Text);
 
-            if (bookMember(medlemid, tavlingid))
+
+            if (!checkifalreadybookedsingel(medlemid, tavlingid))
             {
-                OpenPage();
-                gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
-                gvTavlingar.DataBind();
+                if (bookMember(medlemid, tavlingid))
+                {
+                    OpenPage();
+                    gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
+                    gvTavlingar.DataBind();
+                }
+                else
+                {
+
+                }
             }
             else
             {
-
+                tbgolfid1.BackColor = Color.Red;
             }
+
+
         }
 
         protected void btnConfirm2_Click(object sender, EventArgs e)
         {
-            bookTeam();
-            OpenPage();
+            string tavlingid = gvTavlingar.SelectedValue.ToString();
+
+            bool exists = false;
+            foreach (TextBox tb in teamtb.Controls.OfType<TextBox>())
+            {
+                string medlemid = getIDByGolfId(tb.Text);
+
+                if(checkifalreadybookedlag(medlemid, tavlingid))
+                {
+                    tb.BackColor = Color.Red;
+                    exists = true;                  
+                }
+
+                
+            }
+
+            if(exists == false)
+            {
+                 bookTeam();
+                 OpenPage();                
+            }
+
         }
 
         protected void gvTavlingar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            OpenPage();
+            
+
             foreach (GridViewRow row in gvTavlingar.Rows)
             {
                 if (row.RowIndex == gvTavlingar.SelectedIndex)
@@ -71,9 +102,13 @@ namespace Team_1_Halslaget_GK
 
             Competition newcom = GetspecificComp(gvTavlingar.SelectedValue.ToString());
 
-            lblTavlingNamn.Text = newcom.namn;
+            lblTavlingNamn.Text = newcom.namn;           
             lblTavlingTyp.Text = newcom.type;
             lblTavlingDesc.Text = newcom.desc;
+
+            lblTavlingNamn.Visible = true;
+            lblTavlingTyp.Visible = true;
+            lblTavlingDesc.Visible = true;
 
             string type = lblTavlingTyp.Text;
 
@@ -158,10 +193,16 @@ namespace Team_1_Halslaget_GK
         //Göm allt
         public void OpenPage()
         {
+
             tbgolfid1.Text = "";
             tbgolfid2.Text = "";
             tbgolfid3.Text = "";
             tbgolfid4.Text = "";
+
+            tbgolfid1.BackColor = Color.White;
+            tbgolfid2.BackColor = Color.White;
+            tbgolfid3.BackColor = Color.White;
+            tbgolfid4.BackColor = Color.White;
 
             lblTavlingDesc.Visible = false;
             lblTavlingNamn.Visible = false;
@@ -320,5 +361,29 @@ namespace Team_1_Halslaget_GK
             return newmedlem.ID.ToString();
         }
 
+        //Kolla om angivet golfid redan finns bokad på tävlingen
+        public bool checkifalreadybookedsingel(string medlemid, string tavlingid)
+        {
+            string sql = "SELECT EXISTS (SELECT * FROM medlem_tavling WHERE medlem_id = @medlem_id AND tavling_id = @tavling_id) AS exists";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@medlem_id", medlemid);
+            cmd.Parameters.AddWithValue("@tavling_id", tavlingid);
+            bool exists = Convert.ToBoolean(cmd.ExecuteScalar());
+            conn.Close();         
+            return exists;
+        }
+
+        public bool checkifalreadybookedlag(string medlemid, string tavlingid)
+        {
+            string sql = "SELECT EXISTS(SELECT * FROM lag_medlem INNER JOIN lag_tavling ON(lag_medlem.lag_id = lag_tavling.id_lag)WHERE lag_medlem.medlem_id = @medlem_id AND lag_tavling.id_tavling = @tavling_id)";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@medlem_id", medlemid);
+            cmd.Parameters.AddWithValue("@tavling_id", tavlingid);
+            bool exists = Convert.ToBoolean(cmd.ExecuteScalar());
+            conn.Close();
+            return exists;          
+        }
     }
 }
