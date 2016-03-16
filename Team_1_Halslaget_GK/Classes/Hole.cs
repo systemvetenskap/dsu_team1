@@ -19,6 +19,8 @@ namespace Team_1_Halslaget_GK
         public int slag { get; set; }
         public int totalSlag { get; set; }
         public int score { get; set; }
+        public double playerhcp { get; set; }
+        public int slopecolor { get; set; }
 
 
         public void SetRound(string xml, int compid, int memberid)
@@ -51,7 +53,7 @@ namespace Team_1_Halslaget_GK
 
         public void SetRoundTeam(string xml, int compid, int memberid)
         {
-            string sql = "UPDATE lag_medlem SET resultatxml = @resultatxml WHERE medlem_id = @medlem_id AND lag_id = (SELECT lag_id FROM lag_medlem WHERE lag_id IN (SELECT lag_id FROM lag_tavling WHERE id_tavling = 27) AND medlem_id = @medlem_id)";
+            string sql = "UPDATE lag_medlem SET resultatxml = @resultatxml WHERE medlem_id = @medlem_id AND lag_id = (SELECT lag_id FROM lag_medlem WHERE lag_id IN (SELECT lag_id FROM lag_tavling WHERE id_tavling = @tavling_id) AND medlem_id = @medlem_id)";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
@@ -93,6 +95,33 @@ namespace Team_1_Halslaget_GK
             catch (NpgsqlException ex)
             {
                 return null;
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        public int GetGameHcp(double hcp, int slopecolor)
+        {
+            string sql = "SELECT spelhcp FROM slope WHERE hcphigh >= @hco AND hcplow <= @hcp and slopecolor = @slopecolor";
+
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@hcp", hcp);
+            cmd.Parameters.AddWithValue("@slopecolor", slopecolor);
+
+            try
+            {
+                int spelhcp = cmd.ExecuteNonQuery();
+                return spelhcp;
+            }
+
+            catch (NpgsqlException ex)
+            {
+                return 0;
             }
 
             finally
