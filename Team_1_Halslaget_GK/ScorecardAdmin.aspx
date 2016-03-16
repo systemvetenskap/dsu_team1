@@ -168,8 +168,6 @@
 
         </div>
         <div class="fullBox em-margin-horizontal">
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
             <asp:Button ID="Button1" runat="server" ValidationGroup="memberID" CssClass="my-button button-80" Text="SPARA SCOREKORT" onclick="Button1_Click"/>
         </div>
     </div>
