@@ -153,6 +153,7 @@
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\ScoreCard.js" />
     <Content Include="ja\Scrollto.js" />
+    <Content Include="ja\TextboxChangeColor.js" />
     <Content Include="ja\tidsbokning.js" />
     <Content Include="ja\Tinymce.js" />
     <Content Include="langs\sv_SE.js" />
