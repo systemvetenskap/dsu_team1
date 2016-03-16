@@ -168,7 +168,7 @@
     <Content Include="bin\Team_1_Halslaget_GK.dll.config" />
     <Content Include="AdminMaster.Master" />
     <Content Include="packages.config" />
-    <Content Include="CountScoreTeam.aspx" />
+    <Content Include="CalculateScoreTeam.aspx" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - Web Deploy.pubxml" />
     <Content Include="Site.Mobile.Master" />
@@ -365,12 +365,12 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="CountScoreTeam.aspx.cs">
-      <DependentUpon>CountScoreTeam.aspx</DependentUpon>
+    <Compile Include="CalculateScoreTeam.aspx.cs">
+      <DependentUpon>CalculateScoreTeam.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CountScoreTeam.aspx.designer.cs">
-      <DependentUpon>CountScoreTeam.aspx</DependentUpon>
+    <Compile Include="CalculateScoreTeam.aspx.designer.cs">
+      <DependentUpon>CalculateScoreTeam.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
