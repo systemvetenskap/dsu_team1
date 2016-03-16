@@ -189,6 +189,7 @@
     <Content Include="TestPage.aspx" />
     <Content Include="Tidsbokning.aspx" />
     <Content Include="TidsbokningAdmin.aspx" />
+    <Content Include="ViewStartList.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -348,6 +349,13 @@
     </Compile>
     <Compile Include="TidsbokningAdmin.aspx.designer.cs">
       <DependentUpon>TidsbokningAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewStartList.aspx.cs">
+      <DependentUpon>ViewStartList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewStartList.aspx.designer.cs">
+      <DependentUpon>ViewStartList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

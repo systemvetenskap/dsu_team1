@@ -20,10 +20,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Username"] == null)
-            //{
-            //    Response.Redirect("~/NotAllowed.aspx");
-            //}
+            if (Session["Username"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
             if (!IsPostBack)
             {
                 InitializeGUI();
@@ -370,8 +370,6 @@ namespace Team_1_Halslaget_GK
             conn.Close();
             return count;
         }
-
-
 
     }
 }

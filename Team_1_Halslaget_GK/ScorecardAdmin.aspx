@@ -57,6 +57,7 @@
                 <p class="em-margin-horizontal"><strong>Datum: </strong><asp:Label ID="lblDate" runat="server" Text=""></asp:Label></p>
                 <p class="em-margin-horizontal"><strong>Starttid: </strong><asp:Label ID="lblStartTime" runat="server" Text=""></asp:Label></p>
                 <p class="em-margin-horizontal"><strong>Sluttid: </strong><asp:Label ID="lblEndTime" runat="server" Text=""></asp:Label></p>
+                <p class="em-margin-horizontal"><strong>Typ: </strong><asp:Label ID="lblType" runat="server" Text=""></asp:Label></p>
                 <asp:Label ID="lblCompetitionID" style="display: none;" runat="server" Text=""></asp:Label>
                 <asp:Label ID="lblCourseRating" style="display: none;" runat="server" Text=""></asp:Label>
                 <asp:Label ID="lblSlopeValue" style="display: none;" runat="server" Text=""></asp:Label>
@@ -167,8 +168,6 @@
 
         </div>
         <div class="fullBox em-margin-horizontal">
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
             <asp:Button ID="Button1" runat="server" ValidationGroup="memberID" CssClass="my-button button-80" Text="SPARA SCOREKORT" onclick="Button1_Click"/>
         </div>
     </div>
