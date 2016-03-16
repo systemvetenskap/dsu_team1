@@ -15,32 +15,34 @@ namespace Team_1_Halslaget_GK
 
         public List<medlem> Listofmedlem = new List<medlem>();
 
-        public DataTable GetTeamXML(int id)
+        public DataTable GetTeamXML(int memberid, int compid)
         {
-             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 
-             try
-             {
-                 conn.Open();
-                 NpgsqlCommand cmd = new NpgsqlCommand("SELECT lag_id, resultatxml FROM lag_tavling INNER JOIN lag_medlem ON id_tavling = id_tavling WHERE id_tavling = @id ORDER BY lag_id DESC", conn);
-                 cmd.Parameters.AddWithValue("@id", id);
-                 NpgsqlDataAdapter da = new NpgsqlDataAdapter();
-                 da.SelectCommand = cmd;
-                 DataTable dt = new DataTable();
-                 da.Fill(dt);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand("SELECT lag_id, resultatxml FROM lag_medlem WHERE lag_id =( SELECT lag_id FROM lag_medlem WHERE medlem_id = @memberid) AND lag_id IN (SELECT lag_id FROM lag_tavling WHERE id_tavling = @compid)", conn);
+                cmd.Parameters.AddWithValue("@memberid", memberid);
+                cmd.Parameters.AddWithValue("@compid", compid);
 
-                 return dt;
-             }
-             catch (NpgsqlException ex)
-             {
-                 //NpgsqlException = ex.Message;
-                 return null;
-             }
-             finally
-             {
-                 conn.Close();
-                 conn.Dispose();
-             }
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
         }
 
         public void SetTeamResult(int result, int teamid)
