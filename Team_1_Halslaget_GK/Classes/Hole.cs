@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Npgsql;
 using System.Web.Configuration;
+using System.Data;
 
 namespace Team_1_Halslaget_GK
 {
@@ -11,6 +12,8 @@ namespace Team_1_Halslaget_GK
     public class Hole
     {
         NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
+        public List<Hole> round = new List<Hole>();
 
         public int nummer { get; set; }
         public int slag { get; set; }
@@ -65,6 +68,31 @@ namespace Team_1_Halslaget_GK
             catch (NpgsqlException ex)
             {
 
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        public DataTable GetHoleInfo()
+        {
+            string sql = "SELECT * FROM holes";
+
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+
+            try
+            {
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+
+            catch (NpgsqlException ex)
+            {
+                return null;
             }
 
             finally

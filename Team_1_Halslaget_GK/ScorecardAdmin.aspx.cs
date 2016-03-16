@@ -159,18 +159,22 @@ namespace Team_1_Halslaget_GK
             h18.nummer = 18;
             round.Add(h18);
 
-            Hole h19 = new Hole();
-            h19.totalSlag = calculateTotal();
-            round.Add(h19);
-
             if (lblType.Text == "singel")
             {
+                Hole h19 = new Hole();
+                h19.totalSlag = calculateTotal();
+                round.Add(h19);
+
                 //string score = lblScore.Text;
                 Hole h20 = new Hole();
                 h20.score = calculateScore();
                 round.Add(h20);
             }
 
+            if (lblType.Text == "lag")
+            {
+
+            }
 
             return round;
         }
