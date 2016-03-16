@@ -36,7 +36,7 @@
         <div class="halfBox">
             <br />
             <asp:Label ID="lblcount" runat="server" Text=""></asp:Label>
-            <asp:Button ID="btnGeneratePlaylist" CssClass="my-button" runat="server" Text="Generera Spellista1" OnClick="btnGeneratePlaylist_Click"/>
-            <asp:Button ID="BtnGeneratePlaylistLag" CssClass="my-button" runat="server" Text="Generera Spellista2" OnClick="BtnGeneratePlaylistLag_Click" />   
+            <asp:Button ID="btnGeneratePlaylist" CssClass="my-button" runat="server" Text="Generera Spellista" OnClick="btnGeneratePlaylist_Click"/>
+            <asp:Button ID="BtnGeneratePlaylistLag" CssClass="my-button" runat="server" Text="Generera Spellista" OnClick="BtnGeneratePlaylistLag_Click" />   
         </div>
 </asp:Content>

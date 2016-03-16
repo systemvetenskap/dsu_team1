@@ -216,19 +216,22 @@ namespace Team_1_Halslaget_GK
         //Boka in en medlem på en tävling
         public bool bookMember(string medlemid, string tavlingid)
         {
+            DateTime faketime = Convert.ToDateTime("00:00:00");
             try
             {
-                string sql = "INSERT INTO medlem_tavling (medlem_id, tavling_id) VALUES (@medlem_id, @bokning_id)";
+                string sql = "INSERT INTO medlem_tavling (medlem_id, tavling_id, starttid_id) VALUES (@medlem_id, @bokning_id, @starttid_id)";
                 conn.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("@medlem_id", medlemid);
                 cmd.Parameters.AddWithValue("@bokning_id", tavlingid);
+                cmd.Parameters.AddWithValue("@starttid_id", "67");
                 
                 cmd.ExecuteNonQuery();
             }
             catch (NpgsqlException ex)
             {
+                
                 return false;
             }
             finally
@@ -242,7 +245,8 @@ namespace Team_1_Halslaget_GK
 
         //Skapa ett lag, lägg till lagmedlemmar och boka laget på en tävling
         public bool bookTeam()
-        {
+        {           
+
             Team newteam = new Team();
             newteam.Listofmedlem.Add(openmedlem);
             List<string> GolfidList = new List<string>();
@@ -289,11 +293,12 @@ namespace Team_1_Halslaget_GK
                 conn.Close();
             }
 
-            string sql4 = "INSERT INTO lag_tavling (id_lag, id_tavling) VALUES (@lag_id, @tavling_id)";
+            string sql4 = "INSERT INTO lag_tavling (id_lag, id_tavling) VALUES (@lag_id, @tavling_id, @starttid_id)";
             conn.Open();
             NpgsqlCommand cmd4 = new NpgsqlCommand(sql4, conn);
             cmd4.Parameters.AddWithValue("@lag_id", teamid);
             cmd4.Parameters.AddWithValue("@tavling_id", gvTavlingar.SelectedValue.ToString());
+            cmd4.Parameters.AddWithValue("@starttid_id", "67");
             cmd4.ExecuteNonQuery();
             conn.Close();
 

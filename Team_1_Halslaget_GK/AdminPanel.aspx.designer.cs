@@ -112,6 +112,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.LinkButton GoToStartlist;
         
         /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        
+        /// <summary>
         /// btnGoToNews control.
         /// </summary>
         /// <remarks>

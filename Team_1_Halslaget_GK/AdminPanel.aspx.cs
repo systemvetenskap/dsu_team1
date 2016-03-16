@@ -73,5 +73,10 @@ namespace Team_1_Halslaget_GK
         {
             Response.Redirect("~/StartList.aspx");
         }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AdminBokatavling.aspx");
+        }
     }
 }

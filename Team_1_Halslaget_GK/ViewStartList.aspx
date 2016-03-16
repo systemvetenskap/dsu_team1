@@ -8,7 +8,14 @@
             <h3 id="comptitle" runat="server">Startlista</h3>
         </div>
         <div class="fullBox start-list">
-            <asp:GridView ID="GridView1" runat="server" CssClass="Grid"></asp:GridView>
+            <asp:GridView ID="GridView1" AutoGenerateColumns="false" runat="server" CssClass="Grid">
+                <Columns>
+                    <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="id" />
+                    <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" />
+                    <asp:BoundField DataField="starttid" HeaderText="Start" DataFormatString="{0:HH:mm}" />
+                    <asp:BoundField ItemStyle-CssClass="capitalize" DataField="type" HeaderText="Tävlingstyp" />                          
+                </Columns> 
+            </asp:GridView>
+          </div>
         </div>
-    </div>
 </asp:Content>
