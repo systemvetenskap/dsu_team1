@@ -43,6 +43,7 @@
                     <asp:LinkButton ID="GotoCreateComp" runat="server" class="my-button admin-btn-txt" OnClick="GotoCreateComp_Click" >SKAPA TÄVLING</asp:LinkButton>
                     <asp:LinkButton ID="LinkButton6" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToRegisterResult_Click">REGISTRERA RESULTAT</asp:LinkButton>
                     <asp:LinkButton ID="GoToStartlist" runat="server" class="my-button admin-btn-txt"  OnClick="GoToStartlist_Click">STARTLISTA</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton1" runat="server" class="my-button admin-btn-txt"  OnClick="LinkButton1_Click">BOKA MEDLEM</asp:LinkButton>
                 </div>
             </div>
         </div>
