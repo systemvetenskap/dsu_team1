@@ -221,7 +221,6 @@ namespace Team_1_Halslaget_GK
                 string sql = "INSERT INTO medlem_tavling (medlem_id, tavling_id, starttid_id) VALUES (@medlem_id, @bokning_id, @starttid_id)";
                 conn.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-@
                 cmd.Parameters.AddWithValue("@medlem_id", medlemid);
                 cmd.Parameters.AddWithValue("@bokning_id", tavlingid);
                 cmd.Parameters.AddWithValue("@starttid_id", "67");
