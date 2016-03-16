@@ -32,7 +32,8 @@
     border: solid 1px #525252; 
     border-collapse:collapse; */
     font-family:'latolight'; 
-    color: black;}
+    color: black;   
+}
 
 .Grid td {
       padding: 1em;

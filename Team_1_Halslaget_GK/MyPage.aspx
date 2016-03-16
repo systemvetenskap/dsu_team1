@@ -133,7 +133,7 @@
             <div class="fullBox my-page-title">
                 <h3>MINA UPPGIFTER</h3>
             </div>
-            <div class="halfBox">
+            <div class="fullBox">
                 <p class="p-my-info"><strong>Förnamn:</strong> <asp:Label ID="lblFirstName" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Efternam:</strong> <asp:Label ID="lblLastName" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Telefonnummer:</strong> <asp:Label ID="lblPhoneNum" runat="server" Text="Label"></asp:Label></p>
@@ -143,7 +143,13 @@
                 <p class="p-my-info"><strong>Stad:</strong> <asp:Label ID="lblCity" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info" style="display:none;"><strong>ID:</strong> <asp:Label ID="lblMemberID" runat="server" Text="Label"></asp:Label></p>
             </div>
+            <div class="fullBox top-n-bottom-space">
+                <!--<div class="halfBox my-page-half-box">-->
+                    <a class="my-button" title="Klicka här för att redigera din uppgifter, en ny ruta öppnas." onclick="openOverlayEditInfo();">REDIGERA UPPGIFTER</a>
+                <!--</div>-->
+            </div>
         </div>
+           <!-- TÄVLINGS INFO ================================================== -->
             <div class="halfBox my-page-half-box">
                 <div class="fullBox">
                     <div class="fullBox my-page-title">
@@ -153,33 +159,16 @@
                 <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                     <ContentTemplate>
                         <div class="fullBox">            
-                            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" OnRowCommand="GridView2_RowCommand">
+                            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" DataKeyNames="id">
                                 <Columns>
                                         <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="name" />
                                         <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" SortExpression="date" />
                                         <asp:BoundField DataField="starttid" HeaderText="Starttid" DataFormatString="{0:HH:mm}" SortExpression="starttime" />
-                                        <asp:CommandField ShowSelectButton="true" />
                                 </Columns>
                             </asp:GridView>          
                         </div>
-                        <div class="fullBox center-text">
-                            <br />
-                                <p class="p-my-info" id="compinfo" runat="server"></p>
-                            <br />
-                            <div class="halfBox">
-                                <asp:Button ID="btnShowStartList" runat="server" Text="VISA STARTLISTA" CssClass="my-button" onclick="btnShowStartList_Click" />
-                            </div>
-                            <div class="halfBox">
-                                <a id="btnShowResults" class="my-button btn-mobile-space">TIDIGARE RESULTAT</a>
-                            </div>
-                        </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-            </div>
-            <div class="fullBox top-n-bottom-space">
-                <div class="halfBox my-page-half-box">
-                    <a class="my-button" title="Klicka här för att redigera din uppgifter, en ny ruta öppnas." onclick="openOverlayEditInfo();">REDIGERA UPPGIFTER</a>
-                </div>
             </div>
     </div>
    <!-- ACCOUNT SETTINGS ================================================== -->
@@ -193,6 +182,18 @@
                 </div>
                 <div class="halfBox top-n-bottom-space">
                     <asp:Button CssClass="my-button" ID="btnGoToAccountSettings" runat="server" Text="ÄNDRA LÖSENORD" OnClick="btnGoToAccountSettings_Click"/>
+                </div>
+        </div>
+    </div>
+    <!-- LAST COMPETITION -->
+        <div class="fullBox top-n-bottom-space">
+        <div class="fullBox page-title">
+            <h3>SENASTE TÄVLINGEN</h3>
+        </div>
+        <div class="fullBox ">
+                <div class="fullBox">
+                    <asp:Label ID="labelCompetitionName" runat="server" Text="Label"></asp:Label><br />
+                    <asp:Label ID="labelCompetitionResult" runat="server" Text="Label"></asp:Label><br />
                 </div>
         </div>
     </div>

@@ -13,31 +13,49 @@ namespace Team_1_Halslaget_GK {
     public partial class StartList {
         
         /// <summary>
-        /// DropDownList1 control.
+        /// gvComps control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.GridView gvComps;
         
         /// <summary>
-        /// infotext control.
+        /// lbltype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl infotext;
+        protected global::System.Web.UI.WebControls.Label lbltype;
         
         /// <summary>
-        /// NOcompetitorstext control.
+        /// lblinfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NOcompetitorstext;
+        protected global::System.Web.UI.WebControls.Label lblinfo;
+        
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+        
+        /// <summary>
+        /// lblcount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcount;
         
         /// <summary>
         /// btnGeneratePlaylist control.
@@ -49,12 +67,12 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Button btnGeneratePlaylist;
         
         /// <summary>
-        /// GridView1 control.
+        /// BtnGeneratePlaylistLag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Button BtnGeneratePlaylistLag;
     }
 }

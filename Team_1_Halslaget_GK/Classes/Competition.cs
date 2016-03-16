@@ -16,6 +16,9 @@ namespace Team_1_Halslaget_GK
         public string desc { get; set; }
         public string type { get; set; }
         public string id { get; set; }
+        public DateTime date { get; set; }
+        public DateTime firstRegDate { get; set; }
+        public DateTime lastRegDate { get; set; }
 
         /// <summary>
         /// Gets all the competition that is in the database.
@@ -153,11 +156,11 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        public void SetStartList(string xml, string compName)
+        public void SetStartList(string xml, string compId)
         {
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            NpgsqlCommand cmd = new NpgsqlCommand("UPDATE tavling SET startlistxml = @xml WHERE namn = @compName", conn);
-            cmd.Parameters.AddWithValue("@compName", compName);
+            NpgsqlCommand cmd = new NpgsqlCommand("UPDATE tavling SET startlistxml = @xml WHERE id = @compid", conn);
+            cmd.Parameters.AddWithValue("@compid", compId);
             cmd.Parameters.AddWithValue("@xml", xml);
             
             try
@@ -182,7 +185,7 @@ namespace Team_1_Halslaget_GK
             try
             {
                 conn.Open();
-                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT * FROM tavling WHERE id IN (SELECT tavling_id FROM medlem_tavling WHERE medlem_id = @medlem_id) AND datum > CURRENT_DATE", conn);
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT  id, namn, datum, bokning.starttid FROM tavling INNER JOIN medlem_tavling ON (tavling.id = medlem_tavling.tavling_id) INNER JOIN bokning ON (medlem_tavling.starttid_id = bokning.slot_id) WHERE medlem_id = @medlem_id", conn);
                 cmdGetCompetitions.Parameters.AddWithValue("@medlem_id", id);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmdGetCompetitions;
@@ -202,7 +205,19 @@ namespace Team_1_Halslaget_GK
                 conn.Dispose();
             }
         }
-        
 
+        public DataTable  GetComingTeamCompetitionMember(int id)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            string sql = "SELECT id, namn, datum, bokning.starttid FROM lag_medlem INNER JOIN lag_tavling ON(lag_medlem.lag_id = lag_tavling.id_lag) INNER JOIN tavling ON (lag_tavling.id_tavling = tavling.id) INNER JOIN bokning ON(lag_tavling.starttid_id = bokning.slot_id) WHERE medlem_id = @medlem_id";
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@medlem_id", id);
+            NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+            nda.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            nda.Fill(dt);
+
+            return dt;
+        }
     }
 }

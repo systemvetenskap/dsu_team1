@@ -53,10 +53,10 @@
     </section>
 
     <!-- Header ================================================== -->
-    <section class="container" id="head-seaction">
-      <div class="content" id="header-content">
-       <div class="logoContainer">
-          <img class="header-logo" src="img/golf.jpg" alt="Headimage" title="Fint landskap"/>
+    <section class="container " id="head-seaction">
+      <div class="content" id="admin-header-content">
+       <div class="admin-logoContainer admin-top-margin">
+          <<%--img class="header-logo" src="img/golf.jpg" alt="Headimage" title="Fint landskap"/>--%>
         </div> 
       </div>
     </section>
