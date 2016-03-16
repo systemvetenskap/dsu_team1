@@ -38,17 +38,7 @@
                 <p><strong>Välj tävling: </strong></p>
                 <asp:DropDownList ID="dropDownCompetition" CssClass="DropDown" AutoPostBack="true" runat="server" OnSelectedIndexChanged="dropDownCompetition_SelectedIndexChanged"></asp:DropDownList>
             </div>
-            <div class="fullBox">
-                <p><strong>Välj tee: </strong>
-                <asp:RequiredFieldValidator ID="validatorTee" 
-                    runat="server" 
-                    ErrorMessage="Du måste välja"
-                    IntialValue="Välj"
-                    ValidationGroup="golfIdGroup"
-                    ControlToValidate="dropDownTee">
-                </asp:RequiredFieldValidator></p>
-                <asp:DropDownList ID="dropDownTee" CssClass="DropDown" AutoPostBack="true" runat="server" OnSelectedIndexChanged="dropDownTee_SelectedIndexChanged"></asp:DropDownList>
-            </div>
+
 
             <div class="fullBox  line-up">
                 <div class="fullBox page-title">
@@ -58,41 +48,34 @@
                 <p class="em-margin-horizontal"><strong>Starttid: </strong><asp:Label ID="lblStartTime" runat="server" Text=""></asp:Label></p>
                 <p class="em-margin-horizontal"><strong>Sluttid: </strong><asp:Label ID="lblEndTime" runat="server" Text=""></asp:Label></p>
                 <p class="em-margin-horizontal"><strong>Typ: </strong><asp:Label ID="lblType" runat="server" Text=""></asp:Label></p>
-                <asp:Label ID="lblCompetitionID" style="display: none;" runat="server" Text=""></asp:Label>
-                <asp:Label ID="lblCourseRating" style="display: none;" runat="server" Text=""></asp:Label>
-                <asp:Label ID="lblSlopeValue" style="display: none;" runat="server" Text=""></asp:Label>
-                <asp:Label ID="lblPar" style="display: none;" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblCompetitionID" style="display: none;" runat="server" Text="CompID"></asp:Label>
+                <asp:Label ID="lblCourseRating" style="display: none;" runat="server" Text="CR"></asp:Label>
+                <asp:Label ID="lblSlopeValue" style="display: none;" runat="server" Text="SV"></asp:Label>
+                <asp:Label ID="lblPar" style="display: none;" runat="server" Text="Par"></asp:Label>
             </div>
         </div>
 
         <div class="halfBox em-margin-horizontal">
             <div class="fullBox">
                <div class="fullBox page-title">
-                    <h3>HÄMTA SPELARE</h3>
+                    <h3>VÄLJ SPELARE</h3>
                 </div>
-                <p><strong>Ange golf id: </strong> <asp:Label ID="lblErrorNoMember" Style="color: red;" runat="server" Text=""></asp:Label></p>
-                <asp:TextBox ID="txtGoldID" CssClass="my-txt-box" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator 
-                    ID="validatorGolfID"
-                    ControlToValidate="txtGoldID" 
-                    Forecolor="Red"                    
-                    runat="server" 
-                    ErrorMessage="Golf id kan inte lämnas tomt" ValidationGroup="golfIdGroup"                    >
-                </asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator 
-                    ID="regexValidator" 
-                    ControlToValidate = "txtGoldID"
-                    runat="server" 
-                    ErrorMessage="Skriv in minst 6 siffror!"
-                    ForeColor="Red"
-                    ValidationExpression = "^[\s\S]{6,}$" ValidationGroup="golfIdGroup"                    >
-                </asp:RegularExpressionValidator>
-
-                <div class="fullBox center-text">
-                    <asp:Button ID="btnGetMemberInfo" CssClass="my-button button-80 em-margin-horizontal" ValidationGroup="golfIdGroup" runat="server" Text="HÄMTA SPELARE" OnClick="btnGetMemberInfo_Click" />
+                <div class="fullBox" style="height: 300px; overflow: auto;">
+                    <asp:Label ID="lblAnyPlayers" runat="server" Text="Välj tävling för att visa deltagare"></asp:Label>
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="hcp, kon, teef, teem" CssClass="Grid" GridLines="None" Height="300px" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+                        <Columns>
+                            <asp:BoundField DataField="id" HeaderText="Medlem ID" SortExpression="id" />
+                            <asp:BoundField DataField="fornamn" HeaderText="Förnamn" SortExpression="fornamn" />
+                            <asp:BoundField DataField="efternamn" HeaderText="Efternamn" SortExpression="efternamn" />
+                            <asp:BoundField DataField="hcp" HeaderText="Handikapp" SortExpression="hcp" Visible="False" />
+                            <asp:BoundField DataField="kon" HeaderText="Kön" SortExpression="kon" Visible="False" />
+                            <asp:BoundField DataField="teef" HeaderText="teef" SortExpression="teef" Visible="False"  />
+                            <asp:BoundField DataField="teem" HeaderText="teem" SortExpression="teem" Visible="False" />
+                            <asp:CommandField ShowSelectButton="true" />
+                        </Columns>
+                    </asp:GridView>
                 </div>
             </div>
-
 
             <div class="fullBox em-margin-horizontal">
                 <div class="fullBox page-title">
@@ -102,6 +85,9 @@
                 <p class="em-margin-horizontal"><strong>Förnamn: </strong><asp:Label ID="lblFirstName" runat="server" Text=""></asp:Label></p>
                 <p class="em-margin-horizontal"><strong>Efternamn: </strong><asp:Label ID="lblLastName" runat="server" Text=""></asp:Label></p>
                 <p class="em-margin-horizontal"><strong>Handikapp: </strong><asp:Label ID="lblhcp" runat="server" Text=""></asp:Label></p>
+                <asp:Label ID="lblKon" runat="server" style="display: none;" Text="Label"></asp:Label>
+                <asp:Label ID="lblteef" runat="server" style="display: none;" Text="Label"></asp:Label>
+                <asp:Label ID="lblteem" runat="server" style="display: none;" Text="Label"></asp:Label>
                 <asp:TextBox ID="txtBoxMemberID" style="display: none;" runat="server"></asp:TextBox>
             </div>
         </div>
@@ -121,7 +107,7 @@
             <p>8. <asp:TextBox ID="TextBox8" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
             <p>9. <asp:TextBox ID="TextBox9" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
             <div class="fullBox center-text">
-                <h3 class="em-margin-horizontal"><strong>IN: </strong><asp:Label ID="lblIn" runat="server" Text=""></asp:Label></h3>
+                <h3 class="em-margin-horizontal"><strong>UT: </strong><asp:Label ID="lblIn" runat="server" Text=""></asp:Label></h3>
             </div>
         </div>
        <div class="halfBox">
@@ -135,7 +121,7 @@
             <p>17. <asp:TextBox ID="TextBox17" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
             <p>18. <asp:TextBox ID="TextBox18" CssClass="my-txt-box" runat="server"></asp:TextBox></p>
             <div class="fullBox center-text">
-                <h3 class="em-margin-horizontal"><strong>UT: </strong><asp:Label ID="lblOut" runat="server" Text=""></asp:Label></h3>
+                <h3 class="em-margin-horizontal"><strong>IN: </strong><asp:Label ID="lblOut" runat="server" Text=""></asp:Label></h3>
             </div>
        </div>
         <div class="fullBox em-margin-horizontal">
@@ -150,25 +136,27 @@
     <div class="fullBox em-margin-horizontal center-text">
         <div class="fullBox">
             <asp:RequiredFieldValidator 
-                ID="validatorMemberID" 
+                ID="CompetitionValidator" 
                 runat="server" 
-                ErrorMessage="Obs ingen spelare vald." 
-                ForeColor="Red" 
-                ValidationGroup="memberID" 
-                ControlToValidate="txtBoxMemberID">
+                ErrorMessage="Du måste välja en tävling" 
+                InitialValue="Välj"                
+                ControlToValidate="dropDownCompetition"
+                ValidationGroup="competition" 
+                Display="Dynamic" 
+                ForeColor="Red">
             </asp:RequiredFieldValidator>
             <asp:RequiredFieldValidator 
-                ID="validatorCompetition" 
+                ID="membervalidator" 
                 runat="server" 
-                ErrorMessage="Obs, du måste välja en tävling"
-                IntialValue="Välj"
-                ValidationGroup="memberID"
-                ControlToValidate="dropDownCompetition">
+                ErrorMessage="Du måste välja en spelare" 
+                ControlToValidate="txtBoxMemberID"
+                ValidationGroup="competition" 
+                Display="Dynamic" 
+                ForeColor="Red">
             </asp:RequiredFieldValidator>
-
         </div>
         <div class="fullBox em-margin-horizontal">
-            <asp:Button ID="Button1" runat="server" ValidationGroup="memberID" CssClass="my-button button-80" Text="SPARA SCOREKORT" onclick="Button1_Click"/>
+            <asp:Button ID="Button1" runat="server" ValidationGroup="competition" CssClass="my-button button-80" Text="SPARA SCOREKORT" onclick="Button1_Click"/>
         </div>
     </div>
     </ContentTemplate>

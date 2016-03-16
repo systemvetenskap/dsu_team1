@@ -219,5 +219,39 @@ namespace Team_1_Halslaget_GK
 
             return dt;
         }
+
+        /// <summary>
+        /// Gets all players from a competition where they have NO resultxml.
+        /// </summary>
+        public DataTable GetSpecificCompetitionPlayers(string competitionID)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT medlem.id, fornamn, efternamn, hcp, kon, teef, teem FROM medlem_tavling " +
+                                                                     "INNER JOIN tavling ON tavling.id = tavling_id "+
+                                                                     "INNER JOIN medlem ON medlem.id = medlem_id " +
+                                                                     "WHERE tavling_id = @tavlingid " +
+                                                                     "AND resultatxml IS NULL;", conn);
+                cmdGetCompetitions.Parameters.AddWithValue("@tavlingid", competitionID);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetCompetitions;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
     }
 }

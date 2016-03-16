@@ -40,24 +40,6 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.DropDownList dropDownCompetition;
         
         /// <summary>
-        /// validatorTee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorTee;
-        
-        /// <summary>
-        /// dropDownTee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropDownTee;
-        
-        /// <summary>
         /// lblDate control.
         /// </summary>
         /// <remarks>
@@ -130,49 +112,22 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label lblPar;
         
         /// <summary>
-        /// lblErrorNoMember control.
+        /// lblAnyPlayers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorNoMember;
+        protected global::System.Web.UI.WebControls.Label lblAnyPlayers;
         
         /// <summary>
-        /// txtGoldID control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGoldID;
-        
-        /// <summary>
-        /// validatorGolfID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorGolfID;
-        
-        /// <summary>
-        /// regexValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator regexValidator;
-        
-        /// <summary>
-        /// btnGetMemberInfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGetMemberInfo;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
         /// lblMemberId control.
@@ -209,6 +164,33 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblhcp;
+        
+        /// <summary>
+        /// lblKon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblKon;
+        
+        /// <summary>
+        /// lblteef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblteef;
+        
+        /// <summary>
+        /// lblteem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblteem;
         
         /// <summary>
         /// txtBoxMemberID control.
@@ -418,22 +400,22 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label lblScore;
         
         /// <summary>
-        /// validatorMemberID control.
+        /// CompetitionValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorMemberID;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator CompetitionValidator;
         
         /// <summary>
-        /// validatorCompetition control.
+        /// membervalidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorCompetition;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator membervalidator;
         
         /// <summary>
         /// Button1 control.
