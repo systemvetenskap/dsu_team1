@@ -28,7 +28,7 @@ namespace Team_1_Halslaget_GK
                 OpenPage();
             }
 
-            gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
+            gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitionsRegdates();
             gvTavlingar.DataBind();
         }
 
