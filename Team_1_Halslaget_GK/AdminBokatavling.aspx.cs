@@ -16,6 +16,9 @@ namespace Team_1_Halslaget_GK
         Competition newcomp = new Competition();
         protected void Page_Load(object sender, EventArgs e)
         {
+            btnConfirm.Visible = false;
+            btnConfirm2.Visible = false;
+
             if (Session["Username"] == null && Session["admin"] == null)
             {
                 Response.Redirect("~/NotAllowed.aspx");
@@ -24,7 +27,7 @@ namespace Team_1_Halslaget_GK
             {
                 OpenPage();
             }
-            
+
             gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitions();
             gvTavlingar.DataBind();
         }
@@ -77,11 +80,16 @@ namespace Team_1_Halslaget_GK
             if (type.ToLower() == "singel")
             {
                 bookSingelPage();
+                btnConfirm.Visible = true;
+                btnConfirm2.Visible = false;
+
             }
 
             else if (type.ToLower() == "lag")
             {
                 bookTeamPage();
+                btnConfirm.Visible = false;
+                btnConfirm2.Visible = true;
             }
 
         }
