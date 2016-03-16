@@ -188,13 +188,6 @@ namespace Team_1_Halslaget_GK
 
             if (lblType.Text == "singel")
             {           
-                //string test = calculateTotal().ToString();
-                //string test2 = calculateScore().ToString();
-
-                //Label1.Text = test;
-                //Label2.Text = test2;
-
-
                 string xml = SerializeRound(round);
 
                 h.SetRound(xml, compid, memberid);
