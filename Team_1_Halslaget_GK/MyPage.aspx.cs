@@ -299,5 +299,10 @@ namespace Team_1_Halslaget_GK
             
         }
 
+        protected void btnGoToDiary_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CreateDagbokNote.aspx");
+        }
+
     }
 }
