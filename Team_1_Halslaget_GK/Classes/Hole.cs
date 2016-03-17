@@ -20,7 +20,7 @@ namespace Team_1_Halslaget_GK
         public int totalSlag { get; set; }
         public int score { get; set; }
         public double playerhcp { get; set; }
-        public int slopecolor { get; set; }
+        public int teeid { get; set; }
 
 
         public void SetRound(string xml, int compid, int memberid)
@@ -104,18 +104,21 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        public int GetGameHcp(double hcp, int slopecolor)
+        public int GetGameHcp(double hcp, int teeid)
         {
-            string sql = "SELECT spelhcp FROM slope WHERE hcphigh >= @hco AND hcplow <= @hcp and slopecolor = @slopecolor";
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
+            string sql = "SELECT spelhcp FROM slope WHERE hcphigh >= @hcp AND hcplow <= @hcp and tee_id = @tee_id";
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@hcp", hcp);
-            cmd.Parameters.AddWithValue("@slopecolor", slopecolor);
+            cmd.Parameters.AddWithValue("@tee_id", teeid);
 
             try
             {
-                int spelhcp = cmd.ExecuteNonQuery();
+                conn.Open();
+                int spelhcp = Convert.ToInt32(cmd.ExecuteScalar());
                 return spelhcp;
             }
 

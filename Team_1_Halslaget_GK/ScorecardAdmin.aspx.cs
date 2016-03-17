@@ -15,10 +15,10 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Username"] == null && Session["admin"] == null)
-            {
-                Response.Redirect("~/NotAllowed.aspx");
-            }
+            //if (Session["Username"] == null && Session["admin"] == null)
+            //{
+            //    Response.Redirect("~/NotAllowed.aspx");
+            //}
 
             if(!IsPostBack)
             {
@@ -154,12 +154,23 @@ namespace Team_1_Halslaget_GK
                 Hole h20 = new Hole();
                 h20.score = calculateScore();
                 round.Add(h20);
+
             }
 
             if (lblType.Text == "lag")
             {
                 Hole h19 = new Hole();
                 h19.playerhcp = Convert.ToDouble(lblhcp.Text);
+                if (lblKon.Text == "Female" || lblKon.Text == "Kvinna")
+                {
+                    h19.teeid = Convert.ToInt32(lblteef.Text);
+                    round.Add(h19);                    
+                }
+                else
+                {
+                    h19.teeid = Convert.ToInt32(lblteem.Text);
+                    round.Add(h19);
+                }
             }
 
             return round;
@@ -192,13 +203,13 @@ namespace Team_1_Halslaget_GK
             int total = txt1 + txt2 + txt3 + txt4 + txt5 + txt6 + txt7 + txt8 + txt9 + txt10 + txt11 + txt12 + txt13 + txt14 + txt15 + txt16 + txt17 + txt18;
 
             return total;
-            }
+        }
 
         /// <summary>
         /// Calculates the score.
         /// </summary>
         private int calculateScore()
-            {
+        {
             int total = calculateTotal();
             double slope = Convert.ToDouble(lblSlopeValue.Text);
             double courseRating = Convert.ToDouble(lblCourseRating.Text);
@@ -214,7 +225,7 @@ namespace Team_1_Halslaget_GK
             int theScore = total - Convert.ToInt32(score);
 
             return theScore;
-            }
+        }
 
         private void calculateTeamScore(DataSet dsp1, DataSet dsp2, DataSet dsp3, DataSet dsp4, int teamid)
         {
@@ -223,24 +234,29 @@ namespace Team_1_Halslaget_GK
             DataTable holeinfo = h.GetHoleInfo();
             int i = 0;
             List<int> scorecount = new List<int>();
+            int spelhcp1 = h.GetGameHcp(Convert.ToDouble(dsp1.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
+            int spelhcp2 = h.GetGameHcp(Convert.ToDouble(dsp2.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
+            int spelhcp3 = h.GetGameHcp(Convert.ToDouble(dsp3.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
+            int spelhcp4 = h.GetGameHcp(Convert.ToDouble(dsp4.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
 
-            foreach (DataRow dr in dsp1.Tables[0].Rows)
-            {
-                int spelhcp = 13;
-                //int spelhcp = h.GetGameHcp(Convert.ToDouble(dsp1.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["slopecolor"]));
+
+            //foreach (DataRow dr in dsp1.Tables[0].Rows)
+            for (int j = 0; j < dsp1.Tables[0].Rows.Count - 1; j++) //körde foreach först men är 19 rader i tabellen
+            {                                                   // så nu är det ett j här som skulle kunna vara ett i men de är vad de är
+
                 int par = Convert.ToInt32(holeinfo.Rows[i]["par"]);
-
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
+                DataRow dr = dsp1.Tables[0].Rows[i];
+                if (spelhcp1 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
                 {
                     par++;
                 }
 
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
+                if (spelhcp1 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
                 {
                     par++;
                 }
 
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
+                if (spelhcp1 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
                 {
                     par++;
                 }
@@ -256,21 +272,19 @@ namespace Team_1_Halslaget_GK
                     scorecount.Add(points);
                 }
 
-                spelhcp = 8;
-                //spelhcp = h.GetGameHcp(Convert.ToDouble(dsp2.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["slopecolor"]));
                 par = Convert.ToInt32(holeinfo.Rows[i]["par"]);
                 DataRow dr2 = dsp2.Tables[0].Rows[i];
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
+                if (spelhcp2 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
                 {
                     par++;
                 }
 
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
+                if (spelhcp2 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
                 {
                     par++;
                 }
 
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
+                if (spelhcp2 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
                 {
                     par++;
                 }
@@ -286,21 +300,20 @@ namespace Team_1_Halslaget_GK
                     scorecount.Add(points);
                 }
 
-                spelhcp = 25;
-                //spelhcp = h.GetGameHcp(Convert.ToDouble(dsp3.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["slopecolor"]));
+                spelhcp3 = h.GetGameHcp(Convert.ToDouble(dsp3.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
                 par = Convert.ToInt32(holeinfo.Rows[i]["par"]);
                 DataRow dr3 = dsp3.Tables[0].Rows[i];
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
+                if (spelhcp3 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
                 {
                     par++;
                 }
 
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
+                if (spelhcp3 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
                 {
                     par++;
                 }
 
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
+                if (spelhcp3 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
                 {
                     par++;
                 }
@@ -316,21 +329,19 @@ namespace Team_1_Halslaget_GK
                     scorecount.Add(points);
                 }
 
-                spelhcp = 48;
-                //spelhcp = h.GetGameHcp(Convert.ToDouble(dsp4.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["slopecolor"]));
                 par = Convert.ToInt32(holeinfo.Rows[i]["par"]);
                 DataRow dr4 = dsp4.Tables[0].Rows[i];
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
+                if (spelhcp4 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
                 {
                     par++;
                 }
 
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
+                if (spelhcp4 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
                 {
                     par++;
                 }
 
-                if (spelhcp >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
+                if (spelhcp4 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
                 {
                     par++;
                 }
@@ -487,9 +498,18 @@ namespace Team_1_Halslaget_GK
         /// </summary>
         /// <param name="id"></param>
         private void BindGridPlayers(string id)
-            {
+        {
             Competition getPlayers = new Competition();
-            DataTable dt = getPlayers.GetSpecificCompetitionPlayers(id);
+            DataTable dt = new DataTable();
+            if (lblType.Text == "singel")
+            {
+                dt = getPlayers.GetSpecificCompetitionPlayers(id);
+            }
+
+            else
+            {
+                dt = getPlayers.GetSpecificCompetitionTeamPlayers(id);
+            }
 
             GridView1.DataSource = dt;
             GridView1.DataBind();
@@ -561,7 +581,7 @@ namespace Team_1_Halslaget_GK
                 lblType.Text = "";
             }
             else
-            {
+            { 
                 string id = dropDownCompetition.SelectedValue;
                 SetCompetitionInfoLabels(id);
                 BindGridPlayers(id);
@@ -576,7 +596,7 @@ namespace Team_1_Halslaget_GK
             //{
             //    dropDownTee.Enabled = true;
             //}
-            }
+        }
 
         /// <summary>
         /// Event for when selected index is changed. Currently only changes the color
@@ -603,7 +623,7 @@ namespace Team_1_Halslaget_GK
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
-            {
+            {                
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 SetMemberInfoLabels(rowIndex);
                 string kon = lblKon.Text;
@@ -612,9 +632,9 @@ namespace Team_1_Halslaget_GK
                 {
                     string teeID = lblteef.Text;
                     SetTeeSpecifications(teeID);
-            }
-            else
-            {
+                }
+                else
+                {
                     string teeID = lblteem.Text;
                     SetTeeSpecifications(teeID);
                 }
@@ -850,7 +870,7 @@ namespace Team_1_Halslaget_GK
             TextBox17.ToolTip = "Fyll i antal slag.";
             TextBox18.ToolTip = "Fyll i antal slag.";
         }
-
+        
         ///// <summary>
         ///// Event for dropdowntee NOT NEEDED ANY MORE BUT SAVE CODE JUST IN CASE.
         ///// </summary>
