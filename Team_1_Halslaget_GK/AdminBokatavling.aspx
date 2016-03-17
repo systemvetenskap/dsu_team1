@@ -2,33 +2,57 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/AdminBokatavlingCss.css" rel="stylesheet" />
     <script src="ja/TextboxChangeColor.js"></script>
+    <script src="ja/hideShowSearch.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
     <br />
     <br />
     <br />
-    <div class="fullBox page-title"><h1>Tävlingar</h1></div>
     
+
     <!------------------ Sök på medlemmar ---------------->
 
-    <div class="fullBox SearchBox">
-        <div class="halfBox">
+<div class="fullBox HiddenSearchBox">
+    <div class="fullBox page-title"><h3>Sök på medlem</h3></div>    
+    <div class="halfBox searchMargin">
+    <asp:Panel ID="Panel1" runat="server" DefaultButton="BtnSearchMember">
+        <div class="halfBox SearchBox SearchBox2">
             <asp:TextBox ID="tbFullName" CssClass="my-txt-box" runat="server" placeholder="För och/eller efternamn"></asp:TextBox>
+        </div>
+        <div class="halfBox SearchBtn">
             <asp:Button ID="BtnSearchMember" CssClass="my-button" runat="server" Text="Sök" OnClick="BtnSearchMember_Click" />
-        </div>
-        <div class="halfBox">
-            <asp:ListBox ID="lbMembers" CssClass="my-list-box" runat="server"></asp:ListBox>
-        </div>
+        </div>               
+    </asp:Panel> 
     </div>
-           
+    <div class="halfBox">
+    <asp:Panel ID="Panel3" runat="server" DefaultButton="btnPickMember">
+        <div class="halfBox SearchBox">
+            <asp:ListBox ID="lbMembers" CssClass="my-list-box" runat="server" ></asp:ListBox>
+        </div>
+        <div class="halfBox SearchBtn SearchBtn2">
+            <asp:Button ID="btnPickMember" CssClass="my-button" runat="server" Text="Lägg till" OnClicK="btnPickMember_Click"/>
+        </div>            
+    </asp:Panel>
+    </div>
+
+</div>
+<div class="fullBox">
+    <asp:Button ID="btnShowSearch" CssClass="my-button searchbtn" runat="server" Text="Sök medlem" OnClick="btnShowSearch_Click" />      
+</div>
+                  
     <!------------------ Visa Tävlingar ----------------> 
 
+<div class="fullBox page-title"><h1>Tävlingar</h1></div>  
+<asp:Panel ID="Panel2" runat="server" DefaultButton="BtnSearch">
     <div class="halfBox">
-    <div class="halfBox">
+    <div class="halfBox SearchBox">
     <asp:TextBox ID="tbSearchComp" CssClass="my-txt-box" runat="server" placeholder="Sök"></asp:TextBox>       
     </div>   
-    <div class="halfBox">
-    <asp:Button ID="BtnSearch" runat="server" Text="Sök" CssClass="my-button" />   
+    <div class="halfBox SearchBtn" >
+    <asp:Button ID="BtnSearch" runat="server" Text="Sök" CssClass="my-button" OnClick="BtnSearch_Click"/>   
     </div>      
         <div class="fullBox GridBox">
          <asp:GridView ID="gvTavlingar" DataKeyNames="id" CssClass="Grid" GridLines="None" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="gvTavlingar_SelectedIndexChanged">
@@ -41,6 +65,7 @@
         </asp:GridView>
         </div>
     </div>
+</asp:Panel>
 
     <!------------------ Visa Tävlingasinfo och anmäl medlem ----------------> 
 
@@ -109,5 +134,12 @@
                 <asp:Button ID="btnConfirm2" ValidationGroup="typelaggroup" CssClass="my-button" runat="server" Text="Anmäl lag" OnClick="btnConfirm2_Click"/>
                 <asp:Button ID="btnRemove" CssClass="my-button" runat="server" Text="Ta bort medlem från tävlingen"/>  
                 <asp:Button ID="BtnRemove2" CssClass="my-button" runat="server" Text="Ta bort laget från den här tävlingen!" /> 
-    </div>                   
+
+        <!------------------ hiddens ----------------> 
+
+        <asp:Label ID="hidden1" runat="server" Text="" Visible="false"></asp:Label>
+
+    </div> 
+</ContentTemplate>
+</asp:UpdatePanel>               
 </asp:Content>

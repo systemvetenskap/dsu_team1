@@ -11,7 +11,7 @@
    box-sizing: border-box; 
 }
 .GridBox {
-    max-height: 300px;
+    max-height: 440px;
     overflow: auto;
 }
 
@@ -44,3 +44,42 @@
     height:50px;
     
 }
+
+.my-list-box {
+    margin-bottom: 2%;
+}
+.HiddenSearchBox {
+    display:none;    
+}
+.ShowSearchDiv {
+    height:25px;
+    padding:0;  
+}
+
+.searchbtn {
+    padding:0;
+    height:30px;
+}
+
+.SearchBox2 {
+    
+    
+}
+
+.SearchBtn2 {
+    
+    
+}
+.SearchBox {
+   width: 69%; 
+    
+}
+
+.SearchBtn {
+    width: 30%;
+    
+}
+
+
+
+

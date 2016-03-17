@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -24,10 +25,15 @@ namespace Team_1_Halslaget_GK
             if (!IsPostBack)
             {
                 OpenPage();
+                gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitionsRegdates();
+                gvTavlingar.DataBind();
             }
 
-            gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitionsRegdates();
-            gvTavlingar.DataBind();
+            if(hidden1.Text == "1")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showDiv", "showDiv();", true);
+                hidden1.Text = "1";
+            }
         }
 
         protected void btnConfirm_Click(object sender, EventArgs e)
@@ -66,19 +72,19 @@ namespace Team_1_Halslaget_GK
             {
                 string medlemid = getIDByGolfId(tb.Text);
 
-                if(checkifalreadybookedlag(medlemid, tavlingid))
+                if (checkifalreadybookedlag(medlemid, tavlingid))
                 {
                     tb.BackColor = Color.Red;
-                    exists = true;                  
+                    exists = true;
                 }
 
-                
+
             }
 
-            if(exists == false)
+            if (exists == false)
             {
-                 bookTeam();
-                 OpenPage();                
+                bookTeam();
+                OpenPage();
             }
 
         }
@@ -86,7 +92,6 @@ namespace Team_1_Halslaget_GK
         protected void gvTavlingar_SelectedIndexChanged(object sender, EventArgs e)
         {
             OpenPage();
-            
 
             foreach (GridViewRow row in gvTavlingar.Rows)
             {
@@ -102,7 +107,7 @@ namespace Team_1_Halslaget_GK
 
             Competition newcom = GetspecificComp(gvTavlingar.SelectedValue.ToString());
 
-            lblTavlingNamn.Text = newcom.namn;           
+            lblTavlingNamn.Text = newcom.namn;
             lblTavlingTyp.Text = newcom.type;
             lblTavlingDesc.Text = newcom.desc;
 
@@ -131,7 +136,71 @@ namespace Team_1_Halslaget_GK
 
         protected void BtnSearchMember_Click(object sender, EventArgs e)
         {
+            lbMembers.DataSource = "";
+            lbMembers.DataBind();
 
+            if (tbFullName.Text.Contains(" "))
+            {
+                string[] name = tbFullName.Text.Split(null);
+
+                SearchMember(name[0], name[1]);
+            }
+            else
+            {
+                SearchMember(tbFullName.Text, "");
+            }
+
+        }
+
+        protected void btnPickMember_Click(object sender, EventArgs e)
+        {
+
+            string golfid = lbMembers.SelectedValue.ToString();
+            if (tbgolfid1.Text == "" && tbgolfid1.Visible == true)
+            {
+                tbgolfid1.Text = golfid;
+            }
+            else if (tbgolfid2.Text == "" && tbgolfid2.Visible == true && tbgolfid1.Text != golfid)
+            {
+                tbgolfid2.Text = golfid;
+            }
+            else if (tbgolfid3.Text == "" && tbgolfid3.Visible == true && tbgolfid1.Text != golfid && tbgolfid2.Text != golfid)
+            {
+                tbgolfid3.Text = golfid;
+            }
+            else if (tbgolfid4.Text == "" && tbgolfid4.Visible == true && tbgolfid1.Text != golfid && tbgolfid2.Text != golfid && tbgolfid3.Text != golfid)
+            {
+                tbgolfid4.Text = golfid;
+            }
+
+
+        }
+
+        protected void btnShowSearch_Click(object sender, EventArgs e)
+        {
+            if (hidden1.Text == "0" || hidden1.Text == "")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showSlideDiv", "showSlideDiv();", true);
+                hidden1.Text = "1";
+
+            }
+            else if (hidden1.Text == "1")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "hideSlideDiv", "hideSlideDiv();", true);
+                hidden1.Text = "0";
+                tbFullName.Text = "";
+                lbMembers.DataSource = "";
+                lbMembers.DataBind();
+            }
+
+
+        }
+
+        protected void BtnSearch_Click(object sender, EventArgs e)
+        {
+            OpenPage();
+            gvTavlingar.DataSource = Search();
+            gvTavlingar.DataBind();
         }
 
 
@@ -174,7 +243,7 @@ namespace Team_1_Halslaget_GK
 
             tbgolfid1.Visible = true;
             tbgolfid1.Enabled = true;
-            
+
             tbgolfid2.Visible = true;
             tbgolfid3.Visible = true;
             tbgolfid4.Visible = true;
@@ -189,7 +258,7 @@ namespace Team_1_Halslaget_GK
             lblTavlingTyp.Visible = true;
 
             tbgolfid1.Visible = true;
-            tbgolfid1.Enabled = true;           
+            tbgolfid1.Enabled = true;
             btnConfirm.Visible = true;
         }
 
@@ -287,7 +356,7 @@ namespace Team_1_Halslaget_GK
         //Skapa ett lag, lägg till lagmedlemmar och boka laget på en tävling
         public bool bookTeam()
         {
-            Team newteam = new Team();          
+            Team newteam = new Team();
             List<string> GolfidList = new List<string>();
 
             foreach (TextBox tb in teamtb.Controls.OfType<TextBox>())
@@ -373,7 +442,7 @@ namespace Team_1_Halslaget_GK
             cmd.Parameters.AddWithValue("@medlem_id", medlemid);
             cmd.Parameters.AddWithValue("@tavling_id", tavlingid);
             bool exists = Convert.ToBoolean(cmd.ExecuteScalar());
-            conn.Close();         
+            conn.Close();
             return exists;
         }
 
@@ -387,18 +456,54 @@ namespace Team_1_Halslaget_GK
             cmd.Parameters.AddWithValue("@tavling_id", tavlingid);
             bool exists = Convert.ToBoolean(cmd.ExecuteScalar());
             conn.Close();
-            return exists;          
+            return exists;
         }
 
         //Sök på namn för att få fram golfid
-        public void SearchMember(string searchstring)
+        public void SearchMember(string fornamn, string efternamn)
         {
-            string sql = "SELECT * medlem WHERE fornamn = @fornamn";
+            string sql = "SELECT fornamn, efternamn, golfid FROM medlem WHERE fornamn ~* @fornamn AND efternamn ~* @efternamn OR fornamn ~* @efternamn AND efternamn ~* @fornamn";
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@fornamn", searchstring);
+            cmd.Parameters.AddWithValue("@fornamn", fornamn);
+            cmd.Parameters.AddWithValue("@efternamn", efternamn);
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dt.Columns.Add("FullName", typeof(string), "fornamn+' '+efternamn");
+            conn.Close();
+
+            lbMembers.DataTextField = "FullName";
+            lbMembers.DataValueField = "golfid";
+
+            lbMembers.DataSource = dt;
+            lbMembers.DataBind();
         }
-        
+
+        //Sök på tävlingar
+        public DataTable Search()
+        {
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT* FROM tavling WHERE namn ~*'" + tbSearchComp.Text + "'", conn);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetCompetitions;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
     }
 }
