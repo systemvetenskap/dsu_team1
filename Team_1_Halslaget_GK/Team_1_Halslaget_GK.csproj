@@ -108,6 +108,7 @@
     <Content Include="Bokatavling.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="CreateCompetition.aspx" />
+    <Content Include="CreateDagbokNote.aspx" />
     <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminBokatavlingCss.css" />
     <Content Include="css\AdminPanelCss.css" />
@@ -125,10 +126,12 @@
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
     <Content Include="css\tidsbokning.css" />
+    <Content Include="Dagbok.aspx" />
     <Content Include="data\Mono.Security.dll" />
     <Content Include="data\Npgsql.dll" />
     <Content Include="default.aspx" />
     <Content Include="css\font.css" />
+    <Content Include="css\DiaryCSS.css" />
     <Content Include="fonts\generator_config.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\lato-lig-demo.html" />
@@ -243,12 +246,26 @@
     <Compile Include="CreateCompetition.aspx.designer.cs">
       <DependentUpon>CreateCompetition.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreateDagbokNote.aspx.cs">
+      <DependentUpon>CreateDagbokNote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateDagbokNote.aspx.designer.cs">
+      <DependentUpon>CreateDagbokNote.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateNewMember.aspx.cs">
       <DependentUpon>CreateNewMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CreateNewMember.aspx.designer.cs">
       <DependentUpon>CreateNewMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dagbok.aspx.cs">
+      <DependentUpon>Dagbok.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dagbok.aspx.designer.cs">
+      <DependentUpon>Dagbok.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -257,6 +274,7 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Diary.cs" />
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
