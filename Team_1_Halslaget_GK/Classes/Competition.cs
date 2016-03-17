@@ -281,5 +281,32 @@ namespace Team_1_Halslaget_GK
                 conn.Dispose();
             }
         }
+
+        public DataTable GetSpecificCompetitionTeamPlayers(string competitionID)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT medlem.id, fornamn, efternamn, hcp, kon, teef, teem FROM medlem INNER JOIN lag_medlem ON medlem.id = medlem_id INNER JOIN lag_tavling ON lag_id = id_lag INNER JOIN tavling ON id_tavling = tavling.id WHERE tavling.id = @tavling_id AND resultatxml IS NULL", conn);
+                cmdGetCompetitions.Parameters.AddWithValue("@tavling_id", competitionID);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetCompetitions;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
     }
 }
