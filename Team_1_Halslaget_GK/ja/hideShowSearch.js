@@ -10,3 +10,10 @@ function showSlideDiv() {
 function hideSlideDiv() {
     $(".HiddenSearchBox").slideUp();
 }
+
+
+
+
+function showDiv2() {
+    $(".otherplayersbackground").show();
+}

@@ -168,11 +168,12 @@
         <input id="Button1" type="button" value="X" class="closebtn"  onclick="closeotherplayers();"/>
         <asp:Label ID="lblotherplayers" CssClass="lblotherplayers" runat="server" Text=""></asp:Label><br /><br />
         <div id="hcpcheck" runat="server">
-        <asp:Label ID="lblPlayer1" CssClass="players" runat="server" Text=""></asp:Label><br /><br  />   
-        <asp:Label ID="lblPlayer2" CssClass="players" runat="server" Text=""></asp:Label><br /><br  />    
-        <asp:Label ID="lblPlayer3" CssClass="players" runat="server" Text=""></asp:Label><br /><br  />  
+        <asp:Label ID="lblPlayer1" CssClass="players" runat="server" Text=""></asp:Label>  <br /><br /> 
+        <asp:Label ID="lblPlayer2" CssClass="players" runat="server" Text=""></asp:Label>  <br /><br />
+        <asp:Label ID="lblPlayer3" CssClass="players" runat="server" Text=""></asp:Label>  <br /><br />
         <asp:Label ID="lblPlayer4" CssClass="players" runat="server" Text=""></asp:Label>
         </div>
+
         <div id="otherplayers" runat="server" class="fullBox">
                 <asp:Label ID="lblGolfID" runat="server" Text="Ditt Golf-ID"></asp:Label>
                 <asp:TextBox ID="tbPlayer1" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
