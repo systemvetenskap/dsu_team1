@@ -17,10 +17,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Username"] == null && Session["admin"] == null)
-            {
-                Response.Redirect("~/NotAllowed.aspx");
-            }
+            //if (Session["Username"] == null && Session["admin"] == null)
+            //{
+            //    Response.Redirect("~/NotAllowed.aspx");
+            //}
             if (!IsPostBack)
             {
                 OpenPage();
@@ -129,7 +129,10 @@ namespace Team_1_Halslaget_GK
 
         }
 
+        protected void BtnSearchMember_Click(object sender, EventArgs e)
+        {
 
+        }
 
 
         /* ----------- Funktioner --------- */
@@ -374,6 +377,7 @@ namespace Team_1_Halslaget_GK
             return exists;
         }
 
+        //Kolla om angivna golfid redans finns på tävlingen
         public bool checkifalreadybookedlag(string medlemid, string tavlingid)
         {
             string sql = "SELECT EXISTS(SELECT * FROM lag_medlem INNER JOIN lag_tavling ON(lag_medlem.lag_id = lag_tavling.id_lag)WHERE lag_medlem.medlem_id = @medlem_id AND lag_tavling.id_tavling = @tavling_id)";
@@ -385,5 +389,16 @@ namespace Team_1_Halslaget_GK
             conn.Close();
             return exists;          
         }
+
+        //Sök på namn för att få fram golfid
+        public void SearchMember(string searchstring)
+        {
+            string sql = "SELECT * medlem WHERE fornamn = @fornamn";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@fornamn", searchstring);
+        }
+        
+
     }
 }

@@ -7,7 +7,19 @@
     <br />
     <br />
     <br />
-    <div class="fullBox page-title"><h1>Tävlingar</h1></div>    
+    <div class="fullBox page-title"><h1>Tävlingar</h1></div>
+    
+    <!------------------ Sök på medlemmar ---------------->
+
+    <div class="fullBox SearchBox">
+        <div class="halfBox">
+            <asp:TextBox ID="tbFullName" CssClass="my-txt-box" runat="server" placeholder="För och/eller efternamn"></asp:TextBox>
+            <asp:Button ID="BtnSearchMember" CssClass="my-button" runat="server" Text="Sök" OnClick="BtnSearchMember_Click" />
+        </div>
+        <div class="halfBox">
+            <asp:ListBox ID="lbMembers" CssClass="my-list-box" runat="server"></asp:ListBox>
+        </div>
+    </div>
            
     <!------------------ Visa Tävlingar ----------------> 
 
