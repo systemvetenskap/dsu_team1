@@ -15,10 +15,10 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Username"] == null && Session["admin"] == null)
-            //{
-            //    Response.Redirect("~/NotAllowed.aspx");
-            //}
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
 
             if(!IsPostBack)
             {
@@ -154,7 +154,6 @@ namespace Team_1_Halslaget_GK
                 Hole h20 = new Hole();
                 h20.score = calculateScore();
                 round.Add(h20);
-
             }
 
             if (lblType.Text == "lag")
