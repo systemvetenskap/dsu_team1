@@ -33,10 +33,11 @@
     margin-left: 5%;
 }
 
-.message-box{
+#message-box{
     border: 1px solid #E5C100;
     border-radius: 5px;
     height: 315px;
+    overflow-y: auto;
 }
 
 .messagerow{

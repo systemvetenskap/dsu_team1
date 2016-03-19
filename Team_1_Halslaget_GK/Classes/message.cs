@@ -61,5 +61,34 @@ namespace Team_1_Halslaget_GK.Classes
                 conn.Dispose();
             }
         }
+
+        public bool SendMessage(string msg, int idfrom, int idto)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO meddelande (from_medlem, to_medlem, meddelande, tid) VALUES (@idfrom, @idto, @meddelande, @tid)", conn);
+                cmd.Parameters.AddWithValue("@idfrom", idfrom);
+                cmd.Parameters.AddWithValue("idto", idto);
+                cmd.Parameters.AddWithValue("@meddelande", msg);
+                cmd.Parameters.AddWithValue("@tid", DateTime.Now);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+
+            catch (NpgsqlException ex)
+            {
+                return false;
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+        
     }
 }

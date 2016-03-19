@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Messages.aspx.cs" Inherits="Team_1_Halslaget_GK.WebForm4" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <link type="text/css" rel="stylesheet" href="css/Messages.css"/>
+    <link type="text/css" rel="stylesheet" href="css/Messages.css"/>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>   
+    <script src="ja/Scrollto.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -16,7 +18,7 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <div class="grad">                   
-                       <asp:LinkButton ID="LinkBtnShowFullMessage" runat="server" OnClick="LinkBtnShowFullMessage_Click" CssClass="linkbtn-empty">
+                       <asp:LinkButton ID="LinkBtnShowFullMessage" runat="server" OnClick="LinkBtnShowFullMessage_Click" CssClass="linkbtn-empty" >
                             <div class="short-message-info-box">
                                 <p id="frommember" runat="server" class="name"><%#Eval ("fornamn") %><%#Eval ("efternamn") %></p>
                                 <p id="date" class="smallp" runat="server"><%#Eval ("nytid") %></p>
@@ -40,9 +42,10 @@
                     <div class="message-info-box">
                         <p id="frommember2" class="nobreak" runat="server"></p>
                         <p id="date2" runat="server" class="nobreak"></p>
+                        <asp:Label ID="LabelIDto" runat="server" Text="" Visible="false"></asp:Label>
                     </div>
                     <div class="conversation-box" runat="server">
-                        <div id="messagebox" runat="server">
+                        <div id="message-box">
                             <asp:Repeater ID="Repeater2" runat="server" OnItemDataBound="Repeater2_ItemDataBound">
                                 <ItemTemplate>
                                     <div id="messagerow" class="message-row" runat="server">
