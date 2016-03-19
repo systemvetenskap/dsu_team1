@@ -238,6 +238,7 @@
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\Hole.cs" />
+    <Compile Include="Classes\Message.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Competition.cs" />
     <Compile Include="CreateCompetition.aspx.cs">
