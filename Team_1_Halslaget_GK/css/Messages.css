@@ -39,13 +39,23 @@
     height: 315px;
 }
 
-.message    {
+.messagerow{
+    width: 100%;  
+}
+
+.message3{
     border-radius: 10px;
     background: #e4e4e4;
     margin: 5px;
     width: auto;
     padding:4px;
     display: inline-block;
+    max-width: 45%;
+    text-align: center;
+}
+
+.message-in-row{
+    display: block;
 }
 
 .message-to{

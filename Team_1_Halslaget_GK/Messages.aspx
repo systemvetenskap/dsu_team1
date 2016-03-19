@@ -18,11 +18,12 @@
                     <div class="grad">                   
                        <asp:LinkButton ID="LinkBtnShowFullMessage" runat="server" OnClick="LinkBtnShowFullMessage_Click" CssClass="linkbtn-empty">
                             <div class="short-message-info-box">
-                                <p id="frommember" runat="server" class="name"><%#Eval ("member") %></p>
-                                <p id="date" class="smallp" runat="server"><%#Eval ("date") %></p>
+                                <p id="frommember" runat="server" class="name"><%#Eval ("fornamn") %><%#Eval ("efternamn") %></p>
+                                <p id="date" class="smallp" runat="server"><%#Eval ("nytid") %></p>
                             </div>
                             <div class="short-message-box">
-                                <p><%#Eval ("message") %></p>
+                                <p><%#Eval ("meddelande") %></p>
+                                <asp:HiddenField ID="HiddenFieldMemberID" runat="server" Value=<%#Eval ("from_medlem") %>/>
                             </div>
                         </asp:LinkButton>                  
                     </div>
@@ -42,11 +43,16 @@
                     </div>
                     <div class="conversation-box" runat="server">
                         <div id="messagebox" runat="server">
-                            <asp:Repeater ID="Repeater2" runat="server">
+                            <asp:Repeater ID="Repeater2" runat="server" OnItemDataBound="Repeater2_ItemDataBound">
                                 <ItemTemplate>
-                                    <div class="message">
-                                        <p id="message" runat="server"><%#Eval ("message") %></p>
-                                    </div><br />
+                                    <div id="messagerow" class="message-row" runat="server">
+                                        <div class="message-in-row" id="messageinrow" runat="server">
+                                            <div class="message3">
+                                                <p id="message" runat="server"><%#Eval ("meddelande") %></p>
+                                            </div>
+                                        </div>
+                                        <asp:HiddenField ID="HiddenFieldFromID" runat="server" Value=<%#Eval ("from_medlem") %>/>
+                                    </div>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
