@@ -43,15 +43,19 @@
     width: 100%;  
 }
 
-.message3{
+.message-border{
     border-radius: 10px;
     background: #e4e4e4;
     margin: 5px;
     width: auto;
     padding:4px;
     display: inline-block;
-    max-width: 45%;
+    max-width: 60%;
     text-align: center;
+}
+
+.border-from{
+    background: #ffca6b;
 }
 
 .message-in-row{

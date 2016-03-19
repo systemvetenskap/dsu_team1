@@ -47,7 +47,7 @@
                                 <ItemTemplate>
                                     <div id="messagerow" class="message-row" runat="server">
                                         <div class="message-in-row" id="messageinrow" runat="server">
-                                            <div class="message3">
+                                            <div class="message-border" id="messageborder" runat="server">
                                                 <p id="message" runat="server"><%#Eval ("meddelande") %></p>
                                             </div>
                                         </div>
@@ -59,10 +59,10 @@
 
                         <div class="fullBox fullBox-message-send">
                             <div class="sevenFiveBox sevenFiveBox-message">
-                                <asp:TextBox ID="TextBoxReply" runat="server" CssClass="my-txt-box txt-box-reply" Visible="false" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="TextBoxReply" runat="server" CssClass="my-txt-box txt-box-reply" Visible="false" TextMode="MultiLine" OnTextChanged="TextBoxReply_TextChanged"></asp:TextBox>
                             </div>
                             <div class="quarterBox quarterBox-message">
-                                <asp:Button ID="ButtonReply" runat="server" Text="Skicka" Visible="false" CssClass="my-button bt-reply" Multiline="true"/>
+                                <asp:Button ID="ButtonReply" runat="server" Text="Skicka" Visible="false" CssClass="my-button bt-reply" onclick="ButtonReply_Click"/>
                             </div>
                         </div>
                     </div>
