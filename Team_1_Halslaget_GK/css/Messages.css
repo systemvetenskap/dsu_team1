@@ -1,0 +1,106 @@
+﻿body {
+}
+
+.fullbox-message{
+    height: 420px;
+}
+
+.fullbox-message-send{
+    height: 100%;
+}
+
+.txt-box-search{
+    width: 96%;
+    margin-top: 20px;
+}
+
+.grad {
+    border-bottom: 1px solid #e4e4e4;
+    padding-top: 17px;
+}
+
+.linkbtn-empty{
+    color: black;
+}
+
+.messages-list{
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.conversation-box{
+    width: 80%;
+    margin-left: 5%;
+}
+
+.message-box{
+    border: 1px solid #E5C100;
+    border-radius: 5px;
+    height: 315px;
+}
+
+.messagerow{
+    width: 100%;  
+}
+
+.message3{
+    border-radius: 10px;
+    background: #e4e4e4;
+    margin: 5px;
+    width: auto;
+    padding:4px;
+    display: inline-block;
+    max-width: 45%;
+    text-align: center;
+}
+
+.message-in-row{
+    display: block;
+}
+
+.message-to{
+    margin: 5px;
+    text-align: left;
+}
+
+.message-from{
+    margin: 5px;
+    text-align: right;
+}
+
+.message-info-box{
+    margin-left:5%;
+    width: 80%;
+}
+
+.nobreak{
+    display: inline;
+}
+
+.smallp{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.align-right-block{
+    text-align: right;
+}
+
+.sevenFiveBox-message{
+    padding: 2% 0;   
+}
+
+.quarterBox-message{
+    padding: 2% 0;
+    width: 24%;
+    margin-left: 1%;
+}
+
+.btn-reply{
+    padding: 0;
+    margin: 0;
+}
+
+.txt-box-reply{
+    height: 58px;
+}
