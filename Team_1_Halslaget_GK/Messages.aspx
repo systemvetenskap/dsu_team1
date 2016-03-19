@@ -11,7 +11,7 @@
     </div>
     <div class="fullBox fullbox-message">
         <div class="quarterBox messages-list">
-            <asp:TextBox ID="TextBoxSearch" runat="server" placeholder="Sök" CssClass="my-txt-box txt-box-search"></asp:TextBox>
+            <asp:TextBox ID="TextBoxSearch" runat="server" placeholder="Sök" CssClass="my-txt-box txt-box-search" OnTextChanged="TextBoxSearch_TextChanged"></asp:TextBox>
             <asp:Repeater ID="Repeater1" runat="server">
                 <HeaderTemplate>
                     
@@ -25,7 +25,7 @@
                             </div>
                             <div class="short-message-box">
                                 <p><%#Eval ("meddelande") %></p>
-                                <asp:HiddenField ID="HiddenFieldMemberID" runat="server" Value=<%#Eval ("from_medlem") %>/>
+                                <asp:HiddenField ID="HiddenFieldMemberID" runat="server" Value=<%#Eval ("id") %>/>
                             </div>
                         </asp:LinkButton>                  
                     </div>
@@ -36,7 +36,7 @@
             </asp:Repeater>
         </div>
 
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
             <ContentTemplate>
                 <div class="sevenFiveBox">                    
                     <div class="message-info-box">
