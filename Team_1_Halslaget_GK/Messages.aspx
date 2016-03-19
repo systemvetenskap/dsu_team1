@@ -19,7 +19,7 @@
                        <asp:LinkButton ID="LinkBtnShowFullMessage" runat="server" OnClick="LinkBtnShowFullMessage_Click" CssClass="linkbtn-empty">
                             <div class="short-message-info-box">
                                 <p id="frommember" runat="server" class="name"><%#Eval ("fornamn") %><%#Eval ("efternamn") %></p>
-                                <p id="date" class="smallp" runat="server"><%#Eval ("tid") %></p>
+                                <p id="date" class="smallp" runat="server"><%#Eval ("nytid") %></p>
                             </div>
                             <div class="short-message-box">
                                 <p><%#Eval ("meddelande") %></p>
