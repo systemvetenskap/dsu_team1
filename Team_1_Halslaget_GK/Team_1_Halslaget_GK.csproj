@@ -118,6 +118,7 @@
     <Content Include="css\CreateNewMemberCss.css" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\Medlemsregister.css" />
+    <Content Include="css\Messages.css" />
     <Content Include="css\MyPageCss.css" />
     <Content Include="css\Publishnewsstyle.css" />
     <Content Include="css\ScoreCardStyle.css" />
