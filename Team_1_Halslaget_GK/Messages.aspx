@@ -12,28 +12,33 @@
     <div class="fullBox fullbox-message">
         <div class="quarterBox messages-list">
             <asp:TextBox ID="TextBoxSearch" runat="server" placeholder="Sök" CssClass="my-txt-box txt-box-search" OnTextChanged="TextBoxSearch_TextChanged"></asp:TextBox>
-            <asp:Repeater ID="Repeater1" runat="server">
-                <HeaderTemplate>
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <Triggers><asp:AsyncPostBackTrigger ControlID="TextBoxSearch" runat="server" EventName="TextChanged"/></Triggers>
+                <ContentTemplate>
+                <asp:Repeater ID="Repeater1" runat="server">
+                    <HeaderTemplate>
                     
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <div class="grad">                   
-                       <asp:LinkButton ID="LinkBtnShowFullMessage" runat="server" OnClick="LinkBtnShowFullMessage_Click" CssClass="linkbtn-empty" >
-                            <div class="short-message-info-box">
-                                <p id="frommember" runat="server" class="name"><%#Eval ("fornamn") %><%#Eval ("efternamn") %></p>
-                                <p id="date" class="smallp" runat="server"><%#Eval ("nytid") %></p>
-                            </div>
-                            <div class="short-message-box">
-                                <p><%#Eval ("meddelande") %></p>
-                                <asp:HiddenField ID="HiddenFieldMemberID" runat="server" Value=<%#Eval ("id") %>/>
-                            </div>
-                        </asp:LinkButton>                  
-                    </div>
-                </ItemTemplate>
-                <FooterTemplate>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <div class="grad">                   
+                           <asp:LinkButton ID="LinkBtnShowFullMessage" runat="server" OnClick="LinkBtnShowFullMessage_Click" CssClass="linkbtn-empty" >
+                                <div class="short-message-info-box">
+                                    <p id="frommember" runat="server" class="name"><%#Eval ("fornamn") %><%#Eval ("efternamn") %></p>
+                                    <p id="date" class="smallp" runat="server"><%#Eval ("nytid") %></p>
+                                </div>
+                                <div class="short-message-box">
+                                    <p><%#Eval ("meddelande") %></p>
+                                    <asp:HiddenField ID="HiddenFieldMemberID" runat="server" Value=<%#Eval ("id") %>/>
+                                </div>
+                            </asp:LinkButton>                  
+                        </div>
+                    </ItemTemplate>
+                    <FooterTemplate>
 
-                </FooterTemplate>
-            </asp:Repeater>
+                    </FooterTemplate>                                                                               
+                </asp:Repeater>
+               </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
