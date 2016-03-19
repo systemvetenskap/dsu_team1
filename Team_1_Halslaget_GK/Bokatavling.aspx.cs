@@ -18,7 +18,7 @@ namespace Team_1_Halslaget_GK
         medlem openmedlem;
 
         protected void Page_Load(object sender, EventArgs e)
-        {          
+        {
             if (Session["Username"] == null)
             {
                 Response.Redirect("~/NotAllowed.aspx");
@@ -133,29 +133,8 @@ namespace Team_1_Halslaget_GK
             OpenPage();
             gvTavlingar.DataSource = Search();
             gvTavlingar.DataBind();
-            rdlTavlingType.SelectedIndex = 0;
+            
         }
-
-        protected void rdlTavlingType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (rdlTavlingType.SelectedIndex == 0)
-            {
-                gvTavlingar.DataSource = Search();
-                gvTavlingar.DataBind();
-            }
-            if (rdlTavlingType.SelectedIndex == 1)
-            {
-                gvTavlingar.DataSource = SorteraTavlingar("singel");
-                gvTavlingar.DataBind();
-            }
-            if (rdlTavlingType.SelectedIndex == 2)
-            {
-                gvTavlingar.DataSource = SorteraTavlingar("lag");
-                gvTavlingar.DataBind();
-            }
-        }
-
-
 
 
 
@@ -484,31 +463,7 @@ namespace Team_1_Halslaget_GK
             {
                 conn.Close();             
             }
-        }
-
-        //Visa alla, singel eller lagtävlingar
-        public DataTable SorteraTavlingar(string type)
-        {
-            try
-            {
-                conn.Open();
-                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT * FROM tavling WHERE type = '" + type + "' AND namn ~*'" + tbsearchTavling.Text + "'", conn);
-                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
-                nda.SelectCommand = cmdGetCompetitions;
-                DataTable dt = new DataTable();
-                nda.Fill(dt);
-                return dt;
-            }
-            catch (NpgsqlException ex)
-            {
-                //NpgsqlException = ex.Message;
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
+        }      
 
         //Göm allt
         public void OpenPage()

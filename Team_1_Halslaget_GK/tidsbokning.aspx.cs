@@ -64,6 +64,8 @@ namespace Team_1_Halslaget_GK
             lblPlayer3.Text = "";
             lblPlayer4.Text = "";
 
+            
+
             tbPlayer2.Text = "";
             tbPlayer3.Text = "";
             tbPlayer4.Text = "";
@@ -209,6 +211,7 @@ namespace Team_1_Halslaget_GK
                 {
                     lblPlayer1.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: "+ golfplayer.kon;
                     lblPlayer1.ID = golfplayer.golfID;
+                    lblPlayer1.Visible = true;
                     Session["player1"] = golfplayer.hcp;          
                     playercount++;
                 }

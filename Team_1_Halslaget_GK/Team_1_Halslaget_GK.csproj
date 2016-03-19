@@ -151,6 +151,7 @@
     <Content Include="img\golfboll.jpg" />
     <Content Include="img\loader.gif" />
     <Content Include="ja\ChangePasswordJs.js" />
+    <Content Include="ja\hideShowSearch.js" />
     <Content Include="ja\jquery.maskedinput.js" />
     <Content Include="ja\memberRegScript.js" />
     <Content Include="ja\MyPageScripts.js" />
