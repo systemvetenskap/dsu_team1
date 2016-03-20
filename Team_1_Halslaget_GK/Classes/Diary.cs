@@ -72,5 +72,32 @@ namespace Team_1_Halslaget_GK
                 conn.Dispose();
             }
         }
+
+        public string GetSpecificDiaryNote()
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetSpcDiaryNote = new NpgsqlCommand("SELECT txt FROM dagbok where id = 3;", conn);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetSpcDiaryNote;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+                string diaryNote = dt.Rows[0]["txt"].ToString();
+                return diaryNote;
+
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return "Nope";
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
     }
 }
