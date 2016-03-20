@@ -173,8 +173,9 @@
     <Content Include="fonts\monofont.ttf" />
     <Content Include="bin\Team_1_Halslaget_GK.dll.config" />
     <Content Include="AdminMaster.Master" />
+    <Content Include="MobileIndex.aspx" />
+    <Content Include="MobileLogin.aspx" />
     <Content Include="packages.config" />
-    <Content Include="Messages.aspx" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - Web Deploy.pubxml" />
     <Content Include="Site.Mobile.Master" />
@@ -294,6 +295,20 @@
       <DependentUpon>Medlemsregister.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\MemberTypes.cs" />
+    <Compile Include="MobileIndex.aspx.cs">
+      <DependentUpon>MobileIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MobileIndex.aspx.designer.cs">
+      <DependentUpon>MobileIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MobileLogin.aspx.cs">
+      <DependentUpon>MobileLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MobileLogin.aspx.designer.cs">
+      <DependentUpon>MobileLogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyPage.aspx.cs">
       <DependentUpon>MyPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -386,12 +401,6 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Messages.aspx.cs">
-      <DependentUpon>Messages.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Messages.aspx.designer.cs">
-      <DependentUpon>Messages.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
