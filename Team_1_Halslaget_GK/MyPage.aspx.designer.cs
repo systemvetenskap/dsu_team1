@@ -238,6 +238,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.WebControls.Label lblPaymentReminder;
         
         /// <summary>
+        /// btnGoToDiary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGoToDiary;
+        
+        /// <summary>
         /// lblFirstName control.
         /// </summary>
         /// <remarks>
