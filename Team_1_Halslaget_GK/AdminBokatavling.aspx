@@ -12,7 +12,6 @@
     <br />
     <br />
     
-
     <!------------------ Sök på medlemmar ---------------->
 
 <div class="fullBox HiddenSearchBox">
@@ -37,7 +36,6 @@
         </div>            
     </asp:Panel>
     </div>
-
 </div>
 <div class="fullBox">
     <asp:Button ID="btnShowSearch" CssClass="my-button searchbtn" runat="server" Text="Sök medlem" OnClick="btnShowSearch_Click" />      
@@ -138,7 +136,6 @@
         <!------------------ hiddens ----------------> 
 
         <asp:Label ID="hidden1" runat="server" Text="" Visible="false"></asp:Label>
-
     </div> 
 </ContentTemplate>
 </asp:UpdatePanel>               

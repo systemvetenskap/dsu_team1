@@ -186,5 +186,17 @@
                 </div>
         </div>
     </div>
+    <!-- LAST COMPETITION -->
+        <div class="fullBox top-n-bottom-space">
+        <div class="fullBox page-title">
+            <h3>SENASTE TÄVLINGEN</h3>
+        </div>
+        <div class="fullBox ">
+                <div class="fullBox">
+                    <asp:Label ID="labelCompetitionName" runat="server" Text="Label"></asp:Label><br />
+                    <asp:Label ID="labelCompetitionResult" runat="server" Text="Label"></asp:Label><br />
+                </div>
+        </div>
+    </div>
 </div>
 </asp:Content>
