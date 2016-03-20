@@ -35,6 +35,7 @@
                             runat="server" 
                             Text="Kryssa i för att fylla i scorekortet." 
                             AutoPostBack="true" 
+                            style="cursor: pointer;"
                             OnCheckedChanged="checkBoxScoreCard_CheckedChanged" />
                         </p>
                         <br />

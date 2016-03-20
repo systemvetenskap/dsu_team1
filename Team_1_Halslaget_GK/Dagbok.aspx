@@ -5,10 +5,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="fullBox">
         <div class="quarterBox">
-            
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         </div>
-        <div class="sevenFiveBox">
-
+        <div class="sevenFiveBox" runat="server" id="diaryNoteDiv">
+            <p>Test</p>
         </div>
     </div>
 </asp:Content>

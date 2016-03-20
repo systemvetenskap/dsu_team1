@@ -398,92 +398,92 @@ namespace Team_1_Halslaget_GK
         private void LockTextBoxes()
         {
             TextBox1.ReadOnly = true;
-            TextBox1.ToolTip = "Du måste välja en medlem först";
+            TextBox1.ToolTip = "Du måste välja tee först";
             TextBox1.BackColor = System.Drawing.Color.Gray;
             TextBox1.Style.Add("cursor", "not-allowed");
 
             TextBox2.ReadOnly = true;
-            TextBox2.ToolTip = "Du måste välja en medlem först";
+            TextBox2.ToolTip = "Du måste välja tee först";
             TextBox2.BackColor = System.Drawing.Color.Gray;
             TextBox2.Style.Add("cursor", "not-allowed");
 
             TextBox3.ReadOnly = true;
-            TextBox3.ToolTip = "Du måste välja en medlem först";
+            TextBox3.ToolTip = "Du måste välja tee först";
             TextBox3.BackColor = System.Drawing.Color.Gray;
             TextBox3.Style.Add("cursor", "not-allowed");
 
             TextBox4.ReadOnly = true;
-            TextBox4.ToolTip = "Du måste välja en medlem först";
+            TextBox4.ToolTip = "Du måste välja tee först";
             TextBox4.BackColor = System.Drawing.Color.Gray;
             TextBox4.Style.Add("cursor", "not-allowed");
 
             TextBox5.ReadOnly = true;
-            TextBox5.ToolTip = "Du måste välja en medlem först";
+            TextBox5.ToolTip = "Du måste välja tee först";
             TextBox5.BackColor = System.Drawing.Color.Gray;
             TextBox5.Style.Add("cursor", "not-allowed");
 
             TextBox6.ReadOnly = true;
-            TextBox6.ToolTip = "Du måste välja en medlem först";
+            TextBox6.ToolTip = "Du måste välja tee först";
             TextBox6.BackColor = System.Drawing.Color.Gray;
             TextBox6.Style.Add("cursor", "not-allowed");
 
             TextBox7.ReadOnly = true;
-            TextBox7.ToolTip = "Du måste välja en medlem först";
+            TextBox7.ToolTip = "Du måste välja tee först";
             TextBox7.BackColor = System.Drawing.Color.Gray;
             TextBox7.Style.Add("cursor", "not-allowed");
 
             TextBox8.ReadOnly = true;
-            TextBox8.ToolTip = "Du måste välja en medlem först";
+            TextBox8.ToolTip = "Du måste välja tee först";
             TextBox8.BackColor = System.Drawing.Color.Gray;
             TextBox8.Style.Add("cursor", "not-allowed");
 
             TextBox9.ReadOnly = true;
-            TextBox9.ToolTip = "Du måste välja en medlem först";
+            TextBox9.ToolTip = "Du måste välja tee först";
             TextBox9.BackColor = System.Drawing.Color.Gray;
             TextBox9.Style.Add("cursor", "not-allowed");
 
             TextBox10.ReadOnly = true;
-            TextBox10.ToolTip = "Du måste välja en medlem först";
+            TextBox10.ToolTip = "Du måste välja tee först";
             TextBox10.BackColor = System.Drawing.Color.Gray;
             TextBox10.Style.Add("cursor", "not-allowed");
 
             TextBox11.ReadOnly = true;
-            TextBox11.ToolTip = "Du måste välja en medlem först";
+            TextBox11.ToolTip = "Du måste välja tee först";
             TextBox11.BackColor = System.Drawing.Color.Gray;
             TextBox11.Style.Add("cursor", "not-allowed");
 
             TextBox12.ReadOnly = true;
-            TextBox12.ToolTip = "Du måste välja en medlem först";
+            TextBox12.ToolTip = "Du måste välja tee först";
             TextBox12.BackColor = System.Drawing.Color.Gray;
             TextBox12.Style.Add("cursor", "not-allowed");
 
             TextBox13.ReadOnly = true;
-            TextBox13.ToolTip = "Du måste välja en medlem först";
+            TextBox13.ToolTip = "Du måste välja tee först";
             TextBox13.BackColor = System.Drawing.Color.Gray;
             TextBox13.Style.Add("cursor", "not-allowed");
 
             TextBox14.ReadOnly = true;
-            TextBox14.ToolTip = "Du måste välja en medlem först";
+            TextBox14.ToolTip = "Du måste välja tee först";
             TextBox14.BackColor = System.Drawing.Color.Gray;
             TextBox14.Style.Add("cursor", "not-allowed");
 
             TextBox15.ReadOnly = true;
-            TextBox15.ToolTip = "Du måste välja en medlem först";
+            TextBox15.ToolTip = "Du måste välja tee först";
             TextBox15.BackColor = System.Drawing.Color.Gray;
             TextBox15.Style.Add("cursor", "not-allowed");
 
             TextBox16.ReadOnly = true;
-            TextBox16.ToolTip = "Du måste välja en medlem först";
+            TextBox16.ToolTip = "Du måste välja tee först";
             TextBox16.BackColor = System.Drawing.Color.Gray;
             TextBox16.Style.Add("cursor", "not-allowed");
 
             TextBox17.ReadOnly = true;
-            TextBox17.ToolTip = "Du måste välja en medlem först";
+            TextBox17.ToolTip = "Du måste välja tee först";
             TextBox17.BackColor = System.Drawing.Color.Gray;
             TextBox17.Style.Add("cursor", "not-allowed");
 
             TextBox18.ReadOnly = true;
-            TextBox18.ToolTip = "Du måste välja en medlem först";
+            TextBox18.ToolTip = "Du måste välja tee först";
             TextBox18.BackColor = System.Drawing.Color.Gray;
             TextBox18.Style.Add("cursor", "not-allowed");
 
