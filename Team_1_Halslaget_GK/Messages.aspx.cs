@@ -201,5 +201,32 @@ namespace Team_1_Halslaget_GK
             }
         }
 
+        protected void BtnSearchMember_Click(object sender, EventArgs e)
+        {
+            medlem membersearch = new medlem();
+            lbMembers.DataSource = "";
+            lbMembers.DataBind();
+            DataTable dt = new DataTable();
+
+            if (tbFullName.Text.Contains(" "))
+            {
+                string[] name = tbFullName.Text.Split(null);
+
+                dt = membersearch.SearchMember(name[0], name[1]);
+            }
+            else
+            {
+                dt = membersearch.SearchMember(tbFullName.Text, "");
+            }
+
+            lbMembers.DataTextField = "FullName";
+            lbMembers.DataValueField = "golfid";
+
+            lbMembers.DataSource = dt;
+            lbMembers.DataBind();
+        }
+
+
+
     }
 }

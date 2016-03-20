@@ -11,7 +11,15 @@
 
 .txt-box-search{
     width: 96%;
+    margin-top: 10px;
+
+}
+
+.btn-small{
+    width: 97%;
+    height: 35px;
     margin-top: 20px;
+    padding: 0;
 }
 
 .grad {
@@ -76,6 +84,7 @@
 .message-info-box{
     margin-left:5%;
     width: 80%;
+    height:19px;
 }
 
 .nobreak{
@@ -108,4 +117,27 @@
 
 .txt-box-reply{
     height: 58px;
+}
+
+.HiddenSearchBox {
+    display:none;    
+}
+.ShowSearchDiv {
+    height:25px;
+    padding:0;  
+}
+
+.searchbtn {
+    padding:0;
+    height:30px;
+}
+
+.SearchBox {
+   width: 69%; 
+    
+}
+
+.SearchBtn {
+    width: 30%;
+    
 }

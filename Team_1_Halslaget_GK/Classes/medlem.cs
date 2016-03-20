@@ -411,5 +411,37 @@ namespace Team_1_Halslaget_GK
         {
             return ID + " " + fornamn + " " + efternamn + " " + " " + handikapp;
         }
+
+        public DataTable SearchMember(string fornamn, string efternamn)
+        {
+
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
+            try
+            {
+                string sql = "SELECT fornamn, efternamn, golfid FROM medlem WHERE fornamn ~* @fornamn AND efternamn ~* @efternamn OR fornamn ~* @efternamn AND efternamn ~* @fornamn";
+                conn.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@fornamn", fornamn);
+                cmd.Parameters.AddWithValue("@efternamn", efternamn);
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dt.Columns.Add("FullName", typeof(string), "fornamn+' '+efternamn");
+                return dt;
+            }
+
+            catch (NpgsqlException ex)
+            {
+                return null;
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
     }
 }

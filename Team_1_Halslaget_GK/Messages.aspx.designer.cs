@@ -22,6 +22,15 @@ namespace Team_1_Halslaget_GK {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// ButtonNewMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonNewMsg;
+        
+        /// <summary>
         /// TextBoxSearch control.
         /// </summary>
         /// <remarks>

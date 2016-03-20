@@ -11,6 +11,7 @@
     </div>
     <div class="fullBox fullbox-message">
         <div class="quarterBox messages-list">
+            <asp:Button ID="ButtonNewMsg" runat="server" Text="+ Nytt" CssClass="my-button btn-small" />
             <asp:TextBox ID="TextBoxSearch" runat="server" placeholder="Sök" CssClass="my-txt-box txt-box-search" OnTextChanged="TextBoxSearch_TextChanged"></asp:TextBox>
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <Triggers><asp:AsyncPostBackTrigger ControlID="TextBoxSearch" runat="server" EventName="TextChanged"/></Triggers>
@@ -78,4 +79,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
+
+
+
 </asp:Content>
