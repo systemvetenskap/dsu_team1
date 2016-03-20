@@ -22,7 +22,7 @@ namespace Team_1_Halslaget_GK
                 holeNr = 1;
                 string tavling;
                 LabelHole.Text = holeNr.ToString();
-                LabelAntalSlag.Text = antalSlag.ToString();
+                //LabelAntalSlag.Text = antalSlag.ToString();
 
                 string sql = "SELECT namn from tavling WHERE id =(SELECT max(id) FROM tavling WHERE id = (SELECT tavling_id FROM medlem_tavling WHERE medlem_id = "+ username +"));";
                 NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
@@ -44,23 +44,27 @@ namespace Team_1_Halslaget_GK
             }
             else if (IsPostBack)
             {
-                //Adding shots
+                string par = "";
                 antalSlag = int.Parse(LabelAntalSlag.Text);
                 antalSlag += int.Parse(TextBox1.Text);
                 LabelAntalSlag.Text = antalSlag.ToString();
                 holeNr = int.Parse(LabelHole.Text);
-                string sql = "UPDATE scoreboard SET hole= "+holeNr.ToString() +", score= "+antalSlag.ToString()+" WHERE medlem_id = "+username+";";
+                string sql = "SELECT par from holes WHERE holeno = " + holeNr.ToString() +"";
                 NpgsqlConnection con = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    par = dr["par"].ToString();
+                }
+                int par2 = int.Parse(par);
+                int score = antalSlag - par2;
+                sql = "UPDATE scoreboard SET hole= " + holeNr.ToString() + ", score = " + score.ToString() + " WHERE medlem_id = " + username + "";
+                NpgsqlCommand cmd2 = new NpgsqlCommand(sql, con);
                 con.Open();
-                cmd.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
                 con.Close();
                 con.Dispose();
-                if (holeNr == 5)
-                {
-                    LabelFeedback.Visible = true;
-                    LabelFeedback.Text = "Test";
-                }
             }
 
         }
