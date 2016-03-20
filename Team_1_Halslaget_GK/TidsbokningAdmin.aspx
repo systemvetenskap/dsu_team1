@@ -160,8 +160,8 @@
         </asp:Table>
     </div>
     <div class="otherplayersbackground">
-        <div class="otherplayers">
-            <asp:Button ID="Button3" runat="server" Text="X" CssClass="closebtn" OnClick="Button3_Click" />       
+        <div class="otherplayers">          
+            <asp:Button ID="Button1" runat="server" Text="X" CssClass="closebtn" OnClick="Button1_Click" />
             <asp:Label ID="lblotherplayers" CssClass="lblotherplayers" runat="server" Text=""></asp:Label>
             <div id="hcpcheck" runat="server">
             <div class="fullBox">

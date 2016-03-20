@@ -368,7 +368,7 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        protected void Button3_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "closeotherplayers()", "closeotherplayers();", true);
             hidden1others.Text = "0";
@@ -697,5 +697,7 @@ namespace Team_1_Halslaget_GK
             conn.Close();
             return exists;
         }
+
+
     }
 }
