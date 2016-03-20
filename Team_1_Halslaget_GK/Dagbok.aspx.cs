@@ -27,9 +27,7 @@ namespace Team_1_Halslaget_GK
             string News = "fullBox";
             newsdiv2.InnerHtml = diaryNote;
             newsdiv2.Attributes["class"] = News;
-            diaryNoteDiv.Controls.Add(newsdiv2);
-
-        }
+            diaryNoteDiv.Controls.Add(newsdiv2);        
         }
     }
 }
