@@ -8,7 +8,7 @@
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         </div>
         <div class="sevenFiveBox" runat="server" id="diaryNoteDiv">
-
+            <p>Test</p>
         </div>
     </div>
 </asp:Content>
