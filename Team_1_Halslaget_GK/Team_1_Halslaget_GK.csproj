@@ -176,7 +176,6 @@
     <Content Include="MobileIndex.aspx" />
     <Content Include="MobileLogin.aspx" />
     <Content Include="packages.config" />
-    <Content Include="Messages.aspx" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - Web Deploy.pubxml" />
     <Content Include="Site.Mobile.Master" />
@@ -402,12 +401,6 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Messages.aspx.cs">
-      <DependentUpon>Messages.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Messages.aspx.designer.cs">
-      <DependentUpon>Messages.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
