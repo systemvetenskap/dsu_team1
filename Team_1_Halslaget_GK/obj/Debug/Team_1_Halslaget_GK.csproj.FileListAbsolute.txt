@@ -35,3 +35,6 @@ D:\Users\Chris\Desktop\GitHub\dsu_team12\Team_1_Halslaget_GK\bin\System.Web.Opti
 D:\Users\Chris\Desktop\GitHub\dsu_team12\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.csprojResolveAssemblyReference.cache
 D:\Users\Chris\Desktop\GitHub\dsu_team12\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.dll
 D:\Users\Chris\Desktop\GitHub\dsu_team12\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.pdb
+C:\Users\Drysen1\Desktop\Skola\Distribuerad Systemutveckling\Uppgift 3 - Projektuppgift\GHJFHJFHJF\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.csprojResolveAssemblyReference.cache
+C:\Users\Drysen1\Desktop\Skola\Distribuerad Systemutveckling\Uppgift 3 - Projektuppgift\GHJFHJFHJF\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.dll
+C:\Users\Drysen1\Desktop\Skola\Distribuerad Systemutveckling\Uppgift 3 - Projektuppgift\GHJFHJFHJF\Team_1_Halslaget_GK\obj\Debug\Team_1_Halslaget_GK.pdb

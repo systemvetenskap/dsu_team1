@@ -99,5 +99,32 @@ namespace Team_1_Halslaget_GK
                 conn.Dispose();
             }
         }
+
+        public DataTable GetUserAllDiaryNotes(string id)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdUserAllDiaryNotes = new NpgsqlCommand("SELECT * FROM dagbok WHERE id_medlem = @id;", conn);
+                cmdUserAllDiaryNotes.Parameters.AddWithValue("@id_medlem", id);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdUserAllDiaryNotes;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
     }
 }

@@ -13,13 +13,13 @@ namespace Team_1_Halslaget_GK {
     public partial class Dagbok {
         
         /// <summary>
-        /// Label1 control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
         /// diaryNoteDiv control.
