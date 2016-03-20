@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using System.Data;
+using System.Drawing;
 
 namespace Team_1_Halslaget_GK
 {
@@ -14,10 +15,10 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Username"] == null && Session["admin"] == null)
-            //{
-            //    Response.Redirect("~/NotAllowed.aspx");
-            //}
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
 
             if(!IsPostBack)
             {
@@ -31,7 +32,6 @@ namespace Team_1_Halslaget_GK
         private void InitilizeGUI()
         {
             BindDropDownCompetition();
-            BindDropDownTee();
             LockTextBoxes();
         }
 
@@ -48,21 +48,6 @@ namespace Team_1_Halslaget_GK
             dropDownCompetition.DataValueField = "id";
             dropDownCompetition.DataBind();
             this.dropDownCompetition.Items.Insert(0, "Välj");
-        }
-
-        /// <summary>
-        /// Binds dropdowntee with all available tees.
-        /// </summary>
-        private void BindDropDownTee()
-        {
-            Tee getTee = new Tee();
-            DataTable allTees = getTee.GetAllTees();
-
-            dropDownTee.DataSource = allTees;
-            dropDownTee.DataTextField = "name";
-            dropDownTee.DataValueField = "id";
-            dropDownTee.DataBind();
-            this.dropDownTee.Items.Insert(0, "Välj");
         }
 
         protected List<Hole> FindNOShots()
@@ -159,124 +144,40 @@ namespace Team_1_Halslaget_GK
             h18.nummer = 18;
             round.Add(h18);
 
-            Hole h19 = new Hole();
-            h19.totalSlag = calculateTotal();
-            round.Add(h19);
+            if (lblType.Text == "singel")
+            {
+                Hole h19 = new Hole();
+                h19.totalSlag = calculateTotal();
+                round.Add(h19);
 
-            //string score = lblScore.Text;
-            Hole h20 = new Hole();
-            h20.score = calculateScore();
-            round.Add(h20);
+                //string score = lblScore.Text;
+                Hole h20 = new Hole();
+                h20.score = calculateScore();
+                round.Add(h20);
+            }
+
+            if (lblType.Text == "lag")
+            {
+                Hole h19 = new Hole();
+                h19.playerhcp = Convert.ToDouble(lblhcp.Text);
+                if (lblKon.Text == "Female" || lblKon.Text == "Kvinna")
+                {
+                    h19.teeid = Convert.ToInt32(lblteef.Text);
+                    round.Add(h19);                    
+                }
+                else
+                {
+                    h19.teeid = Convert.ToInt32(lblteem.Text);
+                    round.Add(h19);
+                }
+            }
 
             return round;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            //string test = calculateTotal().ToString();
-            //string test2 = calculateScore().ToString();
-
-            //Label1.Text = test;
-            //Label2.Text = test2;
-            int memberid = Convert.ToInt32(lblMemberId.Text);
-            int compid = Convert.ToInt32(lblCompetitionID.Text);
-
-            List<Hole> round = FindNOShots();
-            string xml = SerializeRound(round);
-
-            Hole h = new Hole();
-            h.SetRound(xml, compid, memberid);
-        }
-
-        protected string SerializeRound(List<Hole> round)
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Hole>));
-
-            using (StringWriter textWriter = new StringWriter())
-            {
-                xmlSerializer.Serialize(textWriter, round);
-                return textWriter.ToString();
-            }
-        }
-
         /// <summary>
-        /// Click event for btnGetMemberInfo, uses medlem class to get memberinfo and
-        /// most importantly memberid from database. Uses golfid to identify what member to take.
+        /// Adds all the textboxws togheter.
         /// </summary>
-        protected void btnGetMemberInfo_Click(object sender, EventArgs e)
-        {
-            medlem getMedlem = new medlem();
-            string golfID = txtGoldID.Text;
-            txtGoldID.Text = "";
-            DataTable memberInfo = getMedlem.GetMemberWithGolfID(golfID);
-
-            if(memberInfo.Rows.Count <= 0)
-            {
-                lblErrorNoMember.Text = "Det fanns ingen medlem med golf id " + golfID;
-            }
-            else
-            {
-                lblErrorNoMember.Text = "";
-                lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
-                lblFirstName.Text = memberInfo.Rows[0]["fornamn"].ToString();
-                lblLastName.Text = memberInfo.Rows[0]["efternamn"].ToString();
-                lblhcp.Text = memberInfo.Rows[0]["hcp"].ToString();
-                txtBoxMemberID.Text = lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
-                OpenTextBoxes();
-            }
-        }
-
-        /// <summary>
-        /// Event for dropdowncompetition. 
-        /// </summary>
-        protected void dropDownCompetition_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string name = dropDownCompetition.Text;
-            if(dropDownCompetition.Text == "Välj")
-            {
-                lblCompetitionID.Text = "";
-                lblDate.Text = "";
-                lblEndTime.Text = "";
-                lblStartTime.Text = "";
-            }
-            else
-            {
-                Competition specCompetition = new Competition();
-                string id = dropDownCompetition.SelectedValue;
-                DataTable competition = specCompetition.GetSpecificCompetition(id);
-
-                lblCompetitionID.Text = competition.Rows[0]["id"].ToString();
-                lblDate.Text = DateTime.Parse(competition.Rows[0]["datum"].ToString()).ToShortDateString(); ;
-                lblEndTime.Text = DateTime.Parse(competition.Rows[0]["sluttid"].ToString()).ToShortTimeString();
-                lblStartTime.Text = DateTime.Parse(competition.Rows[0]["starttid"].ToString()).ToShortTimeString();
-            }            
-        }
-
-        /// <summary>
-        /// Event for dropdowntee
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void dropDownTee_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(dropDownTee.Text != "Välj")
-            {
-                Tee specTee = new Tee();
-                string id = dropDownTee.SelectedValue;
-                DataTable specificTee = specTee.GetSpecificTee(id);
-
-                lblSlopeValue.Text = specificTee.Rows[0]["slopevalue"].ToString();
-                lblCourseRating.Text = specificTee.Rows[0]["courserating"].ToString();
-                lblPar.Text = specificTee.Rows[0]["par"].ToString();
-            }
-            else
-            {
-                lblSlopeValue.Text = "";
-                lblCourseRating.Text = "";
-                lblPar.Text = "";
-            }
-        }
-
         private int calculateTotal()
         {
             int txt1 = Convert.ToInt32(TextBox1.Text);
@@ -303,6 +204,9 @@ namespace Team_1_Halslaget_GK
             return total;
         }
 
+        /// <summary>
+        /// Calculates the score.
+        /// </summary>
         private int calculateScore()
         {
             int total = calculateTotal();
@@ -320,6 +224,454 @@ namespace Team_1_Halslaget_GK
             int theScore = total - Convert.ToInt32(score);
 
             return theScore;
+        }
+
+        private void calculateTeamScore(DataSet dsp1, DataSet dsp2, DataSet dsp3, DataSet dsp4, int teamid)
+        {
+            Hole h = new Hole();
+            int totalscore = 0;
+            DataTable holeinfo = h.GetHoleInfo();
+            int i = 0;
+            List<int> scorecount = new List<int>();
+            int spelhcp1 = h.GetGameHcp(Convert.ToDouble(dsp1.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
+            int spelhcp2 = h.GetGameHcp(Convert.ToDouble(dsp2.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
+            int spelhcp3 = h.GetGameHcp(Convert.ToDouble(dsp3.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
+            int spelhcp4 = h.GetGameHcp(Convert.ToDouble(dsp4.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
+
+
+            //foreach (DataRow dr in dsp1.Tables[0].Rows)
+            for (int j = 0; j < dsp1.Tables[0].Rows.Count - 1; j++) //körde foreach först men är 19 rader i tabellen
+            {                                                   // så nu är det ett j här som skulle kunna vara ett i men de är vad de är
+
+                int par = Convert.ToInt32(holeinfo.Rows[i]["par"]);
+                DataRow dr = dsp1.Tables[0].Rows[i];
+                if (spelhcp1 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
+                {
+                    par++;
+                }
+
+                if (spelhcp1 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
+                {
+                    par++;
+                }
+
+                if (spelhcp1 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
+                {
+                    par++;
+                }
+
+                if (Convert.ToInt32(dr["slag"]) >= par + 2)
+                {
+                    scorecount.Add(0);
+                }
+
+                else
+                {
+                    int points = 2 + (par - Convert.ToInt32(dr["slag"]));
+                    scorecount.Add(points);
+                }
+
+                par = Convert.ToInt32(holeinfo.Rows[i]["par"]);
+                DataRow dr2 = dsp2.Tables[0].Rows[i];
+                if (spelhcp2 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
+                {
+                    par++;
+                }
+
+                if (spelhcp2 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
+                {
+                    par++;
+                }
+
+                if (spelhcp2 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
+                {
+                    par++;
+                }
+
+                if (Convert.ToInt32(dr2["slag"]) >= par + 2)
+                {
+                    scorecount.Add(0);
+                }
+
+                else
+                {
+                    int points = 2 + (par - Convert.ToInt32(dr2["slag"]));
+                    scorecount.Add(points);
+                }
+
+                spelhcp3 = h.GetGameHcp(Convert.ToDouble(dsp3.Tables[0].Rows[18]["playerhcp"]), Convert.ToInt32(dsp1.Tables[0].Rows[18]["teeid"]));
+                par = Convert.ToInt32(holeinfo.Rows[i]["par"]);
+                DataRow dr3 = dsp3.Tables[0].Rows[i];
+                if (spelhcp3 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
+                {
+                    par++;
+                }
+
+                if (spelhcp3 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
+                {
+                    par++;
+                }
+
+                if (spelhcp3 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
+                {
+                    par++;
+                }
+
+                if (Convert.ToInt32(dr3["slag"]) >= par + 2)
+                {
+                    scorecount.Add(0);
+                }
+
+                else
+                {
+                    int points = 2 + (par - Convert.ToInt32(dr3["slag"]));
+                    scorecount.Add(points);
+                }
+
+                par = Convert.ToInt32(holeinfo.Rows[i]["par"]);
+                DataRow dr4 = dsp4.Tables[0].Rows[i];
+                if (spelhcp4 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]))
+                {
+                    par++;
+                }
+
+                if (spelhcp4 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 2)
+                {
+                    par++;
+                }
+
+                if (spelhcp4 >= Convert.ToInt32(holeinfo.Rows[i]["hcp"]) * 3)
+                {
+                    par++;
+                }
+
+                if (Convert.ToInt32(dr4["slag"]) >= par + 2)
+                {
+                    scorecount.Add(0);
+                }
+
+                else
+                {
+                    int points = 2 + (par - Convert.ToInt32(dr4["slag"]));
+                    scorecount.Add(points);
+                }
+
+                scorecount.OrderByDescending(p => p).ToList();
+                scorecount.RemoveAt(0);
+
+                totalscore += scorecount.Sum();
+                scorecount.Clear();
+                i++;
+            }
+
+            Team t = new Team();
+            t.SetTeamResult(totalscore, teamid);
+        }
+
+        protected void deserializeScore()
+        {
+            int memberid = Convert.ToInt32(lblMemberId.Text);
+            int compid = Convert.ToInt32(lblCompetitionID.Text);
+            
+            Team lag = new Team();
+            DataTable dt = lag.GetTeamXML(memberid, compid);
+            int teamid = Convert.ToInt32(dt.Rows[0][0]);
+
+            int playercount = 0;
+
+            DataSet dsp1 = new DataSet();
+            DataSet dsp2 = new DataSet();
+            DataSet dsp3 = new DataSet();
+            DataSet dsp4 = new DataSet();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (dr["resultatxml"].ToString() != "")
+                {
+                    if (playercount == 3)
+                    {
+                        playercount++;
+
+                        try
+                        {
+                            StringReader sr = new StringReader(dr[1].ToString());
+                            dsp1.ReadXml(sr);
+                        }
+
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                    if (playercount == 2)
+                    {
+                        playercount++;
+
+                        try
+                        {
+                            StringReader sr = new StringReader(dr[1].ToString());
+                            dsp2.ReadXml(sr);
+                        }
+
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                    if (playercount == 1)
+                    {
+                        playercount++;
+
+                        try
+                        {
+                            StringReader sr = new StringReader(dr[1].ToString());
+                            dsp3.ReadXml(sr);
+                        }
+
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                    if (playercount == 0)
+                    {
+                        playercount++;
+
+                        try
+                        {
+                            StringReader sr = new StringReader(dr[1].ToString());
+                            dsp4.ReadXml(sr);
+                        }
+
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                    if (playercount == 4)
+                    {
+                        calculateTeamScore(dsp1, dsp2, dsp3, dsp4, teamid);
+                    }
+                }
+            }
+        }
+
+        protected string SerializeRound(List<Hole> round)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Hole>));
+
+            using (StringWriter textWriter = new StringWriter())
+            {
+                xmlSerializer.Serialize(textWriter, round);
+                return textWriter.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Updates the GUI with new and relevant values. 
+        /// </summary>
+        private void UpdateGUI()
+        {
+            LockTextBoxes();
+
+            string id = dropDownCompetition.SelectedValue;
+            SetCompetitionInfoLabels(id);
+            BindGridPlayers(id);
+
+            lblMemberId.Text = "";
+            lblFirstName.Text = "";
+            lblLastName.Text = "";
+            lblhcp.Text = "";
+            lblKon.Text = "";
+            lblteef.Text = "";
+            lblteem.Text = "";
+            txtBoxMemberID.Text = "";
+        }
+
+        /// <summary>
+        /// Binds the grid with players from a specific competition.
+        /// </summary>
+        /// <param name="id"></param>
+        private void BindGridPlayers(string id)
+        {
+            Competition getPlayers = new Competition();
+            DataTable dt = new DataTable();
+            if (lblType.Text == "singel")
+            {
+                dt = getPlayers.GetSpecificCompetitionPlayers(id);
+            }
+
+            else
+            {
+                dt = getPlayers.GetSpecificCompetitionTeamPlayers(id);
+            }
+
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            lblAnyPlayers.Style.Add("display", "none");
+            if (GridView1.Rows.Count == 0)
+            {
+                lblAnyPlayers.Style.Add("display", "inline");
+                lblAnyPlayers.Text = "Inga deltagare funna.\nEller så har alla deltagare ifyllda scorekort för denna tävling.";
+            }
+        }
+
+        /// <summary>
+        /// Sets the labels for a specific competition.
+        /// </summary>
+        /// <param name="id"></param>
+        private void SetCompetitionInfoLabels(string id)
+        {
+            Competition specCompetition = new Competition();
+            DataTable competition = specCompetition.GetSpecificCompetition(id);
+
+            lblCompetitionID.Text = competition.Rows[0]["id"].ToString();
+            lblDate.Text = DateTime.Parse(competition.Rows[0]["datum"].ToString()).ToShortDateString(); ;
+            lblEndTime.Text = DateTime.Parse(competition.Rows[0]["sluttid"].ToString()).ToShortTimeString();
+            lblStartTime.Text = DateTime.Parse(competition.Rows[0]["starttid"].ToString()).ToShortTimeString();
+            lblType.Text = competition.Rows[0]["type"].ToString();
+        }
+
+        /// <summary>
+        /// Event for when user wants to save the scorecard.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            int memberid = Convert.ToInt32(lblMemberId.Text);
+            int compid = Convert.ToInt32(lblCompetitionID.Text);
+            List<Hole> round = FindNOShots();
+            Hole h = new Hole();
+
+            if (lblType.Text == "singel")
+            {
+                string xml = SerializeRound(round);
+
+                h.SetRound(xml, compid, memberid);
+            }
+
+            else
+            {
+                string xml = SerializeRound(round);
+                h.SetRoundTeam(xml, compid, memberid);
+                deserializeScore();
+
+            }
+
+            UpdateGUI();
+        }
+
+        /// <summary>
+        /// Event for dropdowncompetition. 
+        /// </summary>
+        protected void dropDownCompetition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(dropDownCompetition.Text == "Välj")
+            {
+                lblCompetitionID.Text = "";
+                lblDate.Text = "";
+                lblEndTime.Text = "";
+                lblStartTime.Text = "";
+                lblType.Text = "";
+            }
+            else
+            { 
+                string id = dropDownCompetition.SelectedValue;
+                SetCompetitionInfoLabels(id);
+                BindGridPlayers(id);
+            }
+
+            //if (lblType.Text == "lag")
+            //{
+            //    dropDownTee.Enabled = false;
+            //}
+
+            //if (lblType.Text == "singel")
+            //{
+            //    dropDownTee.Enabled = true;
+            //}
+        }
+
+        /// <summary>
+        /// Event for when selected index is changed. Currently only changes the color
+        /// of the row.
+        /// </summary>
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                if (row.RowIndex == GridView1.SelectedIndex)
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#6C6C6C");
+                }
+                else
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for rowcommand, when user clicks select/markera.
+        /// </summary>
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Select")
+            {                
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                SetMemberInfoLabels(rowIndex);
+                string kon = lblKon.Text;
+
+                if(kon == "Female" || kon == "Kvinna")
+                {
+                    string teeID = lblteef.Text;
+                    SetTeeSpecifications(teeID);
+                }
+                else
+                {
+                    string teeID = lblteem.Text;
+                    SetTeeSpecifications(teeID);
+                }
+
+                OpenTextBoxes();
+            }
+        }
+
+        /// <summary>
+        /// Sets the memberinfo labels in order to be used to validate what player
+        /// and what tee he/she is on.
+        /// </summary>
+        /// <param name="rowIndex">Chosen row in the gridview.</param>
+        private void SetMemberInfoLabels(int rowIndex)
+        {
+            lblMemberId.Text = GridView1.Rows[rowIndex].Cells[0].Text;
+            lblFirstName.Text = GridView1.Rows[rowIndex].Cells[1].Text;
+            lblLastName.Text = GridView1.Rows[rowIndex].Cells[2].Text;
+            lblhcp.Text = GridView1.DataKeys[rowIndex].Values["hcp"].ToString();
+            lblKon.Text = GridView1.DataKeys[rowIndex].Values["kon"].ToString();
+            lblteef.Text = GridView1.DataKeys[rowIndex].Values["teef"].ToString();
+            lblteem.Text = GridView1.DataKeys[rowIndex].Values["teem"].ToString();
+            txtBoxMemberID.Text = GridView1.Rows[rowIndex].Cells[1].Text;
+        }
+
+        /// <summary>
+        /// Sets hidden labels to be used by javascript to calculate
+        /// score and stuff and also for the C# to use to calculate the same stuff.
+        /// </summary>
+        /// <param name="id">id for what tee to get.</param>
+        private void SetTeeSpecifications(string id)
+        {
+            Tee specTee = new Tee();
+            DataTable specificTee = specTee.GetSpecificTee(id);
+
+            lblSlopeValue.Text = specificTee.Rows[0]["slopevalue"].ToString();
+            lblCourseRating.Text = specificTee.Rows[0]["courserating"].ToString();
+            lblPar.Text = specificTee.Rows[0]["par"].ToString();
         }
 
         /// <summary>
@@ -416,6 +768,25 @@ namespace Team_1_Halslaget_GK
             TextBox18.ToolTip = "Du måste välja en medlem först";
             TextBox18.BackColor = System.Drawing.Color.Gray;
             TextBox18.Style.Add("cursor", "not-allowed");
+
+            TextBox1.Text = "";
+            TextBox2.Text = "";
+            TextBox3.Text = "";
+            TextBox4.Text = "";
+            TextBox5.Text = "";
+            TextBox6.Text = "";
+            TextBox7.Text = "";
+            TextBox8.Text = "";
+            TextBox9.Text = "";
+            TextBox10.Text = "";
+            TextBox11.Text = "";
+            TextBox12.Text = "";
+            TextBox13.Text = "";
+            TextBox14.Text = "";
+            TextBox15.Text = "";
+            TextBox16.Text = "";
+            TextBox17.Text = "";
+            TextBox18.Text = "";
         }
 
         /// <summary>
@@ -498,7 +869,71 @@ namespace Team_1_Halslaget_GK
             TextBox17.ToolTip = "Fyll i antal slag.";
             TextBox18.ToolTip = "Fyll i antal slag.";
         }
+        
+        ///// <summary>
+        ///// Event for dropdowntee NOT NEEDED ANY MORE BUT SAVE CODE JUST IN CASE.
+        ///// </summary>
+        //protected void dropDownTee_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (dropDownTee.Text != "Välj")
+        //    {
+        //        Tee specTee = new Tee();
+        //        string id = dropDownTee.SelectedValue;
+        //        DataTable specificTee = specTee.GetSpecificTee(id);
 
+        //        lblSlopeValue.Text = specificTee.Rows[0]["slopevalue"].ToString();
+        //        lblCourseRating.Text = specificTee.Rows[0]["courserating"].ToString();
+        //        lblPar.Text = specificTee.Rows[0]["par"].ToString();
+        //    }
+        //    else
+        //    {
+        //        lblSlopeValue.Text = "";
+        //        lblCourseRating.Text = "";
+        //        lblPar.Text = "";
+        //    }
+        //}
 
+        ///// <summary>
+        ///// NOT NEEDED ANYMORE.
+        ///// Click event for btnGetMemberInfo, uses medlem class to get memberinfo and
+        ///// most importantly memberid from database. Uses golfid to identify what member to take.
+        ///// </summary>
+        //protected void btnGetMemberInfo_Click(object sender, EventArgs e)
+        //{
+        //    medlem getMedlem = new medlem();
+        //    string golfID = txtGoldID.Text;
+        //    txtGoldID.Text = "";
+        //    DataTable memberInfo = getMedlem.GetMemberWithGolfID(golfID);
+
+        //    if (memberInfo.Rows.Count <= 0)
+        //    {
+        //        lblErrorNoMember.Text = "Det fanns ingen medlem med golf id " + golfID;
+        //    }
+        //    else
+        //    {
+        //        lblErrorNoMember.Text = "";
+        //        lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
+        //        lblFirstName.Text = memberInfo.Rows[0]["fornamn"].ToString();
+        //        lblLastName.Text = memberInfo.Rows[0]["efternamn"].ToString();
+        //        lblhcp.Text = memberInfo.Rows[0]["hcp"].ToString();
+        //        txtBoxMemberID.Text = lblMemberId.Text = memberInfo.Rows[0]["id"].ToString();
+        //        OpenTextBoxes();
+        //    }
+        //}
+
+        ///// <summary>
+        ///// Binds dropdowntee with all available tees.
+        ///// </summary>
+        //private void BindDropDownTee()
+        //{
+        //    Tee getTee = new Tee();
+        //    DataTable allTees = getTee.GetAllTees();
+
+        //    dropDownTee.DataSource = allTees;
+        //    dropDownTee.DataTextField = "name";
+        //    dropDownTee.DataValueField = "id";
+        //    dropDownTee.DataBind();
+        //    this.dropDownTee.Items.Insert(0, "Välj");
+        //}
     }
 }

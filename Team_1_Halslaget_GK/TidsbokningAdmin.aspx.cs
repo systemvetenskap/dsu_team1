@@ -19,11 +19,24 @@ namespace Team_1_Halslaget_GK
             {
                 Response.Redirect("~/NotAllowed.aspx");
             }
+
             UpdateTable(GetBookedTimes());
+
             if (!IsPostBack)
             {
                 Table1.Visible = false;
                 Calendar1.SelectedDate = DateTime.Today;
+            }
+
+            if (hidden1.Text == "1")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showDiv", "showDiv();", true);
+                hidden1.Text = "1";
+            }
+            if (hidden2.Text == "1")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showotherplayers", "showotherplayers();", true);
+                hidden2.Text = "1";
             }
         }
 
@@ -518,6 +531,26 @@ namespace Team_1_Halslaget_GK
             //        e.Cell.ToolTip = "Du kan inte välja dessa tider, de ligger utanför säsongen.";
             //    }
             //}
+        }
+
+        protected void ShowHiddenSearchDiv_Click(object sender, EventArgs e)
+        {
+            if (hidden1.Text == "0" || hidden1.Text == "")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showSlideDiv", "showSlideDiv();", true);
+                hidden1.Text = "1";
+                hidden2.Text = "1";
+
+            }
+            else if (hidden1.Text == "1")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "hideSlideDiv", "hideSlideDiv();", true);
+                hidden1.Text = "0";
+                hidden2.Text = "0";
+                //tbFullName.Text = "";
+                //lbMembers.DataSource = "";
+                //lbMembers.DataBind();
+            }
         }
     }
 }

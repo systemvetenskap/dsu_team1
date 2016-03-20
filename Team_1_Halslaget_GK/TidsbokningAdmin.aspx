@@ -3,6 +3,7 @@
     <link href="css/tidsbokning.css" rel="stylesheet" />
     <script src="ja/tidsbokning.js"></script>
     <script src="ja/opencloseoverlay.js"></script>
+    <script src="ja/hideShowSearch.js"></script>
     <style type="text/css">
         .modal
         {
@@ -176,6 +177,10 @@
         <asp:Label ID="lblPlayer4" CssClass="players" runat="server" Text=""></asp:Label>
             <asp:Button ID="Removeplayer4Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer4Btn_Click" />
         </div>
+            <div class="HiddenSearchBox">
+                <asp:Button ID="Button2" runat="server" Text="HAHAHAHAHAHHAHAHAHAHHA" />
+         </div>
+           <asp:Button ID="ShowHiddenSearchDiv" CssClass="my-button my-SearchBtn" runat="server" Text="Sök på medlem" OnClick="ShowHiddenSearchDiv_Click" />
         <div id="otherplayers" runat="server" class="fullBox">
                 <asp:Label ID="Label1" runat="server" Text="Fyll i golf-ID på de som du vill boka på den här tiden!"></asp:Label>            
                 <asp:TextBox ID="tbPlayer1" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>              
@@ -197,4 +202,7 @@
          <asp:Button ID="OK" runat="server" Text="OK" CssClass="my-button top-n-bottom-space" OnClientClick="closeOverlayInfoBox();"/>     
       </div>
     </div>
+<!-------------------- Hidden ------------------>
+    <asp:Label ID="hidden1" runat="server" Text="" Visible="false"></asp:Label>
+    <asp:Label ID="hidden2" runat="server" Text="" Visible="false"></asp:Label>
 </asp:Content>

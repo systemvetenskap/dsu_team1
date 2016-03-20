@@ -16,13 +16,14 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Username"] == null && Session["admin"] == null)
-            //{
-            //    Response.Redirect("~/NotAllowed.aspx");
-            //}
+            if (Session["Username"] == null && Session["admin"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
             if (!IsPostBack)
             {
                 fillTime();
+                fillTee();
                 Calendar1.SelectedDate = DateTime.Today;
             }           
         }
@@ -39,6 +40,7 @@ namespace Team_1_Halslaget_GK
             ddlendtime.DataSource = dt;
             ddlstarttime.DataSource = dt;
 
+            conn.Close();
             ddlstarttime.DataTextField = "starttid";
             ddlendtime.DataTextField = "starttid";
 
@@ -48,6 +50,41 @@ namespace Team_1_Halslaget_GK
             ddlstarttime.Items.Insert(0, new ListItem("Välj starttid", "Välj starttid"));
             ddlendtime.Items.Insert(0, new ListItem("Välj sluttid", "Välj sluttid"));
 
+        }
+
+        public void fillTee()
+        {
+            string sql1 = "SELECT * FROM teetable WHERE gender = 1";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql1, conn);
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable teeF = new DataTable();
+            da.Fill(teeF);
+            conn.Close();
+
+            string sql2 = "SELECT * FROM teetable WHERE gender = 2";
+            conn.Open();
+            NpgsqlCommand cmd2 = new NpgsqlCommand(sql2, conn);
+            NpgsqlDataAdapter da2 = new NpgsqlDataAdapter();
+            da2.SelectCommand = cmd2;
+            DataTable teeM = new DataTable();
+            da2.Fill(teeM);
+            conn.Close();
+
+            ddlTeeF.DataSource = teeF;
+            ddlTeeM.DataSource = teeM;
+
+            ddlTeeF.DataTextField = "name";
+            ddlTeeM.DataTextField = "name";
+            ddlTeeF.DataValueField = "id";
+            ddlTeeM.DataValueField = "id";
+
+            ddlTeeF.DataBind();
+            ddlTeeM.DataBind();
+
+            ddlTeeM.Items.Insert(0, new ListItem("Välj tee för herrar", "Välj tee för herrar"));
+            ddlTeeF.Items.Insert(0, new ListItem("Välj tee för damer", "Välj tee för damer"));
         }
 
         public void CreateComp()
@@ -62,8 +99,10 @@ namespace Team_1_Halslaget_GK
             newComp.type = ddlCompType.SelectedItem.ToString();
             newComp.firstRegDate = Calendar1.SelectedDate.AddDays(-14);
             newComp.lastRegDate = Calendar1.SelectedDate.AddDays(-2);
+            newComp.teeM = Convert.ToInt32(ddlTeeM.SelectedValue);
+            newComp.teeF = Convert.ToInt32(ddlTeeF.SelectedValue);
 
-            string sql = "INSERT INTO tavling (datum, starttid, sluttid, description, namn, type, firstregdate, lastregdate) VALUES(@datum, @starttid, @sluttid, @description, @namn, @type, @firstregdate, @lastregdate) RETURNING id";
+            string sql = "INSERT INTO tavling (datum, starttid, sluttid, description, namn, type, firstregdate, lastregdate, teem, teef) VALUES(@datum, @starttid, @sluttid, @description, @namn, @type, @firstregdate, @lastregdate, @teeM, @teeF) RETURNING id";
 
             conn.Open();
 
@@ -76,6 +115,8 @@ namespace Team_1_Halslaget_GK
             cmd.Parameters.AddWithValue("@type", newComp.type.ToLower());
             cmd.Parameters.AddWithValue("@firstregdate", newComp.firstRegDate);
             cmd.Parameters.AddWithValue("@lastregdate", newComp.lastRegDate);
+            cmd.Parameters.AddWithValue("@teeM", newComp.teeM);
+            cmd.Parameters.AddWithValue("@teeF", newComp.teeF);
 
             int tavlingsid = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -100,6 +141,8 @@ namespace Team_1_Halslaget_GK
             ddlCompType.SelectedIndex = 0;
             ddlstarttime.SelectedIndex = 0;
             ddlendtime.SelectedIndex = 0;
+            ddlTeeF.SelectedIndex = 0;
+            ddlTeeM.SelectedIndex = 0;
         }
 
         public void BookCompTimes(int tavlingsid)

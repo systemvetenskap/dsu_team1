@@ -18,10 +18,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
 		{
-            //if (Session["userID"] == null)
-            //{
-            //    Response.Redirect("~/NotAllowed.aspx");
-            //}
+            if (Session["userID"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
 
             bool admin = Convert.ToBoolean(Session["admin"]);
 
@@ -63,6 +63,8 @@ namespace Team_1_Halslaget_GK
             lblPlayer2.Text = "";
             lblPlayer3.Text = "";
             lblPlayer4.Text = "";
+
+            
 
             tbPlayer2.Text = "";
             tbPlayer3.Text = "";
@@ -209,6 +211,7 @@ namespace Team_1_Halslaget_GK
                 {
                     lblPlayer1.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: "+ golfplayer.kon;
                     lblPlayer1.ID = golfplayer.golfID;
+                    lblPlayer1.Visible = true;
                     Session["player1"] = golfplayer.hcp;          
                     playercount++;
                 }

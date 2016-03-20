@@ -19,6 +19,8 @@ namespace Team_1_Halslaget_GK
         public DateTime date { get; set; }
         public DateTime firstRegDate { get; set; }
         public DateTime lastRegDate { get; set; }
+        public int teeM { get; set; }
+        public int teeF { get; set; }
 
         /// <summary>
         /// Gets all the competition that is in the database.
@@ -86,6 +88,32 @@ namespace Team_1_Halslaget_GK
             {
                 conn.Open();
                 NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT * FROM tavling WHERE datum > CURRENT_DATE ORDER BY id ASC", conn);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetCompetitions;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        public DataTable GetAllUpcomingCompetitionsRegdates()
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT * FROM tavling WHERE CURRENT_DATE BETWEEN firstregdate AND lastregdate ORDER BY id ASC", conn);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmdGetCompetitions;
                 DataTable dt = new DataTable();
@@ -218,6 +246,67 @@ namespace Team_1_Halslaget_GK
             nda.Fill(dt);
 
             return dt;
+        }
+
+        /// <summary>
+        /// Gets all players from a competition where they have NO resultxml.
+        /// </summary>
+        public DataTable GetSpecificCompetitionPlayers(string competitionID)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT medlem.id, fornamn, efternamn, hcp, kon, teef, teem FROM medlem_tavling " +
+                                                                     "INNER JOIN tavling ON tavling.id = tavling_id "+
+                                                                     "INNER JOIN medlem ON medlem.id = medlem_id " +
+                                                                     "WHERE tavling_id = @tavlingid " +
+                                                                     "AND resultatxml IS NULL;", conn);
+                cmdGetCompetitions.Parameters.AddWithValue("@tavlingid", competitionID);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetCompetitions;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        public DataTable GetSpecificCompetitionTeamPlayers(string competitionID)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT medlem.id, fornamn, efternamn, hcp, kon, teef, teem FROM medlem INNER JOIN lag_medlem ON medlem.id = medlem_id INNER JOIN lag_tavling ON lag_id = id_lag INNER JOIN tavling ON id_tavling = tavling.id WHERE tavling.id = @tavling_id AND resultatxml IS NULL", conn);
+                cmdGetCompetitions.Parameters.AddWithValue("@tavling_id", competitionID);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetCompetitions;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
         }
     }
 }

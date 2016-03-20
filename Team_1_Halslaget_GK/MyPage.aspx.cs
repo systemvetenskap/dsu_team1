@@ -26,11 +26,11 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Username"] == null)
-            {
-                Response.Redirect("~/NotAllowed.aspx");
-            }
-            if (!IsPostBack)
+            //if (Session["Username"] == null)
+            //{
+            //    Response.Redirect("~/NotAllowed.aspx");
+            //}
+            if(!IsPostBack)
             {
                 InitializeGUI();
             }
@@ -54,7 +54,6 @@ namespace Team_1_Halslaget_GK
             SetMemberInfoLabels();
             SetMemberTextBoxes();
             SetCompGrid();
-            lastCompetition();
         }
 
         /// <summary>
@@ -299,14 +298,10 @@ namespace Team_1_Halslaget_GK
             Response.Redirect("~/ViewStartList.aspx");
             
         }
-        protected void lastCompetition()
+
+        protected void btnGoToDiary_Click(object sender, EventArgs e)
         {
-            string id = Session["Username"].ToString();
-            string sql = "SELECT medlem_id, tavling_id FROM medlem_tavling WHERE medlem_id = (SELECT id FROM medlem WHERE id = " + id + ")";
-            NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
-            labelCompetitionName.Text = da.ToString();
-            conn.Close();
+            Response.Redirect("~/CreateDagbokNote.aspx");
         }
 
     }

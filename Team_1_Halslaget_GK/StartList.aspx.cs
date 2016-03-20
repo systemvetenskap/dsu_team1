@@ -20,10 +20,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Username"] == null)
-            //{
-            //    Response.Redirect("~/NotAllowed.aspx");
-            //}
+            if (Session["Username"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
             if (!IsPostBack)
             {
                 InitializeGUI();
@@ -194,13 +194,8 @@ namespace Team_1_Halslaget_GK
                 DataTable dt1 = getSingelCompPlaylist(gvComps.SelectedValue.ToString());
                 GridView1.DataSource = dt1;
 
-                btnGeneratePlaylist.Visible = true;
-
-                if(dt1.Rows.Count > 0)
-                {
-                    BtnGeneratePlaylistLag.Visible = false;
-                    btnGeneratePlaylist.Visible = false;
-                }            
+                BtnGeneratePlaylistLag.Visible = false;
+                btnGeneratePlaylist.Visible = true;           
 
                 GridView1.Columns[3].Visible = false;
 
@@ -212,12 +207,8 @@ namespace Team_1_Halslaget_GK
                 GridView1.DataSource = dt2;
 
                 BtnGeneratePlaylistLag.Visible = true;
+                btnGeneratePlaylist.Visible = false;
 
-                if (dt2.Rows.Count > 0)
-                {
-                    BtnGeneratePlaylistLag.Visible = false;
-                    btnGeneratePlaylist.Visible = false;
-                }
 
                 GridView1.Columns[3].Visible = true;
 

@@ -124,6 +124,7 @@
                 <p class="p-my-game"><strong>Ditt nuvarande handikapp är:</strong> <asp:Label ID="lblCurrentHandicap" runat="server" Text="Label"></asp:Label>.</p>
                 <p class="p-my-game"><strong>Du har spelat</strong> <asp:Label ID="lblAmountOfRounds" runat="server" Text="Label"></asp:Label> <strong>rundor.</strong></p>
                 <p class="p-my-game"><asp:Label ID="lblPaymentReminder" runat="server" Text="Label" Visible="false"></asp:Label></p>
+                <asp:Button ID="btnGoToDiary" CssClass="my-button" runat="server" Text="DAGBOK TEMPORÄRT" OnClick="btnGoToDiary_Click" />
             </div>
         </div>
     </div>

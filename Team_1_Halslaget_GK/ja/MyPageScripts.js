@@ -11,6 +11,19 @@
     }
 });
 
+var prm = Sys.WebForms.PageRequestManager.getInstance();
+prm.add_endRequest(function () {
+    var bookingid = document.getElementById('ContentPlaceHolder1_lblTempBookingID').innerText;
+    var date = document.getElementById('ContentPlaceHolder1_lblTempDate').innerText;
+    var starttime = document.getElementById('ContentPlaceHolder1_lblTempStartTime').innerText;
+
+    if (bookingid === "Empty" && date === "Empty" && starttime === "Empty") {
+        $('#btnCancelBooking').removeAttr("onclick");
+        $('#btnCancelBooking').css("background", "#818181");
+        $('#btnCancelBooking').css("cursor", "not-allowed");
+    }
+});
+
 function openOverlayEditInfo() {
     $('.page-overlay-edit-info').fadeIn('slow');
 

@@ -108,6 +108,7 @@
     <Content Include="Bokatavling.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="CreateCompetition.aspx" />
+    <Content Include="CreateDagbokNote.aspx" />
     <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminBokatavlingCss.css" />
     <Content Include="css\AdminPanelCss.css" />
@@ -117,7 +118,7 @@
     <Content Include="css\CreateNewMemberCss.css" />
     <Content Include="css\deafultstyle.css" />
     <Content Include="css\Medlemsregister.css" />
-    <Content Include="css\Mobile.css" />
+    <Content Include="css\Messages.css" />
     <Content Include="css\MyPageCss.css" />
     <Content Include="css\Publishnewsstyle.css" />
     <Content Include="css\ScoreCardStyle.css" />
@@ -126,10 +127,12 @@
     <Content Include="css\style.css" />
     <Content Include="css\TestPageCss.css" />
     <Content Include="css\tidsbokning.css" />
+    <Content Include="Dagbok.aspx" />
     <Content Include="data\Mono.Security.dll" />
     <Content Include="data\Npgsql.dll" />
     <Content Include="default.aspx" />
     <Content Include="css\font.css" />
+    <Content Include="css\DiaryCSS.css" />
     <Content Include="fonts\generator_config.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\lato-lig-demo.html" />
@@ -148,12 +151,14 @@
     <Content Include="img\golfboll.jpg" />
     <Content Include="img\loader.gif" />
     <Content Include="ja\ChangePasswordJs.js" />
+    <Content Include="ja\hideShowSearch.js" />
     <Content Include="ja\jquery.maskedinput.js" />
     <Content Include="ja\memberRegScript.js" />
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\ScoreCard.js" />
     <Content Include="ja\Scrollto.js" />
+    <Content Include="ja\TextboxChangeColor.js" />
     <Content Include="ja\tidsbokning.js" />
     <Content Include="ja\Tinymce.js" />
     <Content Include="langs\sv_SE.js" />
@@ -168,9 +173,8 @@
     <Content Include="fonts\monofont.ttf" />
     <Content Include="bin\Team_1_Halslaget_GK.dll.config" />
     <Content Include="AdminMaster.Master" />
-    <Content Include="MobileIndex.aspx" />
-    <Content Include="MobileLogin.aspx" />
     <Content Include="packages.config" />
+    <Content Include="Messages.aspx" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - Web Deploy.pubxml" />
     <Content Include="Site.Mobile.Master" />
@@ -235,6 +239,7 @@
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\Hole.cs" />
+    <Compile Include="Classes\Message.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Competition.cs" />
     <Compile Include="CreateCompetition.aspx.cs">
@@ -244,12 +249,26 @@
     <Compile Include="CreateCompetition.aspx.designer.cs">
       <DependentUpon>CreateCompetition.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreateDagbokNote.aspx.cs">
+      <DependentUpon>CreateDagbokNote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateDagbokNote.aspx.designer.cs">
+      <DependentUpon>CreateDagbokNote.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateNewMember.aspx.cs">
       <DependentUpon>CreateNewMember.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CreateNewMember.aspx.designer.cs">
       <DependentUpon>CreateNewMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dagbok.aspx.cs">
+      <DependentUpon>Dagbok.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dagbok.aspx.designer.cs">
+      <DependentUpon>Dagbok.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -258,6 +277,7 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Diary.cs" />
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -274,20 +294,6 @@
       <DependentUpon>Medlemsregister.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\MemberTypes.cs" />
-    <Compile Include="MobileIndex.aspx.cs">
-      <DependentUpon>MobileIndex.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MobileIndex.aspx.designer.cs">
-      <DependentUpon>MobileIndex.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MobileLogin.aspx.cs">
-      <DependentUpon>MobileLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MobileLogin.aspx.designer.cs">
-      <DependentUpon>MobileLogin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MyPage.aspx.cs">
       <DependentUpon>MyPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -380,6 +386,12 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Messages.aspx.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Messages.aspx.designer.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

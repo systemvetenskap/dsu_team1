@@ -65,7 +65,37 @@
                     <asp:ListItem>Singel</asp:ListItem>
                     <asp:ListItem>Lag</asp:ListItem>
                 </asp:DropDownList>
-                </div>        
+                </div>  
+                <div class="halfBox">
+                    <asp:Label ID="Label3" runat="server" Text="Tee Herr"></asp:Label>
+                        <asp:RequiredFieldValidator  
+                            ID="RequiredFieldValidator5"
+                            ControlToValidate="ddlTeeM"
+                            ForeColor ="Red"
+                            initialValue="Välj tee för herrar"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Glöm inte välja Tee för herrar"
+                            display="Dynamic"
+                            ValidationGroup="NewComp">                       
+                         </asp:RequiredFieldValidator>
+                    <asp:DropDownList ID="ddlTeeM" runat="server" CssClass="DropDown DropDown2"></asp:DropDownList>
+                </div>
+                <div class="halfBox">
+                    <asp:Label ID="Label4" runat="server" Text="Tee Dam"></asp:Label>
+                      <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator4"
+                            ControlToValidate="ddlTeeF"
+                            ForeColor ="Red"
+                            initialValue="Välj tee för damer"
+                            runat="server"
+                            Font-Size="Medium"
+                            ErrorMessage="Glöm inte välja Tee för damer"
+                            display="Dynamic"
+                            ValidationGroup="NewComp">                       
+                         </asp:RequiredFieldValidator>
+                    <asp:DropDownList ID="ddlTeeF" runat="server" CssClass="DropDown DropDown2"></asp:DropDownList>
+                </div>      
                 <div class="halfBox">
                     <asp:Label ID="Label1" runat="server" Text="Starttid"></asp:Label>
                     <asp:RequiredFieldValidator

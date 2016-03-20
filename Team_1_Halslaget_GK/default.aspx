@@ -111,7 +111,7 @@
     <!--------------------------------------- TÄVLINGAR/VÄDER ================================================== -->
 
                         <div class="fullBox bookings">
-                            <div class="page-title"><h1>Tävlingar och Väder</h1></div>
+                            <div class="page-title"><h1>Tävlingar</h1></div>
                                 <div class="halfBox">
                                     <div class="tavlingsBox">
                                     <asp:GridView ID="gvComp" runat="server" DataKeyNames="id" CssClass="Grid" GridLines="None" AutoGenerateColumns="false">
