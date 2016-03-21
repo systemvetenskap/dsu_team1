@@ -17,7 +17,7 @@ namespace Team_1_Halslaget_GK.Classes
 
             try
             {
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT maxmax, fornamn, efternamn, tbl4.id, tid, meddelande FROM meddelande INNER JOIN (SELECT DISTINCT max(maxid) AS maxmax, fornamn, efternamn, id FROM (SELECT DISTINCT tbl2.id, fornamn, efternamn, maxid FROM (SELECT fornamn, efternamn, tbl.from_medlem, tbl.to_medlem, medlem.id, maxid FROM medlem INNER JOIN (SELECT max(id) AS maxid, from_medlem, to_medlem FROM meddelande GROUP BY from_medlem, to_medlem) tbl ON (CASE WHEN from_medlem = @id THEN to_medlem = medlem.id WHEN from_medlem != @id THEN from_medlem = medlem.id END)) tbl2 WHERE tbl2.from_medlem = @id OR tbl2.to_medlem = @id) tbl3 GROUP BY fornamn, efternamn, id) tbl4 ON meddelande.id = maxmax", conn);
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT maxmax, fornamn, efternamn, tbl4.id, tid, meddelande FROM meddelande INNER JOIN (SELECT DISTINCT max(maxid) AS maxmax, fornamn, efternamn, id FROM (SELECT DISTINCT tbl2.id, fornamn, efternamn, maxid FROM (SELECT fornamn, efternamn, tbl.from_medlem, tbl.to_medlem, medlem.id, maxid FROM medlem INNER JOIN (SELECT max(id) AS maxid, from_medlem, to_medlem FROM meddelande GROUP BY from_medlem, to_medlem) tbl ON (CASE WHEN from_medlem = @id THEN to_medlem = medlem.id WHEN from_medlem != @id THEN from_medlem = medlem.id END)) tbl2 WHERE tbl2.from_medlem = @id OR tbl2.to_medlem = @id) tbl3 GROUP BY fornamn, efternamn, id) tbl4 ON meddelande.id = maxmax  ORDER BY maxmax DESC", conn);
                 da.SelectCommand.Parameters.AddWithValue("@id", id);
                 conn.Open();
                 da.Fill(dt);
@@ -43,7 +43,7 @@ namespace Team_1_Halslaget_GK.Classes
 
             try
             {
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT fornamn, efternamn, tid, meddelande, from_medlem, to_medlem FROM meddelande INNER JOIN medlem ON from_medlem = medlem.id WHERE from_medlem = @id OR to_medlem = @id ORDER BY tid ASC", conn);
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT fornamn, efternamn, tid, meddelande, from_medlem, to_medlem FROM meddelande INNER JOIN medlem ON (CASE WHEN from_medlem = @id THEN from_medlem = medlem.id WHEN to_medlem = @id THEN to_medlem = medlem.id END) WHERE from_medlem = @id OR to_medlem = @id ORDER BY tid ASC", conn);
                 da.SelectCommand.Parameters.AddWithValue("@id", id);
                 conn.Open();
                 da.Fill(dt);
@@ -123,7 +123,7 @@ namespace Team_1_Halslaget_GK.Classes
 
             try
             {
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT maxmax, fornamn, efternamn, tbl4.id, tid, meddelande FROM meddelande INNER JOIN (SELECT DISTINCT max(maxid) AS maxmax, fornamn, efternamn, id FROM (SELECT DISTINCT tbl2.id, fornamn, efternamn, maxid FROM (SELECT fornamn, efternamn, tbl.from_medlem, tbl.to_medlem, medlem.id, maxid FROM medlem INNER JOIN (SELECT max(id) AS maxid, from_medlem, to_medlem FROM meddelande GROUP BY from_medlem, to_medlem) tbl ON (CASE WHEN from_medlem = @id THEN to_medlem = medlem.id WHEN from_medlem != @id THEN from_medlem = medlem.id END)) tbl2 WHERE tbl2.from_medlem = @id OR tbl2.to_medlem = @id) tbl3 GROUP BY fornamn, efternamn, id) tbl4 ON meddelande.id = maxmax WHERE fornamn LIKE @fornamn OR efternamn LIKE @efternamn", conn);
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT maxmax, fornamn, efternamn, tbl4.id, tid, meddelande FROM meddelande INNER JOIN (SELECT DISTINCT max(maxid) AS maxmax, fornamn, efternamn, id FROM (SELECT DISTINCT tbl2.id, fornamn, efternamn, maxid FROM (SELECT fornamn, efternamn, tbl.from_medlem, tbl.to_medlem, medlem.id, maxid FROM medlem INNER JOIN (SELECT max(id) AS maxid, from_medlem, to_medlem FROM meddelande GROUP BY from_medlem, to_medlem) tbl ON (CASE WHEN from_medlem = @id THEN to_medlem = medlem.id WHEN from_medlem != @id THEN from_medlem = medlem.id END)) tbl2 WHERE tbl2.from_medlem = @id OR tbl2.to_medlem = @id) tbl3 GROUP BY fornamn, efternamn, id) tbl4 ON meddelande.id = maxmax WHERE fornamn LIKE @fornamn OR efternamn LIKE @efternamn ORDER BY fornamn DESC", conn);
                 da.SelectCommand.Parameters.AddWithValue("@id", id);
                 da.SelectCommand.Parameters.AddWithValue("@fornamn", "%" + search + "%");
                 da.SelectCommand.Parameters.AddWithValue("@efternamn", "%" + search + "%");

@@ -25,7 +25,7 @@ namespace Team_1_Halslaget_GK
 
         protected void InitializeGUI()
         {
-            int id = 2; //Convert.ToInt32(Session["username"])
+                int id = 2; //Convert.ToInt32(Session["username"])
 
             Message msg = new Message();
             DataTable dt = msg.GetMessages(id);
@@ -85,24 +85,28 @@ namespace Team_1_Halslaget_GK
         {
             Message msg = new Message();
             DataTable dt = msg.GetMessagesSpecificMember(id);
-
-            DateTime datetime = Convert.ToDateTime(dt.Rows[dt.Rows.Count - 1]["tid"]);
-
-            frommember2.InnerHtml = "<strong>" + dt.Rows[0]["fornamn"].ToString() + dt.Rows[0]["efternamn"].ToString() + "</strong>";
-            date2.InnerHtml = "<strong>" + datetime.ToString("dd-MM-yyyy HH:mm") + "</strong>";
-
-            if (dt.Rows[0]["to_medlem"].ToString() == "2") //Session["username"]
+            if (dt.Rows.Count > 0)
             {
-                LabelIDto.Text = dt.Rows[0]["from_medlem"].ToString();
-            }
+                DateTime datetime = Convert.ToDateTime(dt.Rows[dt.Rows.Count - 1]["tid"]);
 
-            else
-            {
-                LabelIDto.Text = dt.Rows[0]["to_medlem"].ToString();
-            }
+                frommember2.InnerHtml = "<strong>" + dt.Rows[0]["fornamn"].ToString() + " " + dt.Rows[0]["efternamn"].ToString() + "</strong>";
+                date2.InnerHtml = "<strong>" + datetime.ToString("dd-MM-yyyy HH:mm") + "</strong>";
 
-            Repeater2.DataSource = dt;
-            Repeater2.DataBind();
+                if (dt.Rows[0]["to_medlem"].ToString() == "2") //Session["username"]
+                {
+                    LabelIDto.Text = dt.Rows[0]["from_medlem"].ToString();
+                }
+
+                else
+                {
+                    LabelIDto.Text = dt.Rows[0]["to_medlem"].ToString();
+                }
+
+                Repeater2.DataSource = dt;
+                Repeater2.DataBind();
+                InitializeGUI();
+            }
+            
         }
 
         protected void Repeater2_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -203,6 +207,8 @@ namespace Team_1_Halslaget_GK
 
         protected void BtnSearchMember_Click(object sender, EventArgs e)
         {
+            SearchMember.Attributes.Add("class", SearchMember.Attributes["class"] + " page-overlay-search-member-visible");
+
             medlem membersearch = new medlem();
             lbMembers.DataSource = "";
             lbMembers.DataBind();
@@ -220,12 +226,26 @@ namespace Team_1_Halslaget_GK
             }
 
             lbMembers.DataTextField = "FullName";
-            lbMembers.DataValueField = "golfid";
+            lbMembers.DataValueField = "id";
 
             lbMembers.DataSource = dt;
             lbMembers.DataBind();
         }
 
+        protected void btnSendMsgNewMember_Click(object sender, EventArgs e)
+        {
+            LabelIDto.Text = lbMembers.SelectedValue.ToString();
+            string name = lbMembers.SelectedItem.ToString();
+
+            SearchMember.Attributes.Add("class", "page-overlay-search-member");
+            frommember2.InnerHtml = "<strong>" + name + "</strong>";
+
+            TextBoxReply.Visible = true;
+            ButtonReply.Visible = true;
+            ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
+
+            ShowMessage(Convert.ToInt32(lbMembers.SelectedValue));
+        }
 
 
     }

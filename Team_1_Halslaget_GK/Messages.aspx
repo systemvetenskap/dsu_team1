@@ -2,16 +2,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link type="text/css" rel="stylesheet" href="css/Messages.css"/>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>   
-    <script src="ja/Scrollto.js"></script>
+    <script src="ja/Messages.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="fullBox">
         <h3 class="home-h3">Meddelanden</h3>
     </div>
+
+    <%-- Alla konversationer --%>
     <div class="fullBox fullbox-message">
         <div class="quarterBox messages-list">
-            <asp:Button ID="ButtonNewMsg" runat="server" Text="+ Nytt" CssClass="my-button btn-small" />
+            <a id="NewMsg" class="my-button btn-small" onclick="OpenOverlaySearchMemberMessage();"><p>+ Nytt</p></a>
             <asp:TextBox ID="TextBoxSearch" runat="server" placeholder="Sök" CssClass="my-txt-box txt-box-search" OnTextChanged="TextBoxSearch_TextChanged"></asp:TextBox>
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <Triggers><asp:AsyncPostBackTrigger ControlID="TextBoxSearch" runat="server" EventName="TextChanged"/></Triggers>
@@ -24,7 +26,7 @@
                         <div class="grad">                   
                            <asp:LinkButton ID="LinkBtnShowFullMessage" runat="server" OnClick="LinkBtnShowFullMessage_Click" CssClass="linkbtn-empty" >
                                 <div class="short-message-info-box">
-                                    <p id="frommember" runat="server" class="name"><%#Eval ("fornamn") %><%#Eval ("efternamn") %></p>
+                                    <p id="frommember" runat="server" class="name"><%#Eval ("fornamn") %><%#Eval ("efternamn") %> </p>
                                     <p id="date" class="smallp" runat="server"><%#Eval ("nytid") %></p>
                                 </div>
                                 <div class="short-message-box">
@@ -41,7 +43,7 @@
                </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-
+        <%-- Konversationsruta --%>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
             <ContentTemplate>
                 <div class="sevenFiveBox">                    
@@ -80,6 +82,36 @@
         </asp:UpdatePanel>
     </div>
 
-
+            <!-- RUTA FÖR ATT SÖKA MEDLEM   ================================================== -->
+    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+        <ContentTemplate>
+            <div class="page-overlay-search-member" runat="server" id="SearchMember">
+              <div class="overlay-message">
+                  <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="CloseOverlaySearchMemberMessage();"></span></p>
+                   <div class="fullBox">
+                      <div class="halfBox search-halfbox">
+                        <asp:TextBox ID="tbFullName" runat="server" CssClass="my-txt-box"></asp:TextBox>
+                      </div>
+                    <div class="halfBox search-halfbox">
+                        <asp:Panel ID="Panel3" runat="server" DefaultButton="btnSendMsgNewMember">
+                            <div class="halfBox SearchBox">
+                                <asp:ListBox ID="lbMembers" CssClass="my-list-box" runat="server" ></asp:ListBox>
+                            </div>
+                        </asp:Panel> 
+                    </div>   
+                   </div>
+                  <div class="fullBox">
+                      <div class="halfBox halfBoxBtn">
+                           <asp:Button ID="BtnSearchMember" runat="server" Text="Sök Medlem" CssClass="my-button" OnClick="BtnSearchMember_Click"/>
+                      </div>
+                      <div class="halfBox halfBoxBtn">
+                            <asp:Button ID="btnSendMsgNewMember" CssClass="my-button" runat="server" Text="Lägg till" OnClick="btnSendMsgNewMember_Click"/>                                
+                      </div>
+                  </div>   
+              </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    
 
 </asp:Content>

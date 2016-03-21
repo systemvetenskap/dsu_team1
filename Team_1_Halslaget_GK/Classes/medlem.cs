@@ -419,7 +419,7 @@ namespace Team_1_Halslaget_GK
 
             try
             {
-                string sql = "SELECT fornamn, efternamn, golfid FROM medlem WHERE fornamn ~* @fornamn AND efternamn ~* @efternamn OR fornamn ~* @efternamn AND efternamn ~* @fornamn";
+                string sql = "SELECT fornamn, efternamn, id FROM medlem WHERE fornamn ~* @fornamn AND efternamn ~* @efternamn OR fornamn ~* @efternamn AND efternamn ~* @fornamn";
                 conn.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@fornamn", fornamn);

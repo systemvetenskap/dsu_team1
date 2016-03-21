@@ -18,9 +18,3 @@ function scrolltoRegister() {
         scrollTop: $(".registerbox").offset().top - 70
     }, 1000);
 };
-
-$(function scrollToConversationBottom() {
-    var wtf = $('#message-box');
-    var height = wtf[0].scrollHeight;
-    wtf.scrollTop(height);
-});
