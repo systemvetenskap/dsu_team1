@@ -66,8 +66,8 @@
             
             <ul class="main-navbar">
               <li onclick="scrolltoTop();"><a href='#'>HEM</a></li>
-              <li onclick="scrolltoNews();"><a href="#">NYHETER</a></li>                                                                  
               <li onclick="scrolltoBookings();"><a href="#">TÄVLINGAR</a></li>
+              <li onclick="scrolltoNews();"><a href="#">NYHETER</a></li>                                                                          
               <li onclick="scrolltoRegister();"><a href="#">BLI MEDLEM</a></li>  
             </ul>
             <ul class="main-navbar right">
@@ -86,6 +86,7 @@
     </section>
 
     <!--------------------------------------- Header ================================================== -->
+
     <section class="container" id="head-seaction">
       <div class="content" id="header-content">
        <div class="logoContainer">
@@ -99,7 +100,7 @@
      <section class="container">
         <div class="content">
             <div class="contentRow">
-                        <div class="fullBox">
+                        <div class="fullBox bookings">
                             <div class="page-title"><h1>Tävlingar</h1></div>
                                 <div class="halfBox">
                                     <div class="tavlingsBox">
@@ -262,7 +263,7 @@
                             display="Dynamic"
                             ValidationGroup="RegisterGroup">                       
                          </asp:RequiredFieldValidator>
-                         <asp:TextBox ID="tbPassword" runat="server" CssClass="my-txt-box" placeholder="Lösenord"></asp:TextBox>
+                         <asp:TextBox ID="tbPassword" runat="server" CssClass="my-txt-box" TextMode="Password" placeholder="Lösenord"></asp:TextBox>
                          <asp:RequiredFieldValidator
                             ID="RequiredFieldValidator8"
                             ControlToValidate="tbConfirmPassword"
@@ -284,7 +285,7 @@
                             display="Dynamic"
                             ValidationGroup="RegisterGroup">
                          </asp:CompareValidator>
-                         <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" placeholder="Bekräfta Lösenord"></asp:TextBox>
+                         <asp:TextBox ID="tbConfirmPassword" runat="server" CssClass="my-txt-box" TextMode="Password" placeholder="Bekräfta Lösenord"></asp:TextBox>
                      </div>
                          <asp:RequiredFieldValidator
                             ID="RequiredFieldValidator10"
