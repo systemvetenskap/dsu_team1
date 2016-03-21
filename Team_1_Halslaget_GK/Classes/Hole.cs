@@ -23,15 +23,16 @@ namespace Team_1_Halslaget_GK
         public int teeid { get; set; }
 
 
-        public void SetRound(string xml, int compid, int memberid)
+        public void SetRound(string xml, int compid, int memberid, int score)
         {
-            string sql = "UPDATE medlem_tavling SET resultatxml = @resultatxml WHERE medlem_id = @medlem_id AND tavling_id = @tavling_id";
+            string sql = "UPDATE medlem_tavling SET resultatxml = @resultatxml, score = @score WHERE medlem_id = @medlem_id AND tavling_id = @tavling_id";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
             cmd.Parameters.AddWithValue("@medlem_id", memberid);
             cmd.Parameters.AddWithValue("@tavling_id", compid);
             cmd.Parameters.AddWithValue("@resultatxml", xml);
+            cmd.Parameters.AddWithValue("@score", score);
 
             try
             {
