@@ -141,7 +141,7 @@ namespace Team_1_Halslaget_GK
                 ID = SetNewID(); //TEMPORARY SOLUTION SHOULD REALLY BE REMOVED AND REPLACED WITH SERIAL IN DATABASE INSTEAD.
                 DateTime payDate = SetMedlemsAvgiftDate();
                 string golfID = CreateGolfID();
-
+                bool adminstatus = false;
                 conn.Open();
                 NpgsqlCommand cmdInsertNewMember = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald, pw, guid, admin) " +
                                                                         " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @golfid, @medlemsKategori, @telefonnummer, @paydate, @pw, @guid, @adminStatus); ", conn);
@@ -161,7 +161,7 @@ namespace Team_1_Halslaget_GK
                 cmdInsertNewMember.Parameters.AddWithValue("@paydate", payDate);
                 cmdInsertNewMember.Parameters.AddWithValue("@pw", password);
                 cmdInsertNewMember.Parameters.AddWithValue("@guid", guid);
-                cmdInsertNewMember.Parameters.AddWithValue("@adminStatus", payStatus); //Temporary work around should be changed later so one can insert an admin later.
+                cmdInsertNewMember.Parameters.AddWithValue("@adminStatus", adminstatus); //Temporary work around should be changed later so one can insert an admin later.
 
                 cmdInsertNewMember.ExecuteNonQuery();
 
