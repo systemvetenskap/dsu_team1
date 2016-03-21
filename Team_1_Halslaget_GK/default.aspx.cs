@@ -165,13 +165,16 @@ namespace Team_1_Halslaget_GK
             conn.Close();
             conn.Dispose();
 
+            medlem member = new medlem();
             if (password == HashSHA1(TextBoxPwLogin.Text + guid) && admin == false)
             {
                 Session["admin"] = admin.ToString();
                 Session["hcp"] = hcp.ToString();
                 Session["Username"] = id.ToString();
                 Session["GolfID"] = golfid;
-                Response.Redirect("~/MyPage.aspx");                
+                Session["login"] = DateTime.Now;
+                member.SetLatestLogin(id.ToString());
+                Response.Redirect("~/MyPage.aspx");
             }
 
             else if (password == HashSHA1(TextBoxPwLogin.Text + guid) && admin == true)
@@ -179,6 +182,8 @@ namespace Team_1_Halslaget_GK
                 Session["admin"] = admin.ToString();
                 Session["hcp"] = hcp.ToString();
                 Session["Username"] = id.ToString();
+                Session["login"] = DateTime.Now;    
+                member.SetLatestLogin(id.ToString());
                 Response.Redirect("~/AdminPanel.aspx");
             }
 
