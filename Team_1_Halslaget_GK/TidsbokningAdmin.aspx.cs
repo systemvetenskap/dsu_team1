@@ -370,6 +370,7 @@ namespace Team_1_Halslaget_GK
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            lblotherplayers.Text = "";
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "closeotherplayers()", "closeotherplayers();", true);
             hidden1others.Text = "0";
             hidden2search.Text = "0";
@@ -626,6 +627,8 @@ namespace Team_1_Halslaget_GK
                     tbPlayer2.Visible = false;
                     tbPlayer3.Visible = false;
                     tbPlayer4.Visible = false;
+                    ShowHiddenSearchDiv.Visible = false;
+                    lblotherplayers.Text = "";
                 }
 
                 else if (golfplayer.startid == time && playercount == 1)
