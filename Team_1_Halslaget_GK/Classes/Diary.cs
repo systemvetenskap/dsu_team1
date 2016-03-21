@@ -73,13 +73,14 @@ namespace Team_1_Halslaget_GK
             }
         }
 
-        public string GetSpecificDiaryNote()
+        public string GetSpecificDiaryNote(string noteID)
         {
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             try
             {
                 conn.Open();
-                NpgsqlCommand cmdGetSpcDiaryNote = new NpgsqlCommand("SELECT txt FROM dagbok where id = 3;", conn);
+                NpgsqlCommand cmdGetSpcDiaryNote = new NpgsqlCommand("SELECT txt FROM dagbok where id = @noteid;", conn);
+                cmdGetSpcDiaryNote.Parameters.AddWithValue("@noteid", noteID);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmdGetSpcDiaryNote;
                 DataTable dt = new DataTable();
@@ -107,7 +108,34 @@ namespace Team_1_Halslaget_GK
             {
                 conn.Open();
                 NpgsqlCommand cmdUserAllDiaryNotes = new NpgsqlCommand("SELECT * FROM dagbok WHERE id_medlem = @id;", conn);
-                cmdUserAllDiaryNotes.Parameters.AddWithValue("@id_medlem", id);
+                cmdUserAllDiaryNotes.Parameters.AddWithValue("@id", id);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdUserAllDiaryNotes;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        public DataTable GetUserXML(string id)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdUserAllDiaryNotes = new NpgsqlCommand("SELECT resultxml FROM dagbok WHERE id = @id;", conn);
+                cmdUserAllDiaryNotes.Parameters.AddWithValue("@id", id);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmdUserAllDiaryNotes;
                 DataTable dt = new DataTable();
