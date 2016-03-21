@@ -109,6 +109,7 @@
     <Content Include="ChangePassword.aspx" />
     <Content Include="CreateCompetition.aspx" />
     <Content Include="CreateDagbokNote.aspx" />
+    <Content Include="ja\CreateDiaryNoteJS.js" />
     <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminBokatavlingCss.css" />
     <Content Include="css\AdminPanelCss.css" />
@@ -128,6 +129,7 @@
     <Content Include="css\TestPageCss.css" />
     <Content Include="css\tidsbokning.css" />
     <Content Include="Dagbok.aspx" />
+    <Content Include="css\DagbokCSS.css" />
     <Content Include="data\Mono.Security.dll" />
     <Content Include="data\Npgsql.dll" />
     <Content Include="default.aspx" />
@@ -180,6 +182,7 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - Web Deploy.pubxml" />
+    <Content Include="result.aspx" />
     <Content Include="Site.Mobile.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -345,6 +348,13 @@
       <DependentUpon>PublishNewsAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\Season.cs" />
+    <Compile Include="result.aspx.cs">
+      <DependentUpon>result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="result.aspx.designer.cs">
+      <DependentUpon>result.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ScorecardAdmin.aspx.cs">
       <DependentUpon>ScorecardAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

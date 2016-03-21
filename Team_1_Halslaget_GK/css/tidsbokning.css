@@ -41,7 +41,7 @@
 }
 
 .overlay-message {
-    margin: 0em auto;
+    margin: 0 auto;
     margin-top: 30%;
     padding: 1em;
     background: white;
@@ -105,9 +105,9 @@
 .otherplayers{
     width:40%; 
     min-width: 350px;
-    max-height: 700px;   
+    max-height: 100%;   
     background-color: #2d2d2d;
-    margin: 150px auto;
+    margin:  0 auto;
     -webkit-box-shadow: 0 10px 6px -6px #777;
     -moz-box-shadow: 0 10px 6px -6px #777;
     box-shadow: 0 10px 6px -6px #777;
@@ -134,7 +134,7 @@
     font-size: 31px;
     font-weight: bold;
     display: inline-block;
-    line-height: 0px;
+    line-height: 0;
     padding: 11px 3px;       
 }
 
@@ -204,10 +204,32 @@
      margin-bottom: 2%;
  }
 
-.HiddenSearchBox .my-button {
-             
-     
- }
+.otherplayers .my-button {
+    padding: 0;
+	text-align: center;
+	display: inline-block;
+	width: 99%;		
+	color: white;
+	background: gray;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+    border: 0 none;
+    outline: none;
+    font-size: 1.3em;
+    cursor: pointer;
+    height: 40px;   
+}
+.otherplayers .my-button:hover {
+	color: white;
+	background: darkgray;
+}
+
+.otherplayers .button-80 {
+    width: 80%;
+}
+.center-text {
+    text-align:center;
+}
 
 .halfBox {
   padding: 2%;
