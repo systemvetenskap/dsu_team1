@@ -10,6 +10,9 @@ using Npgsql;
 using System.Data;
 using System.Web.Configuration;
 using System.Globalization;
+using System.Security.Cryptography;
+using System.Text;
+using System.Globalization;
 
 namespace Team_1_Halslaget_GK
 {
@@ -127,6 +130,21 @@ namespace Team_1_Halslaget_GK
             }
         }
 
+
+        private static string HashSHA1(string value)
+        {
+            var sha1 = System.Security.Cryptography.SHA1.Create();
+            var inputBytes = Encoding.ASCII.GetBytes(value);
+            var hash = sha1.ComputeHash(inputBytes);
+
+            var sb = new StringBuilder();
+            for (var i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+            return sb.ToString();
+        }
+
         /// <summary>
         /// Inserts a new member to the database. 
         /// </summary>
@@ -139,10 +157,11 @@ namespace Team_1_Halslaget_GK
                 ID = SetNewID(); //TEMPORARY SOLUTION SHOULD REALLY BE REMOVED AND REPLACED WITH SERIAL IN DATABASE INSTEAD.
                 DateTime payDate = SetMedlemsAvgiftDate();
                 string golfID = CreateGolfID();
+                string password = HashSHA1("arne123").ToString();
 
                 conn.Open();
-                NpgsqlCommand cmdInsertNewMember = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald, admin) " +
-                                                                        " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @golfid, @medlemsKategori, @telefonnummer, @paydate, @adminStatus); ", conn);
+                NpgsqlCommand cmdInsertNewMember = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald, admin, password) " +
+                                                                        " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @golfid, @medlemsKategori, @telefonnummer, @paydate, @adminStatus, @password); ", conn);
 
                 cmdInsertNewMember.Parameters.AddWithValue("@id", ID);
                 cmdInsertNewMember.Parameters.AddWithValue("@fornamn", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fornamn.ToLower()));
@@ -158,6 +177,7 @@ namespace Team_1_Halslaget_GK
                 cmdInsertNewMember.Parameters.AddWithValue("@telefonnummer", telefonNummer);
                 cmdInsertNewMember.Parameters.AddWithValue("@paydate", payDate);
                 cmdInsertNewMember.Parameters.AddWithValue("@adminStatus", false); //Temporary work around should be changed later so one can insert an admin later.
+                cmdInsertNewMember.Parameters.AddWithValue("@password", password);
 
                 cmdInsertNewMember.ExecuteNonQuery();
 
@@ -174,6 +194,8 @@ namespace Team_1_Halslaget_GK
                 conn.Dispose();
             }
         }        
+
+
 
         /// <summary>
         /// Sets a date for when membership was paid or not paid. 
