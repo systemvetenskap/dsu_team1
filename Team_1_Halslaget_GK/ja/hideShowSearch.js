@@ -17,3 +17,6 @@ function hideSlideDiv() {
 function showDiv2() {
     $(".otherplayersbackground").show();
 }
+function hideDiv2() {
+    $(".otherplayersbackground").hide();
+}

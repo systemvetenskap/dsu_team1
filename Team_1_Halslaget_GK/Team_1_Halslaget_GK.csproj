@@ -155,6 +155,7 @@
     <Content Include="ja\hideShowSearch.js" />
     <Content Include="ja\jquery.maskedinput.js" />
     <Content Include="ja\memberRegScript.js" />
+    <Content Include="ja\Messages.js" />
     <Content Include="ja\MyPageScripts.js" />
     <Content Include="ja\opencloseoverlay.js" />
     <Content Include="ja\ScoreCard.js" />
@@ -174,10 +175,10 @@
     <Content Include="fonts\monofont.ttf" />
     <Content Include="bin\Team_1_Halslaget_GK.dll.config" />
     <Content Include="AdminMaster.Master" />
+    <Content Include="Messages.aspx" />
     <Content Include="MobileIndex.aspx" />
     <Content Include="MobileLogin.aspx" />
     <Content Include="packages.config" />
-    <Content Include="Messages.aspx" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\miun-dsu1 - Web Deploy.pubxml" />
     <Content Include="Site.Mobile.Master" />
@@ -297,6 +298,13 @@
       <DependentUpon>Medlemsregister.aspx</DependentUpon>
     </Compile>
     <Compile Include="Classes\MemberTypes.cs" />
+    <Compile Include="Messages.aspx.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Messages.aspx.designer.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MobileIndex.aspx.cs">
       <DependentUpon>MobileIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -403,12 +411,6 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Messages.aspx.cs">
-      <DependentUpon>Messages.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Messages.aspx.designer.cs">
-      <DependentUpon>Messages.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

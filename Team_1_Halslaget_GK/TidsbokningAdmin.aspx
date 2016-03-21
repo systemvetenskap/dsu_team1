@@ -52,7 +52,7 @@
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <div class="fullBox page-title">
-        <h1>Tidsbokning för Admin</h1>
+        <h1>Tidsbokning</h1>
     </div>
     <div class="halfBox calenderBox">
                 <asp:Calendar ID="Calendar1" runat="server" CssClass="aspCalender" OnSelectionChanged="Calendar1_SelectionChanged1" OnDayRender="Calendar1_DayRender">  
@@ -66,8 +66,7 @@
                 <TodayDayStyle CssClass="CalenderToday" />
                 <WeekendDayStyle CssClass="CalenderWeekendDay" />             
                 </asp:Calendar>
-    </div>
-    <div>     
+    </div>    
       <div class="halfBox calenderBox">
           <asp:Table ID="Table1" runat="server" CssClass="timeTable">
             <asp:TableRow ID="Row1" runat="server">
@@ -160,41 +159,63 @@
             </asp:TableRow>    
         </asp:Table>
     </div>
-     <div class="otherplayersbackground">
-       <div class="otherplayers">
-        <input id="Button1" type="button" value="X" class="closebtn"  onclick="closeotherplayers();"/>
-        <asp:Label ID="lblotherplayers" CssClass="lblotherplayers" runat="server" Text=""></asp:Label><br /><br />
-        <div id="hcpcheck" runat="server">
-        <asp:Label ID="lblPlayer1" CssClass="players" runat="server" Text=""></asp:Label>
-            <asp:Button ID="Removeplayer1Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer1Btn_Click" />
-            <br /><br  />   
-        <asp:Label ID="lblPlayer2" CssClass="players" runat="server" Text=""></asp:Label>
-            <asp:Button ID="Removeplayer2Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer2Btn_Click" />
-            <br /><br  />    
-        <asp:Label ID="lblPlayer3" CssClass="players" runat="server" Text=""></asp:Label>
-            <asp:Button ID="Removeplayer3Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer3Btn_Click" />
-            <br /><br  />  
-        <asp:Label ID="lblPlayer4" CssClass="players" runat="server" Text=""></asp:Label>
-            <asp:Button ID="Removeplayer4Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer4Btn_Click" />
-        </div>
-            <div class="HiddenSearchBox">
-                <asp:Button ID="Button2" runat="server" Text="HAHAHAHAHAHHAHAHAHAHHA" />
-         </div>
-           <asp:Button ID="ShowHiddenSearchDiv" CssClass="my-button my-SearchBtn" runat="server" Text="Sök på medlem" OnClick="ShowHiddenSearchDiv_Click" />
-        <div id="otherplayers" runat="server" class="fullBox">
-                <asp:Label ID="Label1" runat="server" Text="Fyll i golf-ID på de som du vill boka på den här tiden!"></asp:Label>            
-                <asp:TextBox ID="tbPlayer1" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>              
-                <asp:TextBox ID="tbPlayer2" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
-                <asp:TextBox ID="tbPlayer3" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
-                <asp:TextBox ID="tbPlayer4" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
-        </div>
-           <asp:Button ID="confirmBtn" runat="server" CssClass="my-button" Text="Boka" OnClick="confirmBtn_Click1" />
-    </div>    
-       </div>
+    <div class="otherplayersbackground">
+        <div class="otherplayers">          
+            <asp:Button ID="Button1" runat="server" Text="X" CssClass="closebtn" OnClick="Button1_Click" />
+            <asp:Label ID="lblotherplayers" CssClass="lblotherplayers" runat="server" Text=""></asp:Label>
+            <div id="hcpcheck" runat="server">
+            <div class="fullBox">
+                    <asp:Label ID="lblPlayer1" CssClass="players" runat="server" Text=""></asp:Label>
+                    <asp:Button ID="Removeplayer1Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer1Btn_Click" />
+            </div>
+            <div class="fullBox">
+
+                    <asp:Label ID="lblPlayer2" CssClass="players" runat="server" Text=""></asp:Label>
+                    <asp:Button ID="Removeplayer2Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer2Btn_Click" />
+            </div>
+            <div class="fullBox">
+
+                    <asp:Label ID="lblPlayer3" CssClass="players" runat="server" Text=""></asp:Label>
+                    <asp:Button ID="Removeplayer3Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer3Btn_Click" />
+            </div>
+            <div class="fullBox">
+                    <asp:Label ID="lblPlayer4" CssClass="players" runat="server" Text=""></asp:Label>
+                    <asp:Button ID="Removeplayer4Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer4Btn_Click" />
+            </div>                                
+            </div>
+            <div class="fullBox HiddenSearchBox">
+                    <div class="fullBox page-title"><h3>Sök på medlem</h3></div>    
+                        <div class="halfBox">
+                            <asp:Panel ID="Panel1" runat="server" DefaultButton="BtnSearchMember">                
+                            <asp:TextBox ID="tbFullName" CssClass="my-txt-box" runat="server" placeholder="För och/eller efternamn"></asp:TextBox>                              
+                            <asp:Button ID="BtnSearchMember" CssClass="my-button" runat="server" Text="Sök" OnClick="BtnSearchMember_Click"/>                              
+                        </asp:Panel> 
+                    </div>
+                <div class="halfBox">
+                    <asp:Panel ID="Panel3" runat="server" DefaultButton="btnPickMember">                
+                        <asp:ListBox ID="lbMembers" CssClass="my-list-box" runat="server" ></asp:ListBox>                               
+                        <asp:Button ID="btnPickMember" CssClass="my-button" runat="server" Text="Lägg till" OnClick="btnPickMember_Click"/>                           
+                    </asp:Panel>
+                </div>
+            </div>
+                <asp:Button ID="ShowHiddenSearchDiv" CssClass="my-button" runat="server" Text="Sök på medlem" OnClick="ShowHiddenSearchDiv_Click" />
+                <div id="otherplayers" runat="server" class="fullBox">
+                    <div class="fullBox page-title"><h4><asp:Label ID="Label1" runat="server" Text="Fyll i golf-ID på de som du vill boka på den här tiden!"></asp:Label></h4></div>          
+                    <asp:TextBox ID="tbPlayer1" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>              
+                    <asp:TextBox ID="tbPlayer2" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
+                    <asp:TextBox ID="tbPlayer3" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
+                    <asp:TextBox ID="tbPlayer4" runat="server" CssClass="my-txt-box" placeholder="Golf-id"></asp:TextBox>
+                </div>
+                <asp:Button ID="confirmBtn" runat="server" CssClass="my-button" Text="Boka" OnClick="confirmBtn_Click1" />
+        </div>    
     </div>
-    </ContentTemplate>
-</asp:UpdatePanel>  
+</ContentTemplate>
+</asp:UpdatePanel> 
+
+
 <%--    Ruta för konfirmation och felmeddelanden--%>
+
+
     <div class="page-overlay-info-box">
       <div class="overlay-message">
           <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="closeOverlayInfoBox();"></span></p>
@@ -202,7 +223,9 @@
          <asp:Button ID="OK" runat="server" Text="OK" CssClass="my-button top-n-bottom-space" OnClientClick="closeOverlayInfoBox();"/>     
       </div>
     </div>
+
 <!-------------------- Hidden ------------------>
-    <asp:Label ID="hidden1" runat="server" Text="" Visible="false"></asp:Label>
-    <asp:Label ID="hidden2" runat="server" Text="" Visible="false"></asp:Label>
+
+    <asp:Label ID="hidden1others" runat="server" Text="" Visible="false"></asp:Label>
+    <asp:Label ID="hidden2search" runat="server" Text="" Visible="false"></asp:Label>
 </asp:Content>

@@ -16,7 +16,7 @@
 
 <div class="fullBox HiddenSearchBox">
     <div class="fullBox page-title"><h3>Sök på medlem</h3></div>    
-    <div class="halfBox searchMargin">
+    <div class="halfBox">
     <asp:Panel ID="Panel1" runat="server" DefaultButton="BtnSearchMember">
         <div class="halfBox SearchBox SearchBox2">
             <asp:TextBox ID="tbFullName" CssClass="my-txt-box" runat="server" placeholder="För och/eller efternamn"></asp:TextBox>

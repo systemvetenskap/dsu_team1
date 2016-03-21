@@ -1,11 +1,11 @@
 ﻿.halfBox {
-   padding:2% 2%;
+   padding:2%;
    -moz-box-sizing: border-box;
    -webkit-box-sizing: border-box;
    box-sizing: border-box; 
 }
 .fullBox {
-   padding:2% 2%;
+   padding:2%;
    -moz-box-sizing: border-box;
    -webkit-box-sizing: border-box;
    box-sizing: border-box; 
