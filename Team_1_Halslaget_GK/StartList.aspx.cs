@@ -123,14 +123,13 @@ namespace Team_1_Halslaget_GK
                 conn.Close();
 
                 ListOfMedlem.RemoveAt(index);
-
-                index = R.Next(0, ListOfMedlem.Count);
-
+             
                 if (ListOfMedlem.Count == 0)
                 {
                     break;
                 }
 
+                index = R.Next(0, ListOfMedlem.Count);
                 medlem temp2 = ListOfMedlem[index];
 
                 string sql4 = "UPDATE medlem_tavling SET starttid_id = @starttid_id WHERE medlem_id = @medlem_id AND tavling_id = @tavling_id";
@@ -149,6 +148,7 @@ namespace Team_1_Halslaget_GK
                     break;
                 }
 
+                index = R.Next(0, ListOfMedlem.Count);
                 medlem temp3 = ListOfMedlem[index];
 
                 string sql5 = "UPDATE medlem_tavling SET starttid_id = @starttid_id WHERE medlem_id = @medlem_id AND tavling_id = @tavling_id";
@@ -289,7 +289,6 @@ namespace Team_1_Halslaget_GK
 
                 index = R.Next(0, ListofTeams.Count);
                 
-
                 Team temp2 = ListofTeams[index];
 
                 string sql4 = "UPDATE lag_tavling SET starttid_id = @starttid_id WHERE id_lag = @lag_id AND id_tavling = @tavling_id";
