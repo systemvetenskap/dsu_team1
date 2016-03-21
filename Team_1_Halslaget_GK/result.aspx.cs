@@ -25,6 +25,7 @@ namespace Team_1_Halslaget_GK
 
             GvComps.DataSource = comp.GetAllPastCompetitions();
             GvComps.DataBind();
+            
         }
 
         protected void GvComps_SelectedIndexChanged(object sender, EventArgs e)

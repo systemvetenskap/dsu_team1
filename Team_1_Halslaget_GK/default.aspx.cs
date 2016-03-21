@@ -156,7 +156,7 @@ namespace Team_1_Halslaget_GK
                 Session["Username"] = id.ToString();
                 Session["GolfID"] = golfid;
                 Session["login"] = DateTime.Now;
-                member.SetLatestLogin(id.ToString());
+                //member.SetLatestLogin(id.ToString());
                 Response.Redirect("~/MyPage.aspx");
             }
 
@@ -166,7 +166,7 @@ namespace Team_1_Halslaget_GK
                 Session["hcp"] = hcp.ToString();
                 Session["Username"] = id.ToString();
                 Session["login"] = DateTime.Now;    
-                member.SetLatestLogin(id.ToString());
+                //member.SetLatestLogin(id.ToString());
                 Response.Redirect("~/AdminPanel.aspx");
             }
 

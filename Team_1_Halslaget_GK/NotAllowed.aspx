@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="NotAllowed.aspx.cs" Inherits="Team_1_Halslaget_GK.NotAllowed" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/offPage.Master" AutoEventWireup="true" CodeBehind="NotAllowed.aspx.cs" Inherits="Team_1_Halslaget_GK.NotAllowed" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Not Allowed</title>
 </asp:Content>

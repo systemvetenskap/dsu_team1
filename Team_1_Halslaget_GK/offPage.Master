@@ -1,8 +1,10 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Team_1_Halslaget_GK.MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="offPage.master.cs" Inherits="Team_1_Halslaget_GK.offPage" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <title></title>
       <meta charset="utf-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="description" content="En skoluppgift"/>
@@ -20,37 +22,28 @@
       <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
       <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
       <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  
-
     <asp:ContentPlaceHolder ID="head" runat="server">
-
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
     <form id="form1" runat="server">
-
-    <!-- Navbar ================================================== -->
+     <!-- Navbar ================================================== -->
     <section class="container" id="navbar-section">
       <div class="content">
         <div class="contentRow">
             
             <ul class="main-navbar">
-              <li><a href='#' id="btnGoToMyPage" runat="server" onserverclick="btnGoToMyPage_ServerClick">MIN SIDA</a></li>
-              <li><a href="#" id="btnGoToBookingMain" runat="server" onserverclick="btnGoToBookingMain_ServerClick">BOKA TIDER</a></li>
-              <li><a href="#" id="btnGotoBokatavling" runat="server" onserverclick="btnGotoBokatavling_ServerClick">TÄVLINGAR</a></li>                                                                  
+              <li><a href="default.aspx" id="btnGoToMyPage">HEM</a></li>                                                             
             </ul>
             <ul class="main-navbar right">
-              <li><a href="#" id="btnLogOut" runat="server" onserverclick="btnLogOut_ServerClick">LOGGA UT</a></li>                               
+                                          
             </ul>
           
             <a href="#open-menu" class="open-menu-link">☰ MENY</a>
             <div class="responsive-navbar-holder" id="open-menu">
               <ul class="responsive-navbar">
                 <li><a href="#">☰ STÄNG MENY</a></li>
-                <li><a href='#' id="btnGoToMyPageResponsive" runat="server" onserverclick="btnGoToMyPageResponsive_ServerClick">MIN SIDA</a></li>
-                <li><a href="#" id="btnGoToBookingResponsive" runat="server" onserverclick="btnGoToBookingResponsive_ServerClick">BOKA TIDER</a></li>
-                <li><a href="#" id="btnGoToBokatavlingResponsive" runat="server" onserverclick="btnGoToBokatavlingResponsive_ServerClick">TÄVLINGAR</a></li>                                                                      
-                <li><a href="#" id="btnLogOutResponsive" runat="server" onserverclick="btnLogOutResponsive_ServerClick">LOGGA UT</a></li>                                 
+                <li><a href="defult.aspx" id="btnGoToMyPageResponsive">MIN SIDA</a></li>                             
               </ul>
             </div>
         </div>
@@ -58,6 +51,7 @@
     </section>
 
     <!-- Header ================================================== -->
+
     <section class="container" id="head-seaction">
       <div class="content" id="header-content">
        <div class="logoContainer">
@@ -65,18 +59,20 @@
         </div> 
       </div>
     </section>
+
     <!-- Main page ================================================== -->
+
     <section class="container" id="content-section">
       <div class="content">
         <div class="contentRow"> 
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-    </div>
+        </div>
       </div>
     </section>
+            <!-- Footer ================================================== -->
 
-    <!-- Footer ================================================== -->
     <section class="container" id="section-footer">
       <div class="content">
         <div class="contentRow">      
@@ -99,6 +95,7 @@
       </div>
       </div>
     </section>
+   
     </form>
 </body>
 </html>
