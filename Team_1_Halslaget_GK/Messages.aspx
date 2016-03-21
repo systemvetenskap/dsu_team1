@@ -14,7 +14,7 @@
     <div class="fullBox fullbox-message">
         <div class="quarterBox messages-list">
             <a id="NewMsg" class="my-button btn-small" onclick="OpenOverlaySearchMemberMessage();"><p>+ Nytt</p></a>
-            <asp:TextBox ID="TextBoxSearch" runat="server" placeholder="Sök" CssClass="my-txt-box txt-box-search" OnTextChanged="TextBoxSearch_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="TextBoxSearch" runat="server" placeholder="Sök i dina konversationer" CssClass="my-txt-box txt-box-search" OnTextChanged="TextBoxSearch_TextChanged"></asp:TextBox>
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <Triggers><asp:AsyncPostBackTrigger ControlID="TextBoxSearch" runat="server" EventName="TextChanged"/></Triggers>
                 <ContentTemplate>
@@ -90,7 +90,7 @@
                   <p class="my-glyph-close"><span class="glyphicon glyphicon-remove pull-right " onclick="CloseOverlaySearchMemberMessage();"></span></p>
                    <div class="fullBox">
                       <div class="halfBox search-halfbox">
-                        <asp:TextBox ID="tbFullName" runat="server" CssClass="my-txt-box"></asp:TextBox>
+                        <asp:TextBox ID="tbFullName" runat="server" CssClass="my-txt-box" placeholder="Sök medlemmar"></asp:TextBox>
                       </div>
                     <div class="halfBox search-halfbox">
                         <asp:Panel ID="Panel3" runat="server" DefaultButton="btnSendMsgNewMember">
