@@ -13,7 +13,7 @@
         <h1>Tidsbokning</h1>
     </div>
     <div class="halfBox calenderBox">
-            <asp:Calendar ID="Calendar1" runat="server" CssClass="aspCalender" OnSelectionChanged="Calendar1_SelectionChanged">               
+            <asp:Calendar ID="Calendar1" runat="server" CssClass="aspCalender" OnSelectionChanged="Calendar1_SelectionChanged" OnDayRender="Calendar1_DayRender">               
                 <DayStyle CssClass="CalenderDay" />
                 <DayHeaderStyle CssClass="CalenderHeaderDay" />
                 <NextPrevStyle CssClass="CalenderNextPrev" />

@@ -28,6 +28,8 @@ namespace Team_1_Halslaget_GK
         public string kon { get; set; }
         public string medlemsKategori { get; set; }
         public bool payStatus { get; set; }
+        public string password { get; set; }
+        public string guid { get; set; }
         public DateTime senastebetalning { get; set; }
         public string fodelseDatum { get; set; }
         public string golfid { get; set; }
@@ -141,8 +143,8 @@ namespace Team_1_Halslaget_GK
                 string golfID = CreateGolfID();
 
                 conn.Open();
-                NpgsqlCommand cmdInsertNewMember = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald, admin) " +
-                                                                        " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @golfid, @medlemsKategori, @telefonnummer, @paydate, @adminStatus); ", conn);
+                NpgsqlCommand cmdInsertNewMember = new NpgsqlCommand("INSERT INTO medlem (id, fornamn, efternamn, adress, postnummer, ort, epost, kon, hcp, golfid, medlemskategori, telefonnummer, medlemsavgift_betald, pw, guid, admin) " +
+                                                                        " VALUES (@id, @fornamn, @efternamn, @adress, @postnummer, @ort, @epost, @kon, @hcp, @golfid, @medlemsKategori, @telefonnummer, @paydate, @pw, @guid, @adminStatus); ", conn);
 
                 cmdInsertNewMember.Parameters.AddWithValue("@id", ID);
                 cmdInsertNewMember.Parameters.AddWithValue("@fornamn", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fornamn.ToLower()));
@@ -157,7 +159,9 @@ namespace Team_1_Halslaget_GK
                 cmdInsertNewMember.Parameters.AddWithValue("@medlemsKategori", medlemsKategori);
                 cmdInsertNewMember.Parameters.AddWithValue("@telefonnummer", telefonNummer);
                 cmdInsertNewMember.Parameters.AddWithValue("@paydate", payDate);
-                cmdInsertNewMember.Parameters.AddWithValue("@adminStatus", false); //Temporary work around should be changed later so one can insert an admin later.
+                cmdInsertNewMember.Parameters.AddWithValue("@pw", password);
+                cmdInsertNewMember.Parameters.AddWithValue("@guid", guid);
+                cmdInsertNewMember.Parameters.AddWithValue("@adminStatus", payStatus); //Temporary work around should be changed later so one can insert an admin later.
 
                 cmdInsertNewMember.ExecuteNonQuery();
 

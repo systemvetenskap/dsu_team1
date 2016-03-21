@@ -139,6 +139,7 @@
 
      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
          <ContentTemplate>
+             <asp:Panel ID="Panel1" runat="server" DefaultButton="Button2">
      <section class="container">
          <div class="content">
              <div class="contentRow">
@@ -332,6 +333,7 @@
                      </asp:DropDownList>                                                                          
                      <asp:Button ID="Button2" runat="server" Text="Ansök om medlemskap" Cssclass="my-button" placeholder="Hej" OnClick="Button2_Click" ValidationGroup="RegisterGroup"/><br /><br />                                     
                    </div>
+                 </asp:Panel>
                 </div>
             </div>
      </section>

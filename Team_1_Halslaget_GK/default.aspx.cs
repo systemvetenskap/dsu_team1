@@ -193,12 +193,22 @@ namespace Team_1_Halslaget_GK
             MedlemObj.ort = tbCity.Text;
             MedlemObj.kon = DdlKon.Text;
             MedlemObj.medlemsKategori = dropDownMembertype.Text;
-            MedlemObj.payStatus = false;
-
+            MedlemObj.payStatus = false;           
+            MedlemObj.password = HashSHA1(tbPassword.Text).ToString();            
             MedlemObj.InsertNewMember();
 
             tbName.Text = "";
             tbLastname.Text = "";
+            tbPonenumber.Text = "";
+            tbAdress.Text = "";
+            tbCity.Text = "";
+            tbZipcode.Text = "";
+            tbEmail.Text = "";
+            tbPassword.Text = "";
+            tbConfirmPassword.Text = "";
+            tbhcp.Text = "";
+            dropDownMembertype.SelectedIndex = 0;
+            DdlKon.SelectedIndex = 0;
         }
         //Funktioner
 

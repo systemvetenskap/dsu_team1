@@ -479,8 +479,6 @@ namespace Team_1_Halslaget_GK
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
 
-
-
             if (e.Day.Date < DateTime.Today || e.Day.Date > DateTime.Today.AddDays(30))
             {
                 e.Day.IsSelectable = false;
