@@ -20,9 +20,18 @@ namespace Team_1_Halslaget_GK
                 Response.Redirect("~/NotAllowed.aspx");
             }
 
+
+            if (Label1.Text == "1")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel2, UpdatePanel2.GetType(), "showDiv()", "showDiv();", true);
+                Label1.Text = "1";
+            }
+
             if(!IsPostBack)
             {
                 InitilizeGUI();
+                Calendar1.SelectedDate = DateTime.Today;
+                lbldate.Text = Calendar1.SelectedDate.ToShortDateString();
             }
         }
 
@@ -360,35 +369,57 @@ namespace Team_1_Halslaget_GK
         {
             string title = txtTitle.Text;
             string diaryText = txtHTMLContent.Text;
-            DateTime date = DateTime.Now;
+            DateTime date = Calendar1.SelectedDate;
             int userID = Convert.ToInt32(Session["Username"].ToString());
             Diary dagbok = new Diary();
 
-            if(checkBoxScoreCard.Checked)
+            if(ValidateDate())
             {
-                if(CheckDropDown())
+                if (checkBoxScoreCard.Checked)
                 {
-                    if (CheckTextBoxes())
+                    if (CheckDropDown())
                     {
-                        List<Hole> round = FindNOShots();
-                        string resultXml = SerializeRound(round);
-                        dagbok.InsertDiaryNote(title, diaryText, date, resultXml, userID);
-                        UpdateGUI();
+                        if (CheckTextBoxes())
+                        {
+                            List<Hole> round = FindNOShots();
+                            string resultXml = SerializeRound(round);
+                            dagbok.InsertDiaryNote(title, diaryText, date, resultXml, userID);
+                            UpdateGUI();
+                        }
+                        else
+                        {
+                            lblError.Text = "Du verkar ha glömt fylla i något scorekortet.";
+                        }
                     }
                     else
                     {
-                        lblError.Text = "Du verkar ha glömt fylla i något scorekortet.";
+                        lblError.Text = "Du måste välja vilken tee du spelat från eller klicka ur att du vill fylla i scorekortet.";
                     }
                 }
                 else
                 {
-                    lblError.Text = "Du måste välja vilken tee du spelat från eller klicka ur att du vill fylla i scorekortet.";
+                    dagbok.InsertDiaryNote(title, diaryText, date, userID);
+                    UpdateGUI();
                 }
             }
             else
             {
-                dagbok.InsertDiaryNote(title, diaryText, date, userID);
-                UpdateGUI();
+                lblError.Text = "Du kan inte skapa ett dagboksinlägg i framtiden.";
+            }
+        }
+
+        private bool ValidateDate()
+        {
+            bool ok = false;
+            DateTime date = Calendar1.SelectedDate;
+            if(date > DateTime.Today)
+            {
+                return ok;
+            }
+            else
+            {
+                ok = true;
+                return ok;
             }
         }
 
@@ -585,6 +616,26 @@ namespace Team_1_Halslaget_GK
             TextBox16.ToolTip = "Fyll i antal slag.";
             TextBox17.ToolTip = "Fyll i antal slag.";
             TextBox18.ToolTip = "Fyll i antal slag.";
+        }
+
+        protected void openCalendar_ServerClick(object sender, EventArgs e)
+        {
+
+            if (Label1.Text == "0" || Label1.Text == "")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel2, UpdatePanel2.GetType(), "showSlideDiv()", "showSlideDiv();", true);
+                Label1.Text = "1";
+            }
+            else if (Label1.Text == "1")
+            {
+                ScriptManager.RegisterStartupScript(UpdatePanel2, UpdatePanel2.GetType(), "hideSlideDiv()", "hideSlideDiv();", true);
+                Label1.Text = "0";
+            }
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            lbldate.Text = Calendar1.SelectedDate.ToShortDateString();
         }
     }
 }

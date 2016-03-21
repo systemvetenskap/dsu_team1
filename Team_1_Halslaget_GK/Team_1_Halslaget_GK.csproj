@@ -109,6 +109,7 @@
     <Content Include="ChangePassword.aspx" />
     <Content Include="CreateCompetition.aspx" />
     <Content Include="CreateDagbokNote.aspx" />
+    <Content Include="ja\CreateDiaryNoteJS.js" />
     <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminBokatavlingCss.css" />
     <Content Include="css\AdminPanelCss.css" />
@@ -128,6 +129,7 @@
     <Content Include="css\TestPageCss.css" />
     <Content Include="css\tidsbokning.css" />
     <Content Include="Dagbok.aspx" />
+    <Content Include="css\DagbokCSS.css" />
     <Content Include="data\Mono.Security.dll" />
     <Content Include="data\Npgsql.dll" />
     <Content Include="default.aspx" />
