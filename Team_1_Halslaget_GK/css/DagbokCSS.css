@@ -23,5 +23,13 @@
       /*background: #AF3C3C;
       border-left: solid 1px #525252;*/
       font-size: 1.3em; 
+}
 
+.one-em-margin {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.diary-padding {
+    padding-left: 1em;
 }

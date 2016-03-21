@@ -26,10 +26,10 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Username"] == null)
-            //{
-            //    Response.Redirect("~/NotAllowed.aspx");
-            //}
+            if (Session["Username"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
             if(!IsPostBack)
             {
                 InitializeGUI();
@@ -54,6 +54,14 @@ namespace Team_1_Halslaget_GK
             SetMemberInfoLabels();
             SetMemberTextBoxes();
             SetCompGrid();
+            SetDiaryLabel();
+        }
+
+        private void SetDiaryLabel()
+        {
+            Diary getStats = new Diary();
+            string id = Session["Username"].ToString();
+            lblDiary.Text = getStats.GetUserDiaryStats(id);
         }
 
         /// <summary>
@@ -300,6 +308,11 @@ namespace Team_1_Halslaget_GK
         }
 
         protected void btnGoToDiary_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Dagbok.aspx");
+        }
+
+        protected void btnNewNote_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/CreateDagbokNote.aspx");
         }

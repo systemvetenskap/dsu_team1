@@ -109,6 +109,7 @@
     <Content Include="ChangePassword.aspx" />
     <Content Include="CreateCompetition.aspx" />
     <Content Include="CreateDagbokNote.aspx" />
+    <Content Include="ja\CreateDiaryNoteJS.js" />
     <Content Include="CreateNewMember.aspx" />
     <Content Include="css\AdminBokatavlingCss.css" />
     <Content Include="css\AdminPanelCss.css" />

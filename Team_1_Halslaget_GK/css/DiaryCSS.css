@@ -12,3 +12,27 @@
   padding: 2px 2px 2px 6px;
   font-family: 'latolight', helvetica, arial, sans-serif;	
 }
+
+.calender-div {
+    display: none;
+    /*height: 300px;
+    width:300px;
+    background-color: black;*/
+    overflow: visible;
+    z-index: 500;
+}
+
+.calender-klick{
+    text-decoration: none;
+    font-size: 1em;
+    color: black;
+}
+
+.h3:hover {
+    color: #E5C100;
+}
+
+.one-em-margin {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
