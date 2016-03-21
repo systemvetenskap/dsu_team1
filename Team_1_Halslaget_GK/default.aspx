@@ -67,7 +67,7 @@
             <ul class="main-navbar">
               <li onclick="scrolltoTop();"><a href='#'>HEM</a></li>
               <li onclick="scrolltoNews();"><a href="#">NYHETER</a></li>                                                                  
-              <li onclick="scrolltoBookings();"><a href="#">DAGENS BOKNINGAR</a></li>
+              <li onclick="scrolltoBookings();"><a href="#">TÄVLINGAR</a></li>
               <li onclick="scrolltoRegister();"><a href="#">BLI MEDLEM</a></li>  
             </ul>
             <ul class="main-navbar right">
@@ -78,11 +78,7 @@
             <div class="responsive-navbar-holder" id="open-menu">
               <ul class="responsive-navbar">
                 <li><a  href="#">☰ STÄNG MENY</a></li>
-                <li><a class="active" href='#'>HEM</a></li>
-                <li><a href="#">NYHETER</a></li>                                                                  
-                <li><a href="#">SIDA 2</a></li> 
-                <li><a href="#">SIDA 3</a></li>     
-                <li><a href="#">LOGGA UT</a></li>                                 
+                <li onclick="Openoverlay();"><a href="#">LOGGA IN</a></li>                                  
               </ul>
             </div>
         </div>
@@ -103,14 +99,7 @@
      <section class="container">
         <div class="content">
             <div class="contentRow">
-                <div class="fullBox news">
-                    <div class="page-title"><h1>Nyheter</h1></div>
-                    <div class="fullBox" runat="server" id="newsdiv"></div>                       
-                </div> 
-
-    <!--------------------------------------- TÄVLINGAR/VÄDER ================================================== -->
-
-                        <div class="fullBox bookings">
+                        <div class="fullBox">
                             <div class="page-title"><h1>Tävlingar</h1></div>
                                 <div class="halfBox">
                                     <div class="tavlingsBox">
@@ -125,37 +114,23 @@
                                         </div>
                                     <asp:Label ID="lblcomp" runat="server" Text=""></asp:Label>
                                 </div>
-                                <div class="halfBox weatherBox">
-                                    <div id="c_e67186ae70807f54f0e967f0f38dac9f" class="widget">klart.se</div>
-                                    <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/e67186ae70807f54f0e967f0f38dac9f"></script>
-                                    <asp:Table ID="Table2" runat="server" CssClass="banstatus">
-                                        <asp:TableRow CssClass="border_bottom">
-                                            <asp:TableCell>
-                                            </asp:TableCell>
-                                            <asp:TableCell CssClass="alignright">
-                                            </asp:TableCell>
-                                        </asp:TableRow>
-                                        <asp:TableRow CssClass="border_bottom">
-                                            <asp:TableCell>
-                                            </asp:TableCell>
-                                            <asp:TableCell CssClass="alignright">
-                                            </asp:TableCell>
-                                        </asp:TableRow>
-                                        <asp:TableRow CssClass="border_bottom">
-                                            <asp:TableCell>
-                                            </asp:TableCell>
-                                            <asp:TableCell CssClass="alignright">
-                                            </asp:TableCell>
-                                        </asp:TableRow>
-                                        <asp:TableRow>
-                                            <asp:TableCell>
-                                            </asp:TableCell>
-                                            <asp:TableCell CssClass="alignright">
-                                            </asp:TableCell>
-                                        </asp:TableRow>
-                                </asp:Table>
+                            <div class="halfBox">
+                            <div class="weatherBox">
+                                <div id="c_d099872e047108ee78adbb22d9a16f7a" class="completo"><h2 style="color: #000000; margin: 0 0 3px; padding: 2px; font: bold 13px/1.2 Verdana; text-align: center;">Väder Östersund</h2></div>
+                                <script type="text/javascript" src="http://www.klart.se/widget/widget_loader/d099872e047108ee78adbb22d9a16f7a"></script>
+                                <div class="resultatlink">
+                                    <p><a href="result.aspx" class="link" >Här </a>kan du se resultat på tidigare tävlingar!</p>  
+                                </div>                                                          
+                            </div>                                                             
                             </div>
-                        </div>                                     
+                       </div> 
+
+    <!--------------------------------------- TÄVLINGAR/VÄDER ================================================== -->
+
+                        <div class="fullBox news">
+                    <div class="page-title"><h1>Nyheter</h1></div>                  
+                    <div class="fullBox" runat="server" id="newsdiv"></div>                       
+                </div>                                    
                     </div>  
                 </div>         
         </section>

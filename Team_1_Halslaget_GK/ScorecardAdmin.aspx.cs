@@ -545,6 +545,7 @@ namespace Team_1_Halslaget_GK
         {
             int memberid = Convert.ToInt32(lblMemberId.Text);
             int compid = Convert.ToInt32(lblCompetitionID.Text);
+            int score = calculateScore();
             List<Hole> round = FindNOShots();
             Hole h = new Hole();
 
@@ -552,7 +553,7 @@ namespace Team_1_Halslaget_GK
             {
                 string xml = SerializeRound(round);
 
-                h.SetRound(xml, compid, memberid);
+                h.SetRound(xml, compid, memberid, score);
             }
 
             else

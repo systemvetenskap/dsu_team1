@@ -21,7 +21,7 @@ namespace Team_1_Halslaget_GK
         {
                 
                 LoadNews();
-                SetTableBanstatus(GetBanstatus());
+                
 
                 gvComp.DataSource = newcomp.GetAllUpcomingCompetitions();
                 gvComp.DataBind();
@@ -40,23 +40,6 @@ namespace Team_1_Halslaget_GK
         private void SetTableBanstatus(DataTable dt)
         {
 
-        for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                    if (Convert.ToString(dt.Rows[i]["bana"]) == "1-9")
-                    {
-                        Table2.Rows[1].Cells[1].Text = "Öppen";
-                    }
-
-                    if (Convert.ToString(dt.Rows[i]["bana"]) == "10-18")
-                    {
-                        Table2.Rows[2].Cells[1].Text = "Öppen";
-                    }
-
-                    if (Convert.ToString(dt.Rows[i]["bana"]) == "range")
-                    {
-                        Table2.Rows[3].Cells[1].Text = "Öppen";
-                    }                    
-            }
         }
         //Används för att kryptera lösenord
         private static string HashSHA1(string value)
@@ -218,39 +201,6 @@ namespace Team_1_Halslaget_GK
             tbLastname.Text = "";
         }
         //Funktioner
-        protected DataTable GetBanstatus()
-        {
-            DataTable dt = new DataTable();
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM season WHERE CURRENT_DATE BETWEEN startdatum and slutdatum", conn);
-
-            try
-            {
-                conn.Open();
-                da.Fill(dt);
-            }
-
-            catch
-            {
-                NpgsqlException ex;
-            }
-
-            finally
-            {
-                conn.Close();
-                conn.Dispose();
-            }
-
-            Table2.Rows[0].Cells[0].Text = "Bana";
-            Table2.Rows[0].Cells[1].Text = "Status";
-            Table2.Rows[1].Cells[0].Text = "1-9";
-            Table2.Rows[1].Cells[1].Text = "Stängd";
-            Table2.Rows[2].Cells[0].Text = "10-18";
-            Table2.Rows[2].Cells[1].Text = "Stängd";
-            Table2.Rows[3].Cells[0].Text = "Range";
-            Table2.Rows[3].Cells[1].Text = "Stängd";
-
-            return dt;
-        }
 
     }
 }

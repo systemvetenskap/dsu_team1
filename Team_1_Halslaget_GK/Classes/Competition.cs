@@ -133,6 +133,32 @@ namespace Team_1_Halslaget_GK
             }
         }
 
+        public DataTable GetAllPastCompetitions()
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT * FROM tavling WHERE datum < CURRENT_DATE ORDER BY id ASC", conn);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdGetCompetitions;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                return dt;
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
         public int GetNOcompetitors(string id)
         {
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
