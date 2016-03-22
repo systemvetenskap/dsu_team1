@@ -50,6 +50,9 @@ namespace Team_1_Halslaget_GK
             ddlstarttime.Items.Insert(0, new ListItem("Välj starttid", "Välj starttid"));
             ddlendtime.Items.Insert(0, new ListItem("Välj sluttid", "Välj sluttid"));
 
+            ddlstarttime.Items.RemoveAt(67);
+            ddlendtime.Items.RemoveAt(67);
+
         }
 
         public void fillTee()
