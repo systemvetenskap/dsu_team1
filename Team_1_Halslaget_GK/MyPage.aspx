@@ -212,7 +212,7 @@
                 </div>
         </div>
     </div>
-    <!-- LAST COMPETITION -->
+<%--    <!-- LAST COMPETITION -->
         <div class="fullBox top-n-bottom-space">
         <div class="fullBox page-title">
             <h3>SENASTE TÄVLINGEN</h3>
@@ -224,5 +224,5 @@
                 </div>
         </div>
     </div>
-</div>
+</div>--%>
 </asp:Content>

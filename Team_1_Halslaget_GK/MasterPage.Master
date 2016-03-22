@@ -76,7 +76,8 @@
       </div>
     </section>
 
-    <!-- Footer ================================================== -->
+       <!------------------------------------------- Footer ================================================== -->
+
     <section class="container" id="section-footer">
       <div class="content">
         <div class="contentRow">      
@@ -84,19 +85,42 @@
           <div class="fullBox" id="footer">        
             <p class="foot-text">HÅLSLAGET GK</p>
 
-            <div class="halfBox">
-              <a class="phone-links" href="callto:#">
-              <span class="glyphicon glyphicon-phone" aria-hidden="true"></span><br>
-              +46 (0)555 98 98 99</a>
-            </div>
+                <div class="thirdBox">
+                    <h3 class="foot-h3"><strong>KONTAKT</strong></h3>
+                    <br />
+                    <p class="p-footer">HÅLSLAGET GK</p>
+                    <p class="p-footer">GATAN 12</p>
+                    <p class="p-footer">12345</p>
+                    <p class="p-footer">ÖSTERSUND</p>
+                    <br />
+                    <p><a class="phone-links" href="callto:#"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>+46 (0)555 98 98 99</a></p>
+                    <p><a class="mail-links"href="#" target="_top"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>HÅLSALGETGK@EMAIL.COM</a></p>
+                </div>
 
-            <div class="halfBox">
-              <a class="mail-links"href="#" target="_top">              
-              <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><br> HÅLSALGETGK@EMAIL.COM</a>
-            </div>
+                <div class="thirdBox">
+                    <h3 class="foot-h3"><strong>GILLA OSS PÅ FACEBOOK</strong></h3>
+                    <div class="facebookBoxFoot">
+                        <div class="fb-follow" data-href="https://www.facebook.com/zuck" data-width="" data-height="300" data-layout="standard" data-show-faces="true"></div>
+                    </div>
+                </div>
 
+                <div class="thirdBox">
+                    <h3 class="foot-h3"><strong>HITTA HIT</strong></h3>
+                    <div class="gMap">
+                        <iframe id="gMapIframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57614.47445274595!2d14.5815931701714!3d63.17533576111594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x466fb846d4f93091%3A0x4adec23d33cfdcde!2s%C3%96stersund!5e0!3m2!1ssv!2sse!4v1458643293334" width="" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>            
+                    </div>
+                </div>
+
+            </div>
           </div>
       </div>
+    </section>
+    
+     <section class="container" style="background-color: #191919;">
+      <div class="content">
+        <div class="contentRow">      
+            <p style="color: #4c4c4c; text-align: center; margin: 1em;"><strong>TEAM 1 © 2016</strong></p>
+          </div>
       </div>
     </section>
     </form>

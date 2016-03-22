@@ -371,23 +371,5 @@ namespace Team_1_Halslaget_GK {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGoToAccountSettings;
-        
-        /// <summary>
-        /// labelCompetitionName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelCompetitionName;
-        
-        /// <summary>
-        /// labelCompetitionResult control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelCompetitionResult;
     }
 }
