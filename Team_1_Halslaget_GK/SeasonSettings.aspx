@@ -6,11 +6,8 @@
 
 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="fullBox">
-        <h1>INSTÄLLNINGAR</h1>
-    </div>
-    <div class="fullBox">
             <div class="fullBox page-title">
-                <h3>SKAPA NY GOLFSÄSONG</h3>
+                <h2>SKAPA NY GOLFSÄSONG</h2>
             </div>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
@@ -117,6 +114,5 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-
     </div>
 </asp:Content>

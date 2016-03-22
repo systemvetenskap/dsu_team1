@@ -27,6 +27,7 @@ namespace Team_1_Halslaget_GK
                 OpenPage();
                 gvTavlingar.DataSource = newcomp.GetAllUpcomingCompetitionsRegdates();
                 gvTavlingar.DataBind();
+                btnShowSearch.Visible = false;
             }
 
             if(hidden1.Text == "1")
@@ -34,6 +35,7 @@ namespace Team_1_Halslaget_GK
                 ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showDiv", "showDiv();", true);
                 hidden1.Text = "1";
             }
+
         }
 
         protected void btnConfirm_Click(object sender, EventArgs e)
@@ -92,7 +94,7 @@ namespace Team_1_Halslaget_GK
         protected void gvTavlingar_SelectedIndexChanged(object sender, EventArgs e)
         {
             OpenPage();
-
+            btnShowSearch.Visible = true;
             foreach (GridViewRow row in gvTavlingar.Rows)
             {
                 if (row.RowIndex == gvTavlingar.SelectedIndex)

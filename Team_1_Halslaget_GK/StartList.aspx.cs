@@ -199,6 +199,7 @@ namespace Team_1_Halslaget_GK
 
                 GridView1.Columns[3].Visible = false;
 
+
                 lblcount.Text = "Det finns " + countsingle(gvComps.SelectedValue.ToString()).ToString() + " anmälda till den här tävlingen";
             }
             if (gvComps.SelectedRow.Cells[3].Text.ToLower() == "lag")
@@ -215,6 +216,16 @@ namespace Team_1_Halslaget_GK
                 lblcount.Text = "Det finns " + countteam(gvComps.SelectedValue.ToString()).ToString() + " anmälda lag till den här tävlingen";
             }
             GridView1.DataBind();
+
+
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                if (row.Cells[2].Text == "00:00")
+                {
+                    row.Cells[2].Text = "";
+                }
+
+            }
         }
 
         protected void BtnGeneratePlaylistLag_Click(object sender, EventArgs e)
