@@ -16,6 +16,11 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Username"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
+
             if (!IsPostBack)
             {
                 InitializeGUI();
@@ -25,7 +30,7 @@ namespace Team_1_Halslaget_GK
 
         protected void InitializeGUI()
         {
-            int id = Convert.ToInt32(Session["username"]); 
+            int id = Convert.ToInt32(Session["username"]); //Convert.ToInt32(Session["username"]) //2
 
             Message msg = new Message();
             DataTable dt = msg.GetMessages(id);
@@ -106,13 +111,13 @@ namespace Team_1_Halslaget_GK
                 Repeater2.DataBind();
                 InitializeGUI();
             }
-
+            
             else
             {
                 Repeater2.DataSource = null;
                 Repeater2.DataBind();
-            }
-            
+        }
+
         }
 
         protected void Repeater2_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -125,7 +130,7 @@ namespace Team_1_Halslaget_GK
                 HtmlGenericControl div = e.Item.FindControl("messageinrow") as HtmlGenericControl;
                 HtmlGenericControl divborder = e.Item.FindControl("messageborder") as HtmlGenericControl;
 
-                if (from_id == Convert.ToInt32(Session["username"]))
+                if (from_id == Convert.ToInt32(Session["Username"])) //Session["Username"] //2
                 {
                     div.Attributes.Add("class", div.Attributes["class"] + " message-from");
                     divborder.Attributes.Add("class", divborder.Attributes["class"] + " border-from");
@@ -154,7 +159,7 @@ namespace Team_1_Halslaget_GK
         {
             Message msg = new Message();
             string message = TextBoxReply.Text;
-            int idfrom = Convert.ToInt32(Session["username"]);
+            int idfrom = Convert.ToInt32(Session["Username"]); //2
             int idto = Convert.ToInt32(LabelIDto.Text);
 
             if (msg.SendMessage(message, idfrom, idto))
@@ -177,7 +182,7 @@ namespace Team_1_Halslaget_GK
         {
             if (TextBoxSearch.Text != "")
             {
-                int id = Convert.ToInt32(Session["username"]);
+                int id = Convert.ToInt32(Session["Username"]); //2
                 Message msg = new Message();
 
                 string search = FixSearchString();
@@ -237,16 +242,16 @@ namespace Team_1_Halslaget_GK
         {
             if (lbMembers.SelectedValue.ToString() != "")
             {
-                LabelIDto.Text = lbMembers.SelectedValue.ToString();
-                string name = lbMembers.SelectedItem.ToString();
+            LabelIDto.Text = lbMembers.SelectedValue.ToString();
+            string name = lbMembers.SelectedItem.ToString();
 
-                SearchMember.Attributes.Add("class", "page-overlay-search-member");
-                frommember2.InnerHtml = "<strong>" + name + "</strong>";
+            SearchMember.Attributes.Add("class", "page-overlay-search-member");
+            frommember2.InnerHtml = "<strong>" + name + "</strong>";
 
-                TextBoxReply.Visible = true;
-                ButtonReply.Visible = true;
+            TextBoxReply.Visible = true;
+            ButtonReply.Visible = true;
 
-                ShowMessage(Convert.ToInt32(lbMembers.SelectedValue));
+            ShowMessage(Convert.ToInt32(lbMembers.SelectedValue));
 
                 ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
             }

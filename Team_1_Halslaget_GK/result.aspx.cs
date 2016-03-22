@@ -87,7 +87,7 @@ namespace Team_1_Halslaget_GK
 
         public DataTable getTeamCompResultlist(string compid)
         {
-            string sql = "SELECT medlem.fornamn, medlem.efternamn, lag_medlem.slutresultat, lag_medlem.lag_id FROM tavling INNER JOIN lag_tavling ON( tavling.id = lag_tavling.id_tavling) INNER JOIN lag_medlem ON (lag_tavling.id_lag = lag_medlem.lag_id) INNER JOIN medlem ON (lag_medlem.medlem_id = medlem.id)  WHERE tavling.id = @tavling_id ORDER BY slutresultat, lag_medlem.lag_id ASC";
+            string sql = "SELECT medlem.fornamn, medlem.efternamn, lag_medlem.score, lag_medlem.lag_id FROM tavling INNER JOIN lag_tavling ON( tavling.id = lag_tavling.id_tavling) INNER JOIN lag_medlem ON (lag_tavling.id_lag = lag_medlem.lag_id) INNER JOIN medlem ON (lag_medlem.medlem_id = medlem.id)  WHERE tavling.id = @tavling_id ORDER BY score, lag_medlem.lag_id ASC";
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@tavling_id", compid);
