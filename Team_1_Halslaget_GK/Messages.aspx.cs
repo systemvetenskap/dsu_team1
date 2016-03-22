@@ -82,7 +82,7 @@ namespace Team_1_Halslaget_GK
             var hf = (HiddenField)item.FindControl("HiddenFieldMemberID");
             int id = Convert.ToInt32(hf.Value);
 
-            ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "scrollToConversationBottom()", "scrollToConversationBottom();", true);
             ShowMessage(id);
         }
 
@@ -149,7 +149,7 @@ namespace Team_1_Halslaget_GK
             if (TextBoxReply.Text != "")
             {
                 SendMessage();
-                ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "scrollToConversationBottom()", "scrollToConversationBottom();", true);
             }
         }
 
@@ -253,7 +253,7 @@ namespace Team_1_Halslaget_GK
 
             ShowMessage(Convert.ToInt32(lbMembers.SelectedValue));
 
-                ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "scrollToConversationBottom()", "scrollToConversationBottom();", true);
             }
         }
 
