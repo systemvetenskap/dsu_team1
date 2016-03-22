@@ -33,3 +33,11 @@
 .diary-padding {
     padding-left: 1em;
 }
+
+.sevenFiveBox {
+  padding: 2%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; 
+
+ }

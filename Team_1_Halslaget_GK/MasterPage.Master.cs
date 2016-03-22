@@ -68,5 +68,33 @@ namespace Team_1_Halslaget_GK
             Session["userID"] = userID;
             Response.Redirect("~/Bokatavling.aspx");
         }
+
+        protected void BtnGoToMessages_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["userID"] = userID;
+            Response.Redirect("~/Messages.aspx");
+        }
+
+        protected void btnGoToMessagesResponsive_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["userID"] = userID;
+            Response.Redirect("~/Messages.aspx");
+        }
+
+        protected void btnGotoDagbok_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["userID"] = userID;
+            Response.Redirect("~/Dagbok.aspx");
+        }
+
+        protected void btnGoToDagbokResponsive_ServerClick(object sender, EventArgs e)
+        {
+            string userID = Session["Username"].ToString();
+            Session["userID"] = userID;
+            Response.Redirect("~/Dagbok.aspx");
+        }
     }
 }
