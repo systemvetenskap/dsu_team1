@@ -11,7 +11,7 @@
     </div>
 
     <%-- Alla konversationer --%>
-    <div class="fullBox fullbox-message">
+   
         <div class="quarterBox">
         <div class="fullBox">
             <a id="NewMsg" class="my-button btn-small" onclick="OpenOverlaySearchMemberMessage();"><p>+ Nytt</p></a>
@@ -77,7 +77,7 @@
                             <div class="sevenFiveBox sevenFiveBox-message">
                                 <asp:TextBox ID="TextBoxReply" runat="server" CssClass="my-txt-box txt-box-reply" Visible="false" TextMode="MultiLine"></asp:TextBox>
                             </div>
-                            <div class="quarterBox quarterBox-message">
+                            <div class="quarterBox">
                                 <asp:Button ID="ButtonReply" runat="server" Text="Skicka" Visible="false" CssClass="my-button bt-reply" onclick="ButtonReply_Click"/>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                 </div>           
             </ContentTemplate>
         </asp:UpdatePanel>
-    </div>
+    
 
             <!-- RUTA FÖR ATT SÖKA MEDLEM   ================================================== -->
     <asp:UpdatePanel ID="UpdatePanel3" runat="server">

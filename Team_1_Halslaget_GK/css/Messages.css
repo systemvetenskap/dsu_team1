@@ -108,10 +108,8 @@
     padding: 2% 0;   
 }
 
-.quarterBox-message{
-    padding: 2% 0;
-    width: 24%;
-    margin-left: 1%;
+.quarterBox{
+    margin: 2% 2% 0 0;   
 }
 
 .btn-reply{

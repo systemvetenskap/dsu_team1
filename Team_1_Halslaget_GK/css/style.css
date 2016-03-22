@@ -614,7 +614,9 @@ h3 {
 	.longBox,		
 	.content,
 	.boxContainer,
-	.navbarContainer
+	.navbarContainer,
+    .sevenFiveBox,
+    .quarterBox
  {
     width: 100%;   
   }
@@ -625,7 +627,9 @@ h3 {
 	.longBox,		
 	.content,
 	.boxContainer,	
-	.navbarContainer
+	.navbarContainer,
+    .sevenFiveBox,
+    .quarterBox
 {
     width: 100%;        
   }
@@ -636,7 +640,9 @@ h3 {
 	.longBox,			
 	.content,
 	.boxContainer,	
-	.navbarContainer
+	.navbarContainer,
+    .sevenFiveBox,
+    .quarterBox
 
 
  {
@@ -646,8 +652,8 @@ h3 {
 
 @media (max-width: 992px) {	
 	.content,
-	.boxContainer,	
-	.navbarContainer
+	.boxContainer	
+	
  {
     width: 100%;      
   }
