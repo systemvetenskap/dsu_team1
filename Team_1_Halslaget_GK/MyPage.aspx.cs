@@ -16,6 +16,7 @@ using System.Web.UI.HtmlControls;
 using Npgsql;
 using System.Globalization;
 using System.IO;
+using Team_1_Halslaget_GK.Classes;
 
 namespace Team_1_Halslaget_GK
 {
@@ -55,6 +56,7 @@ namespace Team_1_Halslaget_GK
             SetMemberTextBoxes();
             SetCompGrid();
             SetDiaryLabel();
+            UpdateMsgInfo();
         }
 
         private void SetDiaryLabel()
@@ -315,6 +317,39 @@ namespace Team_1_Halslaget_GK
         protected void btnNewNote_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/CreateDagbokNote.aspx");
+        }
+
+        protected void UpdateMsgInfo()
+        {
+            medlem member = new medlem();
+            Message msg = new Message();
+
+            DateTime dt = member.GetLastLogin(Session["username"].ToString());
+
+            int newmsgs = msg.GetNewMessages(Session["username"].ToString(), dt);
+
+            if (newmsgs > 0)
+            {
+                newmsgshow.Attributes.Add("class", "show-msg-info");
+
+                if (newmsgs == 1)
+                {
+                    newmsg.InnerText = "Du har " + newmsgs + " nytt meddelande";
+                }
+
+                else
+                {
+                    newmsg.InnerText = "Du har " + newmsgs + " nya meddelanden";
+                }
+            }
+
+            Session["login"] = DateTime.Now;
+            member.SetLatestLogin(Session["username"].ToString());
+        }
+
+        protected void LinkButtonMsg_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Messages.aspx");
         }
 
     }

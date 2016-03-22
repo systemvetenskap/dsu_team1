@@ -12,9 +12,12 @@
 
     <%-- Alla konversationer --%>
     <div class="fullBox fullbox-message">
-        <div class="quarterBox messages-list">
+        <div class="quarterBox">
+        <div class="fullBox">
             <a id="NewMsg" class="my-button btn-small" onclick="OpenOverlaySearchMemberMessage();"><p>+ Nytt</p></a>
             <asp:TextBox ID="TextBoxSearch" runat="server" placeholder="Sök i dina konversationer" CssClass="my-txt-box txt-box-search" OnTextChanged="TextBoxSearch_TextChanged"></asp:TextBox>
+        </div>
+        <div class="fullBox messages-list">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <Triggers><asp:AsyncPostBackTrigger ControlID="TextBoxSearch" runat="server" EventName="TextChanged"/></Triggers>
                 <ContentTemplate>
@@ -26,7 +29,7 @@
                         <div class="grad">                   
                            <asp:LinkButton ID="LinkBtnShowFullMessage" runat="server" OnClick="LinkBtnShowFullMessage_Click" CssClass="linkbtn-empty" >
                                 <div class="short-message-info-box">
-                                    <p id="frommember" runat="server" class="name"><%#Eval ("fornamn") %><%#Eval ("efternamn") %> </p>
+                                    <p id="frommember" runat="server" class="name"><%#Eval ("fornamn") %> <%#Eval ("efternamn") %></p>
                                     <p id="date" class="smallp" runat="server"><%#Eval ("nytid") %></p>
                                 </div>
                                 <div class="short-message-box">
@@ -42,7 +45,9 @@
                 </asp:Repeater>
                </ContentTemplate>
             </asp:UpdatePanel>
+            </div>
         </div>
+
         <%-- Konversationsruta --%>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
             <ContentTemplate>
@@ -70,7 +75,7 @@
 
                         <div class="fullBox fullBox-message-send">
                             <div class="sevenFiveBox sevenFiveBox-message">
-                                <asp:TextBox ID="TextBoxReply" runat="server" CssClass="my-txt-box txt-box-reply" Visible="false" TextMode="MultiLine" OnTextChanged="TextBoxReply_TextChanged"></asp:TextBox>
+                                <asp:TextBox ID="TextBoxReply" runat="server" CssClass="my-txt-box txt-box-reply" Visible="false" TextMode="MultiLine"></asp:TextBox>
                             </div>
                             <div class="quarterBox quarterBox-message">
                                 <asp:Button ID="ButtonReply" runat="server" Text="Skicka" Visible="false" CssClass="my-button bt-reply" onclick="ButtonReply_Click"/>
@@ -105,7 +110,7 @@
                            <asp:Button ID="BtnSearchMember" runat="server" Text="Sök Medlem" CssClass="my-button" OnClick="BtnSearchMember_Click"/>
                       </div>
                       <div class="halfBox halfBoxBtn">
-                            <asp:Button ID="btnSendMsgNewMember" CssClass="my-button" runat="server" Text="Lägg till" OnClick="btnSendMsgNewMember_Click"/>                                
+                            <asp:Button ID="btnSendMsgNewMember" CssClass="my-button" runat="server" Text="Skicka till medlem" OnClick="btnSendMsgNewMember_Click"/>                                
                       </div>
                   </div>   
               </div>

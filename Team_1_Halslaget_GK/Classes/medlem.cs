@@ -447,5 +447,57 @@ namespace Team_1_Halslaget_GK
                 conn.Dispose();
             }
         }
+
+        public DateTime GetLastLogin(string id)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            DateTime dt = new DateTime();
+
+            try
+            {
+                NpgsqlCommand cmd = new NpgsqlCommand("SELECT last_login FROM medlem WHERE id = @id", conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();              
+                dt = Convert.ToDateTime(cmd.ExecuteScalar());
+                return dt;
+            }
+
+            catch (Exception ex)
+            {
+                return dt;
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        public void SetLatestLogin(string id)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand cmd = new NpgsqlCommand("UPDATE medlem SET last_login = @timestamp WHERE id = @id", conn);
+
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@timestamp", DateTime.Now);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (NpgsqlException ex)
+            {
+
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
     }
 }

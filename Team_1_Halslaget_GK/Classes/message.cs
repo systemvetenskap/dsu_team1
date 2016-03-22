@@ -36,15 +36,17 @@ namespace Team_1_Halslaget_GK.Classes
             }
         }
 
-        public DataTable GetMessagesSpecificMember(int id)
+        public DataTable GetMessagesSpecificMember(int idto, int idfrom)
         {
             DataTable dt = new DataTable();
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 
             try
             {
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT fornamn, efternamn, tid, meddelande, from_medlem, to_medlem FROM meddelande INNER JOIN medlem ON (CASE WHEN from_medlem = @id THEN from_medlem = medlem.id WHEN to_medlem = @id THEN to_medlem = medlem.id END) WHERE from_medlem = @id OR to_medlem = @id ORDER BY tid ASC", conn);
-                da.SelectCommand.Parameters.AddWithValue("@id", id);
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT fornamn, efternamn, tid, meddelande, from_medlem, to_medlem, meddelande.id FROM meddelande INNER JOIN medlem ON (CASE WHEN from_medlem = @idfrom THEN from_medlem = medlem.id WHEN to_medlem = @idfrom THEN to_medlem = medlem.id END) WHERE from_medlem = @idto AND to_medlem = @idfrom OR from_medlem = @idfrom AND to_medlem = @idto ORDER BY meddelande.id ASC", conn);
+                da.SelectCommand.Parameters.AddWithValue("@idto", idto);
+                da.SelectCommand.Parameters.AddWithValue("@idfrom", idfrom);
+
                 conn.Open();
                 da.Fill(dt);
                 return dt;
@@ -146,6 +148,31 @@ namespace Team_1_Halslaget_GK.Classes
         
         }
 
-        
+        public int GetNewMessages(string id, DateTime lastlogin)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            DataTable dt = new DataTable();
+
+            try
+            {
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM meddelande WHERE tid >= @lastlogin AND to_medlem = @id", conn);
+                da.SelectCommand.Parameters.AddWithValue("@id", id);
+                da.SelectCommand.Parameters.AddWithValue("@lastlogin", lastlogin);
+
+                da.Fill(dt);
+                return dt.Rows.Count;
+            }
+
+            catch (NpgsqlException ex)
+            {
+                return 0;
+            }
+
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
     }
 }

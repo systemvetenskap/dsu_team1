@@ -78,6 +78,14 @@
             samt ändra din personliga information. Har du några frågor eller funderingar är du varmt välkommen till att kontakta hos på Hålsaget GK!
         </p>
     </div>
+
+    <!-- New messages -->       
+        <asp:LinkButton ID="LinkButtonMsg" runat="server" CssClass="new-msg-link-btn" OnClick="LinkButtonMsg_Click">
+            <div id="newmsgshow" runat="server" class="fullBox new-msg-fullbox">
+                <p id="newmsg" class="new-msg-text" runat="server">Du har 2 nya meddelanden</p>
+            </div>
+        </asp:LinkButton>
+    
    <!-- USER BOOKED TIMES ================================================== -->
     <div class="fullBox top-n-bottom-space">
         <div class="halfBox my-page-half-box">

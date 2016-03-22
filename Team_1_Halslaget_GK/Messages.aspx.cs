@@ -25,7 +25,7 @@ namespace Team_1_Halslaget_GK
 
         protected void InitializeGUI()
         {
-                int id = 2; //Convert.ToInt32(Session["username"])
+            int id = Convert.ToInt32(Session["username"]); 
 
             Message msg = new Message();
             DataTable dt = msg.GetMessages(id);
@@ -84,7 +84,7 @@ namespace Team_1_Halslaget_GK
         protected void ShowMessage(int id)
         {
             Message msg = new Message();
-            DataTable dt = msg.GetMessagesSpecificMember(id);
+            DataTable dt = msg.GetMessagesSpecificMember(id, Convert.ToInt32(Session["username"])); 
             if (dt.Rows.Count > 0)
             {
                 DateTime datetime = Convert.ToDateTime(dt.Rows[dt.Rows.Count - 1]["tid"]);
@@ -92,7 +92,7 @@ namespace Team_1_Halslaget_GK
                 frommember2.InnerHtml = "<strong>" + dt.Rows[0]["fornamn"].ToString() + " " + dt.Rows[0]["efternamn"].ToString() + "</strong>";
                 date2.InnerHtml = "<strong>" + datetime.ToString("dd-MM-yyyy HH:mm") + "</strong>";
 
-                if (dt.Rows[0]["to_medlem"].ToString() == "2") //Session["username"]
+                if (dt.Rows[0]["to_medlem"].ToString() == Session["username"].ToString())
                 {
                     LabelIDto.Text = dt.Rows[0]["from_medlem"].ToString();
                 }
@@ -105,6 +105,12 @@ namespace Team_1_Halslaget_GK
                 Repeater2.DataSource = dt;
                 Repeater2.DataBind();
                 InitializeGUI();
+            }
+
+            else
+            {
+                Repeater2.DataSource = null;
+                Repeater2.DataBind();
             }
             
         }
@@ -119,7 +125,7 @@ namespace Team_1_Halslaget_GK
                 HtmlGenericControl div = e.Item.FindControl("messageinrow") as HtmlGenericControl;
                 HtmlGenericControl divborder = e.Item.FindControl("messageborder") as HtmlGenericControl;
 
-                if (from_id == 2) //Session["username"]
+                if (from_id == Convert.ToInt32(Session["username"]))
                 {
                     div.Attributes.Add("class", div.Attributes["class"] + " message-from");
                     divborder.Attributes.Add("class", divborder.Attributes["class"] + " border-from");
@@ -138,22 +144,17 @@ namespace Team_1_Halslaget_GK
             if (TextBoxReply.Text != "")
             {
                 SendMessage();
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
             }
         }
 
-        protected void TextBoxReply_TextChanged(object sender, EventArgs e)
-        {
-            if (TextBoxReply.Text != "")
-            {
-                SendMessage();
-            }
-        }
+
 
         protected void SendMessage()
         {
             Message msg = new Message();
             string message = TextBoxReply.Text;
-            int idfrom = 2; //Session["username"]
+            int idfrom = Convert.ToInt32(Session["username"]);
             int idto = Convert.ToInt32(LabelIDto.Text);
 
             if (msg.SendMessage(message, idfrom, idto))
@@ -176,7 +177,7 @@ namespace Team_1_Halslaget_GK
         {
             if (TextBoxSearch.Text != "")
             {
-                int id = 2; //Convert.ToInt32(Session["username"]);
+                int id = Convert.ToInt32(Session["username"]);
                 Message msg = new Message();
 
                 string search = FixSearchString();
@@ -234,17 +235,21 @@ namespace Team_1_Halslaget_GK
 
         protected void btnSendMsgNewMember_Click(object sender, EventArgs e)
         {
-            LabelIDto.Text = lbMembers.SelectedValue.ToString();
-            string name = lbMembers.SelectedItem.ToString();
+            if (lbMembers.SelectedValue.ToString() != "")
+            {
+                LabelIDto.Text = lbMembers.SelectedValue.ToString();
+                string name = lbMembers.SelectedItem.ToString();
 
-            SearchMember.Attributes.Add("class", "page-overlay-search-member");
-            frommember2.InnerHtml = "<strong>" + name + "</strong>";
+                SearchMember.Attributes.Add("class", "page-overlay-search-member");
+                frommember2.InnerHtml = "<strong>" + name + "</strong>";
 
-            TextBoxReply.Visible = true;
-            ButtonReply.Visible = true;
-            ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
+                TextBoxReply.Visible = true;
+                ButtonReply.Visible = true;
 
-            ShowMessage(Convert.ToInt32(lbMembers.SelectedValue));
+                ShowMessage(Convert.ToInt32(lbMembers.SelectedValue));
+
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
+            }
         }
 
 
