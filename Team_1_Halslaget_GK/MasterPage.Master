@@ -28,7 +28,14 @@
 <body>
 
     <form id="form1" runat="server">
-
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <!-- Navbar ================================================== -->
     <section class="container" id="navbar-section">
       <div class="content">
@@ -106,6 +113,7 @@
 
                 <div class="thirdBox">
                     <h3 class="foot-h3"><strong>HITTA HIT</strong></h3>
+                    <br />
                     <div class="gMap">
                         <iframe id="gMapIframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57614.47445274595!2d14.5815931701714!3d63.17533576111594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x466fb846d4f93091%3A0x4adec23d33cfdcde!2s%C3%96stersund!5e0!3m2!1ssv!2sse!4v1458643293334" width="" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>            
                     </div>
