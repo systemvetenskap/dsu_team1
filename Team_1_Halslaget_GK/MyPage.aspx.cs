@@ -35,6 +35,16 @@ namespace Team_1_Halslaget_GK
             {
                 InitializeGUI();
             }
+
+            foreach (GridViewRow row in GridView2.Rows)
+            {
+                if (row.Cells[2].Text == "00:00")
+                {
+                    row.Cells[2].Text = "";
+                }
+
+            }
+
         }
 
         /// <summary>
@@ -80,6 +90,18 @@ namespace Team_1_Halslaget_GK
             if(GridView1.Rows.Count == 0)
             {
                 CancelBookingInfo.InnerText = "Du har inga kommande bokade tider!";
+            }
+
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                if (row.RowIndex == GridView1.SelectedIndex)
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#6C6C6C");
+                }
+                else
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                }
             }
         }
 

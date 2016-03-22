@@ -32,6 +32,8 @@ namespace Team_1_Halslaget_GK
                 gvTavlingar.DataBind();
                 
             }
+
+
            
         }
 
@@ -272,7 +274,7 @@ namespace Team_1_Halslaget_GK
                 conn.Close();
             }
 
-            string sql4 = "INSERT INTO lag_tavling (id_lag, id_tavling) VALUES (@lag_id, @tavling_id, @starttid_id)";
+            string sql4 = "INSERT INTO lag_tavling (id_lag, id_tavling, starttid_id) VALUES (@lag_id, @tavling_id, @starttid_id)";
             conn.Open();
             NpgsqlCommand cmd4 = new NpgsqlCommand(sql4, conn);
             cmd4.Parameters.AddWithValue("@lag_id", teamid);

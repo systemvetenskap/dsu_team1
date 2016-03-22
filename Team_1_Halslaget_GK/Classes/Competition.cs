@@ -239,7 +239,7 @@ namespace Team_1_Halslaget_GK
             try
             {
                 conn.Open();
-                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT  id, namn, datum, bokning.starttid FROM tavling INNER JOIN medlem_tavling ON (tavling.id = medlem_tavling.tavling_id) INNER JOIN bokning ON (medlem_tavling.starttid_id = bokning.slot_id) WHERE medlem_id = @medlem_id", conn);
+                NpgsqlCommand cmdGetCompetitions = new NpgsqlCommand("SELECT  id, namn, datum, bokning.starttid FROM tavling INNER JOIN medlem_tavling ON (tavling.id = medlem_tavling.tavling_id) INNER JOIN bokning ON (medlem_tavling.starttid_id = bokning.slot_id) WHERE medlem_id = @medlem_id AND datum > CURRENT_DATE", conn);
                 cmdGetCompetitions.Parameters.AddWithValue("@medlem_id", id);
                 NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
                 nda.SelectCommand = cmdGetCompetitions;
@@ -263,7 +263,7 @@ namespace Team_1_Halslaget_GK
         public DataTable  GetComingTeamCompetitionMember(int id)
         {
             NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            string sql = "SELECT id, namn, datum, bokning.starttid FROM lag_medlem INNER JOIN lag_tavling ON(lag_medlem.lag_id = lag_tavling.id_lag) INNER JOIN tavling ON (lag_tavling.id_tavling = tavling.id) INNER JOIN bokning ON(lag_tavling.starttid_id = bokning.slot_id) WHERE medlem_id = @medlem_id";
+            string sql = "SELECT id, namn, datum, bokning.starttid FROM lag_medlem INNER JOIN lag_tavling ON(lag_medlem.lag_id = lag_tavling.id_lag) INNER JOIN tavling ON (lag_tavling.id_tavling = tavling.id) INNER JOIN bokning ON(lag_tavling.starttid_id = bokning.slot_id) WHERE medlem_id = @medlem_id AND datum > CURRENT_DATE";
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@medlem_id", id);
             NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
