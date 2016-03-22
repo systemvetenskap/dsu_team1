@@ -16,6 +16,11 @@ namespace Team_1_Halslaget_GK
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Username"] == null)
+            {
+                Response.Redirect("~/NotAllowed.aspx");
+            }
+
             if (!IsPostBack)
             {
                 InitializeGUI();
@@ -25,7 +30,7 @@ namespace Team_1_Halslaget_GK
 
         protected void InitializeGUI()
         {
-                int id = 2; //Convert.ToInt32(Session["username"])
+            int id = Convert.ToInt32(Session["username"]); //Convert.ToInt32(Session["username"]) //2
 
             Message msg = new Message();
             DataTable dt = msg.GetMessages(id);
@@ -92,7 +97,7 @@ namespace Team_1_Halslaget_GK
                 frommember2.InnerHtml = "<strong>" + dt.Rows[0]["fornamn"].ToString() + " " + dt.Rows[0]["efternamn"].ToString() + "</strong>";
                 date2.InnerHtml = "<strong>" + datetime.ToString("dd-MM-yyyy HH:mm") + "</strong>";
 
-                if (dt.Rows[0]["to_medlem"].ToString() == "2") //Session["username"]
+                if (dt.Rows[0]["to_medlem"].ToString() == Session["Username"].ToString()) //Session["username"] //2
                 {
                     LabelIDto.Text = dt.Rows[0]["from_medlem"].ToString();
                 }
@@ -119,7 +124,7 @@ namespace Team_1_Halslaget_GK
                 HtmlGenericControl div = e.Item.FindControl("messageinrow") as HtmlGenericControl;
                 HtmlGenericControl divborder = e.Item.FindControl("messageborder") as HtmlGenericControl;
 
-                if (from_id == 2) //Session["username"]
+                if (from_id == Convert.ToInt32(Session["Username"])) //Session["Username"] //2
                 {
                     div.Attributes.Add("class", div.Attributes["class"] + " message-from");
                     divborder.Attributes.Add("class", divborder.Attributes["class"] + " border-from");
@@ -153,7 +158,7 @@ namespace Team_1_Halslaget_GK
         {
             Message msg = new Message();
             string message = TextBoxReply.Text;
-            int idfrom = 2; //Session["username"]
+            int idfrom = Convert.ToInt32(Session["Username"]); //2
             int idto = Convert.ToInt32(LabelIDto.Text);
 
             if (msg.SendMessage(message, idfrom, idto))
@@ -176,7 +181,7 @@ namespace Team_1_Halslaget_GK
         {
             if (TextBoxSearch.Text != "")
             {
-                int id = 2; //Convert.ToInt32(Session["username"]);
+                int id = Convert.ToInt32(Session["Username"]); //2
                 Message msg = new Message();
 
                 string search = FixSearchString();

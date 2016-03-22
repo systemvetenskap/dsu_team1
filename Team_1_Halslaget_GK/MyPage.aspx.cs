@@ -317,5 +317,10 @@ namespace Team_1_Halslaget_GK
             Response.Redirect("~/CreateDagbokNote.aspx");
         }
 
+        protected void btnGoToMessenger_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Messages.aspx");
+        }
+
     }
 }
