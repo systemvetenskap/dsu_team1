@@ -43,7 +43,7 @@
                   
     <!------------------ Visa Tävlingar ----------------> 
 
-<div class="fullBox page-title"><h1>Tävlingar</h1></div>  
+<div class="fullBox page-title"><h2>Tävlingar</h2></div>  
 <asp:Panel ID="Panel2" runat="server" DefaultButton="BtnSearch">
     <div class="halfBox">
     <div class="halfBox SearchBox">

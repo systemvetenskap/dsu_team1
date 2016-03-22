@@ -178,19 +178,13 @@
   margin-left: 5px;
   }
 
-.my-SearchBtn{
-      background-color:gray;
-      padding:0;
-      height: 30px;
-      margin:15px 0 15px 0;
-  }
-
 .HiddenSearchBox {
    display:none;  
 }
 
 .HiddenSearchBox h3 {
     text-align: left;
+    margin: 2% auto;
 }
 
 .HiddenSearchBox .my-txt-box {
@@ -216,7 +210,8 @@
     outline: none;
     font-size: 1.3em;
     cursor: pointer;
-    height: 40px;   
+    height: 40px; 
+    margin:3% auto;  
 }
 .otherplayers .my-button:hover {
 	color: white;
@@ -225,6 +220,10 @@
 
 .otherplayers .button-80 {
     width: 80%;
+}
+
+.otherplayers .players {
+    margin: 1% auto;
 }
 .center-text {
     text-align:center;
@@ -235,20 +234,12 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; 
- }
 
-.fullBox {
-  padding: 2%;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box; 
  }
 
 .HiddenSearchBox .searchBtn {
-     width: 100%;
-    
-     margin-top:50px;
-     
+     width: 100%;   
+     margin-top:50px;   
  }
 
 

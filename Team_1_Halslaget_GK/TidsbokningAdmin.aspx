@@ -52,7 +52,7 @@
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <div class="fullBox page-title">
-        <h1>Tidsbokning</h1>
+        <h2>Tidsbokning</h2>
     </div>
     <div class="halfBox calenderBox">
                 <asp:Calendar ID="Calendar1" runat="server" CssClass="aspCalender" OnSelectionChanged="Calendar1_SelectionChanged1" OnDayRender="Calendar1_DayRender">  
@@ -162,24 +162,24 @@
     <div class="otherplayersbackground">
         <div class="otherplayers">          
             <asp:Button ID="Button1" runat="server" Text="X" CssClass="closebtn" OnClick="Button1_Click" />
-            <asp:Label ID="lblotherplayers" CssClass="lblotherplayers" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblotherplayers" CssClass="lblotherplayers" runat="server" Text=""></asp:Label><br /><br />
             <div id="hcpcheck" runat="server">
-            <div class="fullBox">
+            <div class="fullBox players">
                     <asp:Label ID="lblPlayer1" CssClass="players" runat="server" Text=""></asp:Label>
                     <asp:Button ID="Removeplayer1Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer1Btn_Click" />
             </div>
-            <div class="fullBox">
+            <div class="fullBox players">
 
-                    <asp:Label ID="lblPlayer2" CssClass="players" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="lblPlayer2" runat="server" Text=""></asp:Label>
                     <asp:Button ID="Removeplayer2Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer2Btn_Click" />
             </div>
-            <div class="fullBox">
+            <div class="fullBox players">
 
-                    <asp:Label ID="lblPlayer3" CssClass="players" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="lblPlayer3" runat="server" Text=""></asp:Label>
                     <asp:Button ID="Removeplayer3Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer3Btn_Click" />
             </div>
-            <div class="fullBox">
-                    <asp:Label ID="lblPlayer4" CssClass="players" runat="server" Text=""></asp:Label>
+            <div class="fullBox players">
+                    <asp:Label ID="lblPlayer4" runat="server" Text=""></asp:Label>
                     <asp:Button ID="Removeplayer4Btn" CssClass="delete" runat="server" Text="x" OnClick="Removeplayer4Btn_Click" />
             </div>                                
             </div>

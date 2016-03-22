@@ -8,11 +8,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="fullBox page-title publish-news-fix">
-        <h1>Publicera Nyhet</h1>
-        <br />
+        <h2>Publicera Nyhet</h2>      
     </div>  
     <div class="fullBox">
-        <asp:TextBox ID="txtHTMLContent" runat="server" TextMode="MultiLine"></asp:TextBox>           
+        <asp:TextBox ID="txtHTMLContent" runat="server" height="500px" TextMode="MultiLine"></asp:TextBox>           
         <br />
         <asp:Button ID="Button1" runat="server" Text="Publicera" CssClass="my-button" OnClick="Button1_Click" /> 
     </div>          
