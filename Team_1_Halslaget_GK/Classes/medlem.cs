@@ -161,7 +161,7 @@ namespace Team_1_Halslaget_GK
                 cmdInsertNewMember.Parameters.AddWithValue("@paydate", payDate);
                 cmdInsertNewMember.Parameters.AddWithValue("@pw", password);
                 cmdInsertNewMember.Parameters.AddWithValue("@guid", guid);
-                cmdInsertNewMember.Parameters.AddWithValue("@adminStatus", false); //Temporary work around should be changed later so one can insert an admin later.
+                cmdInsertNewMember.Parameters.AddWithValue("@adminStatus", payStatus); //Temporary work around should be changed later so one can insert an admin later.
 
                 cmdInsertNewMember.ExecuteNonQuery();
 
