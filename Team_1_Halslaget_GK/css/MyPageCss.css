@@ -124,6 +124,21 @@
     margin-left: 2%;
 }
 
+.new-msg-fullbox{
+    display: none;
+}
+
+.new-msg-link-btn{
+    color:black;
+}
+
+.show-msg-info{
+    display: inline-block;
+    border: 1px solid #E5C100;
+    border-radius: 5px;
+    padding: 4px;
+}
+
 @media (max-width: 952px) {	
 	.overlay-message {
     width: 100%;

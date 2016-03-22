@@ -89,7 +89,7 @@ namespace Team_1_Halslaget_GK
         protected void ShowMessage(int id)
         {
             Message msg = new Message();
-            DataTable dt = msg.GetMessagesSpecificMember(id);
+            DataTable dt = msg.GetMessagesSpecificMember(id, Convert.ToInt32(Session["username"])); 
             if (dt.Rows.Count > 0)
             {
                 DateTime datetime = Convert.ToDateTime(dt.Rows[dt.Rows.Count - 1]["tid"]);
@@ -97,7 +97,7 @@ namespace Team_1_Halslaget_GK
                 frommember2.InnerHtml = "<strong>" + dt.Rows[0]["fornamn"].ToString() + " " + dt.Rows[0]["efternamn"].ToString() + "</strong>";
                 date2.InnerHtml = "<strong>" + datetime.ToString("dd-MM-yyyy HH:mm") + "</strong>";
 
-                if (dt.Rows[0]["to_medlem"].ToString() == Session["Username"].ToString()) //Session["username"] //2
+                if (dt.Rows[0]["to_medlem"].ToString() == Session["username"].ToString())
                 {
                     LabelIDto.Text = dt.Rows[0]["from_medlem"].ToString();
                 }
@@ -112,6 +112,12 @@ namespace Team_1_Halslaget_GK
                 InitializeGUI();
             }
             
+            else
+            {
+                Repeater2.DataSource = null;
+                Repeater2.DataBind();
+        }
+
         }
 
         protected void Repeater2_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -143,16 +149,11 @@ namespace Team_1_Halslaget_GK
             if (TextBoxReply.Text != "")
             {
                 SendMessage();
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
             }
         }
 
-        protected void TextBoxReply_TextChanged(object sender, EventArgs e)
-        {
-            if (TextBoxReply.Text != "")
-            {
-                SendMessage();
-            }
-        }
+
 
         protected void SendMessage()
         {
@@ -239,6 +240,8 @@ namespace Team_1_Halslaget_GK
 
         protected void btnSendMsgNewMember_Click(object sender, EventArgs e)
         {
+            if (lbMembers.SelectedValue.ToString() != "")
+            {
             LabelIDto.Text = lbMembers.SelectedValue.ToString();
             string name = lbMembers.SelectedItem.ToString();
 
@@ -247,9 +250,11 @@ namespace Team_1_Halslaget_GK
 
             TextBoxReply.Visible = true;
             ButtonReply.Visible = true;
-            ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
 
             ShowMessage(Convert.ToInt32(lbMembers.SelectedValue));
+
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "scrollToConversationBottom();", true);
+            }
         }
 
 
