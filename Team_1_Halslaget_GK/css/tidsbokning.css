@@ -118,14 +118,13 @@
     padding: 2%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-     box-sizing: border-box;  
-     
+     box-sizing: border-box;      
 }
 
 .otherplayers .closebtn {
     float:right;
-    margin-top:-20px;
-    margin-right:-20px;
+    margin-top:-2%;
+    margin-right:-2%;
     cursor:pointer;
     color: #fff;
     border: 1px solid #AEAEAE;
@@ -139,8 +138,7 @@
 }
 
 .otherplayers .my-txt-box {
-     margin: 2% auto;
-     width: 50%;
+     margin: 2% auto;   
      height:50px;    
  }
 
@@ -196,7 +194,7 @@
 }
 
 .HiddenSearchBox .my-txt-box {
-     width:100%;
+     width:97%;
  }
  
 .HiddenSearchBox .my-list-box {
@@ -204,15 +202,16 @@
      margin-bottom: 2%;
  }
 
+
+
 .otherplayers .my-button {
     padding: 0;
 	text-align: center;
 	display: inline-block;
-	width: 99%;		
+	width: 100%;		
 	color: white;
 	background: gray;
-	margin-left: 0.2em;
-	margin-right: 0.2em;
+    margin: 0 auto;
     border: 0 none;
     outline: none;
     font-size: 1.3em;
@@ -244,4 +243,12 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box; 
  }
+
+.HiddenSearchBox .searchBtn {
+     width: 100%;
+    
+     margin-top:50px;
+     
+ }
+
 

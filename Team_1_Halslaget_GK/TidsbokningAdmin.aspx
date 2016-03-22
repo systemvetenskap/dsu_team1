@@ -188,7 +188,7 @@
                         <div class="halfBox">
                             <asp:Panel ID="Panel1" runat="server" DefaultButton="BtnSearchMember">                
                             <asp:TextBox ID="tbFullName" CssClass="my-txt-box" runat="server" placeholder="För och/eller efternamn"></asp:TextBox>                              
-                            <asp:Button ID="BtnSearchMember" CssClass="my-button" runat="server" Text="Sök" OnClick="BtnSearchMember_Click"/>                              
+                            <asp:Button ID="BtnSearchMember" CssClass="my-button searchBtn" runat="server" Text="Sök" OnClick="BtnSearchMember_Click"/>                              
                         </asp:Panel> 
                     </div>
                 <div class="halfBox">
