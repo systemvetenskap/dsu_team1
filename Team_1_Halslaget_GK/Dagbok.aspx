@@ -8,7 +8,7 @@
         <ContentTemplate>
 
             <div class="fullBox page-title">
-                <h1>MIN DAGBOK</h1>
+                <h2>MIN DAGBOK</h2>
             </div>
             <div class="fullBox">
                 <div class="quarterBox">

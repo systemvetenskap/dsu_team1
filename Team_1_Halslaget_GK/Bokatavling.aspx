@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server"><asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>      
-<div class="fullBox page-title"><h1>Tävlingar</h1></div> 
+<div class="fullBox page-title"><h2>Tävlingar</h2></div> 
                   
             <!------------------ Visa Tävlingar ---------------->   
                 

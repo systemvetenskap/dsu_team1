@@ -10,7 +10,7 @@
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <div class="fullBox page-title">
-        <h1>Tidsbokning</h1>
+        <h2>Tidsbokning</h2>
     </div>
     <div class="halfBox calenderBox">
             <asp:Calendar ID="Calendar1" runat="server" CssClass="aspCalender" OnSelectionChanged="Calendar1_SelectionChanged" OnDayRender="Calendar1_DayRender">               

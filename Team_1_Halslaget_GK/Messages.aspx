@@ -6,9 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <div class="fullBox">
-        <h3 class="home-h3">Meddelanden</h3>
-    </div>
+    <div class="fullBox page-title"><h2>MEDDELANDEN</h2></div>
 
     <%-- Alla konversationer --%>
    
