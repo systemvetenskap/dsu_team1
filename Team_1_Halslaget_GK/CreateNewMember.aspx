@@ -177,7 +177,7 @@
                     ID="rangeValidatorHcp" 
                     ControlToValidate="txtHcp" 
                     Type="Double"
-                    MaximumValue="99,99" 
+                    MaximumValue="99.99" 
                     Font-Size="Smaller"  
                     ForeColor="Red"
                     MinimumValue="0" 
