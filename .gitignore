@@ -154,7 +154,3 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
-/packages/repositories.config
-/packages/AjaxControlToolkit.15.1.4.0/readme.txt
-/packages/AjaxControlToolkit.15.1.4.0/Content/Web.config.transform
-/packages/AjaxControlToolkit.15.1.4.0/AjaxControlToolkit.15.1.4.0.nupkg
