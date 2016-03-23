@@ -4,6 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+      <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="description" content="En skoluppgift"/>
+      <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, maximum-scale=1, minimum-scale=1.0" />
+
+      <!--<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+      <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>-->
+
+      <meta name="author" content="Team 1, Borgenstam, Cederström, Drysén, Gustavsson, Hyllengren, Rosenlind"/>
     <title>HÅLSLAGET GK1</title>
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/deafultstyle.css" rel="stylesheet" />
