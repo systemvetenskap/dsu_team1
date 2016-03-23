@@ -182,7 +182,7 @@
                     ForeColor="Red"
                     MinimumValue="0" 
                     runat="server" 
-                    ErrorMessage="Endast siffror och kommatecken."
+                    ErrorMessage="Endast siffror och punkt."
                     ValidationGroup="member">
                 </asp:RangeValidator>
             </p>
