@@ -9,7 +9,7 @@
         <h1>ADMINPANEL</h1>
     </div>
     <div class="fullBox admin-top-n-bottom-margin">
-        <h3>Välkommen <asp:Label ID="lblAdminUserName" runat="server" Text="AdminUserName"></asp:Label></h3>
+        <h3>Välkommen <%--<asp:Label ID="lblAdminUserName" runat="server" Text="AdminUserName"></asp:Label>--%></h3>
     </div>
     <div class="fullBox center-text admin-bottom">
         <div class="quarterBox admin-qBox">
