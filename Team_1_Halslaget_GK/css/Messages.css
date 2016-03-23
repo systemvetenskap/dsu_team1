@@ -1,0 +1,168 @@
+﻿body {
+}
+
+.fullbox-message{
+    height: 420px;
+}
+
+.fullbox-message-send{
+    height: 100%;
+}
+
+.txt-box-search{
+    width: 96%;
+    margin-top: 10px;
+
+}
+
+.btn-small{
+    width: 97%;
+    height: 35px;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.btn-small p{
+    margin: 3px;
+}
+
+.grad {
+    border-bottom: 1px solid #e4e4e4;
+    padding-top: 17px;
+}
+
+.linkbtn-empty{
+    color: black;
+}
+
+.messages-list{
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.conversation-box{
+    width: 80%;
+    margin-left: 5%;
+}
+
+#message-box{
+    border: 1px solid #E5C100;
+    border-radius: 5px;
+    height: 315px;
+    overflow-y: auto;
+}
+
+.messagerow{
+    width: 100%;  
+}
+
+.message-border{
+    border-radius: 10px;
+    background: #e4e4e4;
+    margin: 5px;
+    width: auto;
+    padding:4px;
+    display: inline-block;
+    max-width: 60%;
+    text-align: center;
+}
+
+.border-from{
+    background: #ffca6b;
+}
+
+.message-in-row{
+    display: block;
+}
+
+.message-to{
+    margin: 5px;
+    text-align: left;
+}
+
+.message-from{
+    margin: 5px;
+    text-align: right;
+}
+
+.message-info-box{
+    margin-left:5%;
+    width: 80%;
+    height:19px;
+}
+
+.nobreak{
+    display: inline;
+}
+
+.smallp{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.align-right-block{
+    text-align: right;
+}
+
+.sevenFiveBox-message{
+    padding: 2% 0;   
+}
+
+.quarterBox{
+    margin: 2% 2% 0 0;   
+}
+
+.btn-reply{
+    padding: 0;
+    margin: 0;
+}
+
+.txt-box-reply{
+    height: 58px;
+}
+
+.page-overlay-search-member{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 500;
+    display: none;
+}
+
+.page-overlay-search-member-visible{
+    display: block;
+}
+
+.overlay-message {
+    margin: 0em auto;
+    margin-top: 20%;
+    padding: 1em;
+    background: white;
+    width: 650px;
+    height: 300px;
+}
+ 
+.my-glyph-close{
+    cursor: pointer;
+}
+
+.my-h3{
+    text-align: center;
+}
+
+.SearchBox {
+   width: 100%;   
+}
+
+.my-list-box{
+    height: 150px;
+}
+
+.search-halfbox{
+    height: 160px;
+    padding: 10px;
+    width: 46%;
+}

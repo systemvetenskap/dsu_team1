@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Team_1_Halslaget_GK.MasterPage" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -20,34 +19,48 @@
       <link href="css/font.css" rel="stylesheet" />
       <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
       <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>   
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  
 
     <asp:ContentPlaceHolder ID="head" runat="server">
 
     </asp:ContentPlaceHolder>
 </head>
 <body>
+
     <form id="form1" runat="server">
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <!-- Navbar ================================================== -->
     <section class="container" id="navbar-section">
       <div class="content">
-        <div class="contentRow">
-            
+        <div class="contentRow">            
             <ul class="main-navbar">
               <li><a href='#' id="btnGoToMyPage" runat="server" onserverclick="btnGoToMyPage_ServerClick">MIN SIDA</a></li>
-              <li><a href="#" id="btnGoToBookingMain" runat="server" onserverclick="btnGoToBookingMain_ServerClick">BOKA TIDER</a></li>                                                                  
+              <li><a href="#" id="btnGoToBookingMain" runat="server" onserverclick="btnGoToBookingMain_ServerClick">BOKA TIDER</a></li>
+              <li><a href="#" id="btnGotoBokatavling" runat="server" onserverclick="btnGotoBokatavling_ServerClick">TÄVLINGAR</a></li>
+              <li><a href="#" id="BtnGoToMessages" runat="server" onserverclick="BtnGoToMessages_ServerClick">MEDDELANDEN</a></li>
+              <li><a href="#" id="btnGotoDagbok" runat="server" onserverclick="btnGotoDagbok_ServerClick">DAGBOK</a></li>                                                              
             </ul>
             <ul class="main-navbar right">
               <li><a href="#" id="btnLogOut" runat="server" onserverclick="btnLogOut_ServerClick">LOGGA UT</a></li>                               
             </ul>
-            
+          
             <a href="#open-menu" class="open-menu-link">☰ MENY</a>
             <div class="responsive-navbar-holder" id="open-menu">
               <ul class="responsive-navbar">
-                <li><a  href="#">☰ STÄNG MENY</a></li>
+                <li><a href="#">☰ STÄNG MENY</a></li>
                 <li><a href='#' id="btnGoToMyPageResponsive" runat="server" onserverclick="btnGoToMyPageResponsive_ServerClick">MIN SIDA</a></li>
-                <li><a href="#" id="btnGoToBookingResponsive" runat="server" onserverclick="btnGoToBookingResponsive_ServerClick">BOKA TIDER</a></li>                                                                      
-                <li><a href="#" id="btnLogOutResponsive" runat="server" onserverclick="btnLogOutResponsive_ServerClick">LOGGA UT</a></li>                                 
+                <li><a href="#" id="btnGoToBookingResponsive" runat="server" onserverclick="btnGoToBookingResponsive_ServerClick">BOKA TIDER</a></li>
+                <li><a href="#" id="btnGoToBokatavlingResponsive" runat="server" onserverclick="btnGoToBokatavlingResponsive_ServerClick">TÄVLINGAR</a></li>                                                                                    
+                <li><a href="#" id="btnGoToMessagesResponsive" runat="server" onserverclick="btnGoToMessagesResponsive_ServerClick">MEDDELANDEN</a></li>
+                <li><a href="#" id="btnGoToDagbokResponsive" runat="server" onserverclick="btnGoToDagbokResponsive_ServerClick">DAGBOK</a></li>
+                <li><a href="#" id="btnLogOutResponsive" runat="server" onserverclick="btnLogOutResponsive_ServerClick">LOGGA UT</a></li>                               
               </ul>
             </div>
         </div>
@@ -62,18 +75,19 @@
         </div> 
       </div>
     </section>
-
+    <!-- Main page ================================================== -->
     <section class="container" id="content-section">
       <div class="content">
         <div class="contentRow"> 
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        ?
+        
         </asp:ContentPlaceHolder>
     </div>
       </div>
     </section>
 
-    <!-- Footer ================================================== -->
+       <!------------------------------------------- Footer ================================================== -->
+
     <section class="container" id="section-footer">
       <div class="content">
         <div class="contentRow">      
@@ -81,19 +95,43 @@
           <div class="fullBox" id="footer">        
             <p class="foot-text">HÅLSLAGET GK</p>
 
-            <div class="halfBox">
-              <a class="phone-links" href="callto:#">
-              <span class="glyphicon glyphicon-phone" aria-hidden="true"></span><br>
-              +46 (0)555 98 98 99</a>
-            </div>
+                <div class="thirdBox">
+                    <h3 class="foot-h3"><strong>KONTAKT</strong></h3>
+                    <br />
+                    <p class="p-footer">HÅLSLAGET GK</p>
+                    <p class="p-footer">GATAN 12</p>
+                    <p class="p-footer">12345</p>
+                    <p class="p-footer">ÖSTERSUND</p>
+                    <br />
+                    <p><a class="phone-links" href="callto:#"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>+46 (0)555 98 98 99</a></p>
+                    <p><a class="mail-links"href="#" target="_top"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>HÅLSALGETGK@EMAIL.COM</a></p>
+                </div>
 
-            <div class="halfBox">
-              <a class="mail-links"href="#" target="_top">              
-              <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><br> HÅLSALGETGK@EMAIL.COM</a>
-            </div>
+                <div class="thirdBox">
+                    <h3 class="foot-h3"><strong>GILLA OSS PÅ FACEBOOK</strong></h3>
+                    <div class="facebookBoxFoot">
+                        <div class="fb-follow" data-href="https://www.facebook.com/zuck" data-width="" data-height="300" data-layout="standard" data-show-faces="true"></div>
+                    </div>
+                </div>
 
+                <div class="thirdBox">
+                    <h3 class="foot-h3"><strong>HITTA HIT</strong></h3>
+                    <br />
+                    <div class="gMap">
+                        <iframe id="gMapIframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57614.47445274595!2d14.5815931701714!3d63.17533576111594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x466fb846d4f93091%3A0x4adec23d33cfdcde!2s%C3%96stersund!5e0!3m2!1ssv!2sse!4v1458643293334" width="" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>            
+                    </div>
+                </div>
+
+            </div>
           </div>
       </div>
+    </section>
+    
+     <section class="container" style="background-color: #191919;">
+      <div class="content">
+        <div class="contentRow">      
+            <p style="color: #4c4c4c; text-align: center; margin: 1em;"><strong>TEAM 1 © 2016</strong></p>
+          </div>
       </div>
     </section>
     </form>

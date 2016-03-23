@@ -15,6 +15,8 @@ using System.Drawing;
 using System.Web.UI.HtmlControls;
 using Npgsql;
 using System.Globalization;
+using System.IO;
+using Team_1_Halslaget_GK.Classes;
 
 namespace Team_1_Halslaget_GK
 {
@@ -25,7 +27,7 @@ namespace Team_1_Halslaget_GK
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["Username"] == null)
+            if (Session["Username"] == null)
             {
                 Response.Redirect("~/NotAllowed.aspx");
             }
@@ -33,6 +35,16 @@ namespace Team_1_Halslaget_GK
             {
                 InitializeGUI();
             }
+
+            foreach (GridViewRow row in GridView2.Rows)
+            {
+                if (row.Cells[2].Text == "00:00")
+                {
+                    row.Cells[2].Text = "";
+                }
+
+            }
+
         }
 
         /// <summary>
@@ -52,6 +64,16 @@ namespace Team_1_Halslaget_GK
             BindGridView();
             SetMemberInfoLabels();
             SetMemberTextBoxes();
+            SetCompGrid();
+            SetDiaryLabel();
+            UpdateMsgInfo();
+        }
+
+        private void SetDiaryLabel()
+        {
+            Diary getStats = new Diary();
+            string id = Session["Username"].ToString();
+            lblDiary.Text = getStats.GetUserDiaryStats(id);
         }
 
         /// <summary>
@@ -68,7 +90,19 @@ namespace Team_1_Halslaget_GK
             if(GridView1.Rows.Count == 0)
             {
                 CancelBookingInfo.InnerText = "Du har inga kommande bokade tider!";
-        }
+            }
+
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                if (row.RowIndex == GridView1.SelectedIndex)
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#6C6C6C");
+                }
+                else
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                }
+            }
         }
 
         /// <summary>
@@ -147,6 +181,18 @@ namespace Team_1_Halslaget_GK
             return TeeTime;
         }
 
+        private void SetCompGrid()
+        {
+            Competition newcomp = new Competition();
+            DataTable dt1 = newcomp.GetComingCompetitionMember(medlemObj.ID);
+            DataTable dt2 = newcomp.GetComingTeamCompetitionMember(medlemObj.ID);
+
+            dt1.Merge(dt2);
+
+            GridView2.DataSource = dt1;
+            GridView2.DataBind();
+        }
+
         /// <summary>
         /// When user selects a row this event highlights and changes the colour.
         /// </summary>
@@ -219,7 +265,7 @@ namespace Team_1_Halslaget_GK
 
         protected string GetRoundStatistics()
         {
-            string sql = "SELECT count(medlem_id) FROM medlem_bokning WHERE medlem_id = @id";
+            string sql = "SELECT count(medlem_id) FROM medlem_bokning WHERE medlem_id = @id AND datum < CURRENT_DATE";
             NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se; Port=5432; Database=dsu_golf; User Id=dsu_g1; Password=dsu_g1; SslMode=Require");
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
@@ -256,11 +302,11 @@ namespace Team_1_Halslaget_GK
             Response.Redirect("~/ChangePassword.aspx");
 
         }
+
         protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
 
         }
-
 
         protected void btnEditPersonInfo_Click(object sender, EventArgs e)
         {
@@ -279,6 +325,59 @@ namespace Team_1_Halslaget_GK
 
         }
 
+        protected void btnShowStartList_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ViewStartList.aspx");
+            
+        }
+
+        protected void btnGoToDiary_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Dagbok.aspx");
+        }
+
+        protected void btnNewNote_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CreateDagbokNote.aspx");
+        }
+
+        protected void UpdateMsgInfo()
+        {
+            medlem member = new medlem();
+            Message msg = new Message();
+
+            DateTime dt = member.GetLastLogin(Session["username"].ToString());
+
+            int newmsgs = msg.GetNewMessages(Session["username"].ToString(), dt);
+
+            if (newmsgs > 0)
+            {
+                newmsgshow.Attributes.Add("class", "show-msg-info");
+
+                if (newmsgs == 1)
+                {
+                    newmsg.InnerText = "Du har " + newmsgs + " nytt meddelande";
+                }
+
+                else
+                {
+                    newmsg.InnerText = "Du har " + newmsgs + " nya meddelanden";
+                }
+            }
+
+            Session["login"] = DateTime.Now;
+            member.SetLatestLogin(Session["username"].ToString());
+        }
+
+        protected void LinkButtonMsg_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Messages.aspx");
+        }
+
+        protected void btnGoToMessenger_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Messages.aspx");
+        }
 
     }
 }

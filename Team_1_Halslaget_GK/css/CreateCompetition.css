@@ -1,0 +1,46 @@
+﻿
+.Calender {
+    width: 100%;
+}
+
+.CalenderDay {
+    font-size:50px;
+    height: 100px;
+}
+.CalenderTitel {    
+    font-size:50px;
+
+}
+.CalenderSelectedDay {
+    font-size:50px;
+    height: 100px;
+}
+.CalenderWeekendDay {
+    font-size:50px;
+    height: 100px;
+}
+.CalenderToday {
+    font-size:50px;
+    height: 100px;
+}
+.halfBox {
+    padding: 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;   
+}
+.fullBox {
+    padding: 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;   
+}
+.my-txt-box {
+    margin-bottom: 1%;
+}
+.my-txt-box2 {
+    height:50px;
+}
+.my-button {
+    width:100%;
+}

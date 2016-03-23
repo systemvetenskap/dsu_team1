@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Code behind for tidsbokning.aspx
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -42,7 +44,6 @@ namespace Team_1_Halslaget_GK
                               
         }
 
-
         protected void LinkButton_Click(object sender, EventArgs e)
         {
             confirmBtn.Enabled = true;
@@ -62,6 +63,8 @@ namespace Team_1_Halslaget_GK
             lblPlayer2.Text = "";
             lblPlayer3.Text = "";
             lblPlayer4.Text = "";
+
+            
 
             tbPlayer2.Text = "";
             tbPlayer3.Text = "";
@@ -101,6 +104,8 @@ namespace Team_1_Halslaget_GK
                 tbPlayer2.Visible = false;
                 lblotherplayers.Text = "På den här tiden finns det redan vissa bokningar";
             }
+
+            
 
             List<double> oldplayersList = new List<double>();
 
@@ -192,12 +197,21 @@ namespace Team_1_Halslaget_GK
             int playercount = 1;
 
             foreach (Player golfplayer in Players)
-            {                
-                     
-                if (golfplayer.startid == time && playercount == 1)
+            {
+                if (golfplayer.tavlingsnamn.ToString() != "" && golfplayer.startid ==  time)
+                {
+                    lblPlayer4.Text = "Denna tid är uppbokad för tävlingen " + Session["compname"].ToString();                   
+                    tbPlayer1.Visible = false;
+                    tbPlayer2.Visible = false;
+                    tbPlayer3.Visible = false;
+                    tbPlayer4.Visible = false;
+                }
+
+                else if (golfplayer.startid == time && playercount == 1)
                 {
                     lblPlayer1.Text = "Handikapp: " + golfplayer.hcp + " " + "Kön: "+ golfplayer.kon;
                     lblPlayer1.ID = golfplayer.golfID;
+                    lblPlayer1.Visible = true;
                     Session["player1"] = golfplayer.hcp;          
                     playercount++;
                 }
@@ -303,6 +317,7 @@ namespace Team_1_Halslaget_GK
                     newbooking.Newbooking(medlem.ID, bokningsid, date);
                 }
             }
+
             lblotherplayers.Text = "Handikapp överstiger tyvärr 100";
         }
 
@@ -315,23 +330,18 @@ namespace Team_1_Halslaget_GK
             Table1.Visible = true;
         }
 
-
-
-
-
         protected List<Player> GetBookedTimes()
         {
             DateTime selecteddate = Convert.ToDateTime(Session["selectedDate"]);
             string selecteddatestring = selecteddate.ToString("yyyy-MM-dd");
 
-            List<Booking> BookedTimes = new List<Booking>();
             List<Player> Players = new List<Player>();
 
-            string sql = "SELECT bokning_id, kon, hcp, golfID, starttid, id FROM medlem_bokning INNER JOIN medlem ON medlem_id = id AND datum = @selecteddate INNER JOIN bokning ON bokning_id = slot_id ORDER BY bokning_id";
+            string sql = "SELECT bokning_id, tavlings_id, medlem_id, hcp, golfid, kon, bokning.starttid, namn FROM medlem_bokning FULL JOIN medlem ON medlem_id = medlem.id FULL JOIN tavling ON tavlings_id = tavling.id FULL JOIN bokning ON bokning_id = slot_id WHERE medlem_bokning.datum = @selecteddate ORDER BY bokning_id ASC";
 
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@selecteddate", selecteddatestring);
-            ;
+            
             try
             {
                 conn.Open();
@@ -342,12 +352,71 @@ namespace Team_1_Halslaget_GK
                     Player golfplayer = new Player();
 
                     golfplayer.slot_id = Convert.ToInt32(dr["bokning_id"]);
-                    golfplayer.golfID = dr["golfid"].ToString();
-                    golfplayer.kon = dr["kon"].ToString();
-                    golfplayer.hcp = Convert.ToInt32(dr["hcp"]);
+
+                    if (dr["golfid"] != DBNull.Value)
+                    {
+                        golfplayer.golfID = dr["golfid"].ToString();
+                    }
+
+                    else
+                    {
+                        golfplayer.golfID = "";
+                    }
+
+                    if (dr["kon"] != DBNull.Value)
+                    {
+                        golfplayer.kon = dr["kon"].ToString();
+                    }
+
+                    else
+                    {
+                        golfplayer.kon = "";
+                    }
+
+                    if (dr["hcp"] != DBNull.Value)
+                    {
+                        golfplayer.hcp = Convert.ToInt32(dr["hcp"]);
+                    }
+
+                    else
+                    {
+                        golfplayer.hcp = 0;
+                    }
+
+                    if (dr["medlem_id"] != DBNull.Value)
+                    {
+                        golfplayer.id = Convert.ToInt32(dr["medlem_id"]);
+                    }
+
+                    else
+                    {
+                        golfplayer.id = 0;
+                    }
+
+                    if (dr["tavlings_id"] != DBNull.Value)
+                    {
+                        golfplayer.tavlingsid = Convert.ToInt32(dr["tavlings_id"]);
+                    }
+
+                    else
+                    {
+                        golfplayer.tavlingsid = 0;
+                    }
+
+                    if (dr["namn"] != DBNull.Value)
+                    {
+                        golfplayer.tavlingsnamn = dr["namn"].ToString();
+                        Session["compname"] = golfplayer.tavlingsnamn;
+                    }
+
+                    else
+                    {
+                        golfplayer.tavlingsnamn = "";
+                    }
+
                     DateTime starttid = Convert.ToDateTime(dr["starttid"]);
                     golfplayer.startid = starttid.ToString("HH:mm");
-                    golfplayer.id = Convert.ToInt32(dr["id"]);
+
                     Players.Add(golfplayer);
                 }
             }
@@ -374,31 +443,93 @@ namespace Team_1_Halslaget_GK
             foreach (TableRow tr in Table1.Rows)
             {
 
-                for (int i = 0; i < 6; i++)
+                foreach (TableCell tc in tr.Cells)
                 {
                     cellcount++;
                     playercount = 0;
-                    tr.Cells[i].BackColor = ColorTranslator.FromHtml("#7cff82");
+                    tc.BackColor = ColorTranslator.FromHtml("#7cff82");
                     foreach (Player time in Players)
                     {
                         if (cellcount == time.slot_id)
                         {
 
                             playercount++;
-                            if (playercount >= 4)
+                            if (playercount >= 4 || time.tavlingsid != 0)
                             {
-                                tr.Cells[i].BackColor = Color.Red; //byta ut till css class sen
+                                tc.BackColor = Color.Red; //byta ut till css class sen
                             }
 
-                            if (playercount <= 3)
+                            if (playercount <= 3 && time.tavlingsid == 0)
                             {
-                                tr.Cells[i].BackColor = Color.Yellow;
+                                tc.BackColor = Color.Yellow;
                             }
 
                         }
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Dayrender event to "Lock" out dates that are outside of the season and make sure a user cannot
+        /// make a booking more than 30 days into the "future".
+        /// </summary>
+        /// 
+
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+
+            if (e.Day.Date < DateTime.Today || e.Day.Date > DateTime.Today.AddDays(30))
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
+            }
+
+            //    
+            //    
+            //    DateTime start = setDates.GetSeasonStartDate(year);
+            //    
+
+            //    if (start <= DateTime.Today) //Sets so that any date after today is not selactable.
+            //    {
+            //        start = DateTime.Today;
+            //        if(end >= DateTime.Today.AddMonths(1))
+            //        {
+            //            end = DateTime.Today.AddMonths(1);
+            //            if((e.Day.Date < start) || (e.Day.Date > end))
+            //            {
+            //                e.Day.IsSelectable = false;
+            //                e.Cell.ForeColor = System.Drawing.Color.Black;
+            //                e.Cell.BackColor = System.Drawing.Color.Gray;
+            //                e.Cell.Style.Add("cursor", "not-allowed");
+            //                e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+            //            } 
+            //        }
+            //        else 
+            //        {
+            //            if((e.Day.Date < start) || (e.Day.Date > end))
+            //            {
+            //                e.Day.IsSelectable = false;
+            //                e.Cell.ForeColor = System.Drawing.Color.Black;
+            //                e.Cell.BackColor = System.Drawing.Color.Gray;
+            //                e.Cell.Style.Add("cursor", "not-allowed");
+            //                e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+            //            } 
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if ((e.Day.Date < start) || (e.Day.Date > end))
+            //        {
+            //            e.Day.IsSelectable = false;
+            //            e.Cell.ForeColor = System.Drawing.Color.Black;
+            //            e.Cell.BackColor = System.Drawing.Color.Gray;
+            //            e.Cell.Style.Add("cursor", "not-allowed");
+            //            e.Cell.ToolTip = "Du kan inte boka dessa tider, det är utanför säsongen eller mer än 30 dagar framåt.";
+            //        }
+            //    }
+            //}
+
         }
     }
 }

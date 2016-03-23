@@ -78,6 +78,14 @@
             samt ändra din personliga information. Har du några frågor eller funderingar är du varmt välkommen till att kontakta hos på Hålsaget GK!
         </p>
     </div>
+
+    <!-- New messages -->       
+        <asp:LinkButton ID="LinkButtonMsg" runat="server" CssClass="new-msg-link-btn" OnClick="LinkButtonMsg_Click">
+            <div id="newmsgshow" runat="server" class="fullBox new-msg-fullbox">
+                <p id="newmsg" class="new-msg-text" runat="server">Du har 2 nya meddelanden</p>
+            </div>
+        </asp:LinkButton>
+    
    <!-- USER BOOKED TIMES ================================================== -->
     <div class="fullBox top-n-bottom-space">
         <div class="halfBox my-page-half-box">
@@ -124,32 +132,78 @@
                 <p class="p-my-game"><strong>Ditt nuvarande handikapp är:</strong> <asp:Label ID="lblCurrentHandicap" runat="server" Text="Label"></asp:Label>.</p>
                 <p class="p-my-game"><strong>Du har spelat</strong> <asp:Label ID="lblAmountOfRounds" runat="server" Text="Label"></asp:Label> <strong>rundor.</strong></p>
                 <p class="p-my-game"><asp:Label ID="lblPaymentReminder" runat="server" Text="Label" Visible="false"></asp:Label></p>
+
             </div>
-        </div>
+
     </div>
    <!-- USER INFO ================================================== -->
     <div class="fullBox top-n-bottom-space">
-        <div class="fullBox page-title">
-            <h3>DINA UPPGIFTER</h3>
+
+           <!-- TÄVLINGS INFO ================================================== -->
+            <div class="halfBox my-page-half-box">
+                <div class="fullBox">
+                    <div class="fullBox my-page-title">
+                        <h3>MINA KOMMANDE TÄVLINGAR </h3>
+                    </div>
+                </div>
+                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                    <ContentTemplate>
+                        <div class="fullBox">            
+                            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="false" CssClass="Grid" GridLines="None" DataKeyNames="id">
+                                <Columns>
+                                        <asp:BoundField DataField="namn" HeaderText="Namn" SortExpression="name" />
+                                        <asp:BoundField DataField="datum" HeaderText="Datum" DataFormatString="{0:dd-MM-yyyy}" SortExpression="date" />
+                                        <asp:BoundField DataField="starttid" HeaderText="Starttid" DataFormatString="{0:HH:mm}" SortExpression="starttime" />
+                                </Columns>
+                            </asp:GridView>          
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+
+        <div class="halfBox my-page-half-box">
+            <div class="fullBox" >
+                <div class="fullBox my-page-title">
+                    <h3>DAGBOK & MEDDELANDEN</h3>
+                </div>
+                <div class="fullBox center-text" style="margin-top: 2em; margin-bottom: 1em;">
+                    <asp:Button ID="btnGoToMessenger" CssClass="my-button" runat="server" Text=" GÅ TILL MEDDELANDEN" OnClick="btnGoToMessenger_Click" />
+                </div>
+                <div class="fullBox center-text">
+                    <p style="margin-top: 2em; margin-bottom: 1em;"><strong>Du har skrivit </strong> <asp:Label ID="lblDiary" runat="server" Text=""></asp:Label> <strong>dagboksinlägg.</strong></p>
+                </div>
+                <div class="halfBox">
+                    <asp:Button ID="btnGoToDiary" CssClass="my-button" runat="server" Text="TILL DAGBOKEN" OnClick="btnGoToDiary_Click" />
+                </div>  
+                <div class="halfBox">
+                    <asp:Button ID="btnNewNote" CssClass="my-button" runat="server" Text="NYTT INLÄGG" OnClick="btnNewNote_Click" />
+                </div>
+            </div>
         </div>
-        <div class="fullBox ">
-            <div class="halfBox">
+    </div>
+
+    <div class="fullBox top-n-bottom-space">
+        <div class="fullBox my-page-title">
+            <h3>MINA UPPGIFTER</h3>
+        </div>
+        <div class="fullBox">
+            <div class="halfBox my-page-half-box">
                 <p class="p-my-info"><strong>Förnamn:</strong> <asp:Label ID="lblFirstName" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Efternam:</strong> <asp:Label ID="lblLastName" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Telefonnummer:</strong> <asp:Label ID="lblPhoneNum" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Email:</strong> <asp:Label ID="lblEmail" runat="server" Text="Label"></asp:Label></p>
             </div>
-            <div class="halfBox">
+            <div class="halfBox my-page-half-box">
                 <p class="p-my-info"><strong>Gata:</strong> <asp:Label ID="lblStreet" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Postkod:</strong> <asp:Label ID="lblPostalCode" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info"><strong>Stad:</strong> <asp:Label ID="lblCity" runat="server" Text="Label"></asp:Label></p>
                 <p class="p-my-info" style="display:none;"><strong>ID:</strong> <asp:Label ID="lblMemberID" runat="server" Text="Label"></asp:Label></p>
             </div>
-            <div class="fullBox top-n-bottom-space">
-                <div class="halfBox">
+        </div>
+        <div class="fullBox top-n-bottom-space">
+            <div class="halfBox my-page-half-box">
                     <a class="my-button" title="Klicka här för att redigera din uppgifter, en ny ruta öppnas." onclick="openOverlayEditInfo();">REDIGERA UPPGIFTER</a>
-                </div>
-            </div>
+             </div>
         </div>
     </div>
    <!-- ACCOUNT SETTINGS ================================================== -->
@@ -166,5 +220,17 @@
                 </div>
         </div>
     </div>
-</div>
+<%--    <!-- LAST COMPETITION -->
+        <div class="fullBox top-n-bottom-space">
+        <div class="fullBox page-title">
+            <h3>SENASTE TÄVLINGEN</h3>
+        </div>
+        <div class="fullBox ">
+                <div class="fullBox">
+                    <asp:Label ID="labelCompetitionName" runat="server" Text="Label"></asp:Label><br />
+                    <asp:Label ID="labelCompetitionResult" runat="server" Text="Label"></asp:Label><br />
+                </div>
+        </div>
+    </div>
+</div>--%>
 </asp:Content>

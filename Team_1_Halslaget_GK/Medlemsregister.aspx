@@ -65,7 +65,7 @@
  <!-- MAIN PAGE ================================================== -->
 <div class="fullBox">
     <div class="fullBox page-title">
-        <h1>MEDLEMSREGISTER</h1>
+        <h2>MEDLEMSREGISTER</h2>
     </div>
 
 
@@ -79,7 +79,7 @@
     <div class="fullBox">
         <div class="halfBox">
             <div class="fullBox memberreg-page-title">
-                <h3>MEDLEMSREGISTER</h3>
+                <h3>MEDLEMMAR</h3>
             </div>
             <div class="fullBox">
                 <p><strong>SORTERA</strong></p>

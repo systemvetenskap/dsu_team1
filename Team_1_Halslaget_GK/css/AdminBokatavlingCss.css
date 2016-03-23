@@ -1,0 +1,76 @@
+﻿.halfBox {
+   padding:2%;
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box; 
+}
+.fullBox {
+   padding:2%;
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box; 
+}
+.GridBox {
+    max-height: 440px;
+    overflow: auto;
+}
+
+.Grid {
+    /*background-color: #fff; 
+    margin: 5px 0 10px 0; 
+    border: solid 1px #525252; 
+    border-collapse:collapse; */
+    font-family:'latolight'; 
+    color: black;   
+}
+
+.Grid td {
+      padding: 1em;
+      text-align: center;
+      font-size: 1.2em;
+/*      border: solid 1px #c1c1c1; */
+      width: 200px;
+}
+.Grid th  {
+      padding : 1em;
+      color: black;
+      /*background: #AF3C3C;
+      border-left: solid 1px #525252;*/
+      font-size: 1.3em; 
+}
+
+.my-txt-box {
+    margin-bottom:2%;
+    height:50px;
+    
+}
+
+.my-list-box {
+    margin-bottom: 2%;
+}
+.HiddenSearchBox {
+    display:none;    
+}
+.ShowSearchDiv {
+    height:25px;
+    padding:0;  
+}
+
+.searchbtn {
+    padding:0;
+    height:30px;
+}
+
+.SearchBox {
+   width: 69%; 
+    
+}
+
+.SearchBtn {
+    width: 30%;
+    
+}
+
+
+
+

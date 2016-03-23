@@ -1,0 +1,42 @@
+﻿.em-margin-horizontal{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.line-up{
+    margin-top: 17.5em;
+}
+
+.Grid {
+    /*background-color: #fff; 
+    margin: 5px 0 10px 0; 
+    border: solid 1px #525252; 
+    border-collapse:collapse; */
+    font-family:'latolight'; 
+    color: black;
+    /*height: auto;
+    max-height: 100px;
+    overflow: scroll;*/
+}
+
+.Grid td {
+      padding: 1em;
+      text-align: center;
+      font-size: 1.2em;
+/*      border: solid 1px #c1c1c1; */
+      width: 200px;
+}
+.Grid th  {
+      padding : 1em;
+      color: black;
+      /*background: #AF3C3C;
+      border-left: solid 1px #525252;*/
+      font-size: 1.3em; 
+
+}
+@media (max-width: 768px) {	
+	.line-up {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    }
+}

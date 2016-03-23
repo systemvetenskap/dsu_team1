@@ -36,12 +36,11 @@ namespace Team_1_Halslaget_GK
 
         protected void btnGoToHandleBookings_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/TidsbokningAdmin.aspx");
         }
 
         protected void btnGoToMemberRegistry_Click(object sender, EventArgs e)
-        {
-            //Send username using session here I think? Right now only for show, not actual implementaion
+        {           
             Response.Redirect("~/Medlemsregister.aspx");
         }
 
@@ -53,6 +52,31 @@ namespace Team_1_Halslaget_GK
         protected void btnGoToSeasonSettings_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/SeasonSettings.aspx");
+        }
+
+        protected void btnGoToRegisterResult_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ScoreCardAdmin.aspx");
+        }
+
+        protected void btnGoToNews_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/PublishNewsAdmin.aspx");
+        }
+
+        protected void GotoCreateComp_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CreateCompetition.aspx");
+        }
+
+        protected void GoToStartlist_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/StartList.aspx");
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AdminBokatavling.aspx");
         }
     }
 }

@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Security.Cryptography;
+using System.Text;
+using System.Globalization;
 
 namespace Team_1_Halslaget_GK
 {
@@ -47,6 +50,20 @@ namespace Team_1_Halslaget_GK
             this.dropDownMemberType.Items.Insert(0, "Välj");
         }
 
+        private static string HashSHA1(string value)
+        {
+            var sha1 = System.Security.Cryptography.SHA1.Create();
+            var inputBytes = Encoding.ASCII.GetBytes(value);
+            var hash = sha1.ComputeHash(inputBytes);
+
+            var sb = new StringBuilder();
+            for (var i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+            return sb.ToString();
+        }
+
         /// <summary>
         /// Event for btnAddMember
         /// </summary>
@@ -65,7 +82,7 @@ namespace Team_1_Halslaget_GK
             MedlemObj.kon = dropDownListKon.Text;
             MedlemObj.medlemsKategori = dropDownMemberType.Text;
             MedlemObj.payStatus = SetPayStatus();
-            //MedlemObj.fodelseDatum = txtBirthDate.Text;
+            MedlemObj.password = HashSHA1("arne123").ToString();
 
             if(MedlemObj.InsertNewMember())
             {
@@ -93,7 +110,6 @@ namespace Team_1_Halslaget_GK
             txtAddress.Text = "";
             txtPostalCode.Text = "";
             txtCity.Text = "";
-            txtBirthDate.Text = "";
 
             dropDownListKon.SelectedIndex = 0;
             dropDownPayStatus.SelectedIndex = 0;

@@ -6,11 +6,8 @@
 
 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="fullBox">
-        <h1>INSTÄLLNINGAR</h1>
-    </div>
-    <div class="fullBox">
             <div class="fullBox page-title">
-                <h3>SKAPA NY GOLFSÄSONG</h3>
+                <h2>SKAPA NY GOLFSÄSONG</h2>
             </div>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
@@ -25,7 +22,8 @@
                                 runat="server" 
                                 ErrorMessage="Du måste välja vilken säsong du vill skapa."
                                 ForeColor="Red" 
-                                Font-Size="Smaller" >
+                                Font-Size="Smaller"
+                                 ValidationGroup="season">
                             </asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -50,7 +48,8 @@
                                     runat="server" 
                                     ErrorMessage="Slutdatumet kan inte vara efter startdatumet." 
                                     Font-Size="Smaller" 
-                                    ForeColor="Red">
+                                    ForeColor="Red"
+                                    ValidationGroup="season">
                                 </asp:CompareValidator>
                             </p>
 
@@ -63,7 +62,8 @@
                                         ControlToValidate="txtStartDate" runat="server" 
                                         ErrorMessage="Du måste välja ett startdatum." 
                                         Font-Size="Smaller" 
-                                        ForeColor="Red">
+                                        ForeColor="Red"
+                                        ValidationGroup="season">
                                     </asp:RequiredFieldValidator></p>
                                 </div>
                                 <div class="fullBox">
@@ -89,7 +89,8 @@
                                             runat="server" 
                                             ErrorMessage="Du måste välja ett slutdatum." 
                                             Font-Size="Smaller" 
-                                            ForeColor="Red">
+                                            ForeColor="Red"
+                                            ValidationGroup="season">
                                         </asp:RequiredFieldValidator></p>    
                                     </div>
                                 </div>
@@ -107,12 +108,11 @@
                         </div>
 
                         <div class="fullBox em-margin-horizontal">           
-                            <asp:Button ID="ButtonSetSeason" CssClass="my-button" runat="server" Text="Spara" OnClick="ButtonSetSeason_Click"/> <%--la till den här rackaren bara för att kunna prova min "reverese backend" kod typ som behövs för den typen av db jag skapade--%>
+                            <asp:Button ID="ButtonSetSeason" CssClass="my-button"  ValidationGroup="season" runat="server" Text="Spara" OnClick="ButtonSetSeason_Click"/> <%--la till den här rackaren bara för att kunna prova min "reverese backend" kod typ som behövs för den typen av db jag skapade--%>
                         </div> 
                     </div>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-
     </div>
 </asp:Content>

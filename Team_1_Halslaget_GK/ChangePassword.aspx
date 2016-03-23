@@ -11,15 +11,37 @@
         </div>
         <div class="halfBox">
             <p class="pass-margin">Nuvarande lösenord: 
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" controltovalidate="txtOldPassword" runat="server" ForeColor="Red" Font-Size="Smaller" ErrorMessage="Fyll i ditt nuvarande lösenord."></asp:RequiredFieldValidator></p>
+            <asp:RequiredFieldValidator 
+                ID="RequiredFieldValidator1" 
+                controltovalidate="txtOldPassword" 
+                runat="server" ForeColor="Red" 
+                Font-Size="Smaller" 
+                ErrorMessage="Fyll i ditt nuvarande lösenord." 
+                ValidationGroup="passGroup">
+            </asp:RequiredFieldValidator></p>
             <asp:TextBox CssClass="my-txt-box pass-margin" ID="txtOldPassword" TextMode="Password" runat="server"></asp:TextBox>
             <p class="pass-margin">Nytt lösenord: 
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" controltovalidate="txtNewPasswordOne" runat="server" ForeColor="Red" Font-Size="Smaller" ErrorMessage="Fyll i ett nytt lösenord"></asp:RequiredFieldValidator></p>
+            <asp:RequiredFieldValidator 
+                ID="RequiredFieldValidator2" 
+                controltovalidate="txtNewPasswordOne" 
+                runat="server" ForeColor="Red" 
+                Font-Size="Smaller" 
+                ErrorMessage="Fyll i ett nytt lösenord" 
+                ValidationGroup="passGroup">
+            </asp:RequiredFieldValidator></p>
             <asp:TextBox CssClass="my-txt-box pass-margin" ID="txtNewPasswordOne" TextMode="Password" runat="server"></asp:TextBox>
             <p class="pass-margins">Bekräfta nytt lösenord: <span class="pass-error-msg">Lösenord stämmer inte överens</span>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" controltovalidate="txtNewPasswordTwo" runat="server" ForeColor="Red" Font-Size="Smaller" ErrorMessage="Bekräfta lösenord"></asp:RequiredFieldValidator> </p>
+            <asp:RequiredFieldValidator 
+                ID="RequiredFieldValidator3" 
+                controltovalidate="txtNewPasswordTwo" 
+                runat="server" 
+                ForeColor="Red" 
+                Font-Size="Smaller" 
+                ErrorMessage="Bekräfta lösenord" 
+                ValidationGroup="passGroup">
+            </asp:RequiredFieldValidator> </p>
             <asp:TextBox CssClass="my-txt-box pass-margin" ID="txtNewPasswordTwo" TextMode="Password" runat="server"></asp:TextBox>
-            <asp:Button ID="Button1" runat="server" CssClass="my-button pass-margin" Text="BYT LÖSENORD" OnCLick="Button1_Click"/>
+            <asp:Button ID="Button1" runat="server" CssClass="my-button pass-margin" Text="BYT LÖSENORD" ValidationGroup="passGroup" OnCLick="Button1_Click"/>
         </div>
     </div>
 

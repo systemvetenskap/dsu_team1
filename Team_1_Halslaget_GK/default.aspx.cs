@@ -15,33 +15,31 @@ namespace Team_1_Halslaget_GK
     {
         NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 
+        Competition newcomp = new Competition();
+
         protected void Page_Load(object sender, EventArgs e)
         {
                 
                 LoadNews();
-                SetTableBanstatus(GetBanstatus());
+                
+
+                gvComp.DataSource = newcomp.GetAllUpcomingCompetitions();
+                gvComp.DataBind();
+
+            if(gvComp.Rows.Count > 0)
+            {
+                lblcomp.Text = "Om du vill anmäla dig till en tävling kan du logga in eller kontakta receptionen.";
+            }
+            else
+            {
+                lblcomp.Text = "Just nu finns det inga kommande tävlingar.";
+            }
+
         }      
         //Visar banans status
         private void SetTableBanstatus(DataTable dt)
         {
 
-        for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                    if (Convert.ToString(dt.Rows[i]["bana"]) == "1-9")
-                    {
-                        Table2.Rows[1].Cells[1].Text = "Öppen";
-                    }
-
-                    if (Convert.ToString(dt.Rows[i]["bana"]) == "10-18")
-                    {
-                        Table2.Rows[2].Cells[1].Text = "Öppen";
-                    }
-
-                    if (Convert.ToString(dt.Rows[i]["bana"]) == "range")
-                    {
-                        Table2.Rows[3].Cells[1].Text = "Öppen";
-                    }                    
-            }
         }
         //Används för att kryptera lösenord
         private static string HashSHA1(string value)
@@ -150,13 +148,14 @@ namespace Team_1_Halslaget_GK
             conn.Close();
             conn.Dispose();
 
+            medlem member = new medlem();
             if (password == HashSHA1(TextBoxPwLogin.Text + guid) && admin == false)
             {
                 Session["admin"] = admin.ToString();
                 Session["hcp"] = hcp.ToString();
                 Session["Username"] = id.ToString();
                 Session["GolfID"] = golfid;
-                Response.Redirect("~/MyPage.aspx");                
+                Response.Redirect("~/MyPage.aspx");
             }
 
             else if (password == HashSHA1(TextBoxPwLogin.Text + guid) && admin == true)
@@ -190,47 +189,24 @@ namespace Team_1_Halslaget_GK
             MedlemObj.ort = tbCity.Text;
             MedlemObj.kon = DdlKon.Text;
             MedlemObj.medlemsKategori = dropDownMembertype.Text;
-            MedlemObj.payStatus = false;
-
+            MedlemObj.payStatus = false;           
+            MedlemObj.password = HashSHA1(tbPassword.Text).ToString();            
             MedlemObj.InsertNewMember();
 
             tbName.Text = "";
             tbLastname.Text = "";
+            tbPonenumber.Text = "";
+            tbAdress.Text = "";
+            tbCity.Text = "";
+            tbZipcode.Text = "";
+            tbEmail.Text = "";
+            tbPassword.Text = "";
+            tbConfirmPassword.Text = "";
+            tbhcp.Text = "";
+            dropDownMembertype.SelectedIndex = 0;
+            DdlKon.SelectedIndex = 0;
         }
         //Funktioner
-        protected DataTable GetBanstatus()
-        {
-            DataTable dt = new DataTable();
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM season WHERE CURRENT_DATE BETWEEN startdatum and slutdatum", conn);
-
-            try
-            {
-                conn.Open();
-                da.Fill(dt);
-            }
-
-            catch
-            {
-                NpgsqlException ex;
-            }
-
-            finally
-            {
-                conn.Close();
-                conn.Dispose();
-            }
-
-            Table2.Rows[0].Cells[0].Text = "Bana";
-            Table2.Rows[0].Cells[1].Text = "Status";
-            Table2.Rows[1].Cells[0].Text = "1-9";
-            Table2.Rows[1].Cells[1].Text = "Stängd";
-            Table2.Rows[2].Cells[0].Text = "10-18";
-            Table2.Rows[2].Cells[1].Text = "Stängd";
-            Table2.Rows[3].Cells[0].Text = "Range";
-            Table2.Rows[3].Cells[1].Text = "Stängd";
-
-            return dt;
-        }
 
     }
 }

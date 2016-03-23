@@ -1,5 +1,6 @@
 ﻿//Class for season, should be updated with more methods and/or fields/propertis
 //Erik Drysén 2016-03-03.
+//Revised Erik Drysén 2016-03-09.
 
 using System;
 using System.Collections.Generic;
@@ -126,6 +127,120 @@ namespace Team_1_Halslaget_GK
                 }
                 return years;
             }
+        }
+
+        /// <summary>
+        /// Gets the season enddate. Uses other methods to create start and end date.
+        /// </summary>
+        public DateTime GetSeasonStartDate(string year)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            DateTime date;
+            try
+            {
+                DateTime startDate = SetStartDate(year);
+                DateTime endDate = SetEndDate(year);
+                conn.Open();
+                NpgsqlCommand cmdStartDate = new NpgsqlCommand("SELECT startdatum FROM season " +
+                                                              "WHERE startdatum >= @startDate " +
+                                                              "AND startdatum <= @endDate; ", conn);
+                cmdStartDate.Parameters.AddWithValue("@startDate", startDate);
+                cmdStartDate.Parameters.AddWithValue("@endDate", endDate);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdStartDate;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                if (dt.Rows.Count < 0)
+                {
+                    date = DateTime.Now;
+                    return date;
+                }
+                else
+                {
+                    date = DateTime.Parse(dt.Rows[0][0].ToString());
+                    return date;
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                date = DateTime.Today;
+                return date;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Gets the season enddate. Uses other methods to create start and end date.
+        /// </summary>
+        public DateTime GetSeasonEndDate(string year)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(WebConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            DateTime date;
+            try
+            {
+                DateTime startDate = SetStartDate(year);
+                DateTime endDate = SetEndDate(year);
+                conn.Open();
+                NpgsqlCommand cmdEndDate = new NpgsqlCommand("SELECT slutdatum FROM season " +
+                                                              "WHERE startdatum >= @startDate " +
+                                                              "AND startdatum <= @endDate; ", conn);
+                cmdEndDate.Parameters.AddWithValue("@startDate", startDate);
+                cmdEndDate.Parameters.AddWithValue("@endDate", endDate);
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter();
+                nda.SelectCommand = cmdEndDate;
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+
+                if (dt.Rows.Count < 0)
+                {
+                    date = DateTime.Now;
+                    return date;
+                }
+                else
+                {
+                    date = DateTime.Parse(dt.Rows[0][0].ToString());
+                    return date;
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                //NpgsqlException = ex.Message;
+                date = DateTime.Today;
+                return date;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Creates a startdate depeding on the year value it recieves.
+        /// </summary>
+        public DateTime SetStartDate(string year)
+        {
+            string dateString = year + "-01-01";
+            DateTime startDate = DateTime.Parse(dateString);
+
+            return startDate;
+        }
+
+        /// <summary>
+        /// Creates a startdate depeding on the year value it recieves.
+        /// </summary>
+        public DateTime SetEndDate(string year)
+        {
+            string dateString = year + "-12-31";
+            DateTime endDate = DateTime.Parse(dateString);
+
+            return endDate;
         }
     }
 }

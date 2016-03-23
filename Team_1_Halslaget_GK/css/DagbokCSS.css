@@ -1,0 +1,43 @@
+﻿.Diary-Grid {
+    /*background-color: #fff; 
+    margin: 5px 0 10px 0; 
+    border: solid 1px #525252; 
+    border-collapse:collapse; */
+    font-family:'latolight'; 
+    color: black;
+    /*height: auto;
+    max-height: 100px;
+    overflow: scroll;*/
+}
+
+.Diary-Grid td {
+      padding: 0.7em;
+      text-align: center;
+      font-size: 1em;
+/*      border: solid 1px #c1c1c1; */
+      /*width: 200px;*/
+}
+.Diary-Grid th  {
+      padding : 0.7em;
+      color: black;
+      /*background: #AF3C3C;
+      border-left: solid 1px #525252;*/
+      font-size: 1.3em; 
+}
+
+.one-em-margin {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.diary-padding {
+    padding-left: 1em;
+}
+
+.sevenFiveBox {
+  padding: 2%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; 
+
+ }

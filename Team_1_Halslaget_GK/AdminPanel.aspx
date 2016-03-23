@@ -10,47 +10,49 @@
     </div>
     <div class="fullBox admin-top-n-bottom-margin">
         <h3>Välkommen <asp:Label ID="lblAdminUserName" runat="server" Text="AdminUserName"></asp:Label></h3>
-        <p class="admin-top-n-bottom-margin">Hej och välkommen, här kan du som anställd hos hålslaget GK utföra din arbetsuppgifter och då bland annat boka tider åt medlemmar,
-            hantera medlermmas bokningar, skapa nya medlemskap och med mera.
-        </p>
     </div>
-    <div class="fullBox center-text">
+    <div class="fullBox center-text admin-bottom">
         <div class="quarterBox admin-qBox">
             <img class="admin-img" src="img/admin01.jpg"/>
-            <asp:Button ID="btnGoToBooking" CssClass="my-button admin-btn-txt" runat="server" Text="BOKA TID ÅT MEDLEM" OnClick="btnGoToBooking_Click" />
+            <div class="dropdownbox">
+            <asp:Button ID="btnGoToBooking" CssClass="my-button admin-btn-txt" runat="server" Text="BOKNINGAR" />
+            <div class="dropdown-content quarterBox">
+                <asp:LinkButton ID="LinkButton2" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToBooking_Click" >HANTERA BOKNINGAR</asp:LinkButton>
+        </div>
+            </div>
         </div>
         <div class="quarterBox admin-qBox">
             <img class="admin-img" src="img/admin02.jpg"/>
-            <asp:Button ID="btnGoToHandleBookings" CssClass="my-button admin-btn-txt" runat="server" Text="HANTERA BOKNINGAR" OnClick="btnGoToHandleBookings_Click" />            
-        </div>
-        <div class="quarterBox admin-qBox">
-            <img class="admin-img" src="img/admin03.jpg"/>
-            <asp:Button ID="btnGoToMemberRegistry" CssClass="my-button admin-btn-txt" runat="server" Text="MEDLEMSREGISTER" OnClick="btnGoToMemberRegistry_Click" />            
-        </div>
-        <div class="quarterBox admin-qBox">
-            <img class="admin-img" src="img/admin04.jpg"/>
-            <asp:Button ID="btnGoToCreateNewMember" CssClass="my-button admin-btn-txt" runat="server" Text="SKAPA NY MEDLEM" OnClick="btnGoToCreateNewMember_Click" />            
-        </div>
-    </div>
-
-    <div class="fullBox center-text">
-        <div class="quarterBox admin-qBox">
-            <img class="admin-img" src="img/admin01.jpg"/>
             <asp:Button ID="btnGoToSeasonSettings" runat="server" CssClass="my-button admin-btn-txt"  Text="HANTERA GOLFSÄSONG" OnClick="btnGoToSeasonSettings_Click" />
         </div>
         <div class="quarterBox admin-qBox">
-            <img class="admin-img" src="img/admin02.jpg"/>
-            <asp:Button ID="btnGoToCreateSeason" runat="server" CssClass="my-button admin-btn-txt"  Text="SKAPA TÄVLING" />        
-        </div>
-        <div class="quarterBox admin-qBox">
             <img class="admin-img" src="img/admin03.jpg"/>
-            <asp:Button ID="btnGoToRegisterResult" runat="server" CssClass="my-button admin-btn-txt"  Text="REGISTRERA RESULTAT" />        
+            <div class="dropdownbox">
+            <asp:Button ID="btnGoToMemberRegistry" CssClass="my-button admin-btn-txt" runat="server" Text="MEDLEMMAR" />            
+            <div class="dropdown-content quarterBox">
+                <asp:LinkButton ID="LinkButton3" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToMemberRegistry_Click" >MEDLEMSREGISTER</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton4" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToCreateNewMember_Click" >NY MEDLEM</asp:LinkButton>
         </div>
-        <div class="quarterBox admin-qBox">
-            <img class="admin-img" src="img/admin04.jpg"/>
-            <asp:Button ID="Button4" runat="server" CssClass="my-button admin-btn-txt"  Text="NÅGOT" />          
         </div>
     </div>
-
+        <div class="quarterBox admin-qBox">
+            <img class="admin-img" src="img/admin04.jpg"/>
+            <div class="dropdownbox">
+            <asp:Button ID="btnGoToCreateSeason" runat="server" CssClass="my-button admin-btn-txt"  Text="TÄVLINGAR" />        
+                <div class="dropdown-content quarterBox">
+                    <asp:LinkButton ID="GotoCreateComp" runat="server" class="my-button admin-btn-txt" OnClick="GotoCreateComp_Click" >SKAPA TÄVLING</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton6" runat="server" class="my-button admin-btn-txt" OnClick="btnGoToRegisterResult_Click">REGISTRERA RESULTAT</asp:LinkButton>
+                    <asp:LinkButton ID="GoToStartlist" runat="server" class="my-button admin-btn-txt"  OnClick="GoToStartlist_Click">STARTLISTA</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton1" runat="server" class="my-button admin-btn-txt"  OnClick="LinkButton1_Click">BOKA MEDLEM</asp:LinkButton>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fullBox">
+        <div class="quarterBox admin-qBox">
+            <img class="admin-img" src="img/admin02.jpg"/>
+            <asp:Button ID="btnGoToNews" runat="server" CssClass="my-button admin-btn-txt"  Text="SKAPA NYHET" OnClick="btnGoToNews_Click" />
+        </div>
+    </div>
 
 </asp:Content>
